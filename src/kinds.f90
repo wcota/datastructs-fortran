@@ -1,4 +1,4 @@
-module mod_kinds
+module hOGA_kinds_mod
     use, intrinsic :: iso_fortran_env, only: &
         sp => real32, &
         dp => real64, &
