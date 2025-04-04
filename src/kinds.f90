@@ -9,7 +9,9 @@ module hOGA_kinds_mod
     implicit none
     private
 
-    public :: sp, dp, i1, i2, i4, i8, list_ranges
+    character(len=*), parameter :: fmt_general = '(*(g0,x))'
+
+    public :: sp, dp, i1, i2, i4, i8, list_ranges, fmt_general
 
 contains
 
