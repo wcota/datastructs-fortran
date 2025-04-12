@@ -11,8 +11,11 @@ module hOGA_kinds_mod
     private
 
     character(len=*), parameter :: fmt_general = '(*(g0,x))'
+    character(len=*), parameter :: fmt_comma = '(*(g0,","))'
+    character(len=*), parameter :: fmt_comma_pair = '(g0,",",g0)'
 
-    public :: sp, dp, i1, i2, i4, i8, list_ranges, fmt_general
+    public :: sp, dp, i1, i2, i4, i8, list_ranges
+    public :: fmt_general, fmt_comma, choose_fmt_based_on
 
 contains
 
@@ -34,5 +37,27 @@ contains
         write(*, *) "4 byte integer range: ", -huge(int_i4) - 1, " to ", huge(int_i4)
         write(*, *) "8 byte integer range: ", -huge(int_i8) - 1, " to ", huge(int_i8)
     end subroutine list_ranges
+
+    function choose_fmt_based_on(filename) result(fmt)
+        character(len=*), intent(in) :: filename
+        character(len=:), allocatable :: fmt
+        character(len=4), allocatable :: ext
+        
+        if (len(filename) >= 4) then
+            ext = filename(len(filename)-3:len(filename))
+        else
+            ext = ''
+        end if
+
+        select case (ext)
+            case ('.csv')
+                fmt = fmt_comma_pair
+            case ('.txt', '.dat')
+                fmt = fmt_general
+            case default
+                fmt = fmt_general
+        end select
+
+    end function choose_fmt_based_on
 
 end module
