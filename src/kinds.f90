@@ -15,7 +15,7 @@ module hOGA_kinds_mod
     character(len=*), parameter :: fmt_comma_pair = '(g0,",",g0)'
 
     public :: sp, dp, i1, i2, i4, i8, list_ranges
-    public :: fmt_general, fmt_comma, choose_fmt_based_on
+    public :: fmt_general, fmt_comma, choose_fmt_based_on, count_integers_from_string
 
 contains
 
@@ -59,5 +59,30 @@ contains
         end select
 
     end function choose_fmt_based_on
+
+    function count_integers_from_string(str) result(count)
+        character(len=*), intent(in) :: str
+        integer(kind=i4) :: count
+        integer(kind=i4) :: i, len_str
+        logical :: in_number
+
+        len_str = len_trim(str)
+        count = 0
+        in_number = .false.
+
+        do i = 1, len_str
+            if ((str(i:i) == ' ') .or. (str(i:i) == ',')) then
+                if (in_number) then
+                    count = count + 1
+                    in_number = .false.
+                end if
+            else
+                in_number = .true.
+            end if
+        end do
+
+        if (in_number) count = count + 1
+
+    end function count_integers_from_string
 
 end module
