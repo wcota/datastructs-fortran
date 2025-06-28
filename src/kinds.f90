@@ -10,14 +10,38 @@ module hOGA_kinds_mod
     implicit none
     private
 
+    !> Interface for the swap subroutine.
+    interface swap
+        module procedure swap_int, swap_real
+    end interface
+
     character(len=*), parameter :: fmt_general = '(*(g0,x))'
     character(len=*), parameter :: fmt_comma = '(*(g0,","))'
     character(len=*), parameter :: fmt_comma_pair = '(g0,",",g0)'
 
     public :: sp, dp, i1, i2, i4, i8, list_ranges
     public :: fmt_general, fmt_comma, choose_fmt_based_on, count_integers_from_string
+    public :: swap
 
 contains
+
+    subroutine swap_int(a,b)
+        integer(kind=i4), intent(inout) :: a, b
+        integer(kind=i4) :: temp
+
+        temp = a
+        a = b
+        b = temp
+    end subroutine swap_int
+
+    subroutine swap_real(a,b)
+        real(kind=dp), intent(inout) :: a, b
+        real(kind=dp) :: temp
+
+        temp = a
+        a = b
+        b = temp
+    end subroutine swap_real
 
     subroutine list_ranges()
         real(kind=sp) :: real_sp
@@ -42,7 +66,7 @@ contains
         character(len=*), intent(in) :: filename
         character(len=:), allocatable :: fmt
         character(len=4), allocatable :: ext
-        
+
         if (len(filename) >= 4) then
             ext = filename(len(filename)-3:len(filename))
         else
@@ -50,12 +74,12 @@ contains
         end if
 
         select case (ext)
-            case ('.csv')
-                fmt = fmt_comma_pair
-            case ('.txt', '.dat')
-                fmt = fmt_general
-            case default
-                fmt = fmt_general
+          case ('.csv')
+            fmt = fmt_comma_pair
+          case ('.txt', '.dat')
+            fmt = fmt_general
+          case default
+            fmt = fmt_general
         end select
 
     end function choose_fmt_based_on
