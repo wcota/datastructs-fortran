@@ -88,7 +88,6 @@ contains
     end subroutine sampler_reset
 
     !> Sets the weight for a given index
-    !> We assume that the index is new, not added in the list before
     subroutine sampler_set_weight(this, index, weight)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: index
@@ -97,20 +96,23 @@ contains
         ! DEBUG
         !if (index < 1 .or. index > this%n) error stop 'Index out of bounds in sampler_set_weight'
 
-        ! DEBUG: check if the index is already added to the list
-        !if (this%position_of(index) /= 0) then
-        !    error stop 'Index already set in sampler_set_weight'
-        !end if
+        ! check if the index is already added to the list
+        if (this%position_of(index) /= 0) then
+            ! remove the current sum
+            this%current_sum = this%current_sum - this%weights(index)
+        else
+            call this%indices%add(index)
+            this%position_of(index) = this%indices%n_used            
+        end if
 
         this%weights(index) = weight
-        call this%indices%add(index)
-        this%position_of(index) = this%indices%n_used
 
         ! update the current sum
         this%current_sum = this%current_sum + weight ! we do not remove the last weight since it is a new one
 
         ! update the maximum weight
         this%max_weight = max(this%max_weight, weight)
+
     end subroutine sampler_set_weight
 
     !> Sets the weights from an array (full), assuming all larger than zero (IMPORTANT!)
