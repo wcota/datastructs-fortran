@@ -5,6 +5,8 @@ module hoga_weighted_sampler_rejection_mod
     implicit none
     private
 
+    real(kind=dp), parameter :: EPSILON = 1.0e-16_dp
+
     interface weighted_sampler
         module procedure weighted_sampler_new
     end interface
@@ -96,6 +98,12 @@ contains
         ! DEBUG
         !if (index < 1 .or. index > this%n) error stop 'Index out of bounds in sampler_set_weight'
 
+        ! if the weight is zero, remove the index from the list
+        if (weight <= EPSILON) then
+            call this%remove(index)
+            return
+        end if
+
         ! check if the index is already added to the list
         if (this%position_of(index) /= 0) then
             ! remove the current sum
@@ -143,24 +151,11 @@ contains
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: index
         real(dp), intent(in) :: delta_weight
-        integer(i4) :: pos
 
         ! DEBUG
         !if (index < 1 .or. index > this%n) error stop 'Index out of bounds in sampler_add_weight'
 
-        pos = this%position_of(index)
-        if (pos == 0) then
-            call this%set_weight(index, this%weights(index) + delta_weight) ! If not set, set it
-        else
-            ! Update the existing weight in the list
-            this%weights(index) = this%weights(index) + delta_weight
-
-            ! update the current sum
-            this%current_sum = this%current_sum + delta_weight
-            
-            ! update the maximum weight
-            this%max_weight = max(this%max_weight, this%weights(index))
-        end if
+        call this%set_weight(index, this%weights(index) + delta_weight)
         
     end subroutine sampler_add_weight
 
