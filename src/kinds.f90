@@ -13,7 +13,7 @@ module kinds_mod
     !> Interface for the swap subroutine.
     interface swap
         module procedure swap_int, swap_real
-    end interface
+    end interface swap
 
     character(len=*), parameter :: fmt_general = '(*(g0,x))'
     character(len=*), parameter :: fmt_comma = '(*(g0,","))'

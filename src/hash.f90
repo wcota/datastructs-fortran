@@ -5,7 +5,7 @@ module hash_mod
 
     public :: djb2
 
-    contains
+contains
 
     !> DJB2 hash function
     !> Inspired by http://www.cse.yorku.ca/~oz/hash.html
@@ -13,17 +13,17 @@ module hash_mod
     function djb2(list) result(r)
         integer(kind=i4), intent(in) :: list(:)
         integer(kind=i8) :: r
-    
-        integer(kind=i4) :: i, l
-    
-        l = size(list)
-    
-        r = 5381_i8
-    
-        do i = 1, l
-           r = (ishft(r, 5) + r) + int(list(i), i8)
-        end do
-    
-      end function djb2
 
-end module
+        integer(kind=i4) :: i, l
+
+        l = size(list)
+
+        r = 5381_i8
+
+        do i = 1, l
+            r = (ishft(r, 5) + r) + int(list(i), i8)
+        end do
+
+    end function djb2
+
+end module hash_mod
