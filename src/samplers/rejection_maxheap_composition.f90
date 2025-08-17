@@ -1,3 +1,8 @@
+!> This module implements a rejection composition sampler
+!> It is based on "St-Onge, G., Young, J. G., Hébert-Dufresne, L., & Dubé, L. J. (2019).
+!> Efficient sampling of spreading processes on complex networks using a composition and rejection algorithm.
+!> Computer physics communications, 240, 30-37"
+!> <https://doi.org/10.1016/j.cpc.2019.02.008>
 module samplers_rejection_maxheap_composition_mod
     use kinds_mod
     use lists_mod
@@ -7,17 +12,19 @@ module samplers_rejection_maxheap_composition_mod
     implicit none
     private
 
+    !> Constructor
     interface weighted_sampler
         module procedure weighted_sampler_new
-    end interface
+    end interface weighted_sampler
 
+    !> Derived type, extending from the base
     type, extends(sampler_base_t) :: weighted_sampler_t
         type(rejection_maxheap_t), allocatable :: samplers(:)
         integer(i4) :: q = 0 ! number of groups
         type(btree_t) :: btree ! btree for the samplers selection (size q)
         integer(i4), allocatable :: sampler_of_index(:) ! maps index to sampler
         real(dp) :: wmin, wmax
-    contains        
+    contains
         procedure :: init_n => sampler_init
         procedure :: init_w => sampler_init_w
         procedure :: init_w2 => sampler_init_w2
@@ -38,6 +45,7 @@ module samplers_rejection_maxheap_composition_mod
 contains
 
     !> Create a new rejection sampler with N weights
+    !> Input: n - number of weights
     function weighted_sampler_new(n) result(this)
         type(weighted_sampler_t) :: this
         integer(i4), intent(in) :: n
@@ -47,6 +55,7 @@ contains
     end function weighted_sampler_new
 
     !> Initializes the structure with N weights
+    !> Input: n - number of weights
     subroutine sampler_init(this, n)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: n
@@ -75,7 +84,9 @@ contains
         this%weights = 0.0_dp ! Initialize weights to zero
     end subroutine sampler_init
 
-    !> Initializes with size n and threshold w
+    !> Placeholder for 1D initialization (compat mode), maps to original init
+    !> Input: n - number of weights
+    !>        w - any real number, not used
     subroutine sampler_init_w(this, n, w)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: n
@@ -84,7 +95,11 @@ contains
         call this%init(n)  ! call original init
     end subroutine sampler_init_w
 
-    !> Initializes with size n and threshold w
+    !> Initializes the sampler giving its minimum and maximum weights
+    !> This calculates the number of rejection samplers to use
+    !> Input: n - number of weights
+    !>        w1 - minimum weight
+    !>        w2 - maximum weight
     subroutine sampler_init_w2(this, n, w1,w2)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: n
@@ -107,7 +122,7 @@ contains
         call this%init(n)  ! call original init
     end subroutine sampler_init_w2
 
-    !> Resets the sampler: clear the list
+    !> Resets the sampler: clears the list
     subroutine sampler_reset(this)
         class(weighted_sampler_t), intent(inout) :: this
         integer(kind=i4) :: sampler_pos
@@ -122,6 +137,8 @@ contains
     end subroutine sampler_reset
 
     !> Sets the weight for a given index
+    !> Input: index - index of the element with a given weight
+    !>        weight - weight of the element
     subroutine sampler_set_weight(this, index, weight)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: index
@@ -147,7 +164,10 @@ contains
         this%weights(index) = weight
     end subroutine sampler_set_weight
 
-    !> Sets the weights from an array (full), assuming all larger than zero (IMPORTANT!)
+    !> Sets the weights from an array (full), using its indexes
+    !> Weights should be larger than zero
+    !> It assumes it was initialized before, and has the same size
+    !> Input: weights - array with the weights
     subroutine sampler_set_weight_array(this, weights)
         class(weighted_sampler_t), intent(inout) :: this
         real(dp), intent(in) :: weights(:)
@@ -159,10 +179,12 @@ contains
         do i = 1, size(weights)
             call this%set_weight(i, weights(i)) ! Set the weight for each index
         end do
-       
+
     end subroutine sampler_set_weight_array
 
     !> Adds a weight to the sampler at a given index
+    !> Input: index - index of the element
+    !>        delta_weight - difference to add to its weight
     subroutine sampler_add_weight(this, index, delta_weight)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: index
@@ -176,10 +198,12 @@ contains
 
         ! Now we can add the weight again
         call this%set_weight(index, weight) ! Set the new weight
-        
+
     end subroutine sampler_add_weight
 
     !> Remove an index from the sampler
+    !> Important: the index is the original one, not the index used internally by the sampler
+    !> Input: index - index of the element to be removed
     subroutine sampler_remove(this, index)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: index
@@ -200,10 +224,11 @@ contains
 
         ! remove weight from the btree
         call this%btree%add_weight(sampler_pos, -weight)
-        
+
     end subroutine sampler_remove
 
-    !> Retorna um índice proporcional aos pesos
+    !> Samples an index from the sampler
+    !> Input: gen - random number generator (rndgen-fortran module)
     function sampler_sample(this, gen) result(index)
         use rndgen_mod
         class(weighted_sampler_t), intent(in) :: this
@@ -211,10 +236,11 @@ contains
         integer(i4) :: index
         integer(i4) :: sampler_pos
 
-        sampler_pos = this%btree%sample(gen) ! Sample a sampler position from the btree
+        sampler_pos = this%btree%sample(gen) ! Get a sampler position from the btree
 
-        index = this%samplers(sampler_pos)%sample(gen)  
-        
+        ! samples from the corresponding rejection sampler
+        index = this%samplers(sampler_pos)%sample(gen)
+
     end function
 
     !> Get the sum of all weights
@@ -239,6 +265,8 @@ contains
 
     end subroutine sampler_finalize
 
+    !> Auxiliary function (private) to get the sampler position for a given weight
+    !> Input: weight - the weight to find the sampler position for
     function sampler_sampler_pos(this, weight) result(pos)
         class(weighted_sampler_t), intent(in) :: this
         real(dp), intent(in) :: weight
@@ -253,4 +281,4 @@ contains
 
     end function sampler_sampler_pos
 
-end module
+end module samplers_rejection_maxheap_composition_mod
