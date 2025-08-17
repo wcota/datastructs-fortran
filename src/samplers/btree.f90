@@ -1,6 +1,6 @@
-module hoga_weighted_sampler_btree_mod
-    use hoga_kinds_mod
-    use hoga_weighted_sampler_base_mod
+module samplers_btree_mod
+    use kinds_mod
+    use samplers_base_mod
     implicit none
     private
 
@@ -8,7 +8,7 @@ module hoga_weighted_sampler_btree_mod
         module procedure weighted_sampler_new
     end interface
 
-    type, extends(weighted_sampler_base_t) :: weighted_sampler_t
+    type, extends(sampler_base_t) :: weighted_sampler_t
         real(dp), allocatable :: tree(:)         ! soma das subárvores
     contains
         procedure :: init_n => sampler_init

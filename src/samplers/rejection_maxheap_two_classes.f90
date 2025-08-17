@@ -1,8 +1,8 @@
-module hoga_weighted_sampler_rejection_maxheap_two_classes_mod
-    use hoga_kinds_mod
-    use hOGA_lists_mod
-    use hoga_weighted_sampler_rejection_maxheap_mod, only : rejection_maxheap_t => weighted_sampler_t
-    use hoga_weighted_sampler_base_mod
+module samplers_rejection_maxheap_two_classes_mod
+    use kinds_mod
+    use lists_mod
+    use samplers_rejection_maxheap_mod, only : rejection_maxheap_t => weighted_sampler_t
+    use samplers_base_mod
     implicit none
     private
 
@@ -10,7 +10,7 @@ module hoga_weighted_sampler_rejection_maxheap_two_classes_mod
         module procedure weighted_sampler_new
     end interface
 
-    type, extends(weighted_sampler_base_t) :: weighted_sampler_t
+    type, extends(sampler_base_t) :: weighted_sampler_t
         type(rejection_maxheap_t) :: samplers(2)
         real(dp) :: threshold = huge(dp) ! threshold for the weights
         integer(i4), allocatable :: sampler_of_index(:) ! maps index to sampler (1 or 2)

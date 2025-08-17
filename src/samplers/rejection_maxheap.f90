@@ -1,7 +1,7 @@
-module hoga_weighted_sampler_rejection_maxheap_mod
-    use hoga_kinds_mod
-    use hOGA_lists_mod
-    use hoga_weighted_sampler_base_mod
+module samplers_rejection_maxheap_mod
+    use kinds_mod
+    use lists_mod
+    use samplers_base_mod
     implicit none
     private
 
@@ -11,7 +11,7 @@ module hoga_weighted_sampler_rejection_maxheap_mod
         module procedure weighted_sampler_new
     end interface
 
-    type, extends(weighted_sampler_base_t) :: weighted_sampler_t
+    type, extends(sampler_base_t) :: weighted_sampler_t
         type(dynamical_list_t), allocatable :: indices
         type(maxheap_t), allocatable :: heap ! max-heap for efficient sampling
         integer(i4), allocatable :: position_of(:) ! index positions
