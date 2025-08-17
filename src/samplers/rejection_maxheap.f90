@@ -5,12 +5,14 @@ module samplers_rejection_maxheap_mod
     implicit none
     private
 
-    real(kind=dp), parameter :: EPSILON = 0.0_dp !1.0e-16_dp
+    real(kind=dp), parameter :: EPSILON = 0.0_dp
 
+    !> Constructor
     interface weighted_sampler
         module procedure weighted_sampler_new
-    end interface
+    end interface weighted_sampler
 
+    !> Derived type, extending from the base
     type, extends(sampler_base_t) :: weighted_sampler_t
         type(dynamical_list_t), allocatable :: indices
         type(maxheap_t), allocatable :: heap ! max-heap for efficient sampling
@@ -29,13 +31,14 @@ module samplers_rejection_maxheap_mod
         procedure :: sum => sampler_sum
 
         final :: sampler_finalize
-    end type
+    end type weighted_sampler_t
 
     public :: weighted_sampler, weighted_sampler_t
 
 contains
 
     !> Create a new rejection sampler with N weights
+    !> Input: n - number of weights
     function weighted_sampler_new(n) result(this)
         type(weighted_sampler_t) :: this
         integer(i4), intent(in) :: n
@@ -45,6 +48,7 @@ contains
     end function weighted_sampler_new
 
     !> Initializes the structure with N weights
+    !> Input: n - number of weights
     subroutine sampler_init(this, n)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: n
@@ -62,6 +66,8 @@ contains
     end subroutine sampler_init
 
     !> Placeholder for 1D initialization (compat mode), maps to original init
+    !> Input: n - number of weights
+    !>        w - any real number, not used
     subroutine sampler_init_w(this, n, w)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: n
@@ -71,6 +77,9 @@ contains
     end subroutine sampler_init_w
 
     !> Placeholder for 1D initialization (compat mode), maps to original init
+    !> Input: n - number of weights
+    !>        w1 - any real number, not used
+    !>        w2 - any real number, not used
     subroutine sampler_init_w2(this, n, w1,w2)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: n
@@ -78,12 +87,12 @@ contains
 
         call this%init(n)  ! call original init
     end subroutine sampler_init_w2
-    
-    !> Resets the sampler: clear the list
+
+    !> Resets the sampler: clears the list
     subroutine sampler_reset(this)
         class(weighted_sampler_t), intent(inout) :: this
 
-        call this%indices%reset()    
+        call this%indices%reset()
         this%position_of = 0
         this%current_sum = 0.0_dp
         this%weights = 0.0_dp
@@ -93,6 +102,8 @@ contains
     end subroutine sampler_reset
 
     !> Sets the weight for a given index
+    !> Input: index - index of the element with a given weight
+    !>        weight - weight of the element
     subroutine sampler_set_weight(this, index, weight)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: index
@@ -114,9 +125,10 @@ contains
             call this%heap%remove(index)
         else
             call this%indices%add(index)
-            this%position_of(index) = this%indices%n_used            
+            this%position_of(index) = this%indices%n_used
         end if
 
+        ! sets the weight
         this%weights(index) = weight
 
         ! update the current sum
@@ -126,7 +138,10 @@ contains
         call this%heap%add(weight, index) ! Add to the max-heap
     end subroutine sampler_set_weight
 
-    !> Sets the weights from an array (full), assuming all larger than zero (IMPORTANT!)
+    !> Sets the weights from an array (full), using its indexes
+    !> Weights should be larger than zero
+    !> It assumes it was initialized before, and has the same size
+    !> Input: weights - array with the weights
     subroutine sampler_set_weight_array(this, weights)
         class(weighted_sampler_t), intent(inout) :: this
         real(dp), intent(in) :: weights(:)
@@ -148,6 +163,8 @@ contains
     end subroutine sampler_set_weight_array
 
     !> Adds a weight to the sampler at a given index
+    !> Input: index - index of the element
+    !>        delta_weight - difference to add to its weight
     subroutine sampler_add_weight(this, index, delta_weight)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: index
@@ -157,10 +174,12 @@ contains
         !if (index < 1 .or. index > this%n) error stop 'Index out of bounds in sampler_add_weight'
 
         call this%set_weight(index, this%weights(index) + delta_weight)
-        
+
     end subroutine sampler_add_weight
 
     !> Remove an index from the sampler
+    !> Important: the index is the original one, not the index used internally by the sampler
+    !> Input: index - index of the element to be removed
     subroutine sampler_remove(this, index)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: index
@@ -185,10 +204,11 @@ contains
             
             call this%heap%remove(index) ! Remove from the max-heap
         end if
-        
+
     end subroutine sampler_remove
 
-    !> Retorna um índice proporcional aos pesos
+    !> Samples an index from the sampler
+    !> Input: gen - random number generator (rndgen-fortran module)
     function sampler_sample(this, gen) result(index)
         use rndgen_mod
         class(weighted_sampler_t), intent(in) :: this
@@ -208,24 +228,13 @@ contains
             if (gen%rnd() < weight / this%heap%max_value()) return
             ! else, we reject and try again
         end do
-        
+
     end function
 
     !> Get the sum of all weights
     function sampler_sum(this) result(total_weight)
         class(weighted_sampler_t), intent(in) :: this
         real(dp) :: total_weight
-        ! DEBUG     
-        !integer(i4) :: i   
-        !real(dp), parameter :: tol = 1.0e-12_dp
-        !total_weight = 0.0_dp
-        !do i = 1, this%indices%n_used
-        !    total_weight = total_weight + this%weights(this%indices%list(i))            
-        !end do
-        !if (abs(total_weight - this%current_sum) > tol * max(abs(total_weight), abs(this%current_sum), 1.0_dp)) then
-        !    print*, total_weight, this%current_sum
-        !    error stop 'Inconsistency in total weight calculation'
-        !end if
 
         total_weight = this%current_sum
 
@@ -249,4 +258,4 @@ contains
 
     end subroutine sampler_finalize
 
-end module
+end module samplers_rejection_maxheap_mod
