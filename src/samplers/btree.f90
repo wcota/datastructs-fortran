@@ -1,13 +1,17 @@
+!> This modules implements a binary tree sampler
+!> It provides a way to sample elements based on their weights using a binary tree structure.
 module samplers_btree_mod
     use kinds_mod
     use samplers_base_mod
     implicit none
     private
 
+    !> Constructor
     interface weighted_sampler
         module procedure weighted_sampler_new
     end interface
 
+    !> Derived type, extending from the base
     type, extends(sampler_base_t) :: weighted_sampler_t
         real(dp), allocatable :: tree(:)         ! soma das subárvores
     contains
@@ -29,7 +33,8 @@ module samplers_btree_mod
 
 contains
 
-    !> Cria um novo weighted_sampler com N pesos
+    !> Create a new binary tree sampler with N weights
+    !> Input: n - number of weights
     function weighted_sampler_new(n) result(this)
         type(weighted_sampler_t) :: this
         integer(i4), intent(in) :: n
@@ -38,19 +43,22 @@ contains
 
     end function weighted_sampler_new
 
-    !> Inicializa a estrutura com N pesos todos nulos
+    !> Initializes the structure with N weights
+    !> Input: n - number of weights
     subroutine sampler_init(this, n)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: n
 
         this%n = n
         allocate(this%weights(n))
-        allocate(this%tree(2*n - 1))  ! árvore binária completa com n folhas
+        allocate(this%tree(2*n - 1))  ! complete binary tree with n leaves
         this%weights = 0.0_dp
         this%tree = 0.0_dp
     end subroutine sampler_init
 
     !> Placeholder for 1D initialization (compat mode), maps to original init
+    !> Input: n - number of weights
+    !>        w - any real number, not used
     subroutine sampler_init_w(this, n, w)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: n
@@ -60,6 +68,9 @@ contains
     end subroutine sampler_init_w
 
     !> Placeholder for 1D initialization (compat mode), maps to original init
+    !> Input: n - number of weights
+    !>        w1 - any real number, not used
+    !>        w2 - any real number, not used
     subroutine sampler_init_w2(this, n, w1,w2)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: n
@@ -68,30 +79,10 @@ contains
         call this%init(n)  ! call original init
     end subroutine sampler_init_w2
 
-    ! !> Inicializa a estrutura com N x M pesos todos nulos
-    ! subroutine sampler_init_2d(this, n, m)
-    !     class(weighted_sampler_t), intent(inout) :: this
-    !     integer(i4), intent(in) :: n, m
-
-    !     this%n = n * m
-    !     allocate(this%weights(this%n))
-    !     allocate(this%tree(2*this%n - 1))  ! árvore binária completa com n folhas
-    !     this%weights = 0.0_dp
-    !     this%tree = 0.0_dp
-
-    !     allocate(this%dim_1_n)  ! dimensão 1
-    !     allocate(this%dim_2_m)  ! dimensão 2
-
-    !     this%dim_1_n = n
-    !     this%dim_2_m = m
-    ! end subroutine sampler_init_2d
-
-    !> Retorna a soma total dos pesos
-
-    !> Reseta os pesos para zero
+    !> Resets the sampler: clears the list
     subroutine sampler_reset(this)
         class(weighted_sampler_t), intent(inout) :: this
-        
+
         ! DEBUG
         !if (this%n <= 0) error stop "reset: sampler not initialized"
 
@@ -99,7 +90,9 @@ contains
         this%tree = 0.0_dp
     end subroutine sampler_reset
 
-    !> Atualiza o peso de um índice e ajusta a árvore
+    !> Sets the weight for a given index
+    !> Input: index - index of the element with a given weight
+    !>        weight - weight of the element
     subroutine sampler_set_weight(this, index, weight)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: index
@@ -114,6 +107,7 @@ contains
         !if (delta == 0.0_dp) return
         this%weights(index) = weight
 
+        ! we perform a bottom-up update of the tree
         i = index + this%n - 1
         do while (i >= 1)
             this%tree(i) = this%tree(i) + delta
@@ -121,7 +115,10 @@ contains
         end do
     end subroutine sampler_set_weight
 
-    !> Atualiza os pesos de um array e ajusta a árvore
+    !> Sets the weights from an array (full), using its indexes
+    !> Weights should be larger than zero
+    !> It assumes it was initialized before, and has the same size
+    !> Input: weights - array with the weights
     subroutine sampler_set_weight_array(this, weights)
         class(weighted_sampler_t), intent(inout) :: this
         real(dp), intent(in) :: weights(:)
@@ -130,37 +127,23 @@ contains
         ! DEBUG
         !if (size(weights) /= this%n) error stop 'Weights array size does not match sampler size'
 
-        ! Copia os pesos
+        ! Copy the weights
         this%weights = weights
 
-        ! Preenche as folhas da árvore
+        ! Define the weights
         do i = 1, this%n
             this%tree(i + this%n - 1) = weights(i)
         end do
 
-        ! Constrói os nós internos
+        ! Perform a bottom-up update of the tree
         do i = this%n - 1, 1, -1
             this%tree(i) = this%tree(2 * i) + this%tree(2 * i + 1)
         end do
     end subroutine sampler_set_weight_array
 
-    ! !> Atualiza o peso de um índice e ajusta a árvore para 2D
-    ! !> First, map the 2D index to 1D, and use the 1D version
-    ! subroutine sampler_set_weight_2d(this, index_1, index_2, weight)
-    !     class(weighted_sampler_t), intent(inout) :: this
-    !     integer(i4), intent(in) :: index_1, index_2
-    !     real(dp), intent(in) :: weight
-    !     integer(i4) :: index
-
-    !     if (index_1 < 1 .or. index_1 > this%dim_1_n .or. &
-    !         index_2 < 1 .or. index_2 > this%dim_2_m) stop "set_weight: invalid indices"
-
-    !     index = (index_1 - 1) * this%dim_2_m + index_2  ! mapeia 2D para 1D
-
-    !     call this%set_weight(index, weight)  ! chama o set_weight para 1D
-    ! end subroutine sampler_set_weight_2d
-
-    !> Adiciona um peso ao índice e ajusta a árvore
+    !> Adds a weight to the sampler at a given index
+    !> Input: index - index of the element
+    !>        delta_weight - difference to add to its weight
     subroutine sampler_add_weight(this, index, delta_weight)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: index
@@ -168,10 +151,12 @@ contains
         ! DEBUG
         !if (index < 1 .or. index > this%n) error stop 'Index out of bounds in sampler_add_weight'
 
-        call this%set_weight(index, this%weights(index) + delta_weight)  ! chama o set_weight para atualizar o peso
+        call this%set_weight(index, this%weights(index) + delta_weight)  ! call set_weight for each weight
     end subroutine sampler_add_weight
 
-    !> Remove um índice e ajusta a árvore
+    !> Remove an index from the sampler
+    !> Important: the index is the original one, not the index used internally by the sampler
+    !> Input: index - index of the element to be removed
     subroutine sampler_remove(this, index)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: index
@@ -179,10 +164,12 @@ contains
         ! DEBUG
         !if (index < 1 .or. index > this%n) error stop 'Index out of bounds in sampler_remove'
 
-        call this%set_weight(index, 0.0_dp)  ! chama o set_weight para zerar o peso
+        call this%set_weight(index, 0.0_dp) ! we just update weight to zero
     end subroutine sampler_remove
 
-    !> Retorna um índice proporcional aos pesos
+    !> Samples an index from the sampler
+    !> Input: gen - random number generator (rndgen-fortran module)
+    !> Output: index - sampled index
     function sampler_sample(this, gen) result(index)
         use rndgen_mod
         class(weighted_sampler_t), intent(in) :: this
@@ -194,9 +181,11 @@ contains
         ! DEBUG
         ! if (this%tree(1) <= 0.0_dp) error stop "sample: total weight is zero"
 
+        ! for that, we calculate a random value from the top (sum of weights)
         r = gen%rnd() * this%tree(1)
-        i = 1
 
+        ! we start to go down, performing a binary search
+        i = 1
         do while (i < this%n)
             if (r <= this%tree(2*i)) then
                 i = 2*i
@@ -209,6 +198,8 @@ contains
         index = i - this%n + 1
     end function sampler_sample
 
+    !> Get the sum of all weights
+    !> Output: total - sum of all weights
     function sampler_sum(this) result(total)
         class(weighted_sampler_t), intent(in) :: this
         real(dp) :: total
@@ -216,26 +207,10 @@ contains
         ! DEBUG
         !if (this%n <= 0) error stop "sum: sampler not initialized"
 
-        total = this%tree(1)  ! a raiz da árvore contém a soma total
+        total = this%tree(1)  ! the root contains the total sum
     end function sampler_sum
 
-    ! !> Retorna um índice proporcional aos pesos para 2D, array of size 2
-    ! function sampler_sample_2d(this, gen) result(indexes)
-    !     use rndgen_mod
-    !     class(weighted_sampler_t), intent(in) :: this
-    !     class(rndgen), intent(inout) :: gen
-    !     integer(i4), dimension(2) :: indexes
-    !     integer(i4) :: original_index
-
-    !     original_index = this%sample(gen)  ! chama o sample 1D
-
-    !     ! Mapeia o índice 1D de volta para 2D
-    !     indexes(1) = (original_index - 1) / this%dim_2_m + 1  ! linha
-    !     indexes(2) = mod(original_index - 1, this%dim_2_m) + 1  ! coluna
-
-    ! end function sampler_sample_2d
-
-    !> Libera a memória alocada
+    !> Finalize the sampler, deallocate resources
     subroutine sampler_finalize(this)
         type(weighted_sampler_t), intent(inout) :: this
 
@@ -245,4 +220,4 @@ contains
         this%n = 0
     end subroutine sampler_finalize
 
-end module
+end module samplers_btree_mod
