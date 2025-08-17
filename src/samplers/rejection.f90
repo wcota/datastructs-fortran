@@ -207,6 +207,7 @@ contains
 
     !> Samples an index from the sampler
     !> Input: gen - random number generator (rndgen-fortran module)
+    !> Output: index - sampled index
     function sampler_sample(this, gen) result(index)
         use rndgen_mod
         class(weighted_sampler_t), intent(in) :: this
@@ -230,6 +231,7 @@ contains
     end function
 
     !> Get the sum of all weights
+    !> Output: total - sum of all weights
     function sampler_sum(this) result(total_weight)
         class(weighted_sampler_t), intent(in) :: this
         real(dp) :: total_weight
