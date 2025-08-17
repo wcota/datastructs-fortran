@@ -8,12 +8,21 @@ module datastructs_fortran
     implicit none
     private
 
+    !> Hash functions
     public :: djb2
 
+    !> Lists and maxheap constructors
     public :: dynamical_list, fixed_list, maxheap
+
+    !> Derived types for lists and maxheap
     public :: dynamical_list_t, fixed_list_t, maxheap_t
+
+    !> Utility functions for lists and maxheap
     public :: unique_values, new_fixed_list_pointer
 
+    !> Base type for all samplers
     public :: sampler_base_t
+
+    !> Choose a sampler based on the selected algorithm
     public :: choose_sampler
 end module datastructs_fortran
