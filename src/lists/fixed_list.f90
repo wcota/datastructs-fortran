@@ -1,3 +1,24 @@
+!> This module implements a fixed list, that has a fixed size and cannot be resized.
+!> It also has pointers, allowing to build a linked list structure.
+!> Example:
+!> ```fortran
+!> program example_fixed_list
+!>     use datastructs_fortran
+!>     use kinds_mod
+!>     implicit none
+!>     type(fixed_list_t) :: my_list
+!>     type(fixed_list_t), target :: my_list2
+!>     my_list = fixed_list([1,2,3,4,5])
+!>     my_list2 = fixed_list([6,7,8])
+!> 
+!>     call my_list%print()
+!> 
+!>     my_list%next => my_list2
+!> 
+!>     call my_list%next%print()
+!> end program example_fixed_list
+!> ```
+
 module lists_fixed_list_mod
     use kinds_mod
     implicit none
