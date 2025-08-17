@@ -97,7 +97,7 @@ contains
         integer(i4) :: old_sampler_pos
 
         ! get the sampler pos
-        old_sampler_pos = this%sampler_of_index(index)        
+        old_sampler_pos = this%sampler_of_index(index)
 
         ! We select which sampler will receive the weight based on the threshold
         ! The first sampler will receive weights below the threshold
