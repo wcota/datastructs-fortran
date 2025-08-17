@@ -114,12 +114,14 @@ contains
     end subroutine sampler_reset
 
     !> Sets the weight for a given index
-    !> We assume that the index is new, not added in the list before
     subroutine sampler_set_weight(this, index, weight)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: index
         real(dp), intent(in) :: weight
-        integer(i4) :: sampler_pos 
+        integer(i4) :: sampler_pos
+
+        ! first we remove the weight, just to be sure
+        call this%remove(index) ! Remove the index from the sampler if it exists
 
         sampler_pos = this%sampler_pos(weight) ! Get the sampler position based on the weight
 
@@ -172,12 +174,14 @@ contains
         integer(i4) :: sampler_pos
         real(dp) :: weight
 
-        weight = this%weights(index) ! Get the weight for the index
-
         sampler_pos = this%sampler_of_index(index) ! Get the sampler position for the index
+
+        if (sampler_pos == 0) return ! It is not mapped to any sampler, just ignore
 
         call this%samplers(sampler_pos)%remove(index) ! Remove weight in the first sampler
         this%sampler_of_index(index) = 0 ! Unmap index from first sampler
+
+        weight = this%weights(index) ! Get the weight for the index
 
         ! update the weights array
         this%weights(index) = 0.0_dp ! Set the weight to zero
