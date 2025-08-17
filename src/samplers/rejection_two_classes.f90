@@ -1,3 +1,5 @@
+!> This module implements rejection sampling with two classes
+!> We split the weights into two classes based on a threshold
 module samplers_rejection_two_classes_mod
     use kinds_mod
     use lists_mod
@@ -6,10 +8,12 @@ module samplers_rejection_two_classes_mod
     implicit none
     private
 
+    !> Constructor
     interface weighted_sampler
         module procedure weighted_sampler_new
-    end interface
+    end interface weighted_sampler
 
+    !> Derived type, extending from the base
     type, extends(sampler_base_t) :: weighted_sampler_t
         type(rejection_t) :: samplers(2)
         real(dp) :: threshold = huge(dp) ! threshold for the weights
@@ -34,6 +38,7 @@ module samplers_rejection_two_classes_mod
 contains
 
     !> Create a new rejection sampler with N weights
+    !> Input: n - number of weights
     function weighted_sampler_new(n) result(this)
         type(weighted_sampler_t) :: this
         integer(i4), intent(in) :: n
@@ -43,6 +48,7 @@ contains
     end function weighted_sampler_new
 
     !> Initializes the structure with N weights
+    !> Input: n - number of weights
     subroutine sampler_init(this, n)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: n
@@ -61,6 +67,8 @@ contains
     end subroutine sampler_init
 
     !> Initializes with size n and threshold w
+    !> Input: n - number of weights
+    !>        w - threshold for the weights
     subroutine sampler_init_w(this, n, w)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: n
@@ -71,6 +79,9 @@ contains
     end subroutine sampler_init_w
 
     !> Placeholder for 1D initialization (compat mode), maps to original init
+    !> Input: n - number of weights
+    !>        w1 - any real number, not used
+    !>        w2 - any real number, not used
     subroutine sampler_init_w2(this, n, w1,w2)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: n
@@ -79,7 +90,7 @@ contains
         call this%init(n,w1)  ! call original init
     end subroutine sampler_init_w2
 
-    !> Resets the sampler: clear the list
+    !> Resets the sampler: clears the list
     subroutine sampler_reset(this)
         class(weighted_sampler_t), intent(inout) :: this
 
@@ -90,6 +101,8 @@ contains
     end subroutine sampler_reset
 
     !> Sets the weight for a given index
+    !> Input: index - index of the element with a given weight
+    !>        weight - weight of the element
     subroutine sampler_set_weight(this, index, weight)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: index
@@ -120,7 +133,10 @@ contains
         this%weights(index) = weight
     end subroutine sampler_set_weight
 
-    !> Sets the weights from an array (full), assuming all larger than zero (IMPORTANT!)
+    !> Sets the weights from an array (full), using its indexes
+    !> Weights should be larger than zero
+    !> It assumes it was initialized before, and has the same size
+    !> Input: weights - array with the weights
     subroutine sampler_set_weight_array(this, weights)
         class(weighted_sampler_t), intent(inout) :: this
         real(dp), intent(in) :: weights(:)
@@ -136,6 +152,8 @@ contains
     end subroutine sampler_set_weight_array
 
     !> Adds a weight to the sampler at a given index
+    !> Input: index - index of the element
+    !>        delta_weight - difference to add to its weight
     subroutine sampler_add_weight(this, index, delta_weight)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: index
@@ -153,6 +171,8 @@ contains
     end subroutine sampler_add_weight
 
     !> Remove an index from the sampler
+    !> Important: the index is the original one, not the index used internally by the sampler
+    !> Input: index - index of the element to be removed
     subroutine sampler_remove(this, index)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: index
@@ -170,16 +190,16 @@ contains
         
     end subroutine sampler_remove
 
-    !> Retorna um índice proporcional aos pesos
+    !> Samples an index from the sampler
+    !> Input: gen - random number generator (rndgen-fortran module)
     function sampler_sample(this, gen) result(index)
         use rndgen_mod
         class(weighted_sampler_t), intent(in) :: this
         class(rndgen), intent(inout) :: gen
         integer(i4) :: index
-        real(dp) :: weight
         real(dp) :: total_weight
 
-        total_weight = this%samplers(1)%sum() + this%samplers(2)%sum()
+        total_weight = this%sum()
 
         ! We will use rejection sampling to select an index
         ! First, we see which sampler to use based on the total weight
@@ -215,4 +235,4 @@ contains
 
     end subroutine sampler_finalize
 
-end module
+end module samplers_rejection_two_classes_mod
