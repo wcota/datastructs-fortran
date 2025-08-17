@@ -5,7 +5,7 @@ module hoga_weighted_sampler_rejection_maxheap_mod
     implicit none
     private
 
-    real(kind=dp), parameter :: EPSILON = 1.0e-16_dp
+    real(kind=dp), parameter :: EPSILON = 0.0_dp !1.0e-16_dp
 
     interface weighted_sampler
         module procedure weighted_sampler_new
