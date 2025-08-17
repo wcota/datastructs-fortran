@@ -18,7 +18,7 @@ module samplers_rejection_two_classes_mod
         type(rejection_t) :: samplers(2)
         real(dp) :: threshold = huge(dp) ! threshold for the weights
         integer(i4), allocatable :: sampler_of_index(:) ! maps index to sampler (1 or 2)
-    contains        
+    contains
         procedure :: init_n => sampler_init
         procedure :: init_w => sampler_init_w
         procedure :: init_w2 => sampler_init_w2
@@ -148,7 +148,7 @@ contains
         do i = 1, size(weights)
             call this%set_weight(i, weights(i))
         end do
-       
+
     end subroutine sampler_set_weight_array
 
     !> Adds a weight to the sampler at a given index
@@ -167,7 +167,7 @@ contains
 
         ! Now we can add the weight again
         call this%set_weight(index, weight) ! Set the new weight
-        
+
     end subroutine sampler_add_weight
 
     !> Remove an index from the sampler
@@ -181,13 +181,13 @@ contains
         sampler_pos = this%sampler_of_index(index) ! Get the sampler position for the index
 
         if (sampler_pos == 0) return ! It is not mapped to any sampler, just ignore
-        
+
         call this%samplers(sampler_pos)%remove(index) ! Remove weight in the first sampler
-        this%sampler_of_index(index) = 0 ! Unmap index 
+        this%sampler_of_index(index) = 0 ! Unmap index
 
         ! update the weights array
         this%weights(index) = 0.0_dp ! Set the weight to zero
-        
+
     end subroutine sampler_remove
 
     !> Samples an index from the sampler
@@ -210,7 +210,7 @@ contains
             ! Use the second sampler
             index = this%samplers(2)%sample(gen)
         end if
-        
+
     end function
 
     !> Get the sum of all weights

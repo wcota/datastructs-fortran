@@ -159,7 +159,7 @@ contains
             this%position_of(i) = this%indices%n_used
             this%current_sum = this%current_sum + weights(i)
         end do
-       
+
     end subroutine sampler_set_weight_array
 
     !> Adds a weight to the sampler at a given index
@@ -201,7 +201,7 @@ contains
             this%position_of(index) = 0 ! Mark as removed
 
             this%weights(index) = 0.0_dp ! Set the weight to zero
-            
+
             call this%heap%remove(index) ! Remove from the max-heap
         end if
 
