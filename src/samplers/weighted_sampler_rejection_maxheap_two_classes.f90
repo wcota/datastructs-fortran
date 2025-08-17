@@ -90,11 +90,14 @@ contains
     end subroutine sampler_reset
 
     !> Sets the weight for a given index
-    !> We assume that the index is new, not added in the list before
     subroutine sampler_set_weight(this, index, weight)
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: index
         real(dp), intent(in) :: weight
+        integer(i4) :: old_sampler_pos
+
+        ! get the sampler pos
+        old_sampler_pos = this%sampler_of_index(index)        
 
         ! We select which sampler will receive the weight based on the threshold
         ! The first sampler will receive weights below the threshold
@@ -102,9 +105,15 @@ contains
         if (weight < this%threshold) then
             call this%samplers(1)%set_weight(index, weight) ! Set the weight in the first sampler
             this%sampler_of_index(index) = 1 ! Map index to first sampler
+
+            ! If it was in the second sampler, we need to remove it
+            if (old_sampler_pos == 2) call this%samplers(2)%remove(index)
         else
             call this%samplers(2)%set_weight(index, weight) ! Set the weight in the second sampler
             this%sampler_of_index(index) = 2 ! Map index to second sampler
+
+            ! If it was in the first sampler, we need to remove it
+            if (old_sampler_pos == 1) call this%samplers(1)%remove(index)
         end if
 
         ! update the weights array
@@ -115,37 +124,14 @@ contains
     subroutine sampler_set_weight_array(this, weights)
         class(weighted_sampler_t), intent(inout) :: this
         real(dp), intent(in) :: weights(:)
-        real(dp), allocatable :: weights_below(:), weights_above(:)
-        integer(i4) :: n_below, n_above
         integer(i4) :: i
 
         ! We select which sampler will receive the weights based on the threshold
         ! The first sampler will receive weights below the threshold
         ! The second sampler will receive weights above the threshold
-        allocate(weights_below(size(weights)))
-        allocate(weights_above(size(weights)))
         do i = 1, size(weights)
-            if (weights(i) < this%threshold) then
-                n_below = n_below + 1
-                weights_below(n_below) = weights(i)
-                this%sampler_of_index(i) = 1 ! Map index to first sampler
-            else
-                n_above = n_above + 1
-                weights_above(n_above) = weights(i)
-                this%sampler_of_index(i) = 2 ! Map index to second sampler
-            end if
-            this%weights(i) = weights(i)
+            call this%set_weight(i, weights(i))
         end do
-
-        ! Add the corresponding weights to the samplers
-        if (n_below > 0) then
-            allocate(weights_below(n_below))
-            call this%samplers(1)%set_weight_array(weights_below(1:n_below)) ! Set the weights in the first sampler
-        end if
-        if (n_above > 0) then
-            allocate(weights_above(n_above))
-            call this%samplers(2)%set_weight_array(weights_above(1:n_above)) ! Set the weights in the second sampler
-        end if
        
     end subroutine sampler_set_weight_array
 
@@ -173,6 +159,8 @@ contains
         integer(i4) :: sampler_pos
 
         sampler_pos = this%sampler_of_index(index) ! Get the sampler position for the index
+
+        if (sampler_pos == 0) return ! It is not mapped to any sampler, just ignore
         
         call this%samplers(sampler_pos)%remove(index) ! Remove weight in the first sampler
         this%sampler_of_index(index) = 0 ! Unmap index 
