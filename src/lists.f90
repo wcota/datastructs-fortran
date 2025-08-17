@@ -3,7 +3,7 @@ module lists_mod
     use kinds_mod
     use lists_dynamical_list_mod
     use lists_fixed_list_mod
-    use lists_maxheap_mod
+    use maxheap_mod
     implicit none
     private
 

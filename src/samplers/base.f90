@@ -1,3 +1,4 @@
+!> This module implements the basic structure for weighted samplers
 module samplers_base_mod
     use kinds_mod
     implicit none
