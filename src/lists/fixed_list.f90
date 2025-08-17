@@ -1,17 +1,22 @@
-module hOGA_lists_fixed_list_mod
-    use hOGA_kinds_mod
+module lists_fixed_list_mod
+    use kinds_mod
     implicit none
     private
 
+    !> Constructor for a fixed list
     interface fixed_list
         module procedure fixed_list_new
-    end interface
+    end interface fixed_list
 
+    !> Type for a fixed list, that can be used as a list of lists
     type :: fixed_list_t
+        !> Metadata
         integer(kind=i4) :: initial_index, final_index
-        integer(kind=i4) :: n
+        integer(kind=i4) :: n = 0
         integer(kind=i4), allocatable :: list(:)
 
+        ! Pointers for the linked list
+        ! It can be used to create a list of lists with different sizes
         type(fixed_list_t), pointer :: next, prev
     contains
         procedure :: init => fixed_list_init ! initialize the list
@@ -26,6 +31,7 @@ module hOGA_lists_fixed_list_mod
 contains
 
     !> Create a new fixed list
+    !> Input: list - an array of integers
     function fixed_list_new(list) result(this)
         type(fixed_list_t) :: this
         integer(kind=i4), intent(in) :: list(:)
@@ -36,10 +42,12 @@ contains
         this%list = list
 
         ! set the size of the list
-        this%n = size(list)        
+        this%n = size(list)
 
     end function fixed_list_new
 
+    !> Create a new fixed list pointer
+    !> Input: list - an array of integers
     function new_fixed_list_pointer(list) result(this)
         type(fixed_list_t), pointer :: this
         integer(kind=i4), intent(in) :: list(:)
@@ -48,9 +56,14 @@ contains
         this%final_index = size(list)
         this%list = list
 
+        ! set the size of the list
+        this%n = size(list)
+
     end function new_fixed_list_pointer
 
     !> Initialize the fixed list
+    !> Input: i1 - initial index, i2 - final index
+    !>        If i2 is not present, i1 is used as the size (final index)
     subroutine fixed_list_init(this, i1, i2)
         class(fixed_list_t), intent(inout) :: this
         integer(kind=i4), intent(in) :: i1
@@ -95,4 +108,4 @@ contains
         if (allocated(this%list)) deallocate(this%list)
     end subroutine finalize_fixed_list
 
-end module
+end module lists_fixed_list_mod

@@ -1,20 +1,20 @@
-module hOGA_lists_dynamical_list_mod
-    use hOGA_kinds_mod
+module lists_dynamical_list_mod
+    use kinds_mod
     implicit none
     private
-    
+
+    !> Constructor for a dynamical list
     interface dynamical_list
         module procedure dynamical_list_new
-    end interface
+    end interface dynamical_list
 
-    !> List of integers with a given fixed size
+    !> List of integers with a given maximum fixed size
     !> The first index is always 1, and filled up to n_used
+    !> It contains routines for managing the list
     type :: dynamical_list_t
-        integer(kind=i4) :: n
-        integer(kind=i4) :: n_used
+        integer(kind=i4) :: n = 0
+        integer(kind=i4) :: n_used = 0
         integer(kind=i4), allocatable :: list(:)
-        ! TODO: add an aditional real array, maybe in an extended object structure
-        ! use case: the list contains the indexes of a given array, and the corresponding values in the real list
     contains
         procedure :: init => dynamical_list_init ! initialize the list
         procedure :: reset => dynamical_list_reset ! reset the list
@@ -27,11 +27,11 @@ module hOGA_lists_dynamical_list_mod
         procedure, private :: dynamical_list_create_from_array
         procedure, private :: dynamical_list_add_element, dynamical_list_add_array
         procedure, private :: dynamical_list_remove_position, dynamical_list_remove_position_array, &
-                                dynamical_list_remove_position_range
+            dynamical_list_remove_position_range
 
         generic :: add => dynamical_list_add_element, dynamical_list_add_array ! add elements
         generic :: remove => dynamical_list_remove_position, dynamical_list_remove_position_array, &
-                                dynamical_list_remove_position_range ! remove indexes
+            dynamical_list_remove_position_range ! remove indexes
         generic :: assignment(=) => dynamical_list_create_from_array ! create from array
 
         procedure :: get => dynamical_list_get ! get element at position
@@ -39,32 +39,38 @@ module hOGA_lists_dynamical_list_mod
         procedure :: sum => dynamical_list_sum ! sum the elements
 
         final :: finalize_dynamical_list ! finalize the list
-    end type
+    end type dynamical_list_t
 
     public :: dynamical_list, dynamical_list_t
 
 contains
 
     !> Create a new dynamical list
+    !> Input: list - an array of integers
+    !> Output: a new dynamical list
     function dynamical_list_new(list) result(this)
         type(dynamical_list_t) :: this
         integer(kind=i4), intent(in) :: list(:)
 
         ! allocate the dynamical list
         this%n = size(list)
+
+        ! since we start with a full list, we set n_used to n
         this%n_used = size(list)
 
-        ! copy the list
+        ! copy the elements to the list
         this%list = list
     end function dynamical_list_new
 
     !> Finalize the list
+    !> For that, we need to deallocate the list
     subroutine finalize_dynamical_list(this)
         type(dynamical_list_t), intent(inout) :: this
         if (allocated(this%list)) deallocate(this%list)
     end subroutine finalize_dynamical_list
 
-    !> Initialize the list with a given size
+    !> Initialize an empty list with a given size
+    !> Input: n - the size of the list
     subroutine dynamical_list_init(this, n)
         class(dynamical_list_t), intent(inout) :: this
         integer(kind=i4), intent(in) :: n
@@ -74,6 +80,7 @@ contains
     end subroutine dynamical_list_init
 
     !> Reset the list
+    !> For that, we only need to set n_used to 0
     subroutine dynamical_list_reset(this)
         class(dynamical_list_t), intent(inout) :: this
         this%n_used = 0
@@ -106,7 +113,8 @@ contains
 
     end subroutine dynamical_list_expand
 
-    !> Sum the valid elements of the list
+    !> Return the sum of the elements in the list
+    !> It sums only the valid elements
     function dynamical_list_sum(this) result(val)
         class(dynamical_list_t), intent(in) :: this
         integer(kind=i4) :: val
@@ -115,7 +123,8 @@ contains
 
     end function dynamical_list_sum
 
-    !> Get element at position (copy)
+    !> Returns the element at the given position
+    !> Input: position - the position of the element to return
     function dynamical_list_get(this, position) result(val)
         class(dynamical_list_t), intent(in) :: this
         integer(kind=i4), intent(in) :: position
@@ -125,7 +134,7 @@ contains
 
     end function dynamical_list_get
 
-    !> Get the last element of the list
+    !> Returns the last element of the list
     function dynamical_list_last(this) result(val)
         class(dynamical_list_t), intent(in) :: this
         integer(kind=i4) :: val
@@ -146,6 +155,8 @@ contains
 
     !> Add an element to the list
     !> It assumes that the list is already allocated
+    !> The element is added to the end of the list
+    !> Input: element - the element to add
     subroutine dynamical_list_add_element(this, element)
         class(dynamical_list_t), intent(inout) :: this
         integer(kind=i4), intent(in) :: element
@@ -157,6 +168,7 @@ contains
 
     !> Add an array to the list
     !> It will initialize the list if it is not already allocated, with the size of the array
+    !> Input: array - the array to add
     subroutine dynamical_list_add_array(this, array)
         class(dynamical_list_t), intent(inout) :: this
         integer(kind=i4), intent(in) :: array(:)
@@ -169,6 +181,7 @@ contains
     end subroutine dynamical_list_add_array
 
     !> Create from array, if it is not already allocated
+    !> Input: array - the array to create the list from
     subroutine dynamical_list_create_from_array(this, array)
         class(dynamical_list_t), intent(inout) :: this
         integer(kind=i4), intent(in) :: array(:)
@@ -184,8 +197,9 @@ contains
 
     !> Remove an element from the list
     !> It will replace the element at the given position with the last element
-    !> WARNING: This can change the position of the elements in the list, do not use sequentially with indexes 
-    !> that are not updated after each removal
+    !> WARNING: This can change the position of the elements in the list, DO NOT use sequentially
+    !>  with the original indexes, that are not updated after each removal
+    !> Input: position - the position of the element to remove
     subroutine dynamical_list_remove_position(this, position)
         class(dynamical_list_t), intent(inout) :: this
         integer(kind=i4), intent(in) :: position
@@ -199,6 +213,9 @@ contains
 
     !> Remove a range of elements from the list
     !> It will replace the elements in the range with the last elements
+    !> This is safe because the elements are removed in reverse order
+    !> Input: ini_position - the initial position of the range to remove
+    !>        fin_position - the final position of the range to remove
     subroutine dynamical_list_remove_position_range(this, ini_position, fin_position)
         class(dynamical_list_t), intent(inout) :: this
         integer(kind=i4), intent(in) :: ini_position, fin_position
@@ -212,6 +229,10 @@ contains
 
     !> Remove a list of elements from the list
     !> It will replace the elements in the list with the last elements
+    !> For that, we need to sort the positions
+    !> It is safe because the elements are removed in reverse order
+    !> Input: position_arr - the array of positions to remove
+    !> Dependency: stdlib_sorting
     subroutine dynamical_list_remove_position_array(this, position_arr)
         use stdlib_sorting, only: sort
         class(dynamical_list_t), intent(inout) :: this
@@ -238,4 +259,4 @@ contains
 
     end subroutine dynamical_list_print
 
-end module
+end module lists_dynamical_list_mod

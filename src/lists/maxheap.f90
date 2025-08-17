@@ -1,12 +1,14 @@
-module hOGA_lists_maxheap_mod
-    use hOGA_kinds_mod
+module lists_maxheap_mod
+    use kinds_mod
     implicit none
     private
 
+    !> Constructor for a maxheap
     interface maxheap
         module procedure maxheap_new
-    end interface
+    end interface maxheap
 
+    !> Type for a maxheap
     type :: maxheap_t
         real(dp), allocatable :: values(:)     ! heap of values
         integer(i4), allocatable :: indices(:) ! their corresponding external indices
@@ -14,15 +16,15 @@ module hOGA_lists_maxheap_mod
         integer(i4) :: n = 0                   ! current heap size
         integer(i4) :: max_n                   ! max capacity
     contains
-        procedure :: init => maxheap_init
-        procedure :: add => maxheap_add
-        procedure :: remove => maxheap_remove
+        procedure :: init => maxheap_init ! initialize the maxheap
+        procedure :: add => maxheap_add ! adds a new value to the heap
+        procedure :: remove => maxheap_remove ! removes a value from the heap
         procedure :: add_weight => maxheap_add_weight ! adds a delta weight to an existing index
-        procedure :: print => maxheap_print
+        procedure :: print => maxheap_print ! print the maxheap
         procedure :: max_value => maxheap_max_value ! returns the max value
         procedure :: max_index => maxheap_max_index ! returns the index of the max value
 
-        final :: maxheap_finalize
+        final :: maxheap_finalize ! finalize the maxheap
     end type
 
     public :: maxheap, maxheap_t
@@ -30,14 +32,17 @@ module hOGA_lists_maxheap_mod
 contains
 
     !> Create a new maxheap
-    function maxheap_new(max_n) result(this)
+    !> Input: max_size - maximum number of elements in the heap
+    function maxheap_new(max_size) result(this)
         type(maxheap_t) :: this
-        integer(kind=i4) :: max_n
+        integer(kind=i4) :: max_size
 
-        call this%init(max_n)
+        call this%init(max_size)
 
-    end function
+    end function maxheap_new
 
+    !> Initialize an empty maxheap
+    !> Input: max_size - maximum number of elements in the heap
     subroutine maxheap_init(this, max_size)
         class(maxheap_t), intent(inout) :: this
         integer(i4), intent(in) :: max_size
@@ -48,18 +53,20 @@ contains
         allocate(this%indices(max_size))
         allocate(this%pos_of(max_size))
         this%pos_of = 0
-    end subroutine
+    end subroutine maxheap_init
 
+    !> Adds a new value to the maxheap, with a corresponding index
+    !> Input: value - the value to add
+    !>        index - the corresponding index of the value
     subroutine maxheap_add(this, value, index)
         class(maxheap_t), intent(inout) :: this
         real(dp), intent(in) :: value
         integer(i4), intent(in) :: index
-        integer(i4) :: pos, parent, tmp_idx
-        real(dp) :: tmp_val
+        integer(i4) :: pos, parent
 
-        if (this%n >= this%max_n) stop "Heap full"
-        if (index < 1 .or. index > this%max_n) stop "Index out of bounds"
-        if (this%pos_of(index) /= 0) stop "Index already in heap"
+        if (this%n >= this%max_n) error stop "Heap full"
+        if (index < 1 .or. index > this%max_n) error stop "Index out of bounds"
+        if (this%pos_of(index) /= 0) error stop "Index already in heap"
 
         this%n = this%n + 1
         pos = this%n
@@ -79,8 +86,11 @@ contains
 
             pos = parent
         end do
-    end subroutine
+    end subroutine maxheap_add
 
+    !> Adds a delta weight to an existing index
+    !> Input: delta_weight - the weight to add
+    !>        index - the corresponding index of the value
     subroutine maxheap_add_weight(this, delta_weight, index)
         class(maxheap_t), intent(inout) :: this
         real(dp), intent(in) :: delta_weight
@@ -88,14 +98,16 @@ contains
         real(dp) :: weight
 
         weight = this%values(this%pos_of(index)) + delta_weight
-        
-        ! first we remove it 
+
+        ! first we remove it
         call this%remove(index)
 
         ! then we add the new weight
         call this%add(weight, index)
-    end subroutine
+    end subroutine maxheap_add_weight
 
+    !> Removes a value from the maxheap
+    !> Input: index - the corresponding index of the value
     subroutine maxheap_remove(this, index)
         class(maxheap_t), intent(inout) :: this
         integer(i4), intent(in) :: index
@@ -103,7 +115,7 @@ contains
 
         if (index < 1 .or. index > this%max_n) return
         pos = this%pos_of(index)
-        if (pos == 0) return ! not in heap
+        if (pos == 0) return ! not in heap, no problem
 
         last_index = this%indices(this%n)
         this%values(pos) = this%values(this%n)
@@ -113,7 +125,7 @@ contains
         this%pos_of(index) = 0
         this%n = this%n - 1
 
-        ! heapify para baixo
+        ! heapify down
         do
             left = 2 * pos
             right = 2 * pos + 1
@@ -136,8 +148,9 @@ contains
 
             pos = largest
         end do
-    end subroutine
+    end subroutine maxheap_remove
 
+    !> Gets the maximum value from the maxheap
     function maxheap_max_value(this) result(value)
         class(maxheap_t), intent(in) :: this
         real(dp) :: value
@@ -145,10 +158,11 @@ contains
             value = this%values(1)
         else
             write(*,fmt_general) "Heap is empty"
-            value = -huge(value) ! or some other invalid value
+            value = -huge(value)
         end if
-    end function
+    end function maxheap_max_value
 
+    !> Gets the original index of the maximum value
     function maxheap_max_index(this) result(index)
         class(maxheap_t), intent(in) :: this
         integer(i4) :: index
@@ -158,22 +172,24 @@ contains
             write(*,fmt_general) "Heap is empty"
             index = -1 ! or some other invalid value
         end if
-    end function
+    end function maxheap_max_index
 
+    !> Prints the contents of the maxheap
     subroutine maxheap_print(this)
         class(maxheap_t), intent(in) :: this
         if (this%n > 0) then
-            write(*,fmt_general) "Max value:", this%values(1), this%indices(1)
+            write(*,fmt_general) "Max value and corresponding index:", this%values(1), this%indices(1)
         else
             write(*,fmt_general) "Heap is empty"
         end if
-    end subroutine
+    end subroutine maxheap_print
 
+    !> Finalizes the maxheap
     subroutine maxheap_finalize(this)
         type(maxheap_t), intent(inout) :: this
         if (allocated(this%values)) deallocate(this%values)
         if (allocated(this%indices)) deallocate(this%indices)
         if (allocated(this%pos_of)) deallocate(this%pos_of)
-    end subroutine
+    end subroutine maxheap_finalize
 
-end module
+end module lists_maxheap_mod

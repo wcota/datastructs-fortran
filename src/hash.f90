@@ -1,5 +1,5 @@
-module hOGA_hash_mod
-    use hOGA_kinds_mod
+module hash_mod
+    use kinds_mod
     implicit none
     private
 

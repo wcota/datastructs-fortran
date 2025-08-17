@@ -1,18 +1,27 @@
-module hOGA_lists_mod
-    use hOGA_kinds_mod
-    use hOGA_lists_dynamical_list_mod
-    use hOGA_lists_fixed_list_mod
-    use hOGA_lists_maxheap_mod
+!> General module for lists and related operations
+module lists_mod
+    use kinds_mod
+    use lists_dynamical_list_mod
+    use lists_fixed_list_mod
+    use lists_maxheap_mod
     implicit none
     private
 
-    public :: dynamical_list, fixed_list, unique_values
+    !> Constructors
+    public :: dynamical_list, fixed_list, maxheap
+
+    !> Derived types
+    public :: dynamical_list_t, fixed_list_t, maxheap_t
+
+    !> Operations
+    public :: unique_values
     public :: new_fixed_list_pointer
-    public :: dynamical_list_t, fixed_list_t
-    public :: maxheap, maxheap_t
 
 contains
 
+    !> Find unique values in a list of integers
+    !> It uses the standard library sorting module
+    !> The result is a list of unique integers
     function unique_values(list) result(unique)
         use stdlib_sorting, only: sort
         integer(kind=i4), intent(in) :: list(:)
