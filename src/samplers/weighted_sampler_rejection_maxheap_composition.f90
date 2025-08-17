@@ -92,6 +92,11 @@ contains
 
         ! calculate the number q (see https://arxiv.org/pdf/1808.05859)
 
+        ! ensure that w1 is larger than zero
+        if (w1 <= 0.0_dp) then
+            error stop 'Error: min weight must be larger than zero.'
+        end if
+
         this%wmin = w1 ! Set the minimum weight
         this%wmax = w2 ! Set the maximum weight
 
