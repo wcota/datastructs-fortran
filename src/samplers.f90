@@ -37,7 +37,7 @@ contains
             case ('rejection_maxheap_composition')
                 allocate(weighted_sampler_rejection_maxheap_composition_t :: weighted_sampler)
             case default
-                stop 'Unknown algorithm selected: '//trim(adjustl(selected_algorithm))
+                error stop 'Unknown algorithm selected: '//trim(adjustl(selected_algorithm))
         end select
     end subroutine
 
