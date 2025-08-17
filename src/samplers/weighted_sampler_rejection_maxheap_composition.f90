@@ -105,9 +105,12 @@ contains
     !> Resets the sampler: clear the list
     subroutine sampler_reset(this)
         class(weighted_sampler_t), intent(inout) :: this
+        integer(kind=i4) :: sampler_pos
 
-        call this%samplers(1)%reset() ! Reset the first sampler
-        call this%samplers(2)%reset() ! Reset the second sampler
+        ! reset all samplers
+        do sampler_pos = 1, this%q
+            call this%samplers(sampler_pos)%reset()
+        end do
         this%sampler_of_index = 0 ! Reset the index mapping
         this%weights = 0.0_dp ! Reset the weights
         call this%btree%reset() ! Reset the btree
