@@ -123,6 +123,10 @@ contains
         ! first we remove the weight, just to be sure
         call this%remove(index) ! Remove the index from the sampler if it exists
 
+        if (weight <= 0.0_dp) then
+            return
+        end if
+
         sampler_pos = this%sampler_pos(weight) ! Get the sampler position based on the weight
 
         call this%samplers(sampler_pos)%set_weight(index, weight) ! Set the weight in the first sampler
@@ -232,8 +236,12 @@ contains
         real(dp), intent(in) :: weight
         integer(i4) :: pos
 
-        ! Calculate the sampler position based on the weight
-        pos = min(this%q, ceiling(log(weight / this%wmin) / log(2.0_dp)) + 1)
+        if (weight < this%wmin) then
+            pos = 1
+        else
+            ! Calculate the sampler position based on the weight
+            pos = min(this%q, ceiling(log(weight / this%wmin) / log(2.0_dp)) + 1)
+        end if
 
     end function sampler_sampler_pos
 
