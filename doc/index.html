@@ -1,0 +1,214 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Documentation for Data structures for Fortran">
+    <meta name="author" content="Wesley Cota <https://wcota.me/>" >
+    <link rel="icon" href="./favicon.png">
+
+    <title> Data structures for Fortran </title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="./css/fontawesome.min.css" rel="stylesheet">
+    <link href="./css/brands.min.css" rel="stylesheet">
+    <link href="./css/regular.min.css" rel="stylesheet">
+    <link href="./css/solid.min.css" rel="stylesheet">
+    <link href="./css/v4-font-face.min.css" rel="stylesheet">
+    <link href="./css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="./css/local.css" rel="stylesheet">
+    <link href="./css/pygments.css" rel="stylesheet">
+    <script src="./js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="./index.html">Data structures for Fortran </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="./lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="./search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <!-- Main component for a primary marketing message or call to action -->
+    <div class="p-5 mb-4 bg-light border rounded-3" id="jumbotron">
+      
+        <p> Find us on&hellip;</p>
+      <p>
+        <a class="btn btn-lg btn-primary" href="https://github.com/wcota/datastructs-fortran" role="button">GitHub</a>
+        
+        
+        
+        
+      </p>
+    </div>
+
+      <div class="row" id='text'>
+        <div class=col-md-8>
+          <h1>Data structures for Fortran</h1>
+          <h1>Fortran Module: datastructs-fortran</h1>
+<h2>Description</h2>
+<p>The Fortran module <code>datastructs-fortran</code> provides a comprehensive collection of common data structures and utility functions. It includes implementations for <strong>dynamic lists</strong> (<code>dynamical_list_t</code>), <strong>fixed-size lists</strong> (<code>fixed_list_t</code>), and <strong>max heaps</strong> (<code>maxheap_t</code>). Additionally, it offers various <strong>random sampler algorithms</strong> (through <code>sampler_base_t</code> and <code>choose_sampler</code>) for weighted selection, and a <strong>hashing function</strong> (<code>djb2</code>).</p>
+<p>The samplers depend on the <a href="https://github.com/wcota/rndgen-fortran/"><code>rndgen-fortran</code></a> random number generator.</p>
+<h2>Usage</h2>
+<p>To integrate <code>datastructs-fortran</code> into your project, add it as a dependency using the Fortran Package Manager (Fpm). Include the following lines in your <code>fpm.toml</code> file:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">[dependencies]</span>
+<span class="n">datastructs-fortran</span><span class="p">.</span><span class="n">git</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/wcota/datastructs-fortran&quot;</span>
+</code></pre></div>
+
+<p>After adding the dependency, you can import the module or specific components into your Fortran source files. For example, use <code>use datastructs_fortran</code> to import the entire module, or <code>use datastructs_fortran, only: [component_name]</code> to import specific types or functions.</p>
+<p>Main modules:</p>
+<ul>
+<li>
+<p>Dynamical List (<code>dynamical_list_t</code>): Create and manipulate a list that can grow or shrink dynamically. Examples at <a href="./example/dynamical_list.f90">example/dynamical_list.f90</a> and <a href="./example/dynamical_list2.f90">example/dynamical_list2.f90</a></p>
+</li>
+<li>
+<p>Fixed List (<code>fixed_list_t</code>): Define a fixed-size list, which can be linked to others. Examples at <a href="./example/fixed_list.f90">example/fixed_list.f90</a></p>
+</li>
+<li>
+<p>Max Heap (<code>maxheap_t</code>): Implement a max heap structure, where the parent node is always greater than or equal to its children. Examples at <a href="./example/maxheap.f90">example/maxheap.f90</a></p>
+</li>
+<li>
+<p>Hash Function (<code>djb2</code>): Calculate a hash value for an array of integers using the djb2 algorithm. Examples at <a href="./example/hash.f90">example/hash.f90</a></p>
+</li>
+<li>
+<p>Sampler Algorithms (<code>sampler_base_t</code>, <code>choose_sampler</code>): Randomly get indexes proportionally to their weights. Examples at <a href="./example/sampler.f90">example/sampler.f90</a></p>
+</li>
+</ul>
+<h2>Running examples</h2>
+<p>Use <code>fpm run --example name</code>, in which <code>name</code> is the name of the example.</p>
+        </div>
+          <div class="col-md-4">
+            <div class="card card-body bg-light">
+              <h2 class="card-title">Developer Info</h2>
+              <h4 class="card-text">Wesley Cota <https://wcota.me/></h4>
+              <p class="card-text"><p>Assistant Professor of Physics at Federal University of Viçosa (UFV), Brazil</p></p>
+                <div class="text-center"><div class="btn-group" role="group">
+                    <a class="btn btn-lg btn-primary" href="https://wcota.me"><i class="fa fa-globe fa-lg"></i></a>
+                    <a class="btn btn-lg btn-primary" href="https://github.com/wcota"><i class="fa fa-github fa-lg"></i></a>
+                    
+                    
+                    
+                    
+                    
+                    
+                </div></div>
+            </div>
+          </div>
+      </div>
+        <div class="row">
+          <hr>
+          <div class="col-xs-6 col-sm-3">
+            <div>
+              <h3>Source Files</h3>
+              <ul><li><a href='sourcefile/base.f90.html'>base.f90</a></li><li><a href='sourcefile/btree.f90.html'>btree.f90</a></li><li><a href='sourcefile/datastructs-fortran.f90.html'>datastructs-fortran.f90</a></li><li><a href='sourcefile/dynamical_list.f90.html'>dynamical_list.f90</a></li><li><a href='sourcefile/fixed_list.f90.html'>fixed_list.f90</a></li><li><a href='sourcefile/hash.f90.html'>hash.f90</a></li><li><a href='sourcefile/kinds.f90.html'>kinds.f90</a></li><li><a href='sourcefile/lists.f90.html'>lists.f90</a></li><li><a href='sourcefile/maxheap.f90.html'>maxheap.f90</a></li><li><a href='sourcefile/rejection.f90.html'>rejection.f90</a></li></ul>
+            </div>
+            <div>
+              <ul>
+                <li><a href="./lists/files.html"><em>All source files&hellip;</em></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3">
+            <div>
+              <h3>Modules</h3>
+              <ul><li><a href='module/datastructs_fortran.html'>datastructs_fortran</a></li><li><a href='module/hash_mod.html'>hash_mod</a></li><li><a href='module/kinds_mod.html'>kinds_mod</a></li><li><a href='module/lists_dynamical_list_mod.html'>lists_dynamical_list_mod</a></li><li><a href='module/lists_fixed_list_mod.html'>lists_fixed_list_mod</a></li><li><a href='module/lists_mod.html'>lists_mod</a></li><li><a href='module/maxheap_mod.html'>maxheap_mod</a></li><li><a href='module/samplers_base_mod.html'>samplers_base_mod</a></li><li><a href='module/samplers_btree_mod.html'>samplers_btree_mod</a></li><li><a href='module/samplers_mod.html'>samplers_mod</a></li></ul>
+            </div>
+            <div>
+              <ul>
+                <li><a href="./lists/modules.html"><em>All modules&hellip;</em></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3">
+            <div>
+              <h3>Procedures</h3>
+              <ul><li><a href='proc/choose_fmt_based_on.html'>choose_fmt_based_on</a></li><li><a href='proc/choose_sampler.html'>choose_sampler</a></li><li><a href='proc/count_integers_from_string.html'>count_integers_from_string</a></li><li><a href='proc/djb2.html'>djb2</a></li><li><a href='interface/dynamical_list.html'>dynamical_list</a></li><li><a href='interface/fixed_list.html'>fixed_list</a></li><li><a href='proc/list_ranges.html'>list_ranges</a></li><li><a href='interface/maxheap.html'>maxheap</a></li><li><a href='proc/new_fixed_list_pointer.html'>new_fixed_list_pointer</a></li><li><a href='interface/swap.html'>swap</a></li></ul>
+            </div>
+            <div>
+              <ul>
+                <li><a href="./lists/procedures.html"><em>All procedures&hellip;</em></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3">
+            <div>
+              <h3>Derived Types</h3>
+              <ul><li><a href='type/dynamical_list_t.html'>dynamical_list_t</a></li><li><a href='type/fixed_list_t.html'>fixed_list_t</a></li><li><a href='type/maxheap_t.html'>maxheap_t</a></li><li><a href='type/sampler_base_t.html'>sampler_base_t</a></li><li><a href='type/weighted_sampler_t~4.html'>weighted_sampler_t</a></li><li><a href='type/weighted_sampler_t.html'>weighted_sampler_t</a></li><li><a href='type/weighted_sampler_t~2.html'>weighted_sampler_t</a></li><li><a href='type/weighted_sampler_t~5.html'>weighted_sampler_t</a></li><li><a href='type/weighted_sampler_t~6.html'>weighted_sampler_t</a></li><li><a href='type/weighted_sampler_t~3.html'>weighted_sampler_t</a></li></ul>
+            </div>
+            <div>
+              <ul>
+                <li><a href="./lists/types.html"><em>All derived types&hellip;</em></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Data structures for Fortran
+ was developed by Wesley Cota <https://wcota.me/><br>              &copy; 2025 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

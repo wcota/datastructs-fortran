@@ -1,0 +1,852 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Documentation for Data structures for Fortran">
+    <meta name="author" content="Wesley Cota <https://wcota.me/>" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>lists_dynamical_list_mod &ndash; Data structures for Fortran</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Data structures for Fortran </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>lists_dynamical_list_mod
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 9.9% of total for modules and submodules.">147 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/dynamical_list.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/dynamical_list.f90.html'>dynamical_list.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">lists_dynamical_list_mod</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#inters-0"
+         aria-expanded="false" aria-controls="inters-0">
+         <h4 class="card-header bg-primary text-white">Interfaces</h4>
+      </a>
+      <div id="inters-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/lists_dynamical_list_mod.html#interface-dynamical_list">dynamical_list</a>
+        </div>
+      </div>
+    </div>
+
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#types-0"
+         aria-expanded="false" aria-controls="types-0">
+         <h4 class="card-header bg-primary text-white">Derived Types</h4>
+      </a>
+      <div id="types-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/lists_dynamical_list_mod.html#type-dynamical_list_t">dynamical_list_t</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      <p>This module implements a dynamical list, in which elements can be added or removed dynamically.
+It assumes that there is a maximum size, and elements can be added or removed up to that size.
+Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">program </span><span class="n">test_dynamical_list</span>
+<span class="w">    </span><span class="k">use </span><span class="n">datastructs_fortran</span>
+<span class="w">    </span><span class="k">use </span><span class="n">kinds_mod</span>
+<span class="w">    </span><span class="k">implicit none</span>
+<span class="k">    type</span><span class="p">(</span><span class="n">dynamical_list_t</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">my_list</span>
+<span class="w">    </span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">i4</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
+<span class="w">    </span><span class="k">call </span><span class="n">my_list</span><span class="p">%</span><span class="n">init</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="w">    </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span>
+<span class="w">        </span><span class="k">call </span><span class="n">my_list</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end do</span>
+<span class="k">    call </span><span class="n">my_list</span><span class="p">%</span><span class="k">print</span><span class="p">()</span>
+<span class="w">    </span><span class="k">call </span><span class="n">my_list</span><span class="p">%</span><span class="n">remove</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="w">    </span><span class="k">call </span><span class="n">my_list</span><span class="p">%</span><span class="k">print</span><span class="p">()</span>
+<span class="k">end program </span><span class="n">test_dynamical_list</span>
+</code></pre></div>
+<br>          <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='kinds_mod.html'>kinds_mod</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.1 (0)
+ -->
+<!-- Title: module~~lists_dynamical_list_mod~~UsesGraph Pages: 1 -->
+<svg id="modulelists_dynamical_list_modUsesGraph" width="358pt" height="32pt"
+ viewBox="0.00 0.00 358.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~lists_dynamical_list_mod~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>module~~lists_dynamical_list_mod~~UsesGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 354.31,-27.52 354.31,4 -4,4"/>
+<!-- module~lists_dynamical_list_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsesGraph_node1" class="node">
+<title>module~lists_dynamical_list_mod</title>
+<polygon fill="none" stroke="black" points="350.31,-23.52 221.04,-23.52 221.04,0 350.31,0 350.31,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="285.68" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">lists_dynamical_list_mod</text>
+</g>
+<!-- module~kinds_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsesGraph_node2" class="node">
+<title>module~kinds_mod</title>
+<g id="a_module~~lists_dynamical_list_mod~~UsesGraph_node2"><a xlink:href="../module/kinds_mod.html" xlink:title="kinds_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="185.04,-23.52 121.77,-23.52 121.77,0 185.04,0 185.04,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="153.41" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">kinds_mod</text>
+</a>
+</g>
+</g>
+<!-- module~lists_dynamical_list_mod&#45;&gt;module~kinds_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsesGraph_edge1" class="edge">
+<title>module~lists_dynamical_list_mod&#45;&gt;module~kinds_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M220.68,-11.76C212.48,-11.76 204.25,-11.76 196.52,-11.76"/>
+<polygon fill="#000000" stroke="#000000" points="196.75,-8.26 186.75,-11.76 196.75,-15.26 196.75,-8.26"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~lists_dynamical_list_mod~~UsesGraph_node3" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~lists_dynamical_list_mod~~UsesGraph_node3"><a xlink:href="http://fortranwiki.org/fortran/show/iso_fortran_env" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="85.77,-23.52 0,-23.52 0,0 85.77,0 85.77,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="42.88" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~kinds_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~lists_dynamical_list_mod~~UsesGraph_edge2" class="edge">
+<title>module~kinds_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M121.31,-11.76C113.82,-11.76 105.6,-11.76 97.4,-11.76"/>
+<polygon fill="#000000" stroke="#000000" points="97.42,-8.26 87.42,-11.76 97.42,-15.26 97.42,-8.26"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.1 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="485pt" height="32pt"
+ viewBox="0.00 0.00 485.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 481.13,-27.52 481.13,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-23.52 0,-23.52 0,0 54,0 54,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="137.76,-23.52 72.24,-23.52 72.24,0 137.76,0 137.76,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="105" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="218.63,-23.52 155.37,-23.52 155.37,0 218.63,0 218.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="187" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="291,-23.52 237,-23.52 237,0 291,0 291,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="264" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="363,-23.52 309,-23.52 309,0 363,0 363,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="336" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="477.13,-23.52 380.87,-23.52 380.87,0 477.13,0 477.13,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="429" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+          <div class="card">
+      <h3 class="card-header card-title bg-light">Used by</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.1 (0)
+ -->
+<!-- Title: module~~lists_dynamical_list_mod~~UsedByGraph Pages: 1 -->
+<svg id="modulelists_dynamical_list_modUsedByGraph" width="641pt" height="179pt"
+ viewBox="0.00 0.00 641.00 179.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph" class="graph" transform="scale(0.754695 0.754695) rotate(0) translate(4 233.67)">
+<title>module~~lists_dynamical_list_mod~~UsedByGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-233.67 845.35,-233.67 845.35,4 -4,4"/>
+<!-- module~lists_dynamical_list_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_node1" class="node">
+<title>module~lists_dynamical_list_mod</title>
+<polygon fill="none" stroke="black" points="129.27,-129.67 0,-129.67 0,-106.15 129.27,-106.15 129.27,-129.67"/>
+<text xml:space="preserve" text-anchor="middle" x="64.64" y="-113.94" font-family="Helvetica,sans-Serif" font-size="10.50">lists_dynamical_list_mod</text>
+</g>
+<!-- module~lists_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_node2" class="node">
+<title>module~lists_mod</title>
+<g id="a_module~~lists_dynamical_list_mod~~UsedByGraph_node2"><a xlink:href="../module/lists_mod.html" xlink:title="lists_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="221.79,-129.67 165.27,-129.67 165.27,-106.15 221.79,-106.15 221.79,-129.67"/>
+<text xml:space="preserve" text-anchor="middle" x="193.53" y="-113.94" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lists_mod</text>
+</a>
+</g>
+</g>
+<!-- module~lists_mod&#45;&gt;module~lists_dynamical_list_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_edge1" class="edge">
+<title>module~lists_mod&#45;&gt;module~lists_dynamical_list_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M165,-117.91C157.7,-117.91 149.45,-117.91 140.91,-117.91"/>
+<polygon fill="#000000" stroke="#000000" points="141.08,-114.41 131.08,-117.91 141.08,-121.41 141.08,-114.41"/>
+</g>
+<!-- module~datastructs_fortran -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_node3" class="node">
+<title>module~datastructs_fortran</title>
+<g id="a_module~~lists_dynamical_list_mod~~UsedByGraph_node3"><a xlink:href="../module/datastructs_fortran.html" xlink:title="datastructs_fortran">
+<polygon fill="#337ab7" stroke="#337ab7" points="397.94,-229.67 296.42,-229.67 296.42,-206.15 397.94,-206.15 397.94,-229.67"/>
+<text xml:space="preserve" text-anchor="middle" x="347.18" y="-213.94" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_fortran</text>
+</a>
+</g>
+</g>
+<!-- module~datastructs_fortran&#45;&gt;module~lists_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_edge2" class="edge">
+<title>module~datastructs_fortran&#45;&gt;module~lists_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M296.29,-208.64C283.1,-204.78 269.34,-199.39 257.79,-191.91 237,-178.44 219.28,-156.14 207.93,-139.53"/>
+<polygon fill="#000000" stroke="#000000" points="210.95,-137.77 202.54,-131.32 205.1,-141.61 210.95,-137.77"/>
+</g>
+<!-- module~samplers_rejection_maxheap_composition_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_node4" class="node">
+<title>module~samplers_rejection_maxheap_composition_mod</title>
+<g id="a_module~~lists_dynamical_list_mod~~UsedByGraph_node4"><a xlink:href="../module/samplers_rejection_maxheap_composition_mod.html" xlink:title="samplers_rejection_maxheap_composition_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="714.71,-189.67 472.94,-189.67 472.94,-166.15 714.71,-166.15 714.71,-189.67"/>
+<text xml:space="preserve" text-anchor="middle" x="593.82" y="-173.94" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">samplers_rejection_maxheap_composition_mod</text>
+</a>
+</g>
+</g>
+<!-- module~samplers_rejection_maxheap_composition_mod&#45;&gt;module~lists_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_edge3" class="edge">
+<title>module~samplers_rejection_maxheap_composition_mod&#45;&gt;module~lists_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M472.62,-185.86C407.53,-186.53 326.6,-181.4 257.79,-158.91 243.21,-154.15 228.72,-145.16 217.3,-136.8"/>
+<polygon fill="#000000" stroke="#000000" points="219.75,-134.27 209.69,-130.96 215.49,-139.83 219.75,-134.27"/>
+</g>
+<!-- module~samplers_rejection_maxheap_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_node5" class="node">
+<title>module~samplers_rejection_maxheap_mod</title>
+<g id="a_module~~lists_dynamical_list_mod~~UsedByGraph_node5"><a xlink:href="../module/samplers_rejection_maxheap_mod.html" xlink:title="samplers_rejection_maxheap_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="436.56,-149.67 257.79,-149.67 257.79,-126.15 436.56,-126.15 436.56,-149.67"/>
+<text xml:space="preserve" text-anchor="middle" x="347.18" y="-133.94" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">samplers_rejection_maxheap_mod</text>
+</a>
+</g>
+</g>
+<!-- module~samplers_rejection_maxheap_composition_mod&#45;&gt;module~samplers_rejection_maxheap_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_edge9" class="edge">
+<title>module~samplers_rejection_maxheap_composition_mod&#45;&gt;module~samplers_rejection_maxheap_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M518.09,-165.69C491.54,-161.35 461.44,-156.43 434.03,-151.95"/>
+<polygon fill="#000000" stroke="#000000" points="434.8,-148.53 424.36,-150.37 433.67,-155.44 434.8,-148.53"/>
+</g>
+<!-- module~samplers_rejection_maxheap_mod&#45;&gt;module~lists_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_edge4" class="edge">
+<title>module~samplers_rejection_maxheap_mod&#45;&gt;module~lists_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M257.52,-126.22C249.1,-125.11 240.9,-124.03 233.34,-123.03"/>
+<polygon fill="#000000" stroke="#000000" points="233.94,-119.58 223.57,-121.74 233.02,-126.52 233.94,-119.58"/>
+</g>
+<!-- module~samplers_rejection_maxheap_two_classes_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_node6" class="node">
+<title>module~samplers_rejection_maxheap_two_classes_mod</title>
+<g id="a_module~~lists_dynamical_list_mod~~UsedByGraph_node6"><a xlink:href="../module/samplers_rejection_maxheap_two_classes_mod.html" xlink:title="samplers_rejection_maxheap_two_classes_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="715.08,-109.67 472.56,-109.67 472.56,-86.15 715.08,-86.15 715.08,-109.67"/>
+<text xml:space="preserve" text-anchor="middle" x="593.82" y="-93.94" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">samplers_rejection_maxheap_two_classes_mod</text>
+</a>
+</g>
+</g>
+<!-- module~samplers_rejection_maxheap_two_classes_mod&#45;&gt;module~lists_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_edge5" class="edge">
+<title>module~samplers_rejection_maxheap_two_classes_mod&#45;&gt;module~lists_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M472.24,-103.97C390.76,-108.06 288.37,-113.2 233.51,-115.96"/>
+<polygon fill="#000000" stroke="#000000" points="233.56,-112.45 223.74,-116.45 233.91,-119.44 233.56,-112.45"/>
+</g>
+<!-- module~samplers_rejection_maxheap_two_classes_mod&#45;&gt;module~samplers_rejection_maxheap_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_edge10" class="edge">
+<title>module~samplers_rejection_maxheap_two_classes_mod&#45;&gt;module~samplers_rejection_maxheap_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M518.09,-110.13C491.54,-114.47 461.44,-119.39 434.03,-123.88"/>
+<polygon fill="#000000" stroke="#000000" points="433.67,-120.39 424.36,-125.46 434.8,-127.3 433.67,-120.39"/>
+</g>
+<!-- module~samplers_rejection_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_node7" class="node">
+<title>module~samplers_rejection_mod</title>
+<g id="a_module~~lists_dynamical_list_mod~~UsedByGraph_node7"><a xlink:href="../module/samplers_rejection_mod.html" xlink:title="samplers_rejection_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="411.44,-69.67 282.92,-69.67 282.92,-46.15 411.44,-46.15 411.44,-69.67"/>
+<text xml:space="preserve" text-anchor="middle" x="347.18" y="-53.94" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">samplers_rejection_mod</text>
+</a>
+</g>
+</g>
+<!-- module~samplers_rejection_mod&#45;&gt;module~lists_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_edge6" class="edge">
+<title>module~samplers_rejection_mod&#45;&gt;module~lists_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M297.85,-70.17C284.66,-74.04 270.51,-78.69 257.79,-83.91 246.54,-88.53 234.69,-94.56 224.32,-100.26"/>
+<polygon fill="#000000" stroke="#000000" points="222.83,-97.08 215.84,-105.04 226.27,-103.18 222.83,-97.08"/>
+</g>
+<!-- module~samplers_rejection_two_classes_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_node8" class="node">
+<title>module~samplers_rejection_two_classes_mod</title>
+<g id="a_module~~lists_dynamical_list_mod~~UsedByGraph_node8"><a xlink:href="../module/samplers_rejection_two_classes_mod.html" xlink:title="samplers_rejection_two_classes_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="689.96,-29.67 497.69,-29.67 497.69,-6.15 689.96,-6.15 689.96,-29.67"/>
+<text xml:space="preserve" text-anchor="middle" x="593.82" y="-13.94" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">samplers_rejection_two_classes_mod</text>
+</a>
+</g>
+</g>
+<!-- module~samplers_rejection_two_classes_mod&#45;&gt;module~lists_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_edge7" class="edge">
+<title>module~samplers_rejection_two_classes_mod&#45;&gt;module~lists_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M521.65,-5.69C450.6,2.93 340.37,6.31 257.79,-36.91 233.36,-49.7 215.37,-76.56 204.95,-95.85"/>
+<polygon fill="#000000" stroke="#000000" points="201.94,-94.06 200.51,-104.56 208.17,-97.24 201.94,-94.06"/>
+</g>
+<!-- module~samplers_rejection_two_classes_mod&#45;&gt;module~samplers_rejection_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_edge13" class="edge">
+<title>module~samplers_rejection_two_classes_mod&#45;&gt;module~samplers_rejection_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M518.09,-30.13C487.94,-35.06 453.21,-40.74 423.04,-45.67"/>
+<polygon fill="#000000" stroke="#000000" points="422.52,-42.21 413.22,-47.28 423.65,-49.12 422.52,-42.21"/>
+</g>
+<!-- proc~choose_sampler -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_node9" class="node">
+<title>proc~choose_sampler</title>
+<g id="a_module~~lists_dynamical_list_mod~~UsedByGraph_node9"><a xlink:href="../proc/choose_sampler.html" xlink:title="choose_sampler">
+<polygon fill="#d9534f" stroke="#d9534f" points="841.35,-109.67 751.08,-109.67 751.08,-86.15 841.35,-86.15 841.35,-109.67"/>
+<text xml:space="preserve" text-anchor="middle" x="796.22" y="-93.94" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">choose_sampler</text>
+</a>
+</g>
+</g>
+<!-- proc~choose_sampler&#45;&gt;module~samplers_rejection_maxheap_composition_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_edge8" class="edge">
+<title>proc~choose_sampler&#45;&gt;module~samplers_rejection_maxheap_composition_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M780.85,-110.1C765.53,-122.46 740.08,-141.26 715.08,-151.91 705.06,-156.19 694.26,-159.79 683.38,-162.82"/>
+<polygon fill="#000000" stroke="#000000" points="682.77,-159.36 673.98,-165.27 684.54,-166.13 682.77,-159.36"/>
+</g>
+<!-- proc~choose_sampler&#45;&gt;module~samplers_rejection_maxheap_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_edge11" class="edge">
+<title>proc~choose_sampler&#45;&gt;module~samplers_rejection_maxheap_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M755.2,-110.12C742.49,-113.53 728.3,-116.86 715.08,-118.91 625.45,-132.83 522.19,-137.15 448.09,-138.24"/>
+<polygon fill="#000000" stroke="#000000" points="448.38,-134.73 438.43,-138.36 448.47,-141.73 448.38,-134.73"/>
+</g>
+<!-- proc~choose_sampler&#45;&gt;module~samplers_rejection_maxheap_two_classes_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_edge12" class="edge">
+<title>proc~choose_sampler&#45;&gt;module~samplers_rejection_maxheap_two_classes_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M750.74,-97.91C743.2,-97.91 735.05,-97.91 726.56,-97.91"/>
+<polygon fill="#000000" stroke="#000000" points="726.74,-94.41 716.74,-97.91 726.74,-101.41 726.74,-94.41"/>
+</g>
+<!-- proc~choose_sampler&#45;&gt;module~samplers_rejection_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_edge14" class="edge">
+<title>proc~choose_sampler&#45;&gt;module~samplers_rejection_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M755.2,-85.71C742.49,-82.3 728.3,-78.97 715.08,-76.91 614.81,-61.35 497.48,-57.79 423,-57.33"/>
+<polygon fill="#000000" stroke="#000000" points="423.41,-53.83 413.4,-57.29 423.38,-60.83 423.41,-53.83"/>
+</g>
+<!-- proc~choose_sampler&#45;&gt;module~samplers_rejection_two_classes_mod -->
+<g id="module~~lists_dynamical_list_mod~~UsedByGraph_edge15" class="edge">
+<title>proc~choose_sampler&#45;&gt;module~samplers_rejection_two_classes_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M780.85,-85.73C765.53,-73.36 740.08,-54.57 715.08,-43.91 705.06,-39.64 694.26,-36.04 683.38,-33.01"/>
+<polygon fill="#000000" stroke="#000000" points="684.54,-29.69 673.98,-30.55 682.77,-36.47 684.54,-29.69"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panmodulelists_dynamical_list_modUsedByGraph = svgPanZoom('#modulelists_dynamical_list_modUsedByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.1 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="485pt" height="32pt"
+ viewBox="0.00 0.00 485.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 481.13,-27.52 481.13,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-23.52 0,-23.52 0,0 54,0 54,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="137.76,-23.52 72.24,-23.52 72.24,0 137.76,0 137.76,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="105" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="218.63,-23.52 155.37,-23.52 155.37,0 218.63,0 218.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="187" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="291,-23.52 237,-23.52 237,0 291,0 291,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="264" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="363,-23.52 309,-23.52 309,0 363,0 363,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="336" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="477.13,-23.52 380.87,-23.52 380.87,0 477.13,0 477.13,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="429" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      <br>
+
+
+
+
+        <section>
+          <h2>Interfaces</h2>
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-dynamical_list"></span>
+      <h3>public        interface <a href='../interface/dynamical_list.html'>dynamical_list</a> 
+      </h3>
+    </div>
+      <div class="card-body">
+        <p>Constructor for a dynamical list</p>
+      </div>
+    <ul class="list-group">
+          <li class="list-group-item">
+                <h3>
+    private  function dynamical_list_new(list) result(this)  
+
+    </h3>
+  <p>Create a new dynamical list
+Input: list - an array of integers
+Output: a new dynamical list</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-list~7"></span>
+              integer(kind=i4),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>list</strong>(:)</td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>type(<a href='../type/dynamical_list_t.html'>dynamical_list_t</a>)</small>
+    </h4>
+    
+
+          </li>
+    </ul>
+  </div>
+
+        </section>
+        <br>
+
+
+        <section>
+          <h2>Derived Types</h2>
+              <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="type-dynamical_list_t"></span>
+      <h3>
+        type, public&nbsp;::&nbsp;
+        <a href='../type/dynamical_list_t.html'>dynamical_list_t</a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      <p>List of integers with a given maximum fixed size
+The first index is always 1, and filled up to n_used
+It contains routines for managing the list</p>
+
+        <h4>Components</h4>
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n~19"></span>
+              integer(kind=i4),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>n</strong></td>
+<td> =</td>
+                <td>0</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n_used"></span>
+              integer(kind=i4),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>n_used</strong></td>
+<td> =</td>
+                <td>0</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-list~6"></span>
+              integer(kind=i4),
+            </td>
+              <td>public,</td>
+            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>list</strong>(:)</td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+        <h4>Finalizations Procedures</h4>
+        <table class="table table-striped varlist">
+          <tbody>
+              <tr>
+                <td>final :: <strong>finalize_dynamical_list</strong></td>
+                <td></td>
+              </tr>
+          </tbody>
+        </table>
+
+        <h4>Type-Bound Procedures</h4>
+        <table class="table table-striped varlist">
+          <tbody>
+              <tr>
+                <td>  procedure, public ::
+  <strong><a href='../type/dynamical_list_t.html#boundprocedure-init~4'>init</a></strong> => dynamical_list_init</td>
+                  <td></td>
+              </tr>
+              <tr>
+                <td>  procedure, public ::
+  <strong><a href='../type/dynamical_list_t.html#boundprocedure-reset~5'>reset</a></strong> => dynamical_list_reset</td>
+                  <td></td>
+              </tr>
+              <tr>
+                <td>  procedure, public ::
+  <strong><a href='../type/dynamical_list_t.html#boundprocedure-print~3'>print</a></strong> => dynamical_list_print</td>
+                  <td></td>
+              </tr>
+              <tr>
+                <td>  procedure, public ::
+  <strong><a href='../type/dynamical_list_t.html#boundprocedure-expand'>expand</a></strong> => dynamical_list_expand</td>
+                  <td></td>
+              </tr>
+              <tr>
+                <td>  procedure, public ::
+  <strong><a href='../type/dynamical_list_t.html#boundprocedure-trim'>trim</a></strong> => dynamical_list_trim</td>
+                  <td></td>
+              </tr>
+              <tr>
+                <td>  procedure, public ::
+  <strong><a href='../type/dynamical_list_t.html#boundprocedure-last'>last</a></strong> => dynamical_list_last</td>
+                  <td></td>
+              </tr>
+              <tr>
+                <td>  procedure, public ::
+  <strong><a href='../type/dynamical_list_t.html#boundprocedure-count~2'>count</a></strong> => dynamical_list_count</td>
+                  <td></td>
+              </tr>
+              <tr>
+                <td>  generic, public ::
+  <strong><a href='../type/dynamical_list_t.html#boundprocedure-add~2'>add</a></strong> => dynamical_list_add_element, dynamical_list_add_array</td>
+                  <td></td>
+              </tr>
+              <tr>
+                <td>  generic, public ::
+  <strong><a href='../type/dynamical_list_t.html#boundprocedure-remove~6'>remove</a></strong> => dynamical_list_remove_position, dynamical_list_remove_position_array, dynamical_list_remove_position_range</td>
+                  <td></td>
+              </tr>
+              <tr>
+                <td>  generic, public ::
+  <strong><a href='../type/dynamical_list_t.html#boundprocedure-assignment%28%3D%29'>assignment(=)</a></strong> => dynamical_list_create_from_array</td>
+                  <td></td>
+              </tr>
+              <tr>
+                <td>  procedure, public ::
+  <strong><a href='../type/dynamical_list_t.html#boundprocedure-get'>get</a></strong> => dynamical_list_get</td>
+                  <td></td>
+              </tr>
+              <tr>
+                <td>  procedure, public ::
+  <strong><a href='../type/dynamical_list_t.html#boundprocedure-sum~6'>sum</a></strong> => dynamical_list_sum</td>
+                  <td></td>
+              </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Data structures for Fortran
+ was developed by Wesley Cota <https://wcota.me/><br>              &copy; 2025 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

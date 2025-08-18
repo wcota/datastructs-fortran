@@ -1,0 +1,704 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Documentation for Data structures for Fortran">
+    <meta name="author" content="Wesley Cota <https://wcota.me/>" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>lists_mod &ndash; Data structures for Fortran</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Data structures for Fortran </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>lists_mod
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 2.4% of total for modules and submodules.">35 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/lists.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/lists.f90.html'>lists.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">lists_mod</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#funcs-0"
+         aria-expanded="false" aria-controls="funcs-0">
+         <h4 class="card-header bg-primary text-white">Functions</h4>
+      </a>
+      <div id="funcs-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/lists_mod.html#proc-unique_values">unique_values</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      <p>General module for lists and related operations
+Constructors</p>
+<p>Derived types</p>
+<p>Operations</p>
+<br>          <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='lists_dynamical_list_mod.html'>lists_dynamical_list_mod</a></li>
+                  <li class="list-inline-item"><a href='maxheap_mod.html'>maxheap_mod</a></li>
+                  <li class="list-inline-item"><a href='lists_fixed_list_mod.html'>lists_fixed_list_mod</a></li>
+                  <li class="list-inline-item"><a href='kinds_mod.html'>kinds_mod</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.1 (0)
+ -->
+<!-- Title: module~~lists_mod~~UsesGraph Pages: 1 -->
+<svg id="modulelists_modUsesGraph" width="451pt" height="137pt"
+ viewBox="0.00 0.00 451.00 137.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~lists_mod~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 133)">
+<title>module~~lists_mod~~UsesGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-133 446.83,-133 446.83,4 -4,4"/>
+<!-- module~lists_mod -->
+<g id="module~~lists_mod~~UsesGraph_node1" class="node">
+<title>module~lists_mod</title>
+<polygon fill="none" stroke="black" points="442.83,-86.52 386.31,-86.52 386.31,-63 442.83,-63 442.83,-86.52"/>
+<text xml:space="preserve" text-anchor="middle" x="414.57" y="-70.79" font-family="Helvetica,sans-Serif" font-size="10.50">lists_mod</text>
+</g>
+<!-- module~kinds_mod -->
+<g id="module~~lists_mod~~UsesGraph_node2" class="node">
+<title>module~kinds_mod</title>
+<g id="a_module~~lists_mod~~UsesGraph_node2"><a xlink:href="../module/kinds_mod.html" xlink:title="kinds_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="185.04,-86.52 121.77,-86.52 121.77,-63 185.04,-63 185.04,-86.52"/>
+<text xml:space="preserve" text-anchor="middle" x="153.41" y="-70.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">kinds_mod</text>
+</a>
+</g>
+</g>
+<!-- module~lists_mod&#45;&gt;module~kinds_mod -->
+<g id="module~~lists_mod~~UsesGraph_edge1" class="edge">
+<title>module~lists_mod&#45;&gt;module~kinds_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M400.7,-86.66C388.69,-96.89 369.75,-110.9 350.31,-116.76 295.31,-133.36 276.24,-132.7 221.04,-116.76 205.08,-112.15 189.25,-102.45 177.03,-93.54"/>
+<polygon fill="#000000" stroke="#000000" points="179.34,-90.89 169.28,-87.59 175.08,-96.45 179.34,-90.89"/>
+</g>
+<!-- module~lists_dynamical_list_mod -->
+<g id="module~~lists_mod~~UsesGraph_node3" class="node">
+<title>module~lists_dynamical_list_mod</title>
+<g id="a_module~~lists_mod~~UsesGraph_node3"><a xlink:href="../module/lists_dynamical_list_mod.html" xlink:title="lists_dynamical_list_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="350.31,-107.52 221.04,-107.52 221.04,-84 350.31,-84 350.31,-107.52"/>
+<text xml:space="preserve" text-anchor="middle" x="285.68" y="-91.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lists_dynamical_list_mod</text>
+</a>
+</g>
+</g>
+<!-- module~lists_mod&#45;&gt;module~lists_dynamical_list_mod -->
+<g id="module~~lists_mod~~UsesGraph_edge2" class="edge">
+<title>module~lists_mod&#45;&gt;module~lists_dynamical_list_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M386.04,-79.32C378.74,-80.52 370.49,-81.89 361.95,-83.3"/>
+<polygon fill="#000000" stroke="#000000" points="361.4,-79.85 352.1,-84.93 362.54,-86.75 361.4,-79.85"/>
+</g>
+<!-- module~lists_fixed_list_mod -->
+<g id="module~~lists_mod~~UsesGraph_node4" class="node">
+<title>module~lists_fixed_list_mod</title>
+<g id="a_module~~lists_mod~~UsesGraph_node4"><a xlink:href="../module/lists_fixed_list_mod.html" xlink:title="lists_fixed_list_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="337.56,-65.52 233.79,-65.52 233.79,-42 337.56,-42 337.56,-65.52"/>
+<text xml:space="preserve" text-anchor="middle" x="285.68" y="-49.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lists_fixed_list_mod</text>
+</a>
+</g>
+</g>
+<!-- module~lists_mod&#45;&gt;module~lists_fixed_list_mod -->
+<g id="module~~lists_mod~~UsesGraph_edge3" class="edge">
+<title>module~lists_mod&#45;&gt;module~lists_fixed_list_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M386.04,-70.2C375.15,-68.4 362.17,-66.25 349.24,-64.11"/>
+<polygon fill="#000000" stroke="#000000" points="349.87,-60.67 339.43,-62.49 348.73,-67.58 349.87,-60.67"/>
+</g>
+<!-- module~maxheap_mod -->
+<g id="module~~lists_mod~~UsesGraph_node5" class="node">
+<title>module~maxheap_mod</title>
+<g id="a_module~~lists_mod~~UsesGraph_node5"><a xlink:href="../module/maxheap_mod.html" xlink:title="maxheap_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="327.06,-23.52 244.29,-23.52 244.29,0 327.06,0 327.06,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="285.68" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">maxheap_mod</text>
+</a>
+</g>
+</g>
+<!-- module~lists_mod&#45;&gt;module~maxheap_mod -->
+<g id="module~~lists_mod~~UsesGraph_edge4" class="edge">
+<title>module~lists_mod&#45;&gt;module~maxheap_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M397.9,-62.63C385.51,-53.48 367.5,-41.12 350.31,-32.76 346.36,-30.84 342.19,-29.03 337.96,-27.34"/>
+<polygon fill="#000000" stroke="#000000" points="339.39,-24.14 328.79,-23.92 336.94,-30.7 339.39,-24.14"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~lists_mod~~UsesGraph_node6" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~lists_mod~~UsesGraph_node6"><a xlink:href="http://fortranwiki.org/fortran/show/iso_fortran_env" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="85.77,-86.52 0,-86.52 0,-63 85.77,-63 85.77,-86.52"/>
+<text xml:space="preserve" text-anchor="middle" x="42.88" y="-70.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~kinds_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~lists_mod~~UsesGraph_edge5" class="edge">
+<title>module~kinds_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M121.31,-74.76C113.82,-74.76 105.6,-74.76 97.4,-74.76"/>
+<polygon fill="#000000" stroke="#000000" points="97.42,-71.26 87.42,-74.76 97.42,-78.26 97.42,-71.26"/>
+</g>
+<!-- module~lists_dynamical_list_mod&#45;&gt;module~kinds_mod -->
+<g id="module~~lists_mod~~UsesGraph_edge6" class="edge">
+<title>module~lists_dynamical_list_mod&#45;&gt;module~kinds_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M220.68,-85.44C212.48,-84.12 204.25,-82.8 196.52,-81.55"/>
+<polygon fill="#000000" stroke="#000000" points="197.16,-78.11 186.73,-79.97 196.05,-85.02 197.16,-78.11"/>
+</g>
+<!-- module~lists_fixed_list_mod&#45;&gt;module~kinds_mod -->
+<g id="module~~lists_mod~~UsesGraph_edge7" class="edge">
+<title>module~lists_fixed_list_mod&#45;&gt;module~kinds_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M233.56,-62C221.37,-63.96 208.5,-66.04 196.75,-67.93"/>
+<polygon fill="#000000" stroke="#000000" points="196.26,-64.47 186.94,-69.51 197.37,-71.38 196.26,-64.47"/>
+</g>
+<!-- module~maxheap_mod&#45;&gt;module~kinds_mod -->
+<g id="module~~lists_mod~~UsesGraph_edge8" class="edge">
+<title>module~maxheap_mod&#45;&gt;module~kinds_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M244.04,-23.53C236.27,-26.23 228.3,-29.34 221.04,-32.76 207.03,-39.37 192.37,-48.35 180.38,-56.31"/>
+<polygon fill="#000000" stroke="#000000" points="178.56,-53.32 172.26,-61.84 182.5,-59.11 178.56,-53.32"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.1 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="485pt" height="32pt"
+ viewBox="0.00 0.00 485.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 481.13,-27.52 481.13,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-23.52 0,-23.52 0,0 54,0 54,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="137.76,-23.52 72.24,-23.52 72.24,0 137.76,0 137.76,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="105" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="218.63,-23.52 155.37,-23.52 155.37,0 218.63,0 218.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="187" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="291,-23.52 237,-23.52 237,0 291,0 291,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="264" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="363,-23.52 309,-23.52 309,0 363,0 363,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="336" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="477.13,-23.52 380.87,-23.52 380.87,0 477.13,0 477.13,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="429" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+          <div class="card">
+      <h3 class="card-header card-title bg-light">Used by</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.1 (0)
+ -->
+<!-- Title: module~~lists_mod~~UsedByGraph Pages: 1 -->
+<svg id="modulelists_modUsedByGraph" width="641pt" height="223pt"
+ viewBox="0.00 0.00 641.00 223.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~lists_mod~~UsedByGraph" class="graph" transform="scale(0.937025 0.937025) rotate(0) translate(4 233.67)">
+<title>module~~lists_mod~~UsedByGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-233.67 680.08,-233.67 680.08,4 -4,4"/>
+<!-- module~lists_mod -->
+<g id="module~~lists_mod~~UsedByGraph_node1" class="node">
+<title>module~lists_mod</title>
+<polygon fill="none" stroke="black" points="56.52,-129.67 0,-129.67 0,-106.15 56.52,-106.15 56.52,-129.67"/>
+<text xml:space="preserve" text-anchor="middle" x="28.26" y="-113.94" font-family="Helvetica,sans-Serif" font-size="10.50">lists_mod</text>
+</g>
+<!-- module~datastructs_fortran -->
+<g id="module~~lists_mod~~UsedByGraph_node2" class="node">
+<title>module~datastructs_fortran</title>
+<g id="a_module~~lists_mod~~UsedByGraph_node2"><a xlink:href="../module/datastructs_fortran.html" xlink:title="datastructs_fortran">
+<polygon fill="#337ab7" stroke="#337ab7" points="232.67,-229.67 131.14,-229.67 131.14,-206.15 232.67,-206.15 232.67,-229.67"/>
+<text xml:space="preserve" text-anchor="middle" x="181.91" y="-213.94" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_fortran</text>
+</a>
+</g>
+</g>
+<!-- module~datastructs_fortran&#45;&gt;module~lists_mod -->
+<g id="module~~lists_mod~~UsedByGraph_edge1" class="edge">
+<title>module~datastructs_fortran&#45;&gt;module~lists_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M131.02,-208.64C117.83,-204.78 104.07,-199.39 92.52,-191.91 71.73,-178.44 54.01,-156.14 42.66,-139.53"/>
+<polygon fill="#000000" stroke="#000000" points="45.68,-137.77 37.27,-131.32 39.83,-141.61 45.68,-137.77"/>
+</g>
+<!-- module~samplers_rejection_maxheap_composition_mod -->
+<g id="module~~lists_mod~~UsedByGraph_node3" class="node">
+<title>module~samplers_rejection_maxheap_composition_mod</title>
+<g id="a_module~~lists_mod~~UsedByGraph_node3"><a xlink:href="../module/samplers_rejection_maxheap_composition_mod.html" xlink:title="samplers_rejection_maxheap_composition_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="549.44,-189.67 307.67,-189.67 307.67,-166.15 549.44,-166.15 549.44,-189.67"/>
+<text xml:space="preserve" text-anchor="middle" x="428.55" y="-173.94" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">samplers_rejection_maxheap_composition_mod</text>
+</a>
+</g>
+</g>
+<!-- module~samplers_rejection_maxheap_composition_mod&#45;&gt;module~lists_mod -->
+<g id="module~~lists_mod~~UsedByGraph_edge2" class="edge">
+<title>module~samplers_rejection_maxheap_composition_mod&#45;&gt;module~lists_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M307.35,-185.86C242.26,-186.53 161.33,-181.4 92.52,-158.91 77.94,-154.15 63.45,-145.16 52.03,-136.8"/>
+<polygon fill="#000000" stroke="#000000" points="54.48,-134.27 44.42,-130.96 50.22,-139.83 54.48,-134.27"/>
+</g>
+<!-- module~samplers_rejection_maxheap_mod -->
+<g id="module~~lists_mod~~UsedByGraph_node4" class="node">
+<title>module~samplers_rejection_maxheap_mod</title>
+<g id="a_module~~lists_mod~~UsedByGraph_node4"><a xlink:href="../module/samplers_rejection_maxheap_mod.html" xlink:title="samplers_rejection_maxheap_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="271.29,-149.67 92.52,-149.67 92.52,-126.15 271.29,-126.15 271.29,-149.67"/>
+<text xml:space="preserve" text-anchor="middle" x="181.91" y="-133.94" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">samplers_rejection_maxheap_mod</text>
+</a>
+</g>
+</g>
+<!-- module~samplers_rejection_maxheap_composition_mod&#45;&gt;module~samplers_rejection_maxheap_mod -->
+<g id="module~~lists_mod~~UsedByGraph_edge8" class="edge">
+<title>module~samplers_rejection_maxheap_composition_mod&#45;&gt;module~samplers_rejection_maxheap_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M352.82,-165.69C326.27,-161.35 296.17,-156.43 268.76,-151.95"/>
+<polygon fill="#000000" stroke="#000000" points="269.53,-148.53 259.09,-150.37 268.4,-155.44 269.53,-148.53"/>
+</g>
+<!-- module~samplers_rejection_maxheap_mod&#45;&gt;module~lists_mod -->
+<g id="module~~lists_mod~~UsedByGraph_edge3" class="edge">
+<title>module~samplers_rejection_maxheap_mod&#45;&gt;module~lists_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M92.25,-126.22C83.83,-125.11 75.63,-124.03 68.07,-123.03"/>
+<polygon fill="#000000" stroke="#000000" points="68.67,-119.58 58.3,-121.74 67.75,-126.52 68.67,-119.58"/>
+</g>
+<!-- module~samplers_rejection_maxheap_two_classes_mod -->
+<g id="module~~lists_mod~~UsedByGraph_node5" class="node">
+<title>module~samplers_rejection_maxheap_two_classes_mod</title>
+<g id="a_module~~lists_mod~~UsedByGraph_node5"><a xlink:href="../module/samplers_rejection_maxheap_two_classes_mod.html" xlink:title="samplers_rejection_maxheap_two_classes_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="549.81,-109.67 307.29,-109.67 307.29,-86.15 549.81,-86.15 549.81,-109.67"/>
+<text xml:space="preserve" text-anchor="middle" x="428.55" y="-93.94" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">samplers_rejection_maxheap_two_classes_mod</text>
+</a>
+</g>
+</g>
+<!-- module~samplers_rejection_maxheap_two_classes_mod&#45;&gt;module~lists_mod -->
+<g id="module~~lists_mod~~UsedByGraph_edge4" class="edge">
+<title>module~samplers_rejection_maxheap_two_classes_mod&#45;&gt;module~lists_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M306.97,-103.97C225.49,-108.06 123.1,-113.2 68.24,-115.96"/>
+<polygon fill="#000000" stroke="#000000" points="68.29,-112.45 58.47,-116.45 68.64,-119.44 68.29,-112.45"/>
+</g>
+<!-- module~samplers_rejection_maxheap_two_classes_mod&#45;&gt;module~samplers_rejection_maxheap_mod -->
+<g id="module~~lists_mod~~UsedByGraph_edge9" class="edge">
+<title>module~samplers_rejection_maxheap_two_classes_mod&#45;&gt;module~samplers_rejection_maxheap_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M352.82,-110.13C326.27,-114.47 296.17,-119.39 268.76,-123.88"/>
+<polygon fill="#000000" stroke="#000000" points="268.4,-120.39 259.09,-125.46 269.53,-127.3 268.4,-120.39"/>
+</g>
+<!-- module~samplers_rejection_mod -->
+<g id="module~~lists_mod~~UsedByGraph_node6" class="node">
+<title>module~samplers_rejection_mod</title>
+<g id="a_module~~lists_mod~~UsedByGraph_node6"><a xlink:href="../module/samplers_rejection_mod.html" xlink:title="samplers_rejection_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="246.17,-69.67 117.64,-69.67 117.64,-46.15 246.17,-46.15 246.17,-69.67"/>
+<text xml:space="preserve" text-anchor="middle" x="181.91" y="-53.94" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">samplers_rejection_mod</text>
+</a>
+</g>
+</g>
+<!-- module~samplers_rejection_mod&#45;&gt;module~lists_mod -->
+<g id="module~~lists_mod~~UsedByGraph_edge5" class="edge">
+<title>module~samplers_rejection_mod&#45;&gt;module~lists_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M132.58,-70.17C119.39,-74.04 105.24,-78.69 92.52,-83.91 81.27,-88.53 69.42,-94.56 59.05,-100.26"/>
+<polygon fill="#000000" stroke="#000000" points="57.56,-97.08 50.57,-105.04 61,-103.18 57.56,-97.08"/>
+</g>
+<!-- module~samplers_rejection_two_classes_mod -->
+<g id="module~~lists_mod~~UsedByGraph_node7" class="node">
+<title>module~samplers_rejection_two_classes_mod</title>
+<g id="a_module~~lists_mod~~UsedByGraph_node7"><a xlink:href="../module/samplers_rejection_two_classes_mod.html" xlink:title="samplers_rejection_two_classes_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="524.69,-29.67 332.42,-29.67 332.42,-6.15 524.69,-6.15 524.69,-29.67"/>
+<text xml:space="preserve" text-anchor="middle" x="428.55" y="-13.94" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">samplers_rejection_two_classes_mod</text>
+</a>
+</g>
+</g>
+<!-- module~samplers_rejection_two_classes_mod&#45;&gt;module~lists_mod -->
+<g id="module~~lists_mod~~UsedByGraph_edge6" class="edge">
+<title>module~samplers_rejection_two_classes_mod&#45;&gt;module~lists_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M356.38,-5.69C285.33,2.93 175.1,6.31 92.52,-36.91 68.09,-49.7 50.1,-76.56 39.68,-95.85"/>
+<polygon fill="#000000" stroke="#000000" points="36.67,-94.06 35.24,-104.56 42.9,-97.24 36.67,-94.06"/>
+</g>
+<!-- module~samplers_rejection_two_classes_mod&#45;&gt;module~samplers_rejection_mod -->
+<g id="module~~lists_mod~~UsedByGraph_edge12" class="edge">
+<title>module~samplers_rejection_two_classes_mod&#45;&gt;module~samplers_rejection_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M352.82,-30.13C322.67,-35.06 287.94,-40.74 257.77,-45.67"/>
+<polygon fill="#000000" stroke="#000000" points="257.25,-42.21 247.95,-47.28 258.38,-49.12 257.25,-42.21"/>
+</g>
+<!-- proc~choose_sampler -->
+<g id="module~~lists_mod~~UsedByGraph_node8" class="node">
+<title>proc~choose_sampler</title>
+<g id="a_module~~lists_mod~~UsedByGraph_node8"><a xlink:href="../proc/choose_sampler.html" xlink:title="choose_sampler">
+<polygon fill="#d9534f" stroke="#d9534f" points="676.08,-109.67 585.81,-109.67 585.81,-86.15 676.08,-86.15 676.08,-109.67"/>
+<text xml:space="preserve" text-anchor="middle" x="630.95" y="-93.94" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">choose_sampler</text>
+</a>
+</g>
+</g>
+<!-- proc~choose_sampler&#45;&gt;module~samplers_rejection_maxheap_composition_mod -->
+<g id="module~~lists_mod~~UsedByGraph_edge7" class="edge">
+<title>proc~choose_sampler&#45;&gt;module~samplers_rejection_maxheap_composition_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M615.58,-110.1C600.26,-122.46 574.81,-141.26 549.81,-151.91 539.79,-156.19 528.99,-159.79 518.11,-162.82"/>
+<polygon fill="#000000" stroke="#000000" points="517.5,-159.36 508.71,-165.27 519.27,-166.13 517.5,-159.36"/>
+</g>
+<!-- proc~choose_sampler&#45;&gt;module~samplers_rejection_maxheap_mod -->
+<g id="module~~lists_mod~~UsedByGraph_edge10" class="edge">
+<title>proc~choose_sampler&#45;&gt;module~samplers_rejection_maxheap_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M589.93,-110.12C577.22,-113.53 563.03,-116.86 549.81,-118.91 460.18,-132.83 356.92,-137.15 282.82,-138.24"/>
+<polygon fill="#000000" stroke="#000000" points="283.11,-134.73 273.16,-138.36 283.2,-141.73 283.11,-134.73"/>
+</g>
+<!-- proc~choose_sampler&#45;&gt;module~samplers_rejection_maxheap_two_classes_mod -->
+<g id="module~~lists_mod~~UsedByGraph_edge11" class="edge">
+<title>proc~choose_sampler&#45;&gt;module~samplers_rejection_maxheap_two_classes_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M585.47,-97.91C577.93,-97.91 569.78,-97.91 561.29,-97.91"/>
+<polygon fill="#000000" stroke="#000000" points="561.47,-94.41 551.47,-97.91 561.47,-101.41 561.47,-94.41"/>
+</g>
+<!-- proc~choose_sampler&#45;&gt;module~samplers_rejection_mod -->
+<g id="module~~lists_mod~~UsedByGraph_edge13" class="edge">
+<title>proc~choose_sampler&#45;&gt;module~samplers_rejection_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M589.93,-85.71C577.22,-82.3 563.03,-78.97 549.81,-76.91 449.54,-61.35 332.21,-57.79 257.73,-57.33"/>
+<polygon fill="#000000" stroke="#000000" points="258.14,-53.83 248.13,-57.29 258.11,-60.83 258.14,-53.83"/>
+</g>
+<!-- proc~choose_sampler&#45;&gt;module~samplers_rejection_two_classes_mod -->
+<g id="module~~lists_mod~~UsedByGraph_edge14" class="edge">
+<title>proc~choose_sampler&#45;&gt;module~samplers_rejection_two_classes_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M615.58,-85.73C600.26,-73.36 574.81,-54.57 549.81,-43.91 539.79,-39.64 528.99,-36.04 518.11,-33.01"/>
+<polygon fill="#000000" stroke="#000000" points="519.27,-29.69 508.71,-30.55 517.5,-36.47 519.27,-29.69"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panmodulelists_modUsedByGraph = svgPanZoom('#modulelists_modUsedByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.1 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="485pt" height="32pt"
+ viewBox="0.00 0.00 485.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 481.13,-27.52 481.13,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-23.52 0,-23.52 0,0 54,0 54,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="137.76,-23.52 72.24,-23.52 72.24,0 137.76,0 137.76,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="105" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="218.63,-23.52 155.37,-23.52 155.37,0 218.63,0 218.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="187" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="291,-23.52 237,-23.52 237,0 291,0 291,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="264" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="363,-23.52 309,-23.52 309,0 363,0 363,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="336" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="477.13,-23.52 380.87,-23.52 380.87,0 477.13,0 477.13,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="429" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      <br>
+
+
+
+
+
+
+
+        <section>
+          <h2>Functions</h2>
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-unique_values"></span> <h3>public  function <a href='../proc/unique_values.html'>unique_values</a>(list) result(unique)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Find unique values in a list of integers
+It uses the standard library sorting module
+The result is a list of unique integers</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-list"></span>
+              integer(kind=i4),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>list</strong>(:)</td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>integer(kind=i4), allocatable, (:)</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Data structures for Fortran
+ was developed by Wesley Cota <https://wcota.me/><br>              &copy; 2025 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>
