@@ -1,0 +1,737 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Documentation for Data structures for Fortran">
+    <meta name="author" content="Wesley Cota <https://wcota.me/>" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>All Procedures &ndash; Data structures for Fortran
+</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Data structures for Fortran </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12" id='text'>
+			 <h1>Procedures</h1>
+			 <table class="table table-striped">
+			 <thead><tr><th>Procedure</th><th>Location</th><th>Procedure Type</th><th>Description</th></tr></thead>
+			 <tbody>
+			   <tr>
+                 <td><a href='../proc/choose_fmt_based_on.html'>choose_fmt_based_on</a></td>
+                 <td><a href='../module/datastructs_kinds_mod.html'>datastructs_kinds_mod</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/choose_sampler.html'>choose_sampler</a></td>
+                 <td><a href='../module/datastructs_samplers_mod.html'>datastructs_samplers_mod</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Subroutine to allocate a <code>class(sampler_base_t)</code> to its respective object</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/count_integers_from_string.html'>count_integers_from_string</a></td>
+                 <td><a href='../module/datastructs_kinds_mod.html'>datastructs_kinds_mod</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/djb2.html'>djb2</a></td>
+                 <td><a href='../module/datastructs_hash_mod.html'>datastructs_hash_mod</a></td>
+                 <td>Function</td>
+                 <td><p>DJB2 hash function
+Inspired by http://www.cse.yorku.ca/~oz/hash.html
+and https://github.com/pdebuyl/fortran_hash_table/blob/master/src/dictionary_m.f90</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/dynamical_list.html'>dynamical_list</a></td>
+                 <td><a href='../module/datastructs_lists_dynamical_list_mod.html'>datastructs_lists_dynamical_list_mod</a></td>
+                 <td>Interface</td>
+                 <td><p>Constructor for a dynamical list</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/fixed_list.html'>fixed_list</a></td>
+                 <td><a href='../module/datastructs_lists_fixed_list_mod.html'>datastructs_lists_fixed_list_mod</a></td>
+                 <td>Interface</td>
+                 <td><p>Constructor for a fixed list</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/list_ranges.html'>list_ranges</a></td>
+                 <td><a href='../module/datastructs_kinds_mod.html'>datastructs_kinds_mod</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/maxheap.html'>maxheap</a></td>
+                 <td><a href='../module/datastructs_maxheap_mod.html'>datastructs_maxheap_mod</a></td>
+                 <td>Interface</td>
+                 <td><p>Constructor for a maxheap</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/new_fixed_list_pointer.html'>new_fixed_list_pointer</a></td>
+                 <td><a href='../module/datastructs_lists_fixed_list_mod.html'>datastructs_lists_fixed_list_mod</a></td>
+                 <td>Function</td>
+                 <td><p>Create a new fixed list pointer
+Input: list - an array of integers</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/swap.html'>swap</a></td>
+                 <td><a href='../module/datastructs_kinds_mod.html'>datastructs_kinds_mod</a></td>
+                 <td>Interface</td>
+                 <td><p>Interface for the swap subroutine.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/unique_values.html'>unique_values</a></td>
+                 <td><a href='../module/datastructs_lists_mod.html'>datastructs_lists_mod</a></td>
+                 <td>Function</td>
+                 <td><p>Find unique values in a list of integers
+It uses the standard library sorting module
+The result is a list of unique integers</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/weighted_sampler.html'>weighted_sampler</a></td>
+                 <td><a href='../module/datastructs_samplers_btree_mod.html'>datastructs_samplers_btree_mod</a></td>
+                 <td>Interface</td>
+                 <td><p>Constructor</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/weighted_sampler~2.html'>weighted_sampler</a></td>
+                 <td><a href='../module/datastructs_samplers_rejection_maxheap_composition_mod.html'>datastructs_samplers_rejection_maxheap_composition_mod</a></td>
+                 <td>Interface</td>
+                 <td><p>Constructor</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/weighted_sampler~3.html'>weighted_sampler</a></td>
+                 <td><a href='../module/datastructs_samplers_rejection_maxheap_two_classes_mod.html'>datastructs_samplers_rejection_maxheap_two_classes_mod</a></td>
+                 <td>Interface</td>
+                 <td><p>Constructor</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/weighted_sampler~4.html'>weighted_sampler</a></td>
+                 <td><a href='../module/datastructs_samplers_rejection_mod.html'>datastructs_samplers_rejection_mod</a></td>
+                 <td>Interface</td>
+                 <td><p>Constructor</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/weighted_sampler~5.html'>weighted_sampler</a></td>
+                 <td><a href='../module/datastructs_samplers_rejection_two_classes_mod.html'>datastructs_samplers_rejection_two_classes_mod</a></td>
+                 <td>Interface</td>
+                 <td><p>Constructor</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/weighted_sampler~6.html'>weighted_sampler</a></td>
+                 <td><a href='../module/datastructs_samplers_rejection_maxheap_mod.html'>datastructs_samplers_rejection_maxheap_mod</a></td>
+                 <td>Interface</td>
+                 <td><p>Constructor</p></td>
+               </tr>
+			 </tbody></table>
+             <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.1 (0)
+ -->
+<!-- Title: call~~graph~~CallGraph Pages: 1 -->
+<svg id="callgraphCallGraph" width="358pt" height="1124pt"
+ viewBox="0.00 0.00 358.00 1124.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="call~~graph~~CallGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 1119.52)">
+<title>call~~graph~~CallGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-1119.52 354.04,-1119.52 354.04,4 -4,4"/>
+<!-- interface~dynamical_list -->
+<g id="call~~graph~~CallGraph_node1" class="node">
+<title>interface~dynamical_list</title>
+<g id="a_call~~graph~~CallGraph_node1"><a xlink:href="../interface/dynamical_list.html" xlink:title="dynamical_list">
+<polygon fill="#a7506f" stroke="#a7506f" points="121.39,-23.52 43.12,-23.52 43.12,0 121.39,0 121.39,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dynamical_list</text>
+</a>
+</g>
+</g>
+<!-- interface~fixed_list -->
+<g id="call~~graph~~CallGraph_node2" class="node">
+<title>interface~fixed_list</title>
+<g id="a_call~~graph~~CallGraph_node2"><a xlink:href="../interface/fixed_list.html" xlink:title="fixed_list">
+<polygon fill="#a7506f" stroke="#a7506f" points="109.26,-65.52 55.26,-65.52 55.26,-42 109.26,-42 109.26,-65.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-49.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fixed_list</text>
+</a>
+</g>
+</g>
+<!-- interface~maxheap -->
+<g id="call~~graph~~CallGraph_node3" class="node">
+<title>interface~maxheap</title>
+<g id="a_call~~graph~~CallGraph_node3"><a xlink:href="../interface/maxheap.html" xlink:title="maxheap">
+<polygon fill="#a7506f" stroke="#a7506f" points="110.14,-107.52 54.37,-107.52 54.37,-84 110.14,-84 110.14,-107.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-91.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">maxheap</text>
+</a>
+</g>
+</g>
+<!-- interface~swap -->
+<g id="call~~graph~~CallGraph_node4" class="node">
+<title>interface~swap</title>
+<g id="a_call~~graph~~CallGraph_node4"><a xlink:href="../interface/swap.html" xlink:title="swap">
+<polygon fill="#a7506f" stroke="#a7506f" points="109.26,-149.52 55.26,-149.52 55.26,-126 109.26,-126 109.26,-149.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-133.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">swap</text>
+</a>
+</g>
+</g>
+<!-- interface~weighted_sampler -->
+<g id="call~~graph~~CallGraph_node5" class="node">
+<title>interface~weighted_sampler</title>
+<g id="a_call~~graph~~CallGraph_node5"><a xlink:href="../interface/weighted_sampler.html" xlink:title="weighted_sampler">
+<polygon fill="#a7506f" stroke="#a7506f" points="131.52,-191.52 33,-191.52 33,-168 131.52,-168 131.52,-191.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-175.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler</text>
+</a>
+</g>
+</g>
+<!-- interface~weighted_sampler~2 -->
+<g id="call~~graph~~CallGraph_node6" class="node">
+<title>interface~weighted_sampler~2</title>
+<g id="a_call~~graph~~CallGraph_node6"><a xlink:href="../interface/weighted_sampler~2.html" xlink:title="weighted_sampler">
+<polygon fill="#a7506f" stroke="#a7506f" points="131.52,-233.52 33,-233.52 33,-210 131.52,-210 131.52,-233.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-217.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler</text>
+</a>
+</g>
+</g>
+<!-- interface~weighted_sampler~3 -->
+<g id="call~~graph~~CallGraph_node7" class="node">
+<title>interface~weighted_sampler~3</title>
+<g id="a_call~~graph~~CallGraph_node7"><a xlink:href="../interface/weighted_sampler~3.html" xlink:title="weighted_sampler">
+<polygon fill="#a7506f" stroke="#a7506f" points="131.52,-275.52 33,-275.52 33,-252 131.52,-252 131.52,-275.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-259.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler</text>
+</a>
+</g>
+</g>
+<!-- interface~weighted_sampler~4 -->
+<g id="call~~graph~~CallGraph_node8" class="node">
+<title>interface~weighted_sampler~4</title>
+<g id="a_call~~graph~~CallGraph_node8"><a xlink:href="../interface/weighted_sampler~4.html" xlink:title="weighted_sampler">
+<polygon fill="#a7506f" stroke="#a7506f" points="131.52,-317.52 33,-317.52 33,-294 131.52,-294 131.52,-317.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-301.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler</text>
+</a>
+</g>
+</g>
+<!-- interface~weighted_sampler~5 -->
+<g id="call~~graph~~CallGraph_node9" class="node">
+<title>interface~weighted_sampler~5</title>
+<g id="a_call~~graph~~CallGraph_node9"><a xlink:href="../interface/weighted_sampler~5.html" xlink:title="weighted_sampler">
+<polygon fill="#a7506f" stroke="#a7506f" points="131.52,-359.52 33,-359.52 33,-336 131.52,-336 131.52,-359.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-343.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler</text>
+</a>
+</g>
+</g>
+<!-- interface~weighted_sampler~6 -->
+<g id="call~~graph~~CallGraph_node10" class="node">
+<title>interface~weighted_sampler~6</title>
+<g id="a_call~~graph~~CallGraph_node10"><a xlink:href="../interface/weighted_sampler~6.html" xlink:title="weighted_sampler">
+<polygon fill="#a7506f" stroke="#a7506f" points="131.52,-401.52 33,-401.52 33,-378 131.52,-378 131.52,-401.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-385.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler</text>
+</a>
+</g>
+</g>
+<!-- none~add~2 -->
+<g id="call~~graph~~CallGraph_node11" class="node">
+<title>none~add~2</title>
+<g id="a_call~~graph~~CallGraph_node11"><a xlink:href="../type/dynamical_list_t.html#boundprocedure-add~2" xlink:title="dynamical_list_t%add">
+<polygon fill="#a7506f" stroke="#a7506f" points="139.39,-443.52 25.12,-443.52 25.12,-420 139.39,-420 139.39,-443.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-427.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dynamical_list_t%add</text>
+</a>
+</g>
+</g>
+<!-- none~assignment(=) -->
+<g id="call~~graph~~CallGraph_node12" class="node">
+<title>none~assignment(=)</title>
+<g id="a_call~~graph~~CallGraph_node12"><a xlink:href="../type/dynamical_list_t.html#boundprocedure-assignment%28%3D%29" xlink:title="dynamical_list_t%assignment(=)">
+<polygon fill="#a7506f" stroke="#a7506f" points="164.52,-485.52 0,-485.52 0,-462 164.52,-462 164.52,-485.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-469.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dynamical_list_t%assignment(=)</text>
+</a>
+</g>
+</g>
+<!-- none~init~4 -->
+<g id="call~~graph~~CallGraph_node31" class="node">
+<title>none~init~4</title>
+<g id="a_call~~graph~~CallGraph_node31"><a xlink:href="../type/dynamical_list_t.html#boundprocedure-init~4" xlink:title="dynamical_list_t%init">
+<polygon fill="#a7506f" stroke="#a7506f" points="330.17,-485.52 220.4,-485.52 220.4,-462 330.17,-462 330.17,-485.52"/>
+<text xml:space="preserve" text-anchor="middle" x="275.28" y="-469.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dynamical_list_t%init</text>
+</a>
+</g>
+</g>
+<!-- none~assignment(=)&#45;&gt;none~init~4 -->
+<g id="call~~graph~~CallGraph_edge1" class="edge">
+<title>none~assignment(=)&#45;&gt;none~init~4</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M164.82,-473.76C179.55,-473.76 194.72,-473.76 208.91,-473.76"/>
+<polygon fill="#000000" stroke="#000000" points="208.53,-477.26 218.53,-473.76 208.53,-470.26 208.53,-477.26"/>
+</g>
+<!-- none~init~10 -->
+<g id="call~~graph~~CallGraph_node13" class="node">
+<title>none~init~10</title>
+<g id="a_call~~graph~~CallGraph_node13"><a xlink:href="../type/weighted_sampler_t~3.html#boundprocedure-init~10" xlink:title="weighted_sampler_t%init">
+<polygon fill="#a7506f" stroke="#a7506f" points="147.27,-527.52 17.25,-527.52 17.25,-504 147.27,-504 147.27,-527.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-511.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler_t%init</text>
+</a>
+</g>
+</g>
+<!-- none~init_n~6 -->
+<g id="call~~graph~~CallGraph_node28" class="node">
+<title>none~init_n~6</title>
+<g id="a_call~~graph~~CallGraph_node28"><a xlink:href="../type/weighted_sampler_t~6.html#boundprocedure-init_n~6" xlink:title="weighted_sampler_t%init_n">
+<polygon fill="#a7506f" stroke="#a7506f" points="346.29,-695.52 204.27,-695.52 204.27,-672 346.29,-672 346.29,-695.52"/>
+<text xml:space="preserve" text-anchor="middle" x="275.28" y="-679.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler_t%init_n</text>
+</a>
+</g>
+</g>
+<!-- none~init~10&#45;&gt;none~init_n~6 -->
+<g id="call~~graph~~CallGraph_edge2" class="edge">
+<title>none~init~10&#45;&gt;none~init_n~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M147.5,-525.34C153.77,-528.25 159.62,-531.98 164.52,-536.76 206.22,-577.42 159.32,-621.6 200.52,-662.76 201.39,-663.63 202.3,-664.47 203.23,-665.27"/>
+<polygon fill="#000000" stroke="#000000" points="200.89,-667.91 211.1,-670.73 204.88,-662.15 200.89,-667.91"/>
+</g>
+<!-- none~init_w2~6 -->
+<g id="call~~graph~~CallGraph_node29" class="node">
+<title>none~init_w2~6</title>
+<g id="a_call~~graph~~CallGraph_node29"><a xlink:href="../type/weighted_sampler_t~6.html#boundprocedure-init_w2~6" xlink:title="weighted_sampler_t%init_w2">
+<polygon fill="#a7506f" stroke="#a7506f" points="350.04,-653.52 200.52,-653.52 200.52,-630 350.04,-630 350.04,-653.52"/>
+<text xml:space="preserve" text-anchor="middle" x="275.28" y="-637.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler_t%init_w2</text>
+</a>
+</g>
+</g>
+<!-- none~init~10&#45;&gt;none~init_w2~6 -->
+<g id="call~~graph~~CallGraph_edge3" class="edge">
+<title>none~init~10&#45;&gt;none~init_w2~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M147.73,-526.34C153.81,-529.07 159.54,-532.49 164.52,-536.76 195.34,-563.22 170.03,-593.93 200.52,-620.76 201.77,-621.86 203.07,-622.9 204.42,-623.89"/>
+<polygon fill="#000000" stroke="#000000" points="202.24,-626.66 212.61,-628.87 205.88,-620.68 202.24,-626.66"/>
+</g>
+<!-- none~init_w~6 -->
+<g id="call~~graph~~CallGraph_node30" class="node">
+<title>none~init_w~6</title>
+<g id="a_call~~graph~~CallGraph_node30"><a xlink:href="../type/weighted_sampler_t~6.html#boundprocedure-init_w~6" xlink:title="weighted_sampler_t%init_w">
+<polygon fill="#a7506f" stroke="#a7506f" points="347.04,-611.52 203.52,-611.52 203.52,-588 347.04,-588 347.04,-611.52"/>
+<text xml:space="preserve" text-anchor="middle" x="275.28" y="-595.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler_t%init_w</text>
+</a>
+</g>
+</g>
+<!-- none~init~10&#45;&gt;none~init_w~6 -->
+<g id="call~~graph~~CallGraph_edge4" class="edge">
+<title>none~init~10&#45;&gt;none~init_w~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M138.55,-527.91C147.37,-530.46 156.29,-533.41 164.52,-536.76 194.2,-548.86 225.7,-567.63 247.31,-581.54"/>
+<polygon fill="#000000" stroke="#000000" points="245.23,-584.36 255.51,-586.9 249.06,-578.5 245.23,-584.36"/>
+</g>
+<!-- none~init~3 -->
+<g id="call~~graph~~CallGraph_node14" class="node">
+<title>none~init~3</title>
+<g id="a_call~~graph~~CallGraph_node14"><a xlink:href="../type/sampler_base_t.html#boundprocedure-init~3" xlink:title="sampler_base_t%init">
+<polygon fill="#a7506f" stroke="#a7506f" points="137.52,-779.52 27,-779.52 27,-756 137.52,-756 137.52,-779.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-763.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">sampler_base_t%init</text>
+</a>
+</g>
+</g>
+<!-- none~init~3&#45;&gt;none~init_n~6 -->
+<g id="call~~graph~~CallGraph_edge5" class="edge">
+<title>none~init~3&#45;&gt;none~init_n~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M137.68,-755.86C146.78,-753.26 156.02,-750.22 164.52,-746.76 194.2,-734.66 225.7,-715.89 247.31,-701.98"/>
+<polygon fill="#000000" stroke="#000000" points="249.06,-705.02 255.51,-696.62 245.23,-699.16 249.06,-705.02"/>
+</g>
+<!-- none~init~3&#45;&gt;none~init_w2~6 -->
+<g id="call~~graph~~CallGraph_edge6" class="edge">
+<title>none~init~3&#45;&gt;none~init_w2~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M137.78,-761C147.47,-757.85 156.89,-753.31 164.52,-746.76 195.34,-720.3 170.03,-689.59 200.52,-662.76 201.77,-661.66 203.07,-660.62 204.42,-659.63"/>
+<polygon fill="#000000" stroke="#000000" points="205.88,-662.84 212.61,-654.65 202.24,-656.86 205.88,-662.84"/>
+</g>
+<!-- none~init~3&#45;&gt;none~init_w~6 -->
+<g id="call~~graph~~CallGraph_edge7" class="edge">
+<title>none~init~3&#45;&gt;none~init_w~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M137.63,-762.02C147.56,-758.81 157.11,-753.98 164.52,-746.76 206.22,-706.1 159.32,-661.92 200.52,-620.76 201.39,-619.89 202.3,-619.05 203.23,-618.25"/>
+<polygon fill="#000000" stroke="#000000" points="204.88,-621.37 211.1,-612.79 200.89,-615.61 204.88,-621.37"/>
+</g>
+<!-- none~init~5 -->
+<g id="call~~graph~~CallGraph_node15" class="node">
+<title>none~init~5</title>
+<g id="a_call~~graph~~CallGraph_node15"><a xlink:href="../type/weighted_sampler_t~5.html#boundprocedure-init~5" xlink:title="weighted_sampler_t%init">
+<polygon fill="#a7506f" stroke="#a7506f" points="147.27,-737.52 17.25,-737.52 17.25,-714 147.27,-714 147.27,-737.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-721.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler_t%init</text>
+</a>
+</g>
+</g>
+<!-- none~init~5&#45;&gt;none~init_n~6 -->
+<g id="call~~graph~~CallGraph_edge8" class="edge">
+<title>none~init~5&#45;&gt;none~init_n~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M138.77,-713.56C160.25,-708.83 185.03,-703.38 207.48,-698.45"/>
+<polygon fill="#000000" stroke="#000000" points="208.14,-701.89 217.16,-696.32 206.64,-695.05 208.14,-701.89"/>
+</g>
+<!-- none~init~5&#45;&gt;none~init_w2~6 -->
+<g id="call~~graph~~CallGraph_edge9" class="edge">
+<title>none~init~5&#45;&gt;none~init_w2~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M146.53,-713.55C152.84,-711.13 158.96,-708.23 164.52,-704.76 185.38,-691.75 179.82,-676.02 200.52,-662.76 202.79,-661.31 205.16,-659.95 207.61,-658.69"/>
+<polygon fill="#000000" stroke="#000000" points="208.94,-661.93 216.61,-654.62 206.05,-655.55 208.94,-661.93"/>
+</g>
+<!-- none~init~5&#45;&gt;none~init_w~6 -->
+<g id="call~~graph~~CallGraph_edge10" class="edge">
+<title>none~init~5&#45;&gt;none~init_w~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M147.73,-715.18C153.81,-712.45 159.54,-709.03 164.52,-704.76 195.34,-678.3 170.03,-647.59 200.52,-620.76 201.77,-619.66 203.07,-618.62 204.42,-617.63"/>
+<polygon fill="#000000" stroke="#000000" points="205.88,-620.84 212.61,-612.65 202.24,-614.86 205.88,-620.84"/>
+</g>
+<!-- none~init~6 -->
+<g id="call~~graph~~CallGraph_node16" class="node">
+<title>none~init~6</title>
+<g id="a_call~~graph~~CallGraph_node16"><a xlink:href="../type/weighted_sampler_t~2.html#boundprocedure-init~6" xlink:title="weighted_sampler_t%init">
+<polygon fill="#a7506f" stroke="#a7506f" points="147.27,-695.52 17.25,-695.52 17.25,-672 147.27,-672 147.27,-695.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-679.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler_t%init</text>
+</a>
+</g>
+</g>
+<!-- none~init~6&#45;&gt;none~init_n~6 -->
+<g id="call~~graph~~CallGraph_edge11" class="edge">
+<title>none~init~6&#45;&gt;none~init_n~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M147.66,-683.76C162.08,-683.76 177.55,-683.76 192.56,-683.76"/>
+<polygon fill="#000000" stroke="#000000" points="192.41,-687.26 202.41,-683.76 192.41,-680.26 192.41,-687.26"/>
+</g>
+<!-- none~init~6&#45;&gt;none~init_w2~6 -->
+<g id="call~~graph~~CallGraph_edge12" class="edge">
+<title>none~init~6&#45;&gt;none~init_w2~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M138.77,-671.56C160.25,-666.83 185.03,-661.38 207.48,-656.45"/>
+<polygon fill="#000000" stroke="#000000" points="208.14,-659.89 217.16,-654.32 206.64,-653.05 208.14,-659.89"/>
+</g>
+<!-- none~init~6&#45;&gt;none~init_w~6 -->
+<g id="call~~graph~~CallGraph_edge13" class="edge">
+<title>none~init~6&#45;&gt;none~init_w~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M146.53,-671.55C152.84,-669.13 158.96,-666.23 164.52,-662.76 185.38,-649.75 179.82,-634.02 200.52,-620.76 202.79,-619.31 205.16,-617.95 207.61,-616.69"/>
+<polygon fill="#000000" stroke="#000000" points="208.94,-619.93 216.61,-612.62 206.05,-613.55 208.94,-619.93"/>
+</g>
+<!-- none~init~7 -->
+<g id="call~~graph~~CallGraph_node17" class="node">
+<title>none~init~7</title>
+<g id="a_call~~graph~~CallGraph_node17"><a xlink:href="../type/weighted_sampler_t~6.html#boundprocedure-init~7" xlink:title="weighted_sampler_t%init">
+<polygon fill="#a7506f" stroke="#a7506f" points="147.27,-653.52 17.25,-653.52 17.25,-630 147.27,-630 147.27,-653.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-637.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler_t%init</text>
+</a>
+</g>
+</g>
+<!-- none~init~7&#45;&gt;none~init_n~6 -->
+<g id="call~~graph~~CallGraph_edge14" class="edge">
+<title>none~init~7&#45;&gt;none~init_n~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M138.77,-653.96C160.25,-658.69 185.03,-664.14 207.48,-669.07"/>
+<polygon fill="#000000" stroke="#000000" points="206.64,-672.47 217.16,-671.2 208.14,-665.63 206.64,-672.47"/>
+</g>
+<!-- none~init~7&#45;&gt;none~init_w2~6 -->
+<g id="call~~graph~~CallGraph_edge15" class="edge">
+<title>none~init~7&#45;&gt;none~init_w2~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M147.66,-641.76C160.86,-641.76 174.96,-641.76 188.76,-641.76"/>
+<polygon fill="#000000" stroke="#000000" points="188.76,-645.26 198.76,-641.76 188.76,-638.26 188.76,-645.26"/>
+</g>
+<!-- none~init~7&#45;&gt;none~init_w~6 -->
+<g id="call~~graph~~CallGraph_edge16" class="edge">
+<title>none~init~7&#45;&gt;none~init_w~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M138.77,-629.56C160.25,-624.83 185.03,-619.38 207.48,-614.45"/>
+<polygon fill="#000000" stroke="#000000" points="208.14,-617.89 217.16,-612.32 206.64,-611.05 208.14,-617.89"/>
+</g>
+<!-- none~init~8 -->
+<g id="call~~graph~~CallGraph_node18" class="node">
+<title>none~init~8</title>
+<g id="a_call~~graph~~CallGraph_node18"><a xlink:href="../type/weighted_sampler_t.html#boundprocedure-init~8" xlink:title="weighted_sampler_t%init">
+<polygon fill="#a7506f" stroke="#a7506f" points="147.27,-611.52 17.25,-611.52 17.25,-588 147.27,-588 147.27,-611.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-595.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler_t%init</text>
+</a>
+</g>
+</g>
+<!-- none~init~8&#45;&gt;none~init_n~6 -->
+<g id="call~~graph~~CallGraph_edge17" class="edge">
+<title>none~init~8&#45;&gt;none~init_n~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M146.53,-611.97C152.84,-614.39 158.96,-617.29 164.52,-620.76 185.38,-633.77 179.82,-649.5 200.52,-662.76 202.79,-664.21 205.16,-665.57 207.61,-666.83"/>
+<polygon fill="#000000" stroke="#000000" points="206.05,-669.97 216.61,-670.9 208.94,-663.59 206.05,-669.97"/>
+</g>
+<!-- none~init~8&#45;&gt;none~init_w2~6 -->
+<g id="call~~graph~~CallGraph_edge18" class="edge">
+<title>none~init~8&#45;&gt;none~init_w2~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M138.77,-611.96C160.25,-616.69 185.03,-622.14 207.48,-627.07"/>
+<polygon fill="#000000" stroke="#000000" points="206.64,-630.47 217.16,-629.2 208.14,-623.63 206.64,-630.47"/>
+</g>
+<!-- none~init~8&#45;&gt;none~init_w~6 -->
+<g id="call~~graph~~CallGraph_edge19" class="edge">
+<title>none~init~8&#45;&gt;none~init_w~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M147.66,-599.76C161.91,-599.76 177.18,-599.76 192.02,-599.76"/>
+<polygon fill="#000000" stroke="#000000" points="191.75,-603.26 201.75,-599.76 191.75,-596.26 191.75,-603.26"/>
+</g>
+<!-- none~init~9 -->
+<g id="call~~graph~~CallGraph_node19" class="node">
+<title>none~init~9</title>
+<g id="a_call~~graph~~CallGraph_node19"><a xlink:href="../type/weighted_sampler_t~4.html#boundprocedure-init~9" xlink:title="weighted_sampler_t%init">
+<polygon fill="#a7506f" stroke="#a7506f" points="147.27,-569.52 17.25,-569.52 17.25,-546 147.27,-546 147.27,-569.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-553.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler_t%init</text>
+</a>
+</g>
+</g>
+<!-- none~init~9&#45;&gt;none~init_n~6 -->
+<g id="call~~graph~~CallGraph_edge20" class="edge">
+<title>none~init~9&#45;&gt;none~init_n~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M147.73,-568.34C153.81,-571.07 159.54,-574.49 164.52,-578.76 195.34,-605.22 170.03,-635.93 200.52,-662.76 201.77,-663.86 203.07,-664.9 204.42,-665.89"/>
+<polygon fill="#000000" stroke="#000000" points="202.24,-668.66 212.61,-670.87 205.88,-662.68 202.24,-668.66"/>
+</g>
+<!-- none~init~9&#45;&gt;none~init_w2~6 -->
+<g id="call~~graph~~CallGraph_edge21" class="edge">
+<title>none~init~9&#45;&gt;none~init_w2~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M146.53,-569.97C152.84,-572.39 158.96,-575.29 164.52,-578.76 185.38,-591.77 179.82,-607.5 200.52,-620.76 202.79,-622.21 205.16,-623.57 207.61,-624.83"/>
+<polygon fill="#000000" stroke="#000000" points="206.05,-627.97 216.61,-628.9 208.94,-621.59 206.05,-627.97"/>
+</g>
+<!-- none~init~9&#45;&gt;none~init_w~6 -->
+<g id="call~~graph~~CallGraph_edge22" class="edge">
+<title>none~init~9&#45;&gt;none~init_w~6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M138.77,-569.96C160.25,-574.69 185.03,-580.14 207.48,-585.07"/>
+<polygon fill="#000000" stroke="#000000" points="206.64,-588.47 217.16,-587.2 208.14,-581.63 206.64,-588.47"/>
+</g>
+<!-- none~remove~8 -->
+<g id="call~~graph~~CallGraph_node20" class="node">
+<title>none~remove~8</title>
+<g id="a_call~~graph~~CallGraph_node20"><a xlink:href="../type/dynamical_list_t.html#boundprocedure-remove~8" xlink:title="dynamical_list_t%remove">
+<polygon fill="#a7506f" stroke="#a7506f" points="148.39,-863.52 16.12,-863.52 16.12,-840 148.39,-840 148.39,-863.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-847.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dynamical_list_t%remove</text>
+</a>
+</g>
+</g>
+<!-- sort -->
+<g id="call~~graph~~CallGraph_node32" class="node">
+<title>sort</title>
+<polygon fill="#777777" stroke="#777777" points="302.28,-842.52 248.28,-842.52 248.28,-819 302.28,-819 302.28,-842.52"/>
+<text xml:space="preserve" text-anchor="middle" x="275.28" y="-826.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">sort</text>
+</g>
+<!-- none~remove~8&#45;&gt;sort -->
+<g id="call~~graph~~CallGraph_edge23" class="edge">
+<title>none~remove~8&#45;&gt;sort</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M148.73,-844.56C178.19,-841.32 211.9,-837.62 236.97,-834.86"/>
+<polygon fill="#000000" stroke="#000000" points="237.11,-838.37 246.67,-833.8 236.35,-831.41 237.11,-838.37"/>
+</g>
+<!-- proc~choose_fmt_based_on -->
+<g id="call~~graph~~CallGraph_node21" class="node">
+<title>proc~choose_fmt_based_on</title>
+<g id="a_call~~graph~~CallGraph_node21"><a xlink:href="../proc/choose_fmt_based_on.html" xlink:title="choose_fmt_based_on">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="142.39,-905.52 22.12,-905.52 22.12,-882 142.39,-882 142.39,-905.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-889.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">choose_fmt_based_on</text>
+</a>
+</g>
+</g>
+<!-- proc~choose_sampler -->
+<g id="call~~graph~~CallGraph_node22" class="node">
+<title>proc~choose_sampler</title>
+<g id="a_call~~graph~~CallGraph_node22"><a xlink:href="../proc/choose_sampler.html" xlink:title="choose_sampler">
+<polygon fill="#d9534f" stroke="#d9534f" points="127.39,-947.52 37.12,-947.52 37.12,-924 127.39,-924 127.39,-947.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-931.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">choose_sampler</text>
+</a>
+</g>
+</g>
+<!-- proc~count_integers_from_string -->
+<g id="call~~graph~~CallGraph_node23" class="node">
+<title>proc~count_integers_from_string</title>
+<g id="a_call~~graph~~CallGraph_node23"><a xlink:href="../proc/count_integers_from_string.html" xlink:title="count_integers_from_string">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="153.27,-989.52 11.25,-989.52 11.25,-966 153.27,-966 153.27,-989.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-973.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">count_integers_from_string</text>
+</a>
+</g>
+</g>
+<!-- proc~djb2 -->
+<g id="call~~graph~~CallGraph_node24" class="node">
+<title>proc~djb2</title>
+<g id="a_call~~graph~~CallGraph_node24"><a xlink:href="../proc/djb2.html" xlink:title="djb2">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="109.26,-1031.52 55.26,-1031.52 55.26,-1008 109.26,-1008 109.26,-1031.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-1015.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">djb2</text>
+</a>
+</g>
+</g>
+<!-- proc~list_ranges -->
+<g id="call~~graph~~CallGraph_node25" class="node">
+<title>proc~list_ranges</title>
+<g id="a_call~~graph~~CallGraph_node25"><a xlink:href="../proc/list_ranges.html" xlink:title="list_ranges">
+<polygon fill="#d9534f" stroke="#d9534f" points="113.89,-1073.52 50.62,-1073.52 50.62,-1050 113.89,-1050 113.89,-1073.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-1057.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">list_ranges</text>
+</a>
+</g>
+</g>
+<!-- proc~new_fixed_list_pointer -->
+<g id="call~~graph~~CallGraph_node26" class="node">
+<title>proc~new_fixed_list_pointer</title>
+<g id="a_call~~graph~~CallGraph_node26"><a xlink:href="../proc/new_fixed_list_pointer.html" xlink:title="new_fixed_list_pointer">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="140.89,-1115.52 23.62,-1115.52 23.62,-1092 140.89,-1092 140.89,-1115.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-1099.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">new_fixed_list_pointer</text>
+</a>
+</g>
+</g>
+<!-- proc~unique_values -->
+<g id="call~~graph~~CallGraph_node27" class="node">
+<title>proc~unique_values</title>
+<g id="a_call~~graph~~CallGraph_node27"><a xlink:href="../proc/unique_values.html" xlink:title="unique_values">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="122.52,-821.52 42,-821.52 42,-798 122.52,-798 122.52,-821.52"/>
+<text xml:space="preserve" text-anchor="middle" x="82.26" y="-805.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">unique_values</text>
+</a>
+</g>
+</g>
+<!-- proc~unique_values&#45;&gt;sort -->
+<g id="call~~graph~~CallGraph_edge24" class="edge">
+<title>proc~unique_values&#45;&gt;sort</title>
+<path fill="none" stroke="#000000" d="M122.84,-814.11C156.22,-817.78 203.68,-823 236.53,-826.61"/>
+<polygon fill="#000000" stroke="#000000" points="236.1,-830.08 246.42,-827.7 236.86,-823.13 236.1,-830.08"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CallGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.1 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="29pt"
+ viewBox="0.00 0.00 641.00 29.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.923937 0.923937) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 689.77,-27.52 689.77,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="63.27,-23.52 0,-23.52 0,0 63.27,0 63.27,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="31.64" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="135.63,-23.52 81.64,-23.52 81.64,0 135.63,0 135.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="108.64" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="207.63,-23.52 153.63,-23.52 153.63,0 207.63,0 207.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="180.63" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="347.14,-23.52 226.12,-23.52 226.12,0 347.14,0 347.14,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="286.63" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="499.89,-23.52 365.38,-23.52 365.38,0 499.89,0 499.89,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="432.63" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="571.63,-23.52 517.63,-23.52 517.63,0 571.63,0 571.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="544.63" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="685.77,-23.52 589.5,-23.52 589.5,0 685.77,0 685.77,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="637.63" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Data structures for Fortran
+ was developed by Wesley Cota <https://wcota.me/><br>              &copy; 2025 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

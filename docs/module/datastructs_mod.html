@@ -1,0 +1,484 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Documentation for Data structures for Fortran">
+    <meta name="author" content="Wesley Cota <https://wcota.me/>" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>datastructs_mod &ndash; Data structures for Fortran</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Data structures for Fortran </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>datastructs_mod
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.9% of total for modules and submodules.">14 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/datastructs_mod.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/datastructs_mod.f90.html'>datastructs_mod.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">datastructs_mod</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+    <em>None</em>
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      <p>Hash functions</p>
+<p>Lists and maxheap constructors</p>
+<p>Derived types for lists and maxheap</p>
+<p>Utility functions for lists and maxheap</p>
+<p>Base type for all samplers</p>
+<p>Choose a sampler based on the selected algorithm</p>
+<br>          <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='datastructs_samplers_mod.html'>datastructs_samplers_mod</a></li>
+                  <li class="list-inline-item"><a href='datastructs_samplers_base_mod.html'>datastructs_samplers_base_mod</a></li>
+                  <li class="list-inline-item"><a href='datastructs_lists_mod.html'>datastructs_lists_mod</a></li>
+                  <li class="list-inline-item"><a href='datastructs_hash_mod.html'>datastructs_hash_mod</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.1 (0)
+ -->
+<!-- Title: module~~datastructs_mod~~UsesGraph Pages: 1 -->
+<svg id="moduledatastructs_modUsesGraph" width="641pt" height="184pt"
+ viewBox="0.00 0.00 641.00 184.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~datastructs_mod~~UsesGraph" class="graph" transform="scale(0.823008 0.823008) rotate(0) translate(4 218.99)">
+<title>module~~datastructs_mod~~UsesGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-218.99 774.85,-218.99 774.85,4 -4,4"/>
+<!-- module~datastructs_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_node1" class="node">
+<title>module~datastructs_mod</title>
+<polygon fill="none" stroke="black" points="770.85,-110.99 679.83,-110.99 679.83,-87.47 770.85,-87.47 770.85,-110.99"/>
+<text xml:space="preserve" text-anchor="middle" x="725.34" y="-95.26" font-family="Helvetica,sans-Serif" font-size="10.50">datastructs_mod</text>
+</g>
+<!-- module~datastructs_hash_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_node2" class="node">
+<title>module~datastructs_hash_mod</title>
+<g id="a_module~~datastructs_mod~~UsesGraph_node2"><a xlink:href="../module/datastructs_hash_mod.html" xlink:title="datastructs_hash_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="633.71,-214.99 513.44,-214.99 513.44,-191.47 633.71,-191.47 633.71,-214.99"/>
+<text xml:space="preserve" text-anchor="middle" x="573.57" y="-199.26" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_hash_mod</text>
+</a>
+</g>
+</g>
+<!-- module~datastructs_mod&#45;&gt;module~datastructs_hash_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_edge1" class="edge">
+<title>module~datastructs_mod&#45;&gt;module~datastructs_hash_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M706.87,-111.36C680.83,-129.45 631.64,-163.6 601.13,-184.79"/>
+<polygon fill="#000000" stroke="#000000" points="599.39,-181.73 593.18,-190.31 603.39,-187.48 599.39,-181.73"/>
+</g>
+<!-- module~datastructs_lists_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_node3" class="node">
+<title>module~datastructs_lists_mod</title>
+<g id="a_module~~datastructs_mod~~UsesGraph_node3"><a xlink:href="../module/datastructs_lists_mod.html" xlink:title="datastructs_lists_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="631.08,-132.99 516.06,-132.99 516.06,-109.47 631.08,-109.47 631.08,-132.99"/>
+<text xml:space="preserve" text-anchor="middle" x="573.57" y="-117.26" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_lists_mod</text>
+</a>
+</g>
+</g>
+<!-- module~datastructs_mod&#45;&gt;module~datastructs_lists_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_edge2" class="edge">
+<title>module~datastructs_mod&#45;&gt;module~datastructs_lists_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M679.4,-105.83C667.86,-107.53 655.18,-109.39 642.75,-111.22"/>
+<polygon fill="#000000" stroke="#000000" points="642.32,-107.74 632.93,-112.66 643.34,-114.67 642.32,-107.74"/>
+</g>
+<!-- module~datastructs_samplers_base_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_node4" class="node">
+<title>module~datastructs_samplers_base_mod</title>
+<g id="a_module~~datastructs_mod~~UsesGraph_node4"><a xlink:href="../module/datastructs_samplers_base_mod.html" xlink:title="datastructs_samplers_base_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="458.31,-48.99 288.54,-48.99 288.54,-25.47 458.31,-25.47 458.31,-48.99"/>
+<text xml:space="preserve" text-anchor="middle" x="373.43" y="-33.26" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_samplers_base_mod</text>
+</a>
+</g>
+</g>
+<!-- module~datastructs_mod&#45;&gt;module~datastructs_samplers_base_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_edge3" class="edge">
+<title>module~datastructs_mod&#45;&gt;module~datastructs_samplers_base_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M679.67,-91.32C623,-81.28 524.28,-63.78 454.47,-51.41"/>
+<polygon fill="#000000" stroke="#000000" points="455.47,-48.04 445.01,-49.74 454.25,-54.93 455.47,-48.04"/>
+</g>
+<!-- module~datastructs_samplers_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_node5" class="node">
+<title>module~datastructs_samplers_mod</title>
+<g id="a_module~~datastructs_mod~~UsesGraph_node5"><a xlink:href="../module/datastructs_samplers_mod.html" xlink:title="datastructs_samplers_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="643.83,-48.99 503.31,-48.99 503.31,-25.47 643.83,-25.47 643.83,-48.99"/>
+<text xml:space="preserve" text-anchor="middle" x="573.57" y="-33.26" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_samplers_mod</text>
+</a>
+</g>
+</g>
+<!-- module~datastructs_mod&#45;&gt;module~datastructs_samplers_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_edge4" class="edge">
+<title>module~datastructs_mod&#45;&gt;module~datastructs_samplers_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M695.69,-87.01C680.34,-80.49 661.08,-72.36 643.83,-65.23 634.7,-61.46 624.87,-57.45 615.56,-53.68"/>
+<polygon fill="#000000" stroke="#000000" points="616.94,-50.46 606.36,-49.96 614.32,-56.95 616.94,-50.46"/>
+</g>
+<!-- module~datastructs_kinds_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_node6" class="node">
+<title>module~datastructs_kinds_mod</title>
+<g id="a_module~~datastructs_mod~~UsesGraph_node6"><a xlink:href="../module/datastructs_kinds_mod.html" xlink:title="datastructs_kinds_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="243.54,-111.99 121.77,-111.99 121.77,-88.47 243.54,-88.47 243.54,-111.99"/>
+<text xml:space="preserve" text-anchor="middle" x="182.66" y="-96.26" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_kinds_mod</text>
+</a>
+</g>
+</g>
+<!-- module~datastructs_hash_mod&#45;&gt;module~datastructs_kinds_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_edge5" class="edge">
+<title>module~datastructs_hash_mod&#45;&gt;module~datastructs_kinds_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M513.28,-207.73C473.74,-209.63 420.71,-210.06 374.43,-203.23"/>
+</g>
+<!-- module~datastructs_lists_mod&#45;&gt;module~datastructs_kinds_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_edge6" class="edge">
+<title>module~datastructs_lists_mod&#45;&gt;module~datastructs_kinds_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M558.38,-133.23C526.8,-158.5 447.72,-214.05 374.43,-203.23"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M372.43,-203.23C330.74,-197.08 317.29,-202.96 279.54,-184.23 248.22,-168.69 219.04,-140.34 201.29,-120.91"/>
+<polygon fill="#000000" stroke="#000000" points="204.02,-118.71 194.75,-113.57 198.79,-123.36 204.02,-118.71"/>
+</g>
+<!-- module~datastructs_lists_dynamical_list_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_node7" class="node">
+<title>module~datastructs_lists_dynamical_list_mod</title>
+<g id="a_module~~datastructs_mod~~UsesGraph_node7"><a xlink:href="../module/datastructs_lists_dynamical_list_mod.html" xlink:title="datastructs_lists_dynamical_list_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="467.31,-174.99 279.54,-174.99 279.54,-151.47 467.31,-151.47 467.31,-174.99"/>
+<text xml:space="preserve" text-anchor="middle" x="373.43" y="-159.26" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_lists_dynamical_list_mod</text>
+</a>
+</g>
+</g>
+<!-- module~datastructs_lists_mod&#45;&gt;module~datastructs_lists_dynamical_list_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_edge7" class="edge">
+<title>module~datastructs_lists_mod&#45;&gt;module~datastructs_lists_dynamical_list_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M515.79,-133.27C493.18,-138.06 466.96,-143.62 443.28,-148.64"/>
+<polygon fill="#000000" stroke="#000000" points="442.78,-145.16 433.73,-150.66 444.23,-152.01 442.78,-145.16"/>
+</g>
+<!-- module~datastructs_lists_fixed_list_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_node8" class="node">
+<title>module~datastructs_lists_fixed_list_mod</title>
+<g id="a_module~~datastructs_mod~~UsesGraph_node8"><a xlink:href="../module/datastructs_lists_fixed_list_mod.html" xlink:title="datastructs_lists_fixed_list_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="454.56,-132.99 292.29,-132.99 292.29,-109.47 454.56,-109.47 454.56,-132.99"/>
+<text xml:space="preserve" text-anchor="middle" x="373.43" y="-117.26" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_lists_fixed_list_mod</text>
+</a>
+</g>
+</g>
+<!-- module~datastructs_lists_mod&#45;&gt;module~datastructs_lists_fixed_list_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_edge8" class="edge">
+<title>module~datastructs_lists_mod&#45;&gt;module~datastructs_lists_fixed_list_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M515.79,-121.23C500.22,-121.23 482.93,-121.23 465.94,-121.23"/>
+<polygon fill="#000000" stroke="#000000" points="466.35,-117.73 456.35,-121.23 466.35,-124.73 466.35,-117.73"/>
+</g>
+<!-- module~datastructs_maxheap_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_node9" class="node">
+<title>module~datastructs_maxheap_mod</title>
+<g id="a_module~~datastructs_mod~~UsesGraph_node9"><a xlink:href="../module/datastructs_maxheap_mod.html" xlink:title="datastructs_maxheap_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="444.06,-90.99 302.79,-90.99 302.79,-67.47 444.06,-67.47 444.06,-90.99"/>
+<text xml:space="preserve" text-anchor="middle" x="373.43" y="-75.26" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_maxheap_mod</text>
+</a>
+</g>
+</g>
+<!-- module~datastructs_lists_mod&#45;&gt;module~datastructs_maxheap_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_edge9" class="edge">
+<title>module~datastructs_lists_mod&#45;&gt;module~datastructs_maxheap_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M515.79,-109.2C493.18,-104.4 466.96,-98.84 443.28,-93.83"/>
+<polygon fill="#000000" stroke="#000000" points="444.23,-90.45 433.73,-91.8 442.78,-97.3 444.23,-90.45"/>
+</g>
+<!-- module~datastructs_samplers_base_mod&#45;&gt;module~datastructs_kinds_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_edge10" class="edge">
+<title>module~datastructs_samplers_base_mod&#45;&gt;module~datastructs_kinds_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M311.02,-49.37C300.42,-51.96 289.59,-54.93 279.54,-58.23 258.71,-65.08 236.22,-74.8 218.26,-83.17"/>
+<polygon fill="#000000" stroke="#000000" points="216.89,-79.94 209.35,-87.38 219.89,-86.27 216.89,-79.94"/>
+</g>
+<!-- module~datastructs_samplers_mod&#45;&gt;module~datastructs_samplers_base_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_edge12" class="edge">
+<title>module~datastructs_samplers_mod&#45;&gt;module~datastructs_samplers_base_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M502.99,-37.23C492.2,-37.23 480.9,-37.23 469.66,-37.23"/>
+<polygon fill="#000000" stroke="#000000" points="469.98,-33.73 459.98,-37.23 469.98,-40.73 469.98,-33.73"/>
+</g>
+<!-- module~datastructs_samplers_mod&#45;&gt;module~datastructs_kinds_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_edge11" class="edge">
+<title>module~datastructs_samplers_mod&#45;&gt;module~datastructs_kinds_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M535.99,-25.07C479.1,-8.22 366.9,16.62 279.54,-16.23 246.28,-28.74 217.02,-58.6 199.83,-79.13"/>
+<polygon fill="#000000" stroke="#000000" points="197.11,-76.92 193.55,-86.9 202.56,-81.32 197.11,-76.92"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~datastructs_mod~~UsesGraph_node10" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~datastructs_mod~~UsesGraph_node10"><a xlink:href="http://fortranwiki.org/fortran/show/iso_fortran_env" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="85.77,-111.99 0,-111.99 0,-88.47 85.77,-88.47 85.77,-111.99"/>
+<text xml:space="preserve" text-anchor="middle" x="42.88" y="-96.26" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~datastructs_kinds_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~datastructs_mod~~UsesGraph_edge13" class="edge">
+<title>module~datastructs_kinds_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M121.63,-100.23C113.54,-100.23 105.29,-100.23 97.32,-100.23"/>
+<polygon fill="#000000" stroke="#000000" points="97.43,-96.73 87.43,-100.23 97.43,-103.73 97.43,-96.73"/>
+</g>
+<!-- module~datastructs_lists_dynamical_list_mod&#45;&gt;module~datastructs_kinds_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_edge14" class="edge">
+<title>module~datastructs_lists_dynamical_list_mod&#45;&gt;module~datastructs_kinds_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M311.02,-151.09C300.42,-148.5 289.59,-145.54 279.54,-142.23 258.71,-135.38 236.22,-125.66 218.26,-117.3"/>
+<polygon fill="#000000" stroke="#000000" points="219.89,-114.2 209.35,-113.08 216.89,-120.52 219.89,-114.2"/>
+</g>
+<!-- module~datastructs_lists_fixed_list_mod&#45;&gt;module~datastructs_kinds_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_edge15" class="edge">
+<title>module~datastructs_lists_fixed_list_mod&#45;&gt;module~datastructs_kinds_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M291.82,-112.26C279.67,-110.91 267.21,-109.53 255.27,-108.2"/>
+<polygon fill="#000000" stroke="#000000" points="255.83,-104.74 245.5,-107.11 255.06,-111.7 255.83,-104.74"/>
+</g>
+<!-- module~datastructs_maxheap_mod&#45;&gt;module~datastructs_kinds_mod -->
+<g id="module~~datastructs_mod~~UsesGraph_edge16" class="edge">
+<title>module~datastructs_maxheap_mod&#45;&gt;module~datastructs_kinds_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M302.4,-87.02C286.95,-88.74 270.56,-90.56 255.06,-92.29"/>
+<polygon fill="#000000" stroke="#000000" points="255.01,-88.77 245.46,-93.36 255.78,-95.73 255.01,-88.77"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panmoduledatastructs_modUsesGraph = svgPanZoom('#moduledatastructs_modUsesGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.1 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="485pt" height="32pt"
+ viewBox="0.00 0.00 485.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 481.13,-27.52 481.13,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-23.52 0,-23.52 0,0 54,0 54,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="137.76,-23.52 72.24,-23.52 72.24,0 137.76,0 137.76,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="105" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="218.63,-23.52 155.37,-23.52 155.37,0 218.63,0 218.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="187" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="291,-23.52 237,-23.52 237,0 291,0 291,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="264" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="363,-23.52 309,-23.52 309,0 363,0 363,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="336" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="477.13,-23.52 380.87,-23.52 380.87,0 477.13,0 477.13,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="429" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      
+      <br>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Data structures for Fortran
+ was developed by Wesley Cota <https://wcota.me/><br>              &copy; 2025 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

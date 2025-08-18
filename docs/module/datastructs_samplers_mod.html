@@ -1,0 +1,620 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Documentation for Data structures for Fortran">
+    <meta name="author" content="Wesley Cota <https://wcota.me/>" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>datastructs_samplers_mod &ndash; Data structures for Fortran</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Data structures for Fortran </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>datastructs_samplers_mod
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 2.4% of total for modules and submodules.">35 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/samplers.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/samplers.f90.html'>samplers.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">datastructs_samplers_mod</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#vars-0"
+         aria-expanded="false" aria-controls="vars-0">
+         <h4 class="card-header bg-primary text-white">Variables</h4>
+      </a>
+      <div id="vars-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/datastructs_samplers_mod.html#variable-sampler_choices">sampler_choices</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#subs-0"
+         aria-expanded="false" aria-controls="subs-0">
+         <h4 class="card-header bg-primary text-white">Subroutines</h4>
+      </a>
+      <div id="subs-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/datastructs_samplers_mod.html#proc-choose_sampler">choose_sampler</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      <p>Module to select an weighted sampler
+The idea is that it contains the list of indexes up to a size n,
+and each index has an weight
+The sampling is done proportionally to the weights.
+It depends on the <code>rndgen-fortran</code> module, found at <a href="https://github.com/wcota/rndgen-fortran">https://github.com/wcota/rndgen-fortran</a>
+Each sampler algorithm is implemented separately.
+!&gt; Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">program </span><span class="n">example_sampler</span>
+<span class="w">    </span><span class="k">use </span><span class="n">datastructs_fortran</span>
+<span class="w">    </span><span class="k">use </span><span class="n">kinds_mod</span>
+<span class="w">    </span><span class="k">use </span><span class="n">rndgen_mod</span>
+<span class="w">    </span><span class="k">implicit none</span>
+
+<span class="k">    type</span><span class="p">(</span><span class="n">rndgen</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">gen</span>
+<span class="w">    </span><span class="k">class</span><span class="p">(</span><span class="n">sampler_base_t</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">my_sampler</span>
+<span class="w">    </span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">i4</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
+<span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">weights</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">10</span><span class="mf">0.0_dp</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="mf">0.0_dp</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="mf">0.0_dp</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="mf">5.0_dp</span><span class="p">]</span>
+<span class="w">    </span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">i4</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">count_times</span><span class="p">(:)</span>
+<span class="w">    </span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">i4</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">selected_index</span>
+<span class="w">    </span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">i4</span><span class="p">),</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n_samples</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span>
+
+<span class="w">    </span><span class="c">! choose the sampler algorithm</span>
+<span class="w">    </span><span class="k">call </span><span class="n">choose_sampler</span><span class="p">(</span><span class="n">my_sampler</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;btree&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">call </span><span class="n">my_sampler</span><span class="p">%</span><span class="n">init</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">weights</span><span class="p">))</span>
+<span class="w">    </span><span class="k">call </span><span class="n">my_sampler</span><span class="p">%</span><span class="n">set_weight_array</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c">! initialize the random generator with a seed</span>
+<span class="w">    </span><span class="k">call </span><span class="n">gen</span><span class="p">%</span><span class="n">init</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c">! count the number of times each element was selected</span>
+<span class="w">    </span><span class="k">allocate</span><span class="p">(</span><span class="n">count_times</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">weights</span><span class="p">)))</span>
+<span class="w">    </span><span class="n">count_times</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+
+<span class="w">    </span><span class="c">! Sample from the distribution</span>
+<span class="w">    </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">n_samples</span>
+<span class="w">        </span><span class="n">selected_index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_sampler</span><span class="p">%</span><span class="n">sample</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
+<span class="w">        </span><span class="c">!write(*, fmt_general) &quot;Selected index:&quot;, selected_index</span>
+<span class="w">        </span><span class="n">count_times</span><span class="p">(</span><span class="n">selected_index</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count_times</span><span class="p">(</span><span class="n">selected_index</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">end do</span>
+
+<span class="w">    </span><span class="c">! Print the result</span>
+<span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">fmt_general</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;For n_samples = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n_samples</span>
+<span class="w">    </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+<span class="w">        </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">fmt_general</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;@ Index:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot; Weight:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">weights</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Count:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">count_times</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Prob:&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0_dp</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">count_times</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">count_times</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Expected prob:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">weights</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end do</span>
+<span class="k">end program </span><span class="n">example_sampler</span>
+</code></pre></div>
+<br>          <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='datastructs_samplers_base_mod.html'>datastructs_samplers_base_mod</a></li>
+                  <li class="list-inline-item"><a href='datastructs_kinds_mod.html'>datastructs_kinds_mod</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.1 (0)
+ -->
+<!-- Title: module~~datastructs_samplers_mod~~UsesGraph Pages: 1 -->
+<svg id="moduledatastructs_samplers_modUsesGraph" width="634pt" height="52pt"
+ viewBox="0.00 0.00 634.00 52.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~datastructs_samplers_mod~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 47.52)">
+<title>module~~datastructs_samplers_mod~~UsesGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-47.52 629.83,-47.52 629.83,4 -4,4"/>
+<!-- module~datastructs_samplers_mod -->
+<g id="module~~datastructs_samplers_mod~~UsesGraph_node1" class="node">
+<title>module~datastructs_samplers_mod</title>
+<polygon fill="none" stroke="black" points="625.83,-43.52 485.31,-43.52 485.31,-20 625.83,-20 625.83,-43.52"/>
+<text xml:space="preserve" text-anchor="middle" x="555.57" y="-27.78" font-family="Helvetica,sans-Serif" font-size="10.50">datastructs_samplers_mod</text>
+</g>
+<!-- module~datastructs_kinds_mod -->
+<g id="module~~datastructs_samplers_mod~~UsesGraph_node2" class="node">
+<title>module~datastructs_kinds_mod</title>
+<g id="a_module~~datastructs_samplers_mod~~UsesGraph_node2"><a xlink:href="../module/datastructs_kinds_mod.html" xlink:title="datastructs_kinds_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="243.54,-43.52 121.77,-43.52 121.77,-20 243.54,-20 243.54,-43.52"/>
+<text xml:space="preserve" text-anchor="middle" x="182.66" y="-27.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_kinds_mod</text>
+</a>
+</g>
+</g>
+<!-- module~datastructs_samplers_mod&#45;&gt;module~datastructs_kinds_mod -->
+<g id="module~~datastructs_samplers_mod~~UsesGraph_edge1" class="edge">
+<title>module~datastructs_samplers_mod&#45;&gt;module~datastructs_kinds_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M484.93,-32.51C473.04,-32.62 460.82,-32.71 449.31,-32.76 373.86,-33.12 354.99,-33.15 279.54,-32.76 271.73,-32.72 263.57,-32.66 255.44,-32.59"/>
+<polygon fill="#000000" stroke="#000000" points="255.56,-29.09 245.52,-32.5 255.49,-36.09 255.56,-29.09"/>
+</g>
+<!-- module~datastructs_samplers_base_mod -->
+<g id="module~~datastructs_samplers_mod~~UsesGraph_node3" class="node">
+<title>module~datastructs_samplers_base_mod</title>
+<g id="a_module~~datastructs_samplers_mod~~UsesGraph_node3"><a xlink:href="../module/datastructs_samplers_base_mod.html" xlink:title="datastructs_samplers_base_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="449.31,-23.52 279.54,-23.52 279.54,0 449.31,0 449.31,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="364.43" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_samplers_base_mod</text>
+</a>
+</g>
+</g>
+<!-- module~datastructs_samplers_mod&#45;&gt;module~datastructs_samplers_base_mod -->
+<g id="module~~datastructs_samplers_mod~~UsesGraph_edge2" class="edge">
+<title>module~datastructs_samplers_mod&#45;&gt;module~datastructs_samplers_base_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M484.95,-24.4C477.14,-23.57 469.09,-22.72 461.04,-21.87"/>
+<polygon fill="#000000" stroke="#000000" points="461.48,-18.4 451.17,-20.83 460.74,-25.36 461.48,-18.4"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~datastructs_samplers_mod~~UsesGraph_node4" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~datastructs_samplers_mod~~UsesGraph_node4"><a xlink:href="http://fortranwiki.org/fortran/show/iso_fortran_env" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="85.77,-43.52 0,-43.52 0,-20 85.77,-20 85.77,-43.52"/>
+<text xml:space="preserve" text-anchor="middle" x="42.88" y="-27.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~datastructs_kinds_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~datastructs_samplers_mod~~UsesGraph_edge3" class="edge">
+<title>module~datastructs_kinds_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M121.63,-31.76C113.54,-31.76 105.29,-31.76 97.32,-31.76"/>
+<polygon fill="#000000" stroke="#000000" points="97.43,-28.26 87.43,-31.76 97.43,-35.26 97.43,-28.26"/>
+</g>
+<!-- module~datastructs_samplers_base_mod&#45;&gt;module~datastructs_kinds_mod -->
+<g id="module~~datastructs_samplers_mod~~UsesGraph_edge4" class="edge">
+<title>module~datastructs_samplers_base_mod&#45;&gt;module~datastructs_kinds_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M279.07,-21.15C271.1,-22.03 263.07,-22.92 255.24,-23.8"/>
+<polygon fill="#000000" stroke="#000000" points="254.99,-20.3 245.44,-24.89 255.76,-27.26 254.99,-20.3"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.1 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="485pt" height="32pt"
+ viewBox="0.00 0.00 485.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 481.13,-27.52 481.13,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-23.52 0,-23.52 0,0 54,0 54,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="137.76,-23.52 72.24,-23.52 72.24,0 137.76,0 137.76,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="105" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="218.63,-23.52 155.37,-23.52 155.37,0 218.63,0 218.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="187" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="291,-23.52 237,-23.52 237,0 291,0 291,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="264" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="363,-23.52 309,-23.52 309,0 363,0 363,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="336" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="477.13,-23.52 380.87,-23.52 380.87,0 477.13,0 477.13,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="429" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+          <div class="card">
+      <h3 class="card-header card-title bg-light">Used by</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.1 (0)
+ -->
+<!-- Title: module~~datastructs_samplers_mod~~UsedByGraph Pages: 1 -->
+<svg id="moduledatastructs_samplers_modUsedByGraph" width="276pt" height="32pt"
+ viewBox="0.00 0.00 276.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~datastructs_samplers_mod~~UsedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>module~~datastructs_samplers_mod~~UsedByGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 271.54,-27.52 271.54,4 -4,4"/>
+<!-- module~datastructs_samplers_mod -->
+<g id="module~~datastructs_samplers_mod~~UsedByGraph_node1" class="node">
+<title>module~datastructs_samplers_mod</title>
+<polygon fill="none" stroke="black" points="140.52,-23.52 0,-23.52 0,0 140.52,0 140.52,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="70.26" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">datastructs_samplers_mod</text>
+</g>
+<!-- module~datastructs_mod -->
+<g id="module~~datastructs_samplers_mod~~UsedByGraph_node2" class="node">
+<title>module~datastructs_mod</title>
+<g id="a_module~~datastructs_samplers_mod~~UsedByGraph_node2"><a xlink:href="../module/datastructs_mod.html" xlink:title="datastructs_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="267.54,-23.52 176.52,-23.52 176.52,0 267.54,0 267.54,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="222.03" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_mod</text>
+</a>
+</g>
+</g>
+<!-- module~datastructs_mod&#45;&gt;module~datastructs_samplers_mod -->
+<g id="module~~datastructs_samplers_mod~~UsedByGraph_edge1" class="edge">
+<title>module~datastructs_mod&#45;&gt;module~datastructs_samplers_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M176.09,-11.76C168.45,-11.76 160.31,-11.76 152.08,-11.76"/>
+<polygon fill="#000000" stroke="#000000" points="152.34,-8.26 142.34,-11.76 152.34,-15.26 152.34,-8.26"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 13.1.1 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="485pt" height="32pt"
+ viewBox="0.00 0.00 485.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 481.13,-27.52 481.13,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-23.52 0,-23.52 0,0 54,0 54,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="137.76,-23.52 72.24,-23.52 72.24,0 137.76,0 137.76,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="105" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="218.63,-23.52 155.37,-23.52 155.37,0 218.63,0 218.63,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="187" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="291,-23.52 237,-23.52 237,0 291,0 291,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="264" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="363,-23.52 309,-23.52 309,0 363,0 363,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="336" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="477.13,-23.52 380.87,-23.52 380.87,0 477.13,0 477.13,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="429" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      <br>
+
+
+        <section>
+          <h2>Variables</h2>
+            <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sampler_choices"></span>
+              character(len=*),
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>sampler_choices</strong></td>
+<td> =</td>
+                <td>&#39;btree,rejection,rejection_two_classes,rejection_maxheap,rejection_maxheap_two_classes,rejection_maxheap_composition&#39;</td>
+            <td>
+                <p>List of available sampler algorithms</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+        </section>
+        <br>
+
+
+
+
+
+
+        <section>
+          <h2>Subroutines</h2>
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-choose_sampler"></span> <h3>public  subroutine <a href='../proc/choose_sampler.html'>choose_sampler</a>(weighted_sampler, selected_algorithm)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Subroutine to allocate a <code>class(sampler_base_t)</code> to its respective object</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-weighted_sampler"></span>
+              class(<a href='../type/sampler_base_t.html'>sampler_base_t</a>),
+            </td>
+<td>intent(out),</td>
+              <td></td>            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>weighted_sampler</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-selected_algorithm"></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>selected_algorithm</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Data structures for Fortran
+ was developed by Wesley Cota <https://wcota.me/><br>              &copy; 2025 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>
