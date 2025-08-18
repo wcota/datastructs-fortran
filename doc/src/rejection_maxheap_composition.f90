@@ -3,12 +3,12 @@
 !> Efficient sampling of spreading processes on complex networks using a composition and rejection algorithm.
 !> Computer physics communications, 240, 30-37"
 !> <https://doi.org/10.1016/j.cpc.2019.02.008>
-module samplers_rejection_maxheap_composition_mod
-    use kinds_mod
-    use lists_mod
-    use samplers_rejection_maxheap_mod, only : rejection_maxheap_t => weighted_sampler_t
-    use samplers_btree_mod, only : btree_t => weighted_sampler_t
-    use samplers_base_mod
+module datastructs_samplers_rejection_maxheap_composition_mod
+    use datastructs_kinds_mod
+    use datastructs_lists_mod
+    use datastructs_samplers_rejection_maxheap_mod, only : rejection_maxheap_t => weighted_sampler_t
+    use datastructs_samplers_btree_mod, only : btree_t => weighted_sampler_t
+    use datastructs_samplers_base_mod
     implicit none
     private
 
@@ -283,4 +283,4 @@ contains
 
     end function sampler_sampler_pos
 
-end module samplers_rejection_maxheap_composition_mod
+end module datastructs_samplers_rejection_maxheap_composition_mod

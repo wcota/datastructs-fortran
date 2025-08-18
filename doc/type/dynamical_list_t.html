@@ -101,7 +101,7 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
                 <li class="breadcrumb-item"><a href='../sourcefile/dynamical_list.f90.html'>dynamical_list.f90</a></li>
-                <li class="breadcrumb-item"><a href='../module/lists_dynamical_list_mod.html'>lists_dynamical_list_mod</a></li>
+                <li class="breadcrumb-item"><a href='../module/datastructs_lists_dynamical_list_mod.html'>datastructs_lists_dynamical_list_mod</a></li>
             <li class="breadcrumb-item active" aria-current="page">dynamical_list_t</li>
           </ol>
         </nav>
@@ -130,9 +130,9 @@
       </a>
       <div id="vars-0" class="collapse">
         <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../type/dynamical_list_t.html#variable-n~19">n</a>
+            <a class="list-group-item" href="../type/dynamical_list_t.html#variable-n~27">n</a>
             <a class="list-group-item" href="../type/dynamical_list_t.html#variable-n_used">n_used</a>
-            <a class="list-group-item" href="../type/dynamical_list_t.html#variable-list~6">list</a>
+            <a class="list-group-item" href="../type/dynamical_list_t.html#variable-list~5">list</a>
         </div>
       </div>
     </div>
@@ -171,17 +171,17 @@
       <div id="boundprocs-0" class="collapse">
         <div class="list-group list-group-flush">
             <a class="list-group-item" href="../type/dynamical_list_t.html#boundprocedure-init~4">init</a>
-            <a class="list-group-item" href="../type/dynamical_list_t.html#boundprocedure-reset~5">reset</a>
+            <a class="list-group-item" href="../type/dynamical_list_t.html#boundprocedure-reset~7">reset</a>
             <a class="list-group-item" href="../type/dynamical_list_t.html#boundprocedure-print~3">print</a>
             <a class="list-group-item" href="../type/dynamical_list_t.html#boundprocedure-expand">expand</a>
             <a class="list-group-item" href="../type/dynamical_list_t.html#boundprocedure-trim">trim</a>
             <a class="list-group-item" href="../type/dynamical_list_t.html#boundprocedure-last">last</a>
             <a class="list-group-item" href="../type/dynamical_list_t.html#boundprocedure-count~2">count</a>
             <a class="list-group-item" href="../type/dynamical_list_t.html#boundprocedure-add~2">add</a>
-            <a class="list-group-item" href="../type/dynamical_list_t.html#boundprocedure-remove~6">remove</a>
+            <a class="list-group-item" href="../type/dynamical_list_t.html#boundprocedure-remove~8">remove</a>
             <a class="list-group-item" href="../type/dynamical_list_t.html#boundprocedure-assignment%28%3D%29">assignment(=)</a>
             <a class="list-group-item" href="../type/dynamical_list_t.html#boundprocedure-get">get</a>
-            <a class="list-group-item" href="../type/dynamical_list_t.html#boundprocedure-sum~6">sum</a>
+            <a class="list-group-item" href="../type/dynamical_list_t.html#boundprocedure-sum~8">sum</a>
         </div>
       </div>
     </div>
@@ -369,7 +369,7 @@ said component(s).
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-n~19"></span>
+              <span class="anchor" id="variable-n~27"></span>
               integer(kind=i4),
             </td>
               <td>public</td>
@@ -403,7 +403,7 @@ said component(s).
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-list~6"></span>
+              <span class="anchor" id="variable-list~5"></span>
               integer(kind=i4),
             </td>
               <td>public,</td>
@@ -458,7 +458,7 @@ For that, we need to deallocate the list</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-this~63"></span>
+              <span class="anchor" id="variable-this~88"></span>
               type(<a href='dynamical_list_t.html'>dynamical_list_t</a>),
             </td>
 <td>intent(inout)</td>
@@ -556,7 +556,7 @@ Input: n - the size of the list</p>
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-reset~5"></span>
+      <span class="anchor" id="boundprocedure-reset~7"></span>
       <h3>
           procedure, public ::
   <strong>reset</strong> => dynamical_list_reset
@@ -1041,7 +1041,7 @@ Input: array - the array to add</p>
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-remove~6"></span>
+      <span class="anchor" id="boundprocedure-remove~8"></span>
       <h3>
           generic, public ::
   <strong>remove</strong> => dynamical_list_remove_position, dynamical_list_remove_position_array, dynamical_list_remove_position_range
@@ -1386,7 +1386,7 @@ Input: position - the position of the element to return</p>
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-sum~6"></span>
+      <span class="anchor" id="boundprocedure-sum~8"></span>
       <h3>
           procedure, public ::
   <strong>sum</strong> => dynamical_list_sum

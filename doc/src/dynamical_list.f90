@@ -17,8 +17,8 @@
 !>     call my_list%print()
 !> end program test_dynamical_list
 !> ```
-module lists_dynamical_list_mod
-    use kinds_mod
+module datastructs_lists_dynamical_list_mod
+    use datastructs_kinds_mod
     implicit none
     private
 
@@ -278,4 +278,4 @@ contains
 
     end subroutine dynamical_list_print
 
-end module lists_dynamical_list_mod
+end module datastructs_lists_dynamical_list_mod

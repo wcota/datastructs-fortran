@@ -1,6 +1,6 @@
 !> This module implements the basic structure for weighted samplers
-module samplers_base_mod
-    use kinds_mod
+module datastructs_samplers_base_mod
+    use datastructs_kinds_mod
     implicit none
     private
 
@@ -86,4 +86,4 @@ module samplers_base_mod
 
     public :: sampler_base_t
 
-end module samplers_base_mod
+end module datastructs_samplers_base_mod

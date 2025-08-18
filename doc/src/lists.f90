@@ -1,9 +1,9 @@
 !> General module for lists and related operations
-module lists_mod
-    use kinds_mod
-    use lists_dynamical_list_mod
-    use lists_fixed_list_mod
-    use maxheap_mod
+module datastructs_lists_mod
+    use datastructs_kinds_mod
+    use datastructs_lists_dynamical_list_mod
+    use datastructs_lists_fixed_list_mod
+    use datastructs_maxheap_mod
     implicit none
     private
 
@@ -51,4 +51,4 @@ contains
 
     end function unique_values
 
-end module
+end module datastructs_lists_mod

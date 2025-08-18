@@ -46,16 +46,16 @@
 !>     end do
 !> end program example_sampler
 !> ```
-module samplers_mod
-    use kinds_mod
-    use samplers_base_mod, only : sampler_base_t
+module datastructs_samplers_mod
+    use datastructs_kinds_mod
+    use datastructs_samplers_base_mod, only : sampler_base_t
     implicit none
     private
 
     !> List of available sampler algorithms
-    character(len=*), parameter :: samplers_choices = 'btree,rejection,rejection_two_classes,rejection_maxheap,rejection_maxheap_two_classes,rejection_maxheap_composition'
+    character(len=*), parameter :: sampler_choices = 'btree,rejection,rejection_two_classes,rejection_maxheap,rejection_maxheap_two_classes,rejection_maxheap_composition'
 
-    public :: choose_sampler, samplers_choices
+    public :: choose_sampler, sampler_choices
 
 contains
 
@@ -63,12 +63,12 @@ contains
     subroutine choose_sampler(weighted_sampler, selected_algorithm)
 
         ! imports the different weighted samplers based on the selected algorithm
-        use samplers_btree_mod, only: weighted_sampler_btree_t => weighted_sampler_t
-        use samplers_rejection_mod, only: weighted_sampler_rejection_t => weighted_sampler_t
-        use samplers_rejection_two_classes_mod, only: weighted_sampler_rejection_two_classes_t => weighted_sampler_t
-        use samplers_rejection_maxheap_mod, only: weighted_sampler_rejection_maxheap_t => weighted_sampler_t
-        use samplers_rejection_maxheap_two_classes_mod, only: weighted_sampler_rejection_maxheap_two_classes_t => weighted_sampler_t
-        use samplers_rejection_maxheap_composition_mod, only: weighted_sampler_rejection_maxheap_composition_t => weighted_sampler_t
+        use datastructs_samplers_btree_mod, only: weighted_sampler_btree_t => weighted_sampler_t
+        use datastructs_samplers_rejection_mod, only: weighted_sampler_rejection_t => weighted_sampler_t
+        use datastructs_samplers_rejection_two_classes_mod, only: weighted_sampler_rejection_two_classes_t => weighted_sampler_t
+        use datastructs_samplers_rejection_maxheap_mod, only: weighted_sampler_rejection_maxheap_t => weighted_sampler_t
+        use datastructs_samplers_rejection_maxheap_two_classes_mod, only: weighted_sampler_rejection_maxheap_two_classes_t => weighted_sampler_t
+        use datastructs_samplers_rejection_maxheap_composition_mod, only: weighted_sampler_rejection_maxheap_composition_t => weighted_sampler_t
 
         class(sampler_base_t), allocatable, intent(out) :: weighted_sampler
         character(len=*), intent(in) :: selected_algorithm
@@ -91,4 +91,4 @@ contains
         end select
     end subroutine choose_sampler
 
-end module samplers_mod
+end module datastructs_samplers_mod

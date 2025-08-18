@@ -101,7 +101,7 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
                 <li class="breadcrumb-item"><a href='../sourcefile/rejection_two_classes.f90.html'>rejection_two_classes.f90</a></li>
-                <li class="breadcrumb-item"><a href='../module/samplers_rejection_two_classes_mod.html'>samplers_rejection_two_classes_mod</a></li>
+                <li class="breadcrumb-item"><a href='../module/datastructs_samplers_rejection_two_classes_mod.html'>datastructs_samplers_rejection_two_classes_mod</a></li>
             <li class="breadcrumb-item active" aria-current="page">weighted_sampler_t</li>
           </ol>
         </nav>
@@ -131,7 +131,7 @@
       <div id="vars-0" class="collapse">
         <div class="list-group list-group-flush">
             <a class="list-group-item" href="../type/weighted_sampler_t~6.html#variable-weights~4">weights</a>
-            <a class="list-group-item" href="../type/weighted_sampler_t~6.html#variable-n~14">n</a>
+            <a class="list-group-item" href="../type/weighted_sampler_t~6.html#variable-n~15">n</a>
             <a class="list-group-item" href="../type/weighted_sampler_t~6.html#variable-samplers~3">samplers</a>
             <a class="list-group-item" href="../type/weighted_sampler_t~6.html#variable-threshold~2">threshold</a>
             <a class="list-group-item" href="../type/weighted_sampler_t~6.html#variable-sampler_of_index~3">sampler_of_index</a>
@@ -172,17 +172,17 @@
       </a>
       <div id="boundprocs-0" class="collapse">
         <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../type/weighted_sampler_t~6.html#boundprocedure-init~5">init</a>
+            <a class="list-group-item" href="../type/weighted_sampler_t~6.html#boundprocedure-init~7">init</a>
             <a class="list-group-item" href="../type/weighted_sampler_t~6.html#boundprocedure-init_n~6">init_n</a>
             <a class="list-group-item" href="../type/weighted_sampler_t~6.html#boundprocedure-init_w~6">init_w</a>
             <a class="list-group-item" href="../type/weighted_sampler_t~6.html#boundprocedure-init_w2~6">init_w2</a>
-            <a class="list-group-item" href="../type/weighted_sampler_t~6.html#boundprocedure-reset~7">reset</a>
+            <a class="list-group-item" href="../type/weighted_sampler_t~6.html#boundprocedure-reset~6">reset</a>
             <a class="list-group-item" href="../type/weighted_sampler_t~6.html#boundprocedure-set_weight~6">set_weight</a>
             <a class="list-group-item" href="../type/weighted_sampler_t~6.html#boundprocedure-set_weight_array~6">set_weight_array</a>
             <a class="list-group-item" href="../type/weighted_sampler_t~6.html#boundprocedure-add_weight~7">add_weight</a>
             <a class="list-group-item" href="../type/weighted_sampler_t~6.html#boundprocedure-sample~6">sample</a>
-            <a class="list-group-item" href="../type/weighted_sampler_t~6.html#boundprocedure-remove~8">remove</a>
-            <a class="list-group-item" href="../type/weighted_sampler_t~6.html#boundprocedure-sum~8">sum</a>
+            <a class="list-group-item" href="../type/weighted_sampler_t~6.html#boundprocedure-remove~7">remove</a>
+            <a class="list-group-item" href="../type/weighted_sampler_t~6.html#boundprocedure-sum~7">sum</a>
         </div>
       </div>
     </div>
@@ -358,7 +358,7 @@ said component(s).
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-n~14"></span>
+              <span class="anchor" id="variable-n~15"></span>
               integer(kind=i4),
             </td>
               <td>public</td>
@@ -463,7 +463,7 @@ said component(s).
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-this~103"></span>
+              <span class="anchor" id="variable-this~86"></span>
               type(<a href='weighted_sampler_t~6.html'>weighted_sampler_t</a>),
             </td>
 <td>intent(inout)</td>
@@ -492,7 +492,7 @@ said component(s).
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-init~5"></span>
+      <span class="anchor" id="boundprocedure-init~7"></span>
       <h3>
           generic, public ::
   <strong>init</strong> => <a href='/data/repos/fortran/datastructs-fortran/doc/type/weighted_sampler_t~6.html#boundprocedure-init_n~6'>init_n</a>, <a href='/data/repos/fortran/datastructs-fortran/doc/type/weighted_sampler_t~6.html#boundprocedure-init_w~6'>init_w</a>, <a href='/data/repos/fortran/datastructs-fortran/doc/type/weighted_sampler_t~6.html#boundprocedure-init_w2~6'>init_w2</a>
@@ -972,7 +972,7 @@ Input: n - number of weights
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-reset~7"></span>
+      <span class="anchor" id="boundprocedure-reset~6"></span>
       <h3>
           procedure, public ::
   <strong>reset</strong> => sampler_reset
@@ -1341,7 +1341,7 @@ Output: index - sampled index</p>
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-remove~8"></span>
+      <span class="anchor" id="boundprocedure-remove~7"></span>
       <h3>
           procedure, public ::
   <strong>remove</strong> => sampler_remove
@@ -1411,7 +1411,7 @@ Input: index - index of the element to be removed</p>
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-sum~8"></span>
+      <span class="anchor" id="boundprocedure-sum~7"></span>
       <h3>
           procedure, public ::
   <strong>sum</strong> => sampler_sum

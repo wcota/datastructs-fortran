@@ -22,8 +22,8 @@
 !>     call my_heap%print()
 !> end program example_maxheap
 !> ```
-module maxheap_mod
-    use kinds_mod
+module datastructs_maxheap_mod
+    use datastructs_kinds_mod
     implicit none
     private
 
@@ -216,4 +216,4 @@ contains
         if (allocated(this%pos_of)) deallocate(this%pos_of)
     end subroutine maxheap_finalize
 
-end module maxheap_mod
+end module datastructs_maxheap_mod
