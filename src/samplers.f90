@@ -53,9 +53,9 @@ module samplers_mod
     private
 
     !> List of available sampler algorithms
-    character(len=*), parameter :: samplers_choices = 'btree,rejection,rejection_two_classes,rejection_maxheap,rejection_maxheap_two_classes,rejection_maxheap_composition'
+    character(len=*), parameter :: sampler_choices = 'btree,rejection,rejection_two_classes,rejection_maxheap,rejection_maxheap_two_classes,rejection_maxheap_composition'
 
-    public :: choose_sampler, samplers_choices
+    public :: choose_sampler, sampler_choices
 
 contains
 

@@ -4,7 +4,7 @@ module datastructs_fortran
                          dynamical_list_t, fixed_list_t, maxheap_t, &
                          unique_values, new_fixed_list_pointer
     use samplers_base_mod, only : sampler_base_t
-    use samplers_mod, only: choose_sampler, samplers_choices
+    use samplers_mod, only: choose_sampler, sampler_choices
     implicit none
     private
 
@@ -24,5 +24,5 @@ module datastructs_fortran
     public :: sampler_base_t
 
     !> Choose a sampler based on the selected algorithm
-    public :: choose_sampler, samplers_choices
+    public :: choose_sampler, sampler_choices
 end module datastructs_fortran
