@@ -1,5 +1,5 @@
-module hash_mod
-    use kinds_mod
+module datastructs_hash_mod
+    use datastructs_kinds_mod
     implicit none
     private
 
@@ -26,4 +26,4 @@ contains
 
     end function djb2
 
-end module hash_mod
+end module datastructs_hash_mod

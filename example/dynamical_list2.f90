@@ -1,6 +1,6 @@
 program test_dynamical_list2
-    use kinds_mod
-    use datastructs_fortran, only: dynamical_list_t
+    use datastructs_kinds_mod
+    use datastructs_mod, only: dynamical_list_t
     use rndgen_mod
     implicit none
 

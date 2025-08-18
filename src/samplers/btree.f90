@@ -1,8 +1,8 @@
 !> This modules implements a binary tree sampler
 !> It provides a way to sample elements based on their weights using a binary tree structure.
-module samplers_btree_mod
-    use kinds_mod
-    use samplers_base_mod
+module datastructs_samplers_btree_mod
+    use datastructs_kinds_mod
+    use datastructs_samplers_base_mod
     implicit none
     private
 
@@ -220,4 +220,4 @@ contains
         this%n = 0
     end subroutine sampler_finalize
 
-end module samplers_btree_mod
+end module datastructs_samplers_btree_mod

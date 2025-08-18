@@ -1,10 +1,10 @@
 !> This module implements rejection sampling with two classes
 !> We split the weights into two classes based on a threshold
-module samplers_rejection_two_classes_mod
-    use kinds_mod
-    use lists_mod
-    use samplers_rejection_mod, only : rejection_t => weighted_sampler_t
-    use samplers_base_mod
+module datastructs_samplers_rejection_two_classes_mod
+    use datastructs_kinds_mod
+    use datastructs_lists_mod
+    use datastructs_samplers_rejection_mod, only : rejection_t => weighted_sampler_t
+    use datastructs_samplers_base_mod
     implicit none
     private
 
@@ -237,4 +237,4 @@ contains
 
     end subroutine sampler_finalize
 
-end module samplers_rejection_two_classes_mod
+end module datastructs_samplers_rejection_two_classes_mod

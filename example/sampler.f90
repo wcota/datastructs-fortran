@@ -1,6 +1,6 @@
 program example_sampler
-    use datastructs_fortran
-    use kinds_mod
+    use datastructs_mod
+    use datastructs_kinds_mod
     use rndgen_mod
     implicit none
 

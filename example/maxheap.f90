@@ -1,6 +1,6 @@
 program example_maxheap
-    use datastructs_fortran
-    use kinds_mod
+    use datastructs_mod
+    use datastructs_kinds_mod
     implicit none
     type(maxheap_t) :: my_heap
     real(kind=dp), parameter :: list(*) = [40.0_dp,25.5_dp,30.1_dp,100.4_dp,2.0_dp]

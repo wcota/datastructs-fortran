@@ -1,6 +1,6 @@
 program example_dynamical_list
-    use datastructs_fortran
-    use kinds_mod
+    use datastructs_mod
+    use datastructs_kinds_mod
     implicit none
     type(dynamical_list_t) :: my_list
     integer(kind=i4) :: i

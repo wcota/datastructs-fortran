@@ -1,4 +1,4 @@
-module kinds_mod
+module datastructs_kinds_mod
     use, intrinsic :: iso_fortran_env, only: &
         sp => real32, & ! single precision, range: -3.40282347E+38 to 3.40282347E+38, smallest positive: 1.17549435E-38
         dp => real64, & ! double precision, range: -1.7976931348623157E+308 to 1.7976931348623157E+308, smallest positive: 2.2250738585072014E-308
@@ -109,4 +109,4 @@ contains
 
     end function count_integers_from_string
 
-end module
+end module datastructs_kinds_mod

@@ -1,10 +1,10 @@
-module datastructs_fortran
-    use hash_mod, only: djb2
-    use lists_mod, only: dynamical_list, fixed_list, maxheap, &
+module datastructs_mod
+    use datastructs_hash_mod, only: djb2
+    use datastructs_lists_mod, only: dynamical_list, fixed_list, maxheap, &
                          dynamical_list_t, fixed_list_t, maxheap_t, &
                          unique_values, new_fixed_list_pointer
-    use samplers_base_mod, only : sampler_base_t
-    use samplers_mod, only: choose_sampler, sampler_choices
+    use datastructs_samplers_base_mod, only : sampler_base_t
+    use datastructs_samplers_mod, only: choose_sampler, sampler_choices
     implicit none
     private
 
@@ -25,4 +25,4 @@ module datastructs_fortran
 
     !> Choose a sampler based on the selected algorithm
     public :: choose_sampler, sampler_choices
-end module datastructs_fortran
+end module datastructs_mod

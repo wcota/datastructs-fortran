@@ -19,8 +19,8 @@
 !> end program example_fixed_list
 !> ```
 
-module lists_fixed_list_mod
-    use kinds_mod
+module datastructs_lists_fixed_list_mod
+    use datastructs_kinds_mod
     implicit none
     private
 
@@ -129,4 +129,4 @@ contains
         if (allocated(this%list)) deallocate(this%list)
     end subroutine finalize_fixed_list
 
-end module lists_fixed_list_mod
+end module datastructs_lists_fixed_list_mod

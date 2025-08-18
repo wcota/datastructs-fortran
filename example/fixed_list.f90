@@ -1,6 +1,6 @@
 program example_fixed_list
-    use datastructs_fortran
-    use kinds_mod
+    use datastructs_mod
+    use datastructs_kinds_mod
     implicit none
     type(fixed_list_t) :: my_list
     type(fixed_list_t), target :: my_list2

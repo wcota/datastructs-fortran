@@ -1,7 +1,7 @@
-module samplers_rejection_maxheap_mod
-    use kinds_mod
-    use lists_mod
-    use samplers_base_mod
+module datastructs_samplers_rejection_maxheap_mod
+    use datastructs_kinds_mod
+    use datastructs_lists_mod
+    use datastructs_samplers_base_mod
     implicit none
     private
 
@@ -260,4 +260,4 @@ contains
 
     end subroutine sampler_finalize
 
-end module samplers_rejection_maxheap_mod
+end module datastructs_samplers_rejection_maxheap_mod

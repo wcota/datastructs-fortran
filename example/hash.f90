@@ -1,6 +1,6 @@
 program test_hash
-    use kinds_mod
-    use datastructs_fortran, only : djb2
+    use datastructs_kinds_mod
+    use datastructs_mod, only : djb2
     use rndgen_mod
     use stdlib_sorting, only : sort, sort_index
     implicit none
