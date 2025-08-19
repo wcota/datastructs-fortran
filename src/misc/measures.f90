@@ -3,9 +3,21 @@ module datastructs_measures_mod
     implicit none
     private
 
+    type :: measure_controller_t
+        ! automatically add or not a given position
+        real(kind=dp) :: last_value_added = 0.0_dp
+        integer(kind=i4) :: last_position_added = 0
+        real(kind=dp) :: position_step = 1.0_dp
+        real(kind=dp) :: min_value = 0.0_dp ! minimum value for the measure
+
+        procedure(measure_controller_get_pos_array_i), pointer :: get_pos_array => null()
+        procedure(measure_controller_get_max_array_size_i), pointer :: get_max_array_size => null()
+    contains
+        procedure :: init => measure_controller_init
+        procedure :: reset => measure_controller_reset
+    end type measure_controller_t
+
     type :: statistical_measure_t
-        character(len=:), allocatable :: name ! Name of the measure (optional)
-        
         integer(kind=i4), allocatable :: n_samples(:) ! number of samples for each point
         real(kind=dp), allocatable :: sum_values(:) ! used to store the values of the measure
         real(kind=dp), allocatable :: sum_values_squares(:) ! used to store the squares of the values of the measure
@@ -13,9 +25,7 @@ module datastructs_measures_mod
 
         integer(kind=i4) :: n_size ! Number of points in the measure
 
-        !integer(kind=i4) :: last_position_added = 0
-
-    contains 
+    contains
 
         procedure :: init => statistical_measure_init
         procedure :: add_point => statistical_measure_add_point
@@ -39,14 +49,104 @@ module datastructs_measures_mod
 
     end type statistical_measure_t
 
-    public :: statistical_measure_t
+    interface
+        function measure_controller_get_pos_array_i(controller, value) result(res)
+            import :: measure_controller_t, dp, i4
+            class(measure_controller_t), intent(inout) :: controller
+            real(kind=dp), intent(in) :: value
+            integer(kind=i4), allocatable :: res(:)
+        end function
+        function measure_controller_get_max_array_size_i(controller, max_value) result(res)
+            import :: measure_controller_t, dp, i4
+            class(measure_controller_t), intent(inout) :: controller
+            real(kind=dp), intent(in) :: max_value
+            integer(kind=i4) :: res
+        end function
+    end interface
+
+    public :: statistical_measure_t, measure_controller_t
 
 contains
 
-    subroutine statistical_measure_init(this, n_size, interval_type)
+    function measure_controller_get_pos_array_uniform(controller, value) result(res)
+        class(measure_controller_t), intent(inout) :: controller
+        real(kind=dp), intent(in) :: value
+        integer(kind=i4), allocatable :: res(:)
+        integer(kind=i4) :: aux_pos
+        real(kind=dp) :: aux_value
+
+        aux_value = value
+        aux_pos = 0
+        do while (aux_value >= controller%last_value_added + controller%position_step)
+            aux_pos = aux_pos + 1
+            aux_value = aux_value - controller%position_step
+        end do
+
+        allocate(res(aux_pos))
+
+        aux_value = value
+        aux_pos = 0
+        do while (aux_value >= controller%last_value_added + controller%position_step)
+            aux_pos = aux_pos + 1
+            aux_value = aux_value - controller%position_step
+
+            res(aux_pos) = controller%last_position_added + aux_pos
+        end do
+        if (aux_pos > 0) then
+            controller%last_value_added = value
+            controller%last_position_added = controller%last_position_added + aux_pos
+        end if
+    end function measure_controller_get_pos_array_uniform
+
+    function measure_controller_get_max_array_size_uniform(controller, max_value) result(res)
+        class(measure_controller_t), intent(inout) :: controller
+        real(kind=dp), intent(in) :: max_value
+        integer(kind=i4) :: res, aux_pos
+        real(kind=dp) :: aux_value
+
+        aux_value = max_value
+        aux_pos = 0
+        do while (aux_value >= controller%min_value + controller%position_step)
+            aux_pos = aux_pos + 1
+            aux_value = aux_value - controller%position_step
+        end do
+
+        res = aux_pos
+
+    end function measure_controller_get_max_array_size_uniform
+
+    subroutine measure_controller_init(controller, interval_type, step, min_value)
+        class(measure_controller_t), intent(inout) :: controller
+        character(len=*), intent(in) :: interval_type
+        real(kind=dp), intent(in), optional :: step
+        real(kind=dp), intent(in), optional :: min_value
+
+        if (present(step)) controller%position_step = step
+        if (present(min_value)) controller%min_value = min_value
+        call controller%reset()
+
+        select case (trim(adjustl(interval_type)))
+          case ("uniform")
+            controller%get_pos_array => measure_controller_get_pos_array_uniform
+            controller%get_max_array_size => measure_controller_get_max_array_size_uniform
+          case ("powerlaw")
+            error stop "Error: Power law interval type not implemented"
+          case default
+            error stop "Error: Invalid interval type"
+        end select
+
+    end subroutine measure_controller_init
+
+    subroutine measure_controller_reset(controller)
+        class(measure_controller_t), intent(inout) :: controller
+
+        controller%last_position_added = 0
+        controller%last_value_added = controller%min_value
+    end subroutine measure_controller_reset
+
+    subroutine statistical_measure_init(this, n_size)
         class(statistical_measure_t), intent(inout) :: this
         integer(kind=i4), intent(in) :: n_size
-        character(len=*), intent(in), optional :: interval_type
 
         this%n_size = n_size
         allocate(this%n_samples(n_size))
@@ -57,11 +157,6 @@ contains
         this%sum_values = 0.0_dp
         this%sum_values_squares = 0.0_dp
         this%sum_values_thirds = 0.0_dp
-
-        if (present(interval_type)) then
-            ! TODO
-            return
-        end if
 
     end subroutine statistical_measure_init
 
@@ -112,7 +207,7 @@ contains
             res = 0.0_dp
         else
             res = (this%sum_values_squares(pos) / this%n_samples(pos)) - &
-              (statistical_measure_get_mean_pos(this, pos) ** 2)
+                (statistical_measure_get_mean_pos(this, pos) ** 2)
         end if
     end function statistical_measure_get_variance_pos
 
@@ -144,9 +239,9 @@ contains
             res = 0.0_dp
         else
             res = (this%sum_values_thirds(pos) / this%n_samples(pos)) - &
-                  3.0_dp * statistical_measure_get_mean_pos(this, pos) * &
-                  statistical_measure_get_variance_pos(this, pos) - &
-                  (statistical_measure_get_mean_pos(this, pos) ** 3)
+                3.0_dp * statistical_measure_get_mean_pos(this, pos) * &
+                statistical_measure_get_variance_pos(this, pos) - &
+                (statistical_measure_get_mean_pos(this, pos) ** 3)
             res = res / (statistical_measure_get_stddev_pos(this, pos) ** 3)
         end if
     end function statistical_measure_get_skewness_pos
