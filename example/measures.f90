@@ -6,6 +6,7 @@ program example_measures
     class(sampler_base_t), allocatable :: my_sampler
     type(statistical_measure_t) :: temporal_measure
     type(statistical_measure_t) :: spatial_measure
+    type(measure_controller_t) :: temporal_controller
     type(rndgen) :: gen
 
     real(kind=dp), parameter :: rate_to_left = (0.1_dp)**(-1)
@@ -16,7 +17,6 @@ program example_measures
 
     integer(kind=i4), parameter :: n_samples = 10000
     integer(kind=i4) :: i, time_pos, sample_pos
-    integer(kind=i4) :: last_position_added
     integer(kind=i4) :: file_unit
 
     real(kind=dp), parameter :: tmax = 100.0_dp
@@ -31,23 +31,32 @@ program example_measures
 
     call gen%init(12345)
 
-    call temporal_measure%init(int(tmax))
-    call spatial_measure%init(int(tmax))
+    call temporal_controller%init("uniform", step=0.2_dp, min_value=0.0_dp)
+
+    print*, temporal_controller%get_max_array_size(tmax)
+
+    call temporal_measure%init(temporal_controller%get_max_array_size(tmax))
+    call spatial_measure%init(temporal_controller%get_max_array_size(tmax))
 
     do sample_pos = 1, n_samples
         t = 0.0_dp
         x = 0.0_dp
-        last_position_added = 0
+        call temporal_controller%reset()
+
         do while (t <= tmax)
 
             ! measure stuff
-            if (t > last_position_added) then
-                do time_pos = last_position_added + 1, int(t)
-                    call temporal_measure%add_point(time_pos, t)
-                    call spatial_measure%add_point(time_pos, x)
+            block 
+                integer(kind=i4), allocatable :: time_pos_array(:)
+
+                time_pos_array = temporal_controller%get_pos_array(t)
+
+                do time_pos = 1, size(time_pos_array)
+                    call temporal_measure%add_point(time_pos_array(time_pos), t)
+                    call spatial_measure%add_point(time_pos_array(time_pos), x)
                 end do
-                last_position_added = int(t)
-            end if
+
+            end block
 
             t = t + (-log(1.0_dp - gen%rnd())/total_rate)
 
@@ -67,7 +76,7 @@ program example_measures
     do i = 1, temporal_measure%n_size
         if (temporal_measure%n_samples(i) > 0) write(file_unit, fmt_general) temporal_measure%get_mean(i), spatial_measure%get_mean(i), &
             spatial_measure%get_variance(i), spatial_measure%get_stddev(i), &
-            spatial_measure%get_skewness(i)
+            spatial_measure%get_skewness(i), spatial_measure%n_samples(i)
     end do
 
     close(file_unit)
