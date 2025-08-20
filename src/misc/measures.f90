@@ -3,6 +3,8 @@ module datastructs_measures_mod
     implicit none
     private
 
+    real(kind=dp), parameter :: EPSILON = 1.0e-12_dp ! epsilon for floating point comparisons
+
     type :: measure_controller_t
         ! automatically add or not a given position
         real(kind=dp) :: last_value_added = 0.0_dp
@@ -72,46 +74,25 @@ contains
         class(measure_controller_t), intent(inout) :: controller
         real(kind=dp), intent(in) :: value
         integer(kind=i4), allocatable :: res(:)
-        integer(kind=i4) :: aux_pos
-        real(kind=dp) :: aux_value
+        integer(kind=i4) :: i, n
 
-        aux_value = value
-        aux_pos = 0
-        do while (aux_value >= controller%last_value_added + controller%position_step)
-            aux_pos = aux_pos + 1
-            aux_value = aux_value - controller%position_step
-        end do
+        n = int( floor( (value - controller%last_value_added + EPSILON * controller%position_step) / controller%position_step ) )
 
-        allocate(res(aux_pos))
-
-        aux_value = value
-        aux_pos = 0
-        do while (aux_value >= controller%last_value_added + controller%position_step)
-            aux_pos = aux_pos + 1
-            aux_value = aux_value - controller%position_step
-
-            res(aux_pos) = controller%last_position_added + aux_pos
-        end do
-        if (aux_pos > 0) then
+        if (n > 0) then
+            res = [(controller%last_position_added + i, i=1,n)]
             controller%last_value_added = value
-            controller%last_position_added = controller%last_position_added + aux_pos
+            controller%last_position_added = controller%last_position_added + n
+        else
+            allocate(res(0))
         end if
     end function measure_controller_get_pos_array_uniform
 
     function measure_controller_get_max_array_size_uniform(controller, max_value) result(res)
         class(measure_controller_t), intent(inout) :: controller
         real(kind=dp), intent(in) :: max_value
-        integer(kind=i4) :: res, aux_pos
-        real(kind=dp) :: aux_value
+        integer(kind=i4) :: res
 
-        aux_value = max_value
-        aux_pos = 0
-        do while (aux_value >= controller%min_value + controller%position_step)
-            aux_pos = aux_pos + 1
-            aux_value = aux_value - controller%position_step
-        end do
-
-        res = aux_pos
+        res = int( floor( (max_value - controller%min_value + EPSILON * controller%position_step) / controller%position_step ) )
 
     end function measure_controller_get_max_array_size_uniform
 
