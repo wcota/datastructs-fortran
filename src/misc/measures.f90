@@ -1,3 +1,4 @@
+!> This module implements a time step controller and an object to manage statistical measures
 module datastructs_measures_mod
     use datastructs_kinds_mod
     implicit none
@@ -5,6 +6,11 @@ module datastructs_measures_mod
 
     real(kind=dp), parameter :: EPSILON_VALUE = 1.0e-12_dp ! EPSILON_VALUE for floating point comparisons
 
+    !> Measure controller for managing time steps
+    !> * The idea is that this controller will keep track of the last value added and the last position added
+    !> * The procedures will automatically add or not a given position
+    !> * `get_pos_array` will return the array of positions in which the value can be added
+    !> * `get_max_array_size` will return the maximum size of the array of positions that can be added
     type :: measure_controller_t
         ! automatically add or not a given position
         real(kind=dp) :: last_value_added = 0.0_dp
@@ -19,6 +25,9 @@ module datastructs_measures_mod
         procedure :: reset => measure_controller_reset
     end type measure_controller_t
 
+    !> Object to handle statistical measures
+    !> * This object will keep track of the statistical measures for a given set of points
+    !> * Procedures are available to access the measures
     type :: statistical_measure_t
         integer(kind=i4), allocatable :: n_samples(:) ! number of samples for each point
         real(kind=dp), allocatable :: sum_values(:) ! used to store the values of the measure
@@ -26,6 +35,7 @@ module datastructs_measures_mod
         real(kind=dp), allocatable :: sum_values_thirds(:) ! used to store the cubes of the values of the measure
 
         integer(kind=i4) :: n_size ! Number of points in the measure
+        integer(kind=i4) :: max_n_samples = 0 ! Maximum number of samples for any point
 
     contains
 
@@ -166,6 +176,10 @@ contains
         integer(kind=i4), intent(in) :: n_size
 
         this%n_size = n_size
+        if (allocated(this%n_samples)) deallocate(this%n_samples)
+        if (allocated(this%sum_values)) deallocate(this%sum_values)
+        if (allocated(this%sum_values_squares)) deallocate(this%sum_values_squares)
+        if (allocated(this%sum_values_thirds)) deallocate(this%sum_values_thirds)
         allocate(this%n_samples(n_size))
         allocate(this%sum_values(n_size))
         allocate(this%sum_values_squares(n_size))
@@ -174,6 +188,7 @@ contains
         this%sum_values = 0.0_dp
         this%sum_values_squares = 0.0_dp
         this%sum_values_thirds = 0.0_dp
+        this%max_n_samples = 0
 
     end subroutine statistical_measure_init
 
@@ -191,46 +206,69 @@ contains
         this%sum_values_squares(pos) = this%sum_values_squares(pos) + value**2
         this%sum_values_thirds(pos) = this%sum_values_thirds(pos) + value**3
         this%n_samples(pos) = this%n_samples(pos) + 1
+
+        if (this%n_samples(pos) > this%max_n_samples) then
+            this%max_n_samples = this%n_samples(pos)
+        end if
     end subroutine statistical_measure_add_point
 
-    function statistical_measure_get_mean_pos(this, pos) result(res)
+    function statistical_measure_get_mean_pos(this, pos, use_max_n_samples) result(res)
         class(statistical_measure_t), intent(in) :: this
         integer(kind=i4), intent(in) :: pos
+        logical, intent(in), optional :: use_max_n_samples
         real(kind=dp) :: res
+        integer(kind=i4) :: n_samples
 
         if (pos < 1 .or. pos > this%n_size) then
             error stop "Error: Invalid position"
             return
         end if
 
-        if (this%n_samples(pos) == 0) then
+        n_samples = this%n_samples(pos)
+        if (present(use_max_n_samples)) then
+            if (use_max_n_samples) n_samples = this%max_n_samples
+        end if
+
+        if (n_samples == 0) then
             res = 0.0_dp
         else
-            res = this%sum_values(pos) / this%n_samples(pos)
+            res = this%sum_values(pos) / n_samples
         end if
     end function statistical_measure_get_mean_pos
 
-    function statistical_measure_get_variance_pos(this, pos) result(res)
+    function statistical_measure_get_variance_pos(this, pos, use_max_n_samples) result(res)
         class(statistical_measure_t), intent(in) :: this
         integer(kind=i4), intent(in) :: pos
+        logical, intent(in), optional :: use_max_n_samples
+        logical :: prop_use_max_n_samples
         real(kind=dp) :: res
+        integer(kind=i4) :: n_samples
 
         if (pos < 1 .or. pos > this%n_size) then
             error stop "Error: Invalid position"
             return
         end if
 
-        if (this%n_samples(pos) == 0) then
+        prop_use_max_n_samples = .false.
+        n_samples = this%n_samples(pos)
+        if (present(use_max_n_samples)) then
+            prop_use_max_n_samples = use_max_n_samples
+            if (use_max_n_samples) n_samples = this%max_n_samples
+        end if
+
+        if (n_samples == 0) then
             res = 0.0_dp
         else
-            res = (this%sum_values_squares(pos) / this%n_samples(pos)) - &
-                (statistical_measure_get_mean_pos(this, pos) ** 2)
+            res = (this%sum_values_squares(pos) / n_samples) - &
+                (statistical_measure_get_mean_pos(this, pos, prop_use_max_n_samples) ** 2)
         end if
     end function statistical_measure_get_variance_pos
 
-    function statistical_measure_get_stddev_pos(this, pos) result(res)
+    function statistical_measure_get_stddev_pos(this, pos, use_max_n_samples) result(res)
         class(statistical_measure_t), intent(in) :: this
         integer(kind=i4), intent(in) :: pos
+        logical, intent(in), optional :: use_max_n_samples
+        logical :: prop_use_max_n_samples
         real(kind=dp) :: res
 
         if (pos < 1 .or. pos > this%n_size) then
@@ -238,78 +276,121 @@ contains
             return
         end if
 
-        res = sqrt(statistical_measure_get_variance_pos(this, pos))
+        prop_use_max_n_samples = .false.
+        if (present(use_max_n_samples)) then
+            prop_use_max_n_samples = use_max_n_samples
+        end if
+
+        res = sqrt(statistical_measure_get_variance_pos(this, pos, prop_use_max_n_samples))
     end function statistical_measure_get_stddev_pos
 
-    function statistical_measure_get_skewness_pos(this, pos) result(res)
+    function statistical_measure_get_skewness_pos(this, pos, use_max_n_samples) result(res)
         ! TODO: check if it is correct
         class(statistical_measure_t), intent(in) :: this
         integer(kind=i4), intent(in) :: pos
+        logical, intent(in), optional :: use_max_n_samples
+        logical :: prop_use_max_n_samples
         real(kind=dp) :: res
+        integer(kind=i4) :: n_samples
 
         if (pos < 1 .or. pos > this%n_size) then
             error stop "Error: Invalid position"
             return
         end if
 
-        if (this%n_samples(pos) < 2) then
+        prop_use_max_n_samples = .false.
+        n_samples = this%n_samples(pos)
+        if (present(use_max_n_samples)) then
+            prop_use_max_n_samples = use_max_n_samples
+            if (use_max_n_samples) n_samples = this%max_n_samples
+        end if
+
+        if (n_samples < 2) then
             res = 0.0_dp
         else
-            res = (this%sum_values_thirds(pos) / this%n_samples(pos)) - &
-                3.0_dp * statistical_measure_get_mean_pos(this, pos) * &
-                statistical_measure_get_variance_pos(this, pos) - &
-                (statistical_measure_get_mean_pos(this, pos) ** 3)
-            res = res / (statistical_measure_get_stddev_pos(this, pos) ** 3)
+            res = (this%sum_values_thirds(pos) / n_samples) - &
+                3.0_dp * statistical_measure_get_mean_pos(this, pos, prop_use_max_n_samples) * &
+                statistical_measure_get_variance_pos(this, pos, prop_use_max_n_samples) - &
+                (statistical_measure_get_mean_pos(this, pos, prop_use_max_n_samples) ** 3)
+            res = res / (statistical_measure_get_stddev_pos(this, pos, prop_use_max_n_samples) ** 3)
         end if
     end function statistical_measure_get_skewness_pos
 
     ! arrays
-    function statistical_measure_get_mean_array(this) result(res)
+    function statistical_measure_get_mean_array(this, use_max_n_samples) result(res)
         class(statistical_measure_t), intent(in) :: this
         real(kind=dp), allocatable :: res(:)
+        logical, intent(in), optional :: use_max_n_samples
+        logical :: prop_use_max_n_samples
         integer(kind=i4) :: i
 
         allocate(res(this%n_size))
         res = 0.0_dp
 
+        prop_use_max_n_samples = .false.
+        if (present(use_max_n_samples)) then
+            prop_use_max_n_samples = use_max_n_samples
+        end if
+
         do i = 1, this%n_size
-            res(i) = statistical_measure_get_mean_pos(this, i)
+            res(i) = statistical_measure_get_mean_pos(this, i, prop_use_max_n_samples)
         end do
     end function statistical_measure_get_mean_array
 
-    function statistical_measure_get_variance_array(this) result(res)
+    function statistical_measure_get_variance_array(this, use_max_n_samples) result(res)
         class(statistical_measure_t), intent(in) :: this
         real(kind=dp), allocatable :: res(:)
         integer(kind=i4) :: i
+        logical, intent(in), optional :: use_max_n_samples
+        logical :: prop_use_max_n_samples
 
         allocate(res(this%n_size))
         res = 0.0_dp
 
+        prop_use_max_n_samples = .false.
+        if (present(use_max_n_samples)) then
+            prop_use_max_n_samples = use_max_n_samples
+        end if
+
         do i = 1, this%n_size
-            res(i) = statistical_measure_get_variance_pos(this, i)
+            res(i) = statistical_measure_get_variance_pos(this, i, prop_use_max_n_samples)
         end do
     end function statistical_measure_get_variance_array
 
-    function statistical_measure_get_stddev_array(this) result(res)
+    function statistical_measure_get_stddev_array(this, use_max_n_samples) result(res)
         class(statistical_measure_t), intent(in) :: this
         real(kind=dp), allocatable :: res(:)
         integer(kind=i4) :: i
+        logical, intent(in), optional :: use_max_n_samples
+        logical :: prop_use_max_n_samples
 
         allocate(res(this%n_size))
         res = 0.0_dp
 
+        prop_use_max_n_samples = .false.
+        if (present(use_max_n_samples)) then
+            prop_use_max_n_samples = use_max_n_samples
+        end if
+
         do i = 1, this%n_size
-            res(i) = statistical_measure_get_stddev_pos(this, i)
+            res(i) = statistical_measure_get_stddev_pos(this, i, prop_use_max_n_samples)
         end do
     end function statistical_measure_get_stddev_array
 
-    function statistical_measure_get_skewness_array(this) result(res)
+    function statistical_measure_get_skewness_array(this, use_max_n_samples) result(res)
         class(statistical_measure_t), intent(in) :: this
         real(kind=dp), allocatable :: res(:)
         integer(kind=i4) :: i
+        logical, intent(in), optional :: use_max_n_samples
+        logical :: prop_use_max_n_samples
 
         allocate(res(this%n_size))
         res = 0.0_dp
+
+        prop_use_max_n_samples = .false.
+        if (present(use_max_n_samples)) then
+            prop_use_max_n_samples = use_max_n_samples
+        end if
 
         do i = 1, this%n_size
             res(i) = statistical_measure_get_skewness_pos(this, i)
