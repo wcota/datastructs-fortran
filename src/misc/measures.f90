@@ -76,7 +76,7 @@ contains
         integer(kind=i4), allocatable :: res(:)
         integer(kind=i4) :: i, n
 
-        n = int( floor( (value - controller%last_value_added + EPSILON * controller%position_step) / controller%position_step ) )
+        n = int( floor( (value - controller%last_value_added + EPSILON_VALUE * controller%position_step) / controller%position_step ) )
 
         if (n > 0) then
             res = [(controller%last_position_added + i, i=1,n)]
@@ -92,7 +92,7 @@ contains
         real(kind=dp), intent(in) :: max_value
         integer(kind=i4) :: res
 
-        res = int( floor( (max_value - controller%min_value + EPSILON * controller%position_step) / controller%position_step ) )
+        res = int( floor( (max_value - controller%min_value + EPSILON_VALUE * controller%position_step) / controller%position_step ) )
 
     end function measure_controller_get_max_array_size_uniform
 
