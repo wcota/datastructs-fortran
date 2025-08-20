@@ -100,17 +100,19 @@ contains
         class(measure_controller_t), intent(inout) :: controller
         real(kind=dp), intent(in) :: value
         integer(kind=i4), allocatable :: res(:)
-        integer(kind=i4) :: i, aux_pos
+        integer(kind=i4) :: n, i
+        real(kind=dp) :: tick_last, ratio, eps
 
-        aux_pos = 0
-        do while (value >= controller%position_step**(controller%last_position_added + aux_pos + 1))
-            aux_pos = aux_pos + 1
-        end do
+        tick_last = controller%position_step**controller%last_position_added
+        ratio = controller%position_step
+        eps = EPSILON_VALUE * tick_last
 
-        if (aux_pos > 0) then
-            res = [(controller%last_position_added + i, i=1,aux_pos)]
+        n = int( floor( log( (value + eps) / tick_last ) / log(ratio) ) )
+
+        if (n > 0) then
+            res = [(controller%last_position_added + i, i=1,n)]
             controller%last_value_added = value
-            controller%last_position_added = controller%last_position_added + aux_pos
+            controller%last_position_added = controller%last_position_added + n
         else
             allocate(res(0))
         end if
@@ -119,15 +121,14 @@ contains
     function measure_controller_get_max_array_size_powerlaw(controller, max_value) result(res)
         class(measure_controller_t), intent(inout) :: controller
         real(kind=dp), intent(in) :: max_value
-        integer(kind=i4) :: res, aux_pos
+        integer(kind=i4) :: res
+        real(kind=dp) :: tick_last, ratio, eps
 
-        aux_pos = 0
-        do while (max_value >= controller%position_step**(controller%last_position_added + aux_pos + 1))
-            aux_pos = aux_pos + 1
-        end do
+        tick_last = controller%position_step**controller%last_position_added
+        ratio = controller%position_step
+        eps = EPSILON_VALUE * tick_last
 
-        res = aux_pos
-
+        res = int( floor( log( (max_value + eps) / tick_last ) / log(ratio) ) )
     end function measure_controller_get_max_array_size_powerlaw
 
     subroutine measure_controller_init(controller, interval_type, step, min_value)
