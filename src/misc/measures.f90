@@ -96,6 +96,40 @@ contains
 
     end function measure_controller_get_max_array_size_uniform
 
+    function measure_controller_get_pos_array_powerlaw(controller, value) result(res)
+        class(measure_controller_t), intent(inout) :: controller
+        real(kind=dp), intent(in) :: value
+        integer(kind=i4), allocatable :: res(:)
+        integer(kind=i4) :: i, aux_pos
+
+        aux_pos = 0
+        do while (value >= controller%position_step**(controller%last_position_added + aux_pos + 1))
+            aux_pos = aux_pos + 1
+        end do
+
+        if (aux_pos > 0) then
+            res = [(controller%last_position_added + i, i=1,aux_pos)]
+            controller%last_value_added = value
+            controller%last_position_added = controller%last_position_added + aux_pos
+        else
+            allocate(res(0))
+        end if
+    end function measure_controller_get_pos_array_powerlaw
+
+    function measure_controller_get_max_array_size_powerlaw(controller, max_value) result(res)
+        class(measure_controller_t), intent(inout) :: controller
+        real(kind=dp), intent(in) :: max_value
+        integer(kind=i4) :: res, aux_pos
+
+        aux_pos = 0
+        do while (max_value >= controller%position_step**(controller%last_position_added + aux_pos + 1))
+            aux_pos = aux_pos + 1
+        end do
+
+        res = aux_pos
+
+    end function measure_controller_get_max_array_size_powerlaw
+
     subroutine measure_controller_init(controller, interval_type, step, min_value)
         class(measure_controller_t), intent(inout) :: controller
         character(len=*), intent(in) :: interval_type
@@ -111,7 +145,8 @@ contains
             controller%get_pos_array => measure_controller_get_pos_array_uniform
             controller%get_max_array_size => measure_controller_get_max_array_size_uniform
           case ("powerlaw")
-            error stop "Error: Power law interval type not implemented"
+            controller%get_pos_array => measure_controller_get_pos_array_powerlaw
+            controller%get_max_array_size => measure_controller_get_max_array_size_powerlaw
           case default
             error stop "Error: Invalid interval type"
         end select
