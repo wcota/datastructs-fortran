@@ -31,7 +31,7 @@ program example_measures
 
     call gen%init(12345)
 
-    call temporal_controller%init("uniform", step=0.2_dp, min_value=0.0_dp)
+    call temporal_controller%init("uniform", step=1.00_dp, min_value=0.0_dp)
 
     print*, temporal_controller%get_max_array_size(tmax)
 
@@ -74,9 +74,9 @@ program example_measures
     open(newunit=file_unit, file='/tmp/temporal_measure.txt', status='replace', action='write')
 
     do i = 1, temporal_measure%n_size
-        if (temporal_measure%n_samples(i) > 0) write(file_unit, fmt_general) temporal_measure%get_mean(i), spatial_measure%get_mean(i), &
-            spatial_measure%get_variance(i), spatial_measure%get_stddev(i), &
-            spatial_measure%get_skewness(i), spatial_measure%n_samples(i)
+        if (temporal_measure%n_samples(i) > 0) write(file_unit, fmt_general) temporal_measure%get_mean(i), spatial_measure%get_mean(i, .true.), &
+            spatial_measure%get_variance(i, .true.), spatial_measure%get_stddev(i, .true.), &
+            spatial_measure%get_skewness(i, .true.), spatial_measure%n_samples(i)
     end do
 
     close(file_unit)
