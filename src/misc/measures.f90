@@ -3,7 +3,7 @@ module datastructs_measures_mod
     implicit none
     private
 
-    real(kind=dp), parameter :: EPSILON = 1.0e-12_dp ! epsilon for floating point comparisons
+    real(kind=dp), parameter :: EPSILON_VALUE = 1.0e-12_dp ! EPSILON_VALUE for floating point comparisons
 
     type :: measure_controller_t
         ! automatically add or not a given position
