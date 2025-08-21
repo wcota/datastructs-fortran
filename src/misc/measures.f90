@@ -248,7 +248,6 @@ contains
         class(statistical_measure_t), intent(in) :: this
         integer(kind=i4), intent(in) :: pos
         logical, intent(in), optional :: use_max
-        logical :: prop_use_max_n_samples
         real(kind=dp) :: res
         integer(kind=i4) :: n_samples
 
@@ -257,10 +256,8 @@ contains
             return
         end if
 
-        prop_use_max_n_samples = .false.
         n_samples = this%n_samples(pos)
         if (present(use_max)) then
-            prop_use_max_n_samples = use_max
             if (use_max) n_samples = this%max_n_samples
         end if
 
@@ -268,7 +265,7 @@ contains
             res = 0.0_dp
         else
             res = (this%sum_values_squares(pos) / n_samples) - &
-                (statistical_measure_get_mean_pos(this, pos, prop_use_max_n_samples) ** 2)
+                (statistical_measure_get_mean_pos(this, pos, use_max) ** 2)
         end if
     end function statistical_measure_get_variance_pos
 
@@ -276,7 +273,6 @@ contains
         class(statistical_measure_t), intent(in) :: this
         integer(kind=i4), intent(in) :: pos
         logical, intent(in), optional :: use_max
-        logical :: prop_use_max_n_samples
         real(kind=dp) :: res
 
         if (pos < 1 .or. pos > this%n_size) then
@@ -284,12 +280,7 @@ contains
             return
         end if
 
-        prop_use_max_n_samples = .false.
-        if (present(use_max)) then
-            prop_use_max_n_samples = use_max
-        end if
-
-        res = sqrt(statistical_measure_get_variance_pos(this, pos, prop_use_max_n_samples))
+        res = sqrt(statistical_measure_get_variance_pos(this, pos, use_max))
     end function statistical_measure_get_stddev_pos
 
     function statistical_measure_get_skewness_pos(this, pos, use_max) result(res)
@@ -297,7 +288,6 @@ contains
         class(statistical_measure_t), intent(in) :: this
         integer(kind=i4), intent(in) :: pos
         logical, intent(in), optional :: use_max
-        logical :: prop_use_max_n_samples
         real(kind=dp) :: res
         integer(kind=i4) :: n_samples
 
@@ -306,10 +296,8 @@ contains
             return
         end if
 
-        prop_use_max_n_samples = .false.
         n_samples = this%n_samples(pos)
         if (present(use_max)) then
-            prop_use_max_n_samples = use_max
             if (use_max) n_samples = this%max_n_samples
         end if
 
@@ -317,10 +305,10 @@ contains
             res = 0.0_dp
         else
             res = (this%sum_values_thirds(pos) / n_samples) - &
-                3.0_dp * statistical_measure_get_mean_pos(this, pos, prop_use_max_n_samples) * &
-                statistical_measure_get_variance_pos(this, pos, prop_use_max_n_samples) - &
-                (statistical_measure_get_mean_pos(this, pos, prop_use_max_n_samples) ** 3)
-            res = res / (statistical_measure_get_stddev_pos(this, pos, prop_use_max_n_samples) ** 3)
+                3.0_dp * statistical_measure_get_mean_pos(this, pos, use_max) * &
+                statistical_measure_get_variance_pos(this, pos, use_max) - &
+                (statistical_measure_get_mean_pos(this, pos, use_max) ** 3)
+            res = res / (statistical_measure_get_stddev_pos(this, pos, use_max) ** 3)
         end if
     end function statistical_measure_get_skewness_pos
 
@@ -329,19 +317,13 @@ contains
         class(statistical_measure_t), intent(in) :: this
         real(kind=dp), allocatable :: res(:)
         logical, intent(in), optional :: use_max
-        logical :: prop_use_max_n_samples
         integer(kind=i4) :: i
 
         allocate(res(this%n_size))
         res = 0.0_dp
 
-        prop_use_max_n_samples = .false.
-        if (present(use_max)) then
-            prop_use_max_n_samples = use_max
-        end if
-
         do i = 1, this%n_size
-            res(i) = statistical_measure_get_mean_pos(this, i, prop_use_max_n_samples)
+            res(i) = statistical_measure_get_mean_pos(this, i, use_max)
         end do
     end function statistical_measure_get_mean_array
 
@@ -350,18 +332,12 @@ contains
         real(kind=dp), allocatable :: res(:)
         integer(kind=i4) :: i
         logical, intent(in), optional :: use_max
-        logical :: prop_use_max_n_samples
 
         allocate(res(this%n_size))
         res = 0.0_dp
 
-        prop_use_max_n_samples = .false.
-        if (present(use_max)) then
-            prop_use_max_n_samples = use_max
-        end if
-
         do i = 1, this%n_size
-            res(i) = statistical_measure_get_variance_pos(this, i, prop_use_max_n_samples)
+            res(i) = statistical_measure_get_variance_pos(this, i, use_max)
         end do
     end function statistical_measure_get_variance_array
 
@@ -370,18 +346,12 @@ contains
         real(kind=dp), allocatable :: res(:)
         integer(kind=i4) :: i
         logical, intent(in), optional :: use_max
-        logical :: prop_use_max_n_samples
 
         allocate(res(this%n_size))
         res = 0.0_dp
 
-        prop_use_max_n_samples = .false.
-        if (present(use_max)) then
-            prop_use_max_n_samples = use_max
-        end if
-
         do i = 1, this%n_size
-            res(i) = statistical_measure_get_stddev_pos(this, i, prop_use_max_n_samples)
+            res(i) = statistical_measure_get_stddev_pos(this, i, use_max)
         end do
     end function statistical_measure_get_stddev_array
 
@@ -390,18 +360,12 @@ contains
         real(kind=dp), allocatable :: res(:)
         integer(kind=i4) :: i
         logical, intent(in), optional :: use_max
-        logical :: prop_use_max_n_samples
 
         allocate(res(this%n_size))
         res = 0.0_dp
 
-        prop_use_max_n_samples = .false.
-        if (present(use_max)) then
-            prop_use_max_n_samples = use_max
-        end if
-
         do i = 1, this%n_size
-            res(i) = statistical_measure_get_skewness_pos(this, i)
+            res(i) = statistical_measure_get_skewness_pos(this, i, use_max)
         end do
     end function statistical_measure_get_skewness_array
 
