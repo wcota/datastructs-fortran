@@ -31,7 +31,7 @@ program example_measures
 
     call gen%init(12345)
 
-    call temporal_controller%init("uniform", step=1.00_dp, min_value=0.0_dp)
+    call temporal_controller%init("uniform")
 
     print*, temporal_controller%get_max_array_size(tmax)
 
