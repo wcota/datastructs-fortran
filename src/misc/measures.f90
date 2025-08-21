@@ -134,7 +134,7 @@ contains
         integer(kind=i4) :: res
         real(kind=dp) :: tick_last, ratio, eps
 
-        tick_last = controller%position_step**controller%last_position_added
+        tick_last = controller%min_value
         ratio = controller%position_step
         eps = EPSILON_VALUE * tick_last
 
