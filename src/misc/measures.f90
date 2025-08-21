@@ -147,17 +147,25 @@ contains
         real(kind=dp), intent(in), optional :: step
         real(kind=dp), intent(in), optional :: min_value
 
-        if (present(step)) controller%position_step = step
-        if (present(min_value)) controller%min_value = min_value
         call controller%reset()
 
         select case (trim(adjustl(interval_type)))
           case ("uniform")
             controller%get_pos_array => measure_controller_get_pos_array_uniform
             controller%get_max_array_size => measure_controller_get_max_array_size_uniform
+            ! default values
+            controller%position_step = 1.0_dp
+            controller%min_value = 0.0_dp
+            if (present(step)) controller%position_step = step
+            if (present(min_value)) controller%min_value = min_value
           case ("powerlaw")
             controller%get_pos_array => measure_controller_get_pos_array_powerlaw
             controller%get_max_array_size => measure_controller_get_max_array_size_powerlaw
+            ! default values
+            controller%position_step = 1.05_dp
+            controller%min_value = 0.0_dp
+            if (present(step)) controller%position_step = step
+            if (present(min_value)) controller%min_value = min_value
           case default
             error stop "Error: Invalid interval type"
         end select
