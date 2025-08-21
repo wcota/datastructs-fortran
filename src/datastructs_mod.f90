@@ -6,6 +6,7 @@ module datastructs_mod
     use datastructs_samplers_base_mod, only : sampler_base_t
     use datastructs_samplers_mod, only: choose_sampler, sampler_choices
     use datastructs_measures_mod, only : statistical_measure_t, measure_controller_t
+    use datastructs_histograms_mod, only : weighted_histogram_t
     implicit none
     private
 
@@ -28,5 +29,5 @@ module datastructs_mod
     public :: choose_sampler, sampler_choices
 
     !> Statistical measures
-    public :: statistical_measure_t, measure_controller_t
+    public :: statistical_measure_t, measure_controller_t, weighted_histogram_t
 end module datastructs_mod
