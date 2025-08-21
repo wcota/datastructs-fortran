@@ -134,7 +134,7 @@ contains
         integer(kind=i4) :: res
         real(kind=dp) :: tick_last, ratio, eps
 
-        tick_last = controller%position_step
+        tick_last = 1.0_dp
         ratio = controller%position_step
         eps = EPSILON_VALUE * tick_last
 
@@ -165,7 +165,7 @@ contains
             controller%position_step = 1.05_dp
             controller%min_value = 0.0_dp
             if (present(step)) controller%position_step = step
-            if (present(min_value)) controller%min_value = min_value
+            if (present(min_value)) write(*, fmt_general) 'Warning: min_value not implemented for powerlaw'
           case default
             error stop "Error: Invalid interval type"
         end select
