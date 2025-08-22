@@ -16,7 +16,7 @@ program example_measures
     real(kind=dp) :: t, x
 
     integer(kind=i4), parameter :: n_samples = 10000
-    integer(kind=i4) :: i, time_pos, sample_pos
+    integer(kind=i4) :: i, sample_pos
     integer(kind=i4) :: file_unit
 
     real(kind=dp), parameter :: tmax = 100.0_dp
@@ -31,7 +31,7 @@ program example_measures
 
     call gen%init(12345)
 
-    call temporal_controller%init("uniform")
+    call temporal_controller%init("powerlaw")
 
     print*, temporal_controller%get_max_array_size(tmax)
 
@@ -45,18 +45,7 @@ program example_measures
 
         do while (t <= tmax)
 
-            ! measure stuff
-            block 
-                integer(kind=i4), allocatable :: time_pos_array(:)
-
-                time_pos_array = temporal_controller%get_pos_array(t)
-
-                do time_pos = 1, size(time_pos_array)
-                    call temporal_measure%add_point(time_pos_array(time_pos), t)
-                    call spatial_measure%add_point(time_pos_array(time_pos), x)
-                end do
-
-            end block
+            call temporal_controller%update(t, measure_stuff)
 
             t = t + (-log(1.0_dp - gen%rnd())/total_rate)
 
@@ -82,5 +71,15 @@ program example_measures
     close(file_unit)
 
     write(*, fmt_general) 'File was written to /tmp/temporal_measure.txt'
+
+contains
+
+    subroutine measure_stuff(time_pos)
+        integer(kind=i4), intent(in) :: time_pos
+
+        call temporal_measure%add_point(time_pos, t)
+        call spatial_measure%add_point(time_pos, x)
+
+    end subroutine measure_stuff
 
 end program example_measures
