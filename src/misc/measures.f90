@@ -20,6 +20,7 @@ module datastructs_measures_mod
 
         procedure(measure_controller_get_pos_array_i), pointer :: get_pos_array => null()
         procedure(measure_controller_get_max_array_size_i), pointer :: get_max_array_size => null()
+        procedure(measure_controller_update), pointer :: update => null()
     contains
         procedure :: init => measure_controller_init
         procedure :: reset => measure_controller_reset
@@ -74,6 +75,17 @@ module datastructs_measures_mod
             real(kind=dp), intent(in) :: max_value
             integer(kind=i4) :: res
         end function
+        subroutine measure_controller_update(controller, value, action)
+            import :: measure_controller_t, dp
+            class(measure_controller_t), intent(inout) :: controller
+            real(kind=dp), intent(in) :: value
+            procedure(measure_controller_action) :: action
+        end subroutine measure_controller_update
+        subroutine measure_controller_action(time_pos)
+            import :: i4
+            integer(kind=i4), intent(in) :: time_pos
+
+        end subroutine measure_controller_action
     end interface
 
     public :: statistical_measure_t, measure_controller_t
@@ -97,6 +109,25 @@ contains
         end if
     end function measure_controller_get_pos_array_uniform
 
+    subroutine measure_controller_update_uniform(controller, value, action)
+        class(measure_controller_t), intent(inout) :: controller
+        real(kind=dp), intent(in) :: value
+        procedure(measure_controller_action) :: action
+        integer(kind=i4) :: n, time_pos
+
+        n = int( floor( (value - controller%last_value_added + EPSILON_VALUE * controller%position_step) / controller%position_step ) )
+
+        if (n > 0) then
+            do time_pos = 1, n
+                call action(controller%last_position_added + time_pos)
+            end do
+            controller%last_value_added = value
+            controller%last_position_added = controller%last_position_added + n
+        else
+            ! do nothing
+        end if
+    end subroutine measure_controller_update_uniform
+
     function measure_controller_get_max_array_size_uniform(controller, max_value) result(res)
         class(measure_controller_t), intent(inout) :: controller
         real(kind=dp), intent(in) :: max_value
@@ -106,11 +137,10 @@ contains
 
     end function measure_controller_get_max_array_size_uniform
 
-    function measure_controller_get_pos_array_powerlaw(controller, value) result(res)
+    function measure_controller_calc_n_powerlaw(controller, value) result(n)
         class(measure_controller_t), intent(inout) :: controller
         real(kind=dp), intent(in) :: value
-        integer(kind=i4), allocatable :: res(:)
-        integer(kind=i4) :: n, i
+        integer(kind=i4) :: n
         real(kind=dp) :: tick_last, ratio, eps
 
         tick_last = controller%position_step**controller%last_position_added
@@ -118,6 +148,15 @@ contains
         eps = EPSILON_VALUE * tick_last
 
         n = int( floor( log( (value + eps) / tick_last ) / log(ratio) ) )
+    end function measure_controller_calc_n_powerlaw
+
+    function measure_controller_get_pos_array_powerlaw(controller, value) result(res)
+        class(measure_controller_t), intent(inout) :: controller
+        real(kind=dp), intent(in) :: value
+        integer(kind=i4), allocatable :: res(:)
+        integer(kind=i4) :: n, i
+
+        n = measure_controller_calc_n_powerlaw(controller, value)
 
         if (n > 0) then
             res = [(controller%last_position_added + i, i=1,n)]
@@ -128,13 +167,32 @@ contains
         end if
     end function measure_controller_get_pos_array_powerlaw
 
+    subroutine measure_controller_update_powerlaw(controller, value, action)
+        class(measure_controller_t), intent(inout) :: controller
+        real(kind=dp), intent(in) :: value
+        procedure(measure_controller_action) :: action
+        integer(kind=i4) :: n, time_pos
+
+        n = measure_controller_calc_n_powerlaw(controller, value)
+
+        if (n > 0) then
+            do time_pos = 1, n
+                call action(controller%last_position_added + time_pos)
+            end do
+            controller%last_value_added = value
+            controller%last_position_added = controller%last_position_added + n
+        else
+            ! do nothing
+        end if
+    end subroutine measure_controller_update_powerlaw
+
     function measure_controller_get_max_array_size_powerlaw(controller, max_value) result(res)
         class(measure_controller_t), intent(inout) :: controller
         real(kind=dp), intent(in) :: max_value
         integer(kind=i4) :: res
         real(kind=dp) :: tick_last, ratio, eps
 
-        tick_last = 1.0_dp
+        tick_last = max(1.0_dp, controller%min_value)
         ratio = controller%position_step
         eps = EPSILON_VALUE * tick_last
 
@@ -153,6 +211,7 @@ contains
           case ("uniform")
             controller%get_pos_array => measure_controller_get_pos_array_uniform
             controller%get_max_array_size => measure_controller_get_max_array_size_uniform
+            controller%update => measure_controller_update_uniform
             ! default values
             controller%position_step = 1.0_dp
             controller%min_value = 0.0_dp
@@ -161,6 +220,7 @@ contains
           case ("powerlaw")
             controller%get_pos_array => measure_controller_get_pos_array_powerlaw
             controller%get_max_array_size => measure_controller_get_max_array_size_powerlaw
+            controller%update => measure_controller_update_powerlaw
             ! default values
             controller%position_step = 1.05_dp
             controller%min_value = 0.0_dp
