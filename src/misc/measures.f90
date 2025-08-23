@@ -75,17 +75,17 @@ module datastructs_measures_mod
             real(kind=dp), intent(in) :: max_value
             integer(kind=i4) :: res
         end function
-        subroutine measure_controller_update(controller, value, action)
-            import :: measure_controller_t, dp
-            class(measure_controller_t), intent(inout) :: controller
-            real(kind=dp), intent(in) :: value
-            procedure(measure_controller_action) :: action
-        end subroutine measure_controller_update
         subroutine measure_controller_action(time_pos)
             import :: i4
             integer(kind=i4), intent(in) :: time_pos
 
         end subroutine measure_controller_action
+        subroutine measure_controller_update(controller, value, action)
+            import :: measure_controller_t, dp, measure_controller_action
+            class(measure_controller_t), intent(inout) :: controller
+            real(kind=dp), intent(in) :: value
+            procedure(measure_controller_action) :: action
+        end subroutine measure_controller_update
     end interface
 
     public :: statistical_measure_t, measure_controller_t
