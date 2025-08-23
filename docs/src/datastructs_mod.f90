@@ -5,6 +5,8 @@ module datastructs_mod
                          unique_values, new_fixed_list_pointer
     use datastructs_samplers_base_mod, only : sampler_base_t
     use datastructs_samplers_mod, only: choose_sampler, sampler_choices
+    use datastructs_measures_mod, only : statistical_measure_t, measure_controller_t
+    use datastructs_histograms_mod, only : weighted_histogram_t
     implicit none
     private
 
@@ -25,4 +27,7 @@ module datastructs_mod
 
     !> Choose a sampler based on the selected algorithm
     public :: choose_sampler, sampler_choices
+
+    !> Statistical measures
+    public :: statistical_measure_t, measure_controller_t, weighted_histogram_t
 end module datastructs_mod

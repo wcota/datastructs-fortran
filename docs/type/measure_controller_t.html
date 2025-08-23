@@ -10,7 +10,7 @@
     <meta name="author" content="Wesley Cota <https://wcota.me/>" >
     <link rel="icon" href="../favicon.png">
 
-    <title>fixed_list_t &ndash; Data structures for Fortran </title>
+    <title>measure_controller_t &ndash; Data structures for Fortran </title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -77,7 +77,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>fixed_list_t
+    <h1>measure_controller_t
       <small>Derived Type</small>
       
     </h1>
@@ -88,21 +88,21 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="<p> 5.1% of total for derived types.</p>Including implementation: 41 statements,  3.0% of total for derived types.">11 statements</a>
+                 title="<p> 5.5% of total for derived types.</p>Including implementation: 44 statements,  3.2% of total for derived types.">12 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/fixed_list.f90"> Source File</a>
+              <a href="../src/measures.f90"> Source File</a>
             </li>
         </ul>
       </div>
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='../sourcefile/fixed_list.f90.html'>fixed_list.f90</a></li>
-                <li class="breadcrumb-item"><a href='../module/datastructs_lists_fixed_list_mod.html'>datastructs_lists_fixed_list_mod</a></li>
-            <li class="breadcrumb-item active" aria-current="page">fixed_list_t</li>
+                <li class="breadcrumb-item"><a href='../sourcefile/measures.f90.html'>measures.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/datastructs_measures_mod.html'>datastructs_measures_mod</a></li>
+            <li class="breadcrumb-item active" aria-current="page">measure_controller_t</li>
           </ol>
         </nav>
       </div>
@@ -130,12 +130,13 @@
       </a>
       <div id="vars-0" class="collapse">
         <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../type/fixed_list_t.html#variable-initial_index">initial_index</a>
-            <a class="list-group-item" href="../type/fixed_list_t.html#variable-final_index">final_index</a>
-            <a class="list-group-item" href="../type/fixed_list_t.html#variable-n~14">n</a>
-            <a class="list-group-item" href="../type/fixed_list_t.html#variable-list~2">list</a>
-            <a class="list-group-item" href="../type/fixed_list_t.html#variable-next">next</a>
-            <a class="list-group-item" href="../type/fixed_list_t.html#variable-prev">prev</a>
+            <a class="list-group-item" href="../type/measure_controller_t.html#variable-last_value_added">last_value_added</a>
+            <a class="list-group-item" href="../type/measure_controller_t.html#variable-last_position_added">last_position_added</a>
+            <a class="list-group-item" href="../type/measure_controller_t.html#variable-position_step">position_step</a>
+            <a class="list-group-item" href="../type/measure_controller_t.html#variable-min_value">min_value</a>
+            <a class="list-group-item" href="../type/measure_controller_t.html#variable-get_pos_array">get_pos_array</a>
+            <a class="list-group-item" href="../type/measure_controller_t.html#variable-get_max_array_size">get_max_array_size</a>
+            <a class="list-group-item" href="../type/measure_controller_t.html#variable-update">update</a>
         </div>
       </div>
     </div>
@@ -154,18 +155,7 @@
   
   
   
-      <div class="card mb-4">
-      <a data-bs-toggle="collapse" href="#fins-0"
-         aria-expanded="false" aria-controls="fins-0">
-         <h4 class="card-header bg-primary text-white">Finalization Procedures</h4>
-      </a>
-      <div id="fins-0" class="collapse">
-        <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../type/fixed_list_t.html#finalproc-finalize_fixed_list">finalize_fixed_list</a>
-        </div>
-      </div>
-    </div>
-
+  
       <div class="card mb-4">
       <a data-bs-toggle="collapse" href="#boundprocs-0"
          aria-expanded="false" aria-controls="boundprocs-0">
@@ -173,9 +163,8 @@
       </a>
       <div id="boundprocs-0" class="collapse">
         <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../type/fixed_list_t.html#boundprocedure-init~3">init</a>
-            <a class="list-group-item" href="../type/fixed_list_t.html#boundprocedure-sum~4">sum</a>
-            <a class="list-group-item" href="../type/fixed_list_t.html#boundprocedure-print~2">print</a>
+            <a class="list-group-item" href="../type/measure_controller_t.html#boundprocedure-init~4">init</a>
+            <a class="list-group-item" href="../type/measure_controller_t.html#boundprocedure-reset~5">reset</a>
         </div>
       </div>
     </div>
@@ -190,8 +179,12 @@
     
     <div class="col-md-9" id='text'>
       <h2 id="type-def-statement">
-        type, public :: fixed_list_t</h2>
-    <p>Type for a fixed list, that can be used as a list of lists</p>
+        type, public :: measure_controller_t</h2>
+    <p>Measure controller for managing time steps
+* The idea is that this controller will keep track of the last value added and the last position added
+* The procedures will automatically add or not a given position
+* <code>get_pos_array</code> will return the array of positions in which the value can be added
+* <code>get_max_array_size</code> will return the maximum size of the array of positions that can be added</p>
     <br>
 
     <section>
@@ -208,24 +201,24 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-initial_index"></span>
-              integer(kind=i4),
+              <span class="anchor" id="variable-last_value_added"></span>
+              real(kind=dp),
             </td>
               <td>public</td>
             <td>
               
             </td>
             <td>::</td>
-            <td><strong>initial_index</strong></td>
-                <td></td>
-                <td></td>
+            <td><strong>last_value_added</strong></td>
+<td> =</td>
+                <td>0.0_dp</td>
             <td>
-                <p>Metadata</p>
+                
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-final_index"></span>
+              <span class="anchor" id="variable-last_position_added"></span>
               integer(kind=i4),
             </td>
               <td>public</td>
@@ -233,24 +226,7 @@
               
             </td>
             <td>::</td>
-            <td><strong>final_index</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-                <p>Metadata</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-n~14"></span>
-              integer(kind=i4),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>n</strong></td>
+            <td><strong>last_position_added</strong></td>
 <td> =</td>
                 <td>0</td>
             <td>
@@ -259,51 +235,85 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-list~2"></span>
-              integer(kind=i4),
+              <span class="anchor" id="variable-position_step"></span>
+              real(kind=dp),
             </td>
-              <td>public,</td>
+              <td>public</td>
             <td>
-              allocatable
+              
             </td>
             <td>::</td>
-            <td><strong>list</strong>(:)</td>
-                <td></td>
-                <td></td>
+            <td><strong>position_step</strong></td>
+<td> =</td>
+                <td>1.0_dp</td>
             <td>
                 
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-next"></span>
-              type(<a href='fixed_list_t.html'>fixed_list_t</a>),
+              <span class="anchor" id="variable-min_value"></span>
+              real(kind=dp),
             </td>
-              <td>public,</td>
+              <td>public</td>
             <td>
-              pointer
+              
             </td>
             <td>::</td>
-            <td><strong>next</strong></td>
-                <td></td>
-                <td></td>
+            <td><strong>min_value</strong></td>
+<td> =</td>
+                <td>0.0_dp</td>
             <td>
                 
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-prev"></span>
-              type(<a href='fixed_list_t.html'>fixed_list_t</a>),
+              <span class="anchor" id="variable-get_pos_array"></span>
+              procedure(measure_controller_get_pos_array_i),
             </td>
               <td>public,</td>
             <td>
               pointer
             </td>
             <td>::</td>
-            <td><strong>prev</strong></td>
-                <td></td>
-                <td></td>
+            <td><strong>get_pos_array</strong></td>
+<td>=&gt; </td>
+                <td>null()</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-get_max_array_size"></span>
+              procedure(measure_controller_get_max_array_size_i),
+            </td>
+              <td>public,</td>
+            <td>
+              pointer
+            </td>
+            <td>::</td>
+            <td><strong>get_max_array_size</strong></td>
+<td>=&gt; </td>
+                <td>null()</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-update"></span>
+              procedure(measure_controller_update),
+            </td>
+              <td>public,</td>
+            <td>
+              pointer
+            </td>
+            <td>::</td>
+            <td><strong>update</strong></td>
+<td>=&gt; </td>
+                <td>null()</td>
             <td>
                 
             </td>
@@ -315,83 +325,26 @@
     <br>
     
 
-      <section>
-        <h2>Finalization Procedures</h2>
-            <div class="card">
-    <div class="card-header codesum">
-      <span class="anchor" id="finalproc-finalize_fixed_list"></span>
-      <h3>final :: <strong>finalize_fixed_list</strong> </h3>
-    </div>
-    <div class="card-body">
-      
-      
-    </div>
-    <ul class="list-group">
-      <li class="list-group-item">
-            <h3>
-    private  subroutine finalize_fixed_list(this)  
-
-    </h3>
-  <p>Finalize the list</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-this~58"></span>
-              type(<a href='fixed_list_t.html'>fixed_list_t</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>this</strong></td>
-            <td>
-                
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-      </li>
-    </ul>
-  </div>
-
-      </section>
-      <br>
 
       <section>
         <h2>Type-Bound Procedures</h2>
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-init~3"></span>
+      <span class="anchor" id="boundprocedure-init~4"></span>
       <h3>
           procedure, public ::
-  <strong>init</strong> => fixed_list_init
+  <strong>init</strong> => measure_controller_init
         
       </h3>
     </div>
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private  subroutine fixed_list_init(this, i1, i2)  
+    private  subroutine measure_controller_init(controller, interval_type, step, min_value)  
 </h3>
 
-  <p>Initialize the fixed list
-Input: i1 - initial index, i2 - final index
-       If i2 is not present, i1 is used as the size (final index)</p>
+  
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -407,14 +360,14 @@ Input: i1 - initial index, i2 - final index
         <tr>
             <td>
               <span class="anchor" ></span>
-              class(<a href='fixed_list_t.html'>fixed_list_t</a>),
+              class(<a href='measure_controller_t.html'>measure_controller_t</a>),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>this</strong></td>
+            <td><strong>controller</strong></td>
             <td>
                 
             </td>
@@ -422,14 +375,14 @@ Input: i1 - initial index, i2 - final index
         <tr>
             <td>
               <span class="anchor" ></span>
-              integer(kind=i4),
+              character(len=*),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>i1</strong></td>
+            <td><strong>interval_type</strong></td>
             <td>
                 
             </td>
@@ -437,14 +390,29 @@ Input: i1 - initial index, i2 - final index
         <tr>
             <td>
               <span class="anchor" ></span>
-              integer(kind=i4),
+              real(kind=dp),
             </td>
 <td>intent(in),</td>
               <td>optional</td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>i2</strong></td>
+            <td><strong>step</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=dp),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>min_value</strong></td>
             <td>
                 
             </td>
@@ -461,20 +429,20 @@ Input: i1 - initial index, i2 - final index
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-sum~4"></span>
+      <span class="anchor" id="boundprocedure-reset~5"></span>
       <h3>
           procedure, public ::
-  <strong>sum</strong> => fixed_list_sum
+  <strong>reset</strong> => measure_controller_reset
         
       </h3>
     </div>
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private  function fixed_list_sum(this) result(val)  
+    private  subroutine measure_controller_reset(controller)  
 </h3>
 
-  <p>Sum the elements of the fixed list</p>
+  
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -490,72 +458,14 @@ Input: i1 - initial index, i2 - final index
         <tr>
             <td>
               <span class="anchor" ></span>
-              class(<a href='fixed_list_t.html'>fixed_list_t</a>),
+              class(<a href='measure_controller_t.html'>measure_controller_t</a>),
             </td>
-<td>intent(in)</td>
+<td>intent(inout)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>this</strong></td>
-            <td>
-                
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-    <h4>
-    Return Value
-    <small>integer(kind=i4)</small>
-    </h4>
-    
-
-          </li>
-      </ul>
-  </div>
-
-          </div>
-          <div class="row">
-              <div class="card mt-3">
-    <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-print~2"></span>
-      <h3>
-          procedure, public ::
-  <strong>print</strong> => fixed_list_print
-        
-      </h3>
-    </div>
-      <ul class="list-group">
-          <li class="list-group-item">
-                    <h3>
-    private  subroutine fixed_list_print(this)  
-</h3>
-
-  <p>Print the fixed list</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              class(<a href='fixed_list_t.html'>fixed_list_t</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>this</strong></td>
+            <td><strong>controller</strong></td>
             <td>
                 
             </td>
