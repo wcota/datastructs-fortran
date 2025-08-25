@@ -1,6 +1,6 @@
 program test_weighted_histogram
     use datastructs_kinds_mod
-    use datastructs_histograms_mod
+    use datastructs_mod
     implicit none
 
     type(weighted_histogram_t) :: hist
