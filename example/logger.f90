@@ -39,7 +39,7 @@ program example_logger
     close(funit_err)
 
     write(*, fmt_general) "# Testing with output defaults"
-    call set_output_defaults()
+    call set_unit_defaults()
     call test()
 
 contains
