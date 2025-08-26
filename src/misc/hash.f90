@@ -8,13 +8,15 @@ module datastructs_hash_mod
 contains
 
     !> DJB2 hash function
-    !> Inspired by http://www.cse.yorku.ca/~oz/hash.html
-    !> and https://github.com/pdebuyl/fortran_hash_table/blob/master/src/dictionary_m.f90
+    !> Inspired by:
+    !> - http://www.cse.yorku.ca/~oz/hash.html
+    !> - https://github.com/pdebuyl/fortran_hash_table/blob/master/src/dictionary_m.f90
     function djb2(list) result(r)
-        integer(kind=i4), intent(in) :: list(:)
-        integer(kind=i8) :: r
+        integer(kind=i4), intent(in) :: list(:) !! List of integers to hash
+        integer(kind=i8) :: r !! Computed hash value
 
-        integer(kind=i4) :: i, l
+        integer(kind=i4) :: i !! Loop index
+        integer(kind=i4) :: l !! Length of the list
 
         l = size(list)
 

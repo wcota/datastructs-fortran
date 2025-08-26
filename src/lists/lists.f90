@@ -1,4 +1,5 @@
 !> General module for lists and related operations
+!> It imports the necessary modules for list and heap implementations
 module datastructs_lists_mod
     use datastructs_kinds_mod
     use datastructs_lists_dynamical_list_mod
@@ -7,13 +8,13 @@ module datastructs_lists_mod
     implicit none
     private
 
-    !> Constructors
+    ! Constructors
     public :: dynamical_list, fixed_list, maxheap
 
-    !> Derived types
+    ! Derived types
     public :: dynamical_list_t, fixed_list_t, maxheap_t
 
-    !> Operations
+    ! Operations
     public :: unique_values
     public :: new_fixed_list_pointer
 
@@ -24,10 +25,11 @@ contains
     !> The result is a list of unique integers
     function unique_values(list) result(unique)
         use stdlib_sorting, only: sort
-        integer(kind=i4), intent(in) :: list(:)
-        integer(kind=i4), allocatable :: unique(:)
-        integer(kind=i4), allocatable :: sorted_list(:)
-        integer(kind=i4) :: i, count_unique
+        integer(kind=i4), intent(in) :: list(:) !! Input list of integers
+        integer(kind=i4), allocatable :: unique(:) !! Output list of unique integers
+        integer(kind=i4), allocatable :: sorted_list(:) !! Sorted copy of the input list
+        integer(kind=i4) :: i !! Loop variable
+        integer(kind=i4) :: count_unique !! Count of unique integers
 
         sorted_list = list
 

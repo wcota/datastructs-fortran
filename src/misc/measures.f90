@@ -1,22 +1,26 @@
 !> This module implements a time step controller and an object to manage statistical measures
+!>
+!> @todo
+!> Document the rest of the module
+!> @endtodo
 module datastructs_measures_mod
     use datastructs_kinds_mod
     implicit none
     private
 
-    real(kind=dp), parameter :: EPSILON_VALUE = 1.0e-12_dp ! EPSILON_VALUE for floating point comparisons
+    real(kind=dp), parameter :: EPSILON_VALUE = 1.0e-12_dp !! EPSILON_VALUE for floating point comparisons
 
     !> Measure controller for managing time steps
-    !> * The idea is that this controller will keep track of the last value added and the last position added
-    !> * The procedures will automatically add or not a given position
-    !> * `get_pos_array` will return the array of positions in which the value can be added
-    !> * `get_max_array_size` will return the maximum size of the array of positions that can be added
+    !> The idea is that this controller will keep track of the last value added and the last position added
+    !> The procedures will automatically add or not a given position
+    !> `get_pos_array` will return the array of positions in which the value can be added
+    !> `get_max_array_size` will return the maximum size of the array of positions that can be added
     type :: measure_controller_t
         ! automatically add or not a given position
-        real(kind=dp) :: last_value_added = 0.0_dp
-        integer(kind=i4) :: last_position_added = 0
-        real(kind=dp) :: position_step = 1.0_dp
-        real(kind=dp) :: min_value = 0.0_dp ! minimum value for the measure
+        real(kind=dp) :: last_value_added = 0.0_dp !! Last value added
+        integer(kind=i4) :: last_position_added = 0 !! Last position added
+        real(kind=dp) :: position_step = 1.0_dp !! Position step size
+        real(kind=dp) :: min_value = 0.0_dp !! Minimum value for the measure
 
         procedure(measure_controller_get_pos_array_i), pointer :: get_pos_array => null()
         procedure(measure_controller_get_max_array_size_i), pointer :: get_max_array_size => null()
@@ -27,16 +31,16 @@ module datastructs_measures_mod
     end type measure_controller_t
 
     !> Object to handle statistical measures
-    !> * This object will keep track of the statistical measures for a given set of points
-    !> * Procedures are available to access the measures
+    !> This object will keep track of the statistical measures for a given set of points
+    !> Procedures are available to access the measures
     type :: statistical_measure_t
-        integer(kind=i4), allocatable :: n_samples(:) ! number of samples for each point
-        real(kind=dp), allocatable :: sum_values(:) ! used to store the values of the measure
-        real(kind=dp), allocatable :: sum_values_squares(:) ! used to store the squares of the values of the measure
-        real(kind=dp), allocatable :: sum_values_thirds(:) ! used to store the cubes of the values of the measure
+        integer(kind=i4), allocatable :: n_samples(:) !! number of samples for each point
+        real(kind=dp), allocatable :: sum_values(:) !! used to store the values of the measure
+        real(kind=dp), allocatable :: sum_values_squares(:) !! used to store the squares of the values of the measure
+        real(kind=dp), allocatable :: sum_values_thirds(:) !! used to store the cubes of the values of the measure
 
-        integer(kind=i4) :: n_size ! Number of points in the measure
-        integer(kind=i4) :: max_n_samples = 0 ! Maximum number of samples for any point
+        integer(kind=i4) :: n_size !! Number of points in the measure
+        integer(kind=i4) :: max_n_samples = 0 !! Maximum number of samples for any point
 
     contains
 
