@@ -59,6 +59,9 @@ contains
 
         call log_write(LOG_ERROR, "Error: failed to allocate resource.")
 
+        call log_write(LOG_INFO, "Without new line", .false.)
+        call log_write(LOG_INFO, "This is on the same line")
+
         write(*, fmt_general) "------------------------------------------------------------"
 
     end subroutine test

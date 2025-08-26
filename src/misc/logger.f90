@@ -37,8 +37,11 @@ module datastructs_logger_mod
 
     interface log_write
         module procedure log_write_message
+        module procedure log_write_message_no_advance
         module procedure log_write_message_i4
+        module procedure log_write_message_i4_no_advance
         module procedure log_write_message_dp
+        module procedure log_write_message_dp_no_advance
     end interface log_write
 
     public :: log_unit, set_verbose, set_level, set_output_unit, set_error_unit, set_unit_defaults, log_write
@@ -125,6 +128,21 @@ contains
         if (LOGGER_OK) write(unit, fmt_general) message
     end subroutine log_write_message
 
+    !> Write a log message for a given level without advancing the line
+    subroutine log_write_message_no_advance(level, message, newline)
+        integer(kind=i4), intent(in) :: level !! Log level of the message
+        character(len=*), intent(in) :: message !! The text message to log
+        logical, intent(in) :: newline !! If `.false.`, do not append a newline
+        character(len=:), allocatable :: advance
+        integer(kind=i4) :: unit
+
+        advance = "no"
+        if (newline) advance = "yes"
+
+        unit = log_unit(level)
+        if (LOGGER_OK) write(unit, fmt_general, advance=advance) message
+    end subroutine log_write_message_no_advance
+
     !> Write a log message for a given level, appending an integer at the end
     subroutine log_write_message_i4(level, message, value)
         integer(kind=i4), intent(in) :: level !! Log level of the message
@@ -136,6 +154,22 @@ contains
         if (LOGGER_OK) write(unit, fmt_general) trim(message), value
     end subroutine log_write_message_i4
 
+    !> Write a log message for a given level without advancing the line, appending an integer at the end
+    subroutine log_write_message_i4_no_advance(level, message, value, newline)
+        integer(kind=i4), intent(in) :: level !! Log level of the message
+        character(len=*), intent(in) :: message !! The text message to log
+        integer(kind=i4), intent(in) :: value !! Integer value to append
+        logical, intent(in) :: newline !! If `.false.`, do not append a newline
+        integer(kind=i4) :: unit
+        character(len=:), allocatable :: advance
+
+        advance = "no"
+        if (newline) advance = "yes"
+
+        unit = log_unit(level)
+        if (LOGGER_OK) write(unit, fmt_general, advance=advance) trim(message), value
+    end subroutine log_write_message_i4_no_advance
+
     !> Write a log message for a given level, appending a double at the end
     subroutine log_write_message_dp(level, message, value)
         integer(kind=i4), intent(in) :: level !! Log level of the message
@@ -146,5 +180,21 @@ contains
         unit = log_unit(level)
         if (LOGGER_OK) write(unit, fmt_general) trim(message), value
     end subroutine log_write_message_dp
+
+    !> Write a log message for a given level without advancing the line, appending a double at the end
+    subroutine log_write_message_dp_no_advance(level, message, value, newline)
+        integer(kind=i4), intent(in) :: level !! Log level of the message
+        character(len=*), intent(in) :: message !! The text message to log
+        real(kind=dp), intent(in) :: value !! Double precision value to append
+        logical, intent(in) :: newline !! If `.false.`, do not append a newline
+        integer(kind=i4) :: unit
+        character(len=:), allocatable :: advance
+
+        advance = "no"
+        if (newline) advance = "yes"
+
+        unit = log_unit(level)
+        if (LOGGER_OK) write(unit, fmt_general, advance=advance) trim(message), value
+    end subroutine log_write_message_dp_no_advance
 
 end module datastructs_logger_mod
