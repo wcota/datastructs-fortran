@@ -162,10 +162,10 @@
       </a>
       <div id="boundprocs-0" class="collapse">
         <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../type/statistical_measure_t.html#boundprocedure-init~5">init</a>
+            <a class="list-group-item" href="../type/statistical_measure_t.html#boundprocedure-init~4">init</a>
             <a class="list-group-item" href="../type/statistical_measure_t.html#boundprocedure-add_point">add_point</a>
-            <a class="list-group-item" href="../type/statistical_measure_t.html#boundprocedure-get_mean~2">get_mean</a>
-            <a class="list-group-item" href="../type/statistical_measure_t.html#boundprocedure-get_variance~2">get_variance</a>
+            <a class="list-group-item" href="../type/statistical_measure_t.html#boundprocedure-get_mean">get_mean</a>
+            <a class="list-group-item" href="../type/statistical_measure_t.html#boundprocedure-get_variance">get_variance</a>
             <a class="list-group-item" href="../type/statistical_measure_t.html#boundprocedure-get_stddev">get_stddev</a>
             <a class="list-group-item" href="../type/statistical_measure_t.html#boundprocedure-get_skewness">get_skewness</a>
         </div>
@@ -184,8 +184,8 @@
       <h2 id="type-def-statement">
         type, public :: statistical_measure_t</h2>
     <p>Object to handle statistical measures
-* This object will keep track of the statistical measures for a given set of points
-* Procedures are available to access the measures</p>
+This object will keep track of the statistical measures for a given set of points
+Procedures are available to access the measures</p>
     <br>
 
     <section>
@@ -214,7 +214,7 @@
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>number of samples for each point</p>
             </td>
         </tr>
         <tr>
@@ -231,7 +231,7 @@
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>used to store the values of the measure</p>
             </td>
         </tr>
         <tr>
@@ -248,7 +248,7 @@
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>used to store the squares of the values of the measure</p>
             </td>
         </tr>
         <tr>
@@ -265,7 +265,7 @@
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>used to store the cubes of the values of the measure</p>
             </td>
         </tr>
         <tr>
@@ -282,7 +282,7 @@
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>Number of points in the measure</p>
             </td>
         </tr>
         <tr>
@@ -299,7 +299,7 @@
 <td> =</td>
                 <td>0</td>
             <td>
-                
+                <p>Maximum number of samples for any point</p>
             </td>
         </tr>
     </tbody>
@@ -315,7 +315,7 @@
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-init~5"></span>
+      <span class="anchor" id="boundprocedure-init~4"></span>
       <h3>
           procedure, public ::
   <strong>init</strong> => statistical_measure_init
@@ -466,7 +466,7 @@
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-get_mean~2"></span>
+      <span class="anchor" id="boundprocedure-get_mean"></span>
       <h3>
           generic, public ::
   <strong>get_mean</strong> => statistical_measure_get_mean_pos, statistical_measure_get_mean_array
@@ -612,7 +612,7 @@
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-get_variance~2"></span>
+      <span class="anchor" id="boundprocedure-get_variance"></span>
       <h3>
           generic, public ::
   <strong>get_variance</strong> => statistical_measure_get_variance_pos, statistical_measure_get_variance_array

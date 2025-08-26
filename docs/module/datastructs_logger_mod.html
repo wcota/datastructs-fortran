@@ -10,7 +10,7 @@
     <meta name="author" content="Wesley Cota <https://wcota.me/>" >
     <link rel="icon" href="../favicon.png">
 
-    <title>datastructs_measures_mod &ndash; Data structures for Fortran</title>
+    <title>datastructs_logger_mod &ndash; Data structures for Fortran</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -77,7 +77,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>datastructs_measures_mod
+    <h1>datastructs_logger_mod
       <small>Module</small>
       
     </h1>
@@ -88,20 +88,20 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="16.9% of total for modules and submodules.">333 statements</a>
+                 title=" 3.7% of total for modules and submodules.">72 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/measures.f90"> Source File</a>
+              <a href="../src/logger.f90"> Source File</a>
             </li>
         </ul>
       </div>
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='../sourcefile/measures.f90.html'>measures.f90</a></li>
-            <li class="breadcrumb-item active" aria-current="page">datastructs_measures_mod</li>
+                <li class="breadcrumb-item"><a href='../sourcefile/logger.f90.html'>logger.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">datastructs_logger_mod</li>
           </ol>
         </nav>
       </div>
@@ -122,6 +122,22 @@
         <div id="sidebar">
       <h3>Contents</h3>
   
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#vars-0"
+         aria-expanded="false" aria-controls="vars-0">
+         <h4 class="card-header bg-primary text-white">Variables</h4>
+      </a>
+      <div id="vars-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/datastructs_logger_mod.html#variable-log_error">LOG_ERROR</a>
+            <a class="list-group-item" href="../module/datastructs_logger_mod.html#variable-log_warning">LOG_WARNING</a>
+            <a class="list-group-item" href="../module/datastructs_logger_mod.html#variable-log_info">LOG_INFO</a>
+            <a class="list-group-item" href="../module/datastructs_logger_mod.html#variable-log_debug">LOG_DEBUG</a>
+            <a class="list-group-item" href="../module/datastructs_logger_mod.html#variable-logger_ok">LOGGER_OK</a>
+        </div>
+      </div>
+    </div>
+
   
   
   
@@ -132,20 +148,34 @@
   
   
       <div class="card mb-4">
-      <a data-bs-toggle="collapse" href="#types-0"
-         aria-expanded="false" aria-controls="types-0">
-         <h4 class="card-header bg-primary text-white">Derived Types</h4>
+      <a data-bs-toggle="collapse" href="#funcs-0"
+         aria-expanded="false" aria-controls="funcs-0">
+         <h4 class="card-header bg-primary text-white">Functions</h4>
       </a>
-      <div id="types-0" class="collapse">
+      <div id="funcs-0" class="collapse">
         <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../module/datastructs_measures_mod.html#type-measure_controller_t">measure_controller_t</a>
-            <a class="list-group-item" href="../module/datastructs_measures_mod.html#type-statistical_measure_t">statistical_measure_t</a>
+            <a class="list-group-item" href="../module/datastructs_logger_mod.html#proc-log_unit">log_unit</a>
         </div>
       </div>
     </div>
 
-  
-  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#subs-0"
+         aria-expanded="false" aria-controls="subs-0">
+         <h4 class="card-header bg-primary text-white">Subroutines</h4>
+      </a>
+      <div id="subs-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/datastructs_logger_mod.html#proc-set_verbose">set_verbose</a>
+            <a class="list-group-item" href="../module/datastructs_logger_mod.html#proc-set_level">set_level</a>
+            <a class="list-group-item" href="../module/datastructs_logger_mod.html#proc-set_output_unit">set_output_unit</a>
+            <a class="list-group-item" href="../module/datastructs_logger_mod.html#proc-set_error_unit">set_error_unit</a>
+            <a class="list-group-item" href="../module/datastructs_logger_mod.html#proc-set_unit_defaults">set_unit_defaults</a>
+            <a class="list-group-item" href="../module/datastructs_logger_mod.html#proc-log_write">log_write</a>
+        </div>
+      </div>
+    </div>
+
   
   
   
@@ -160,17 +190,28 @@
     </div>
 
     <div class="col-md-9" id='text'>
-      <p>This module implements a time step controller and an object to manage statistical measures</p>
-<div class="alert alert-success">
-<p class="alert-title h4">Todo</p>
-<p>Document the rest of the module</p>
+      <p>Logging module for managing verbosity levels and output destinations.
+This module provides a simple logging system with support for different log
+levels (ERROR, WARNING, INFO, DEBUG), configurable verbosity, and output units.</p>
+<p>Features:
+- Enable or disable global verbosity
+- Control the log level threshold (e.g., show only ERROR, or include DEBUG)
+- Redirect logs to custom output units or reset to defaults (stdout/stderr)
+- Helper function to determine whether to log and which unit to use
+- Convenience subroutine to write logs directly</p>
+<div class="alert alert-info">
+<p class="alert-title h4">Note</p>
+<p>This module is designed for modular use and can be applied to any program.
+Set the current log level threshold.</p>
 </div>
+<p>Only messages with level &lt;= LOGGER_LEVEL will be printed.</p>
 <br>          <div class="card mb-4">
       <h3 class="card-header card-title bg-light">Uses</h3>
       <div class="card-body">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <ul class="list-inline">
+                  <li class="list-inline-item"><a href='http://fortranwiki.org/fortran/show/iso_fortran_env'>iso_fortran_env</a></li>
                   <li class="list-inline-item"><a href='datastructs_kinds_mod.html'>datastructs_kinds_mod</a></li>
               </ul>
             </li>
@@ -180,47 +221,53 @@
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 13.1.1 (0)
  -->
-<!-- Title: module~~datastructs_measures_mod~~UsesGraph Pages: 1 -->
-<svg id="moduledatastructs_measures_modUsesGraph" width="432pt" height="32pt"
- viewBox="0.00 0.00 432.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="module~~datastructs_measures_mod~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
-<title>module~~datastructs_measures_mod~~UsesGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 427.81,-27.52 427.81,4 -4,4"/>
-<!-- module~datastructs_measures_mod -->
-<g id="module~~datastructs_measures_mod~~UsesGraph_node1" class="node">
-<title>module~datastructs_measures_mod</title>
-<polygon fill="none" stroke="black" points="423.81,-23.52 279.54,-23.52 279.54,0 423.81,0 423.81,-23.52"/>
-<text xml:space="preserve" text-anchor="middle" x="351.68" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">datastructs_measures_mod</text>
+<!-- Title: module~~datastructs_logger_mod~~UsesGraph Pages: 1 -->
+<svg id="moduledatastructs_logger_modUsesGraph" width="415pt" height="52pt"
+ viewBox="0.00 0.00 415.00 52.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~datastructs_logger_mod~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 47.52)">
+<title>module~~datastructs_logger_mod~~UsesGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-47.52 410.56,-47.52 410.56,4 -4,4"/>
+<!-- module~datastructs_logger_mod -->
+<g id="module~~datastructs_logger_mod~~UsesGraph_node1" class="node">
+<title>module~datastructs_logger_mod</title>
+<polygon fill="none" stroke="black" points="406.56,-43.52 279.54,-43.52 279.54,-20 406.56,-20 406.56,-43.52"/>
+<text xml:space="preserve" text-anchor="middle" x="343.05" y="-27.78" font-family="Helvetica,sans-Serif" font-size="10.50">datastructs_logger_mod</text>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~datastructs_logger_mod~~UsesGraph_node2" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~datastructs_logger_mod~~UsesGraph_node2"><a xlink:href="http://fortranwiki.org/fortran/show/iso_fortran_env" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="85.77,-43.52 0,-43.52 0,-20 85.77,-20 85.77,-43.52"/>
+<text xml:space="preserve" text-anchor="middle" x="42.88" y="-27.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~datastructs_logger_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~datastructs_logger_mod~~UsesGraph_edge1" class="edge">
+<title>module~datastructs_logger_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M279.25,-32.49C267.39,-32.6 255.08,-32.7 243.54,-32.76 189.42,-33.03 175.89,-33.11 121.77,-32.76 113.87,-32.71 105.51,-32.63 97.32,-32.54"/>
+<polygon fill="#000000" stroke="#000000" points="97.48,-29.04 87.44,-32.42 97.39,-36.04 97.48,-29.04"/>
 </g>
 <!-- module~datastructs_kinds_mod -->
-<g id="module~~datastructs_measures_mod~~UsesGraph_node2" class="node">
+<g id="module~~datastructs_logger_mod~~UsesGraph_node3" class="node">
 <title>module~datastructs_kinds_mod</title>
-<g id="a_module~~datastructs_measures_mod~~UsesGraph_node2"><a xlink:href="../module/datastructs_kinds_mod.html" xlink:title="datastructs_kinds_mod">
+<g id="a_module~~datastructs_logger_mod~~UsesGraph_node3"><a xlink:href="../module/datastructs_kinds_mod.html" xlink:title="datastructs_kinds_mod">
 <polygon fill="#337ab7" stroke="#337ab7" points="243.54,-23.52 121.77,-23.52 121.77,0 243.54,0 243.54,-23.52"/>
 <text xml:space="preserve" text-anchor="middle" x="182.66" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_kinds_mod</text>
 </a>
 </g>
 </g>
-<!-- module~datastructs_measures_mod&#45;&gt;module~datastructs_kinds_mod -->
-<g id="module~~datastructs_measures_mod~~UsesGraph_edge1" class="edge">
-<title>module~datastructs_measures_mod&#45;&gt;module~datastructs_kinds_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M279.36,-11.76C271.44,-11.76 263.36,-11.76 255.43,-11.76"/>
-<polygon fill="#000000" stroke="#000000" points="255.47,-8.26 245.47,-11.76 255.47,-15.26 255.47,-8.26"/>
-</g>
-<!-- iso_fortran_env -->
-<g id="module~~datastructs_measures_mod~~UsesGraph_node3" class="node">
-<title>iso_fortran_env</title>
-<g id="a_module~~datastructs_measures_mod~~UsesGraph_node3"><a xlink:href="http://fortranwiki.org/fortran/show/iso_fortran_env" xlink:title="iso_fortran_env">
-<polygon fill="#337ab7" stroke="#337ab7" points="85.77,-23.52 0,-23.52 0,0 85.77,0 85.77,-23.52"/>
-<text xml:space="preserve" text-anchor="middle" x="42.88" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
-</a>
-</g>
+<!-- module~datastructs_logger_mod&#45;&gt;module~datastructs_kinds_mod -->
+<g id="module~~datastructs_logger_mod~~UsesGraph_edge2" class="edge">
+<title>module~datastructs_logger_mod&#45;&gt;module~datastructs_kinds_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M279.45,-23.86C271.51,-22.85 263.35,-21.82 255.28,-20.8"/>
+<polygon fill="#000000" stroke="#000000" points="255.85,-17.35 245.49,-19.57 254.98,-24.29 255.85,-17.35"/>
 </g>
 <!-- module~datastructs_kinds_mod&#45;&gt;iso_fortran_env -->
-<g id="module~~datastructs_measures_mod~~UsesGraph_edge2" class="edge">
+<g id="module~~datastructs_logger_mod~~UsesGraph_edge3" class="edge">
 <title>module~datastructs_kinds_mod&#45;&gt;iso_fortran_env</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M121.63,-11.76C113.54,-11.76 105.29,-11.76 97.32,-11.76"/>
-<polygon fill="#000000" stroke="#000000" points="97.43,-8.26 87.43,-11.76 97.43,-15.26 97.43,-8.26"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M121.63,-20.47C113.45,-21.66 105.1,-22.87 97.05,-24.04"/>
+<polygon fill="#000000" stroke="#000000" points="96.81,-20.54 87.42,-25.44 97.82,-27.47 96.81,-20.54"/>
 </g>
 </g>
 </svg>
@@ -309,32 +356,32 @@ modules which it uses.
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 13.1.1 (0)
  -->
-<!-- Title: module~~datastructs_measures_mod~~UsedByGraph Pages: 1 -->
-<svg id="moduledatastructs_measures_modUsedByGraph" width="279pt" height="32pt"
- viewBox="0.00 0.00 279.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="module~~datastructs_measures_mod~~UsedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
-<title>module~~datastructs_measures_mod~~UsedByGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 275.29,-27.52 275.29,4 -4,4"/>
-<!-- module~datastructs_measures_mod -->
-<g id="module~~datastructs_measures_mod~~UsedByGraph_node1" class="node">
-<title>module~datastructs_measures_mod</title>
-<polygon fill="none" stroke="black" points="144.27,-23.52 0,-23.52 0,0 144.27,0 144.27,-23.52"/>
-<text xml:space="preserve" text-anchor="middle" x="72.14" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">datastructs_measures_mod</text>
+<!-- Title: module~~datastructs_logger_mod~~UsedByGraph Pages: 1 -->
+<svg id="moduledatastructs_logger_modUsedByGraph" width="262pt" height="32pt"
+ viewBox="0.00 0.00 262.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~datastructs_logger_mod~~UsedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 27.52)">
+<title>module~~datastructs_logger_mod~~UsedByGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-27.52 258.04,-27.52 258.04,4 -4,4"/>
+<!-- module~datastructs_logger_mod -->
+<g id="module~~datastructs_logger_mod~~UsedByGraph_node1" class="node">
+<title>module~datastructs_logger_mod</title>
+<polygon fill="none" stroke="black" points="127.02,-23.52 0,-23.52 0,0 127.02,0 127.02,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="63.51" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50">datastructs_logger_mod</text>
 </g>
 <!-- module~datastructs_mod -->
-<g id="module~~datastructs_measures_mod~~UsedByGraph_node2" class="node">
+<g id="module~~datastructs_logger_mod~~UsedByGraph_node2" class="node">
 <title>module~datastructs_mod</title>
-<g id="a_module~~datastructs_measures_mod~~UsedByGraph_node2"><a xlink:href="../module/datastructs_mod.html" xlink:title="datastructs_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="271.29,-23.52 180.27,-23.52 180.27,0 271.29,0 271.29,-23.52"/>
-<text xml:space="preserve" text-anchor="middle" x="225.78" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_mod</text>
+<g id="a_module~~datastructs_logger_mod~~UsedByGraph_node2"><a xlink:href="../module/datastructs_mod.html" xlink:title="datastructs_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="254.04,-23.52 163.02,-23.52 163.02,0 254.04,0 254.04,-23.52"/>
+<text xml:space="preserve" text-anchor="middle" x="208.53" y="-7.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_mod</text>
 </a>
 </g>
 </g>
-<!-- module~datastructs_mod&#45;&gt;module~datastructs_measures_mod -->
-<g id="module~~datastructs_measures_mod~~UsedByGraph_edge1" class="edge">
-<title>module~datastructs_mod&#45;&gt;module~datastructs_measures_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M180.1,-11.76C172.41,-11.76 164.21,-11.76 155.89,-11.76"/>
-<polygon fill="#000000" stroke="#000000" points="156.03,-8.26 146.03,-11.76 156.03,-15.26 156.03,-8.26"/>
+<!-- module~datastructs_mod&#45;&gt;module~datastructs_logger_mod -->
+<g id="module~~datastructs_logger_mod~~UsedByGraph_edge1" class="edge">
+<title>module~datastructs_mod&#45;&gt;module~datastructs_logger_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M162.67,-11.76C155.04,-11.76 146.94,-11.76 138.79,-11.76"/>
+<polygon fill="#000000" stroke="#000000" points="138.8,-8.26 128.8,-11.76 138.8,-15.26 138.8,-8.26"/>
 </g>
 </g>
 </svg>
@@ -416,357 +463,396 @@ modules which it uses.
       <br>
 
 
+        <section>
+          <h2>Variables</h2>
+            <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-log_error"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>LOG_ERROR</strong></td>
+<td> =</td>
+                <td>0</td>
+            <td>
+                <p>Error messages</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-log_warning"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>LOG_WARNING</strong></td>
+<td> =</td>
+                <td>1</td>
+            <td>
+                <p>Warning messages</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-log_info"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>LOG_INFO</strong></td>
+<td> =</td>
+                <td>2</td>
+            <td>
+                <p>Informational messages</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-log_debug"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>LOG_DEBUG</strong></td>
+<td> =</td>
+                <td>3</td>
+            <td>
+                <p>Debug messages</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-logger_ok"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>LOGGER_OK</strong></td>
+<td> =</td>
+                <td>.true.</td>
+            <td>
+                <p>Indicates if the last call to log_unit allowed logging</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+        </section>
+        <br>
+
 
 
 
 
         <section>
-          <h2>Derived Types</h2>
+          <h2>Functions</h2>
               <div class="card">
-    <div class="card-header codesum">
-      <span class="anchor" id="type-measure_controller_t"></span>
-      <h3>
-        type, public&nbsp;::&nbsp;
-        <a href='../type/measure_controller_t.html'>measure_controller_t</a>
-        
-      </h3>
-    </div>
+    <div class="card-header codesum"><span class="anchor" id="proc-log_unit"></span> <h3>public  function <a href='../proc/log_unit.html'>log_unit</a>(level) result(unit)  
+</h3></div>
     <div class="card-body">
-      <p>Measure controller for managing time steps
-The idea is that this controller will keep track of the last value added and the last position added
-The procedures will automatically add or not a given position
-<code>get_pos_array</code> will return the array of positions in which the value can be added
-<code>get_max_array_size</code> will return the maximum size of the array of positions that can be added</p>
+          
+  <p>Determine the output unit for a given log level and update LOGGER_OK.</p><a href="../proc/log_unit.html" class="pull-right"><emph>Read more&hellip;</emph></a>
 
-        <h4>Components</h4>
-          <table class="table table-striped varlist">
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
     <thead>
       <tr>
         <th scope="col">Type</th>
-<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
         <th scope="col"></th>
         <th scope="col">Name</th>
-<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+        <th scope="col"></th>
     </thead>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-last_value_added"></span>
-              real(kind=dp),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>last_value_added</strong></td>
-<td> =</td>
-                <td>0.0_dp</td>
-            <td>
-<p>Last value added</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-last_position_added"></span>
+              <span class="anchor" id="variable-level~2"></span>
               integer(kind=i4),
             </td>
-              <td>public</td>
-            <td>
+<td>intent(in)</td>
+              <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>last_position_added</strong></td>
-<td> =</td>
-                <td>0</td>
+            <td><strong>level</strong></td>
             <td>
-<p>Last position added</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-position_step"></span>
-              real(kind=dp),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>position_step</strong></td>
-<td> =</td>
-                <td>1.0_dp</td>
-            <td>
-<p>Position step size</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-min_value"></span>
-              real(kind=dp),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>min_value</strong></td>
-<td> =</td>
-                <td>0.0_dp</td>
-            <td>
-<p>Minimum value for the measure</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-get_pos_array"></span>
-              procedure(measure_controller_get_pos_array_i),
-            </td>
-              <td>public,</td>
-            <td>
-              pointer
-            </td>
-            <td>::</td>
-            <td><strong>get_pos_array</strong></td>
-<td>=&gt; </td>
-                <td>null()</td>
-            <td>
-<p>Get position array</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-get_max_array_size"></span>
-              procedure(measure_controller_get_max_array_size_i),
-            </td>
-              <td>public,</td>
-            <td>
-              pointer
-            </td>
-            <td>::</td>
-            <td><strong>get_max_array_size</strong></td>
-<td>=&gt; </td>
-                <td>null()</td>
-            <td>
-<p>Get maximum array size</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-update"></span>
-              procedure(measure_controller_update),
-            </td>
-              <td>public,</td>
-            <td>
-              pointer
-            </td>
-            <td>::</td>
-            <td><strong>update</strong></td>
-<td>=&gt; </td>
-                <td>null()</td>
-            <td>
-<p>Update measure</p>
+<p>Log level of the message</p>
             </td>
         </tr>
     </tbody>
   </table>
 
+    <h4>
+    Return Value
+    <small>integer(kind=i4)</small>
+    </h4>
+    <p>The Fortran output unit (or -1 if logging is disabled)</p>
 
-
-
-        <h4>Type-Bound Procedures</h4>
-        <table class="table table-striped varlist">
-          <tbody>
-              <tr>
-                <td>  procedure, public ::
-  <strong><a href='../type/measure_controller_t.html#boundprocedure-init~3'>init</a></strong> => measure_controller_init</td>
-                  <td><p>Initialize measure controller</p></td>
-              </tr>
-              <tr>
-                <td>  procedure, public ::
-  <strong><a href='../type/measure_controller_t.html#boundprocedure-reset~5'>reset</a></strong> => measure_controller_reset</td>
-                  <td><p>Reset measure controller</p></td>
-              </tr>
-          </tbody>
-        </table>
-    </div>
-  </div>
-
-              <div class="card">
-    <div class="card-header codesum">
-      <span class="anchor" id="type-statistical_measure_t"></span>
-      <h3>
-        type, public&nbsp;::&nbsp;
-        <a href='../type/statistical_measure_t.html'>statistical_measure_t</a>
-        
-      </h3>
-    </div>
-    <div class="card-body">
-      <p>Object to handle statistical measures
-This object will keep track of the statistical measures for a given set of points
-Procedures are available to access the measures</p>
-
-        <h4>Components</h4>
-          <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-<th></th><th scope="col">Initial</th>        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-n_samples"></span>
-              integer(kind=i4),
-            </td>
-              <td>public,</td>
-            <td>
-              allocatable
-            </td>
-            <td>::</td>
-            <td><strong>n_samples</strong>(:)</td>
-                <td></td>
-                <td></td>
-            <td>
-<p>number of samples for each point</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-sum_values"></span>
-              real(kind=dp),
-            </td>
-              <td>public,</td>
-            <td>
-              allocatable
-            </td>
-            <td>::</td>
-            <td><strong>sum_values</strong>(:)</td>
-                <td></td>
-                <td></td>
-            <td>
-<p>used to store the values of the measure</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-sum_values_squares"></span>
-              real(kind=dp),
-            </td>
-              <td>public,</td>
-            <td>
-              allocatable
-            </td>
-            <td>::</td>
-            <td><strong>sum_values_squares</strong>(:)</td>
-                <td></td>
-                <td></td>
-            <td>
-<p>used to store the squares of the values of the measure</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-sum_values_thirds"></span>
-              real(kind=dp),
-            </td>
-              <td>public,</td>
-            <td>
-              allocatable
-            </td>
-            <td>::</td>
-            <td><strong>sum_values_thirds</strong>(:)</td>
-                <td></td>
-                <td></td>
-            <td>
-<p>used to store the cubes of the values of the measure</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-n_size"></span>
-              integer(kind=i4),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>n_size</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-<p>Number of points in the measure</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-max_n_samples"></span>
-              integer(kind=i4),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>max_n_samples</strong></td>
-<td> =</td>
-                <td>0</td>
-            <td>
-<p>Maximum number of samples for any point</p>
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-
-
-        <h4>Type-Bound Procedures</h4>
-        <table class="table table-striped varlist">
-          <tbody>
-              <tr>
-                <td>  procedure, public ::
-  <strong><a href='../type/statistical_measure_t.html#boundprocedure-init~4'>init</a></strong> => statistical_measure_init</td>
-                  <td></td>
-              </tr>
-              <tr>
-                <td>  procedure, public ::
-  <strong><a href='../type/statistical_measure_t.html#boundprocedure-add_point'>add_point</a></strong> => statistical_measure_add_point</td>
-                  <td></td>
-              </tr>
-              <tr>
-                <td>  generic, public ::
-  <strong><a href='../type/statistical_measure_t.html#boundprocedure-get_mean'>get_mean</a></strong> => statistical_measure_get_mean_pos, statistical_measure_get_mean_array</td>
-                  <td></td>
-              </tr>
-              <tr>
-                <td>  generic, public ::
-  <strong><a href='../type/statistical_measure_t.html#boundprocedure-get_variance'>get_variance</a></strong> => statistical_measure_get_variance_pos, statistical_measure_get_variance_array</td>
-                  <td></td>
-              </tr>
-              <tr>
-                <td>  generic, public ::
-  <strong><a href='../type/statistical_measure_t.html#boundprocedure-get_stddev'>get_stddev</a></strong> => statistical_measure_get_stddev_pos, statistical_measure_get_stddev_array</td>
-                  <td></td>
-              </tr>
-              <tr>
-                <td>  generic, public ::
-  <strong><a href='../type/statistical_measure_t.html#boundprocedure-get_skewness'>get_skewness</a></strong> => statistical_measure_get_skewness_pos, statistical_measure_get_skewness_array</td>
-                  <td></td>
-              </tr>
-          </tbody>
-        </table>
     </div>
   </div>
 
         </section>
         <br>
 
+        <section>
+          <h2>Subroutines</h2>
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-set_verbose"></span> <h3>public  subroutine <a href='../proc/set_verbose.html'>set_verbose</a>(flag)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Enable or disable global verbosity.
+If set to <code>.false.</code>, no log messages will be printed regardless of level.</p>
 
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-flag"></span>
+              logical,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>flag</strong></td>
+            <td>
+<p>Logical flag to enable (<code>.true.</code>) or disable (<code>.false.</code>) verbosity.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-set_level"></span> <h3>public  subroutine <a href='../proc/set_level.html'>set_level</a>(level)  
+</h3></div>
+    <div class="card-body">
+          
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-level"></span>
+              integer(kind=i4),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>level</strong></td>
+            <td>
+<p>Log level (use LOG_ERROR, LOG_WARNING, LOG_INFO, LOG_DEBUG)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-set_output_unit"></span> <h3>public  subroutine <a href='../proc/set_output_unit.html'>set_output_unit</a>(unit)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Set the output unit for normal log messages.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-unit"></span>
+              integer(kind=i4),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>unit</strong></td>
+            <td>
+<p>Fortran unit number for INFO/WARNING/DEBUG logs.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-set_error_unit"></span> <h3>public  subroutine <a href='../proc/set_error_unit.html'>set_error_unit</a>(unit)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Set the output unit for error log messages.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-unit~2"></span>
+              integer(kind=i4),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>unit</strong></td>
+            <td>
+<p>Fortran unit number for ERROR logs.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-set_unit_defaults"></span> <h3>public  subroutine <a href='../proc/set_unit_defaults.html'>set_unit_defaults</a>()  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Reset output units to default (stdout for normal logs, stderr for errors).</p>
+
+  <h4>Arguments</h4>
+    <em>None</em>
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-log_write"></span> <h3>public  subroutine <a href='../proc/log_write.html'>log_write</a>(level, message)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Write a log message for the given level using the current logger settings.</p><a href="../proc/log_write.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-level~3"></span>
+              integer(kind=i4),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>level</strong></td>
+            <td>
+<p>Log level of the message</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message"></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message</strong></td>
+            <td>
+<p>The text message to log</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+        </section>
+        <br>
 
 
 

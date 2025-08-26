@@ -91,12 +91,12 @@
 <!--active-->			   <tr class="">
                  <td><a href='../module/datastructs_histograms_mod.html'>datastructs_histograms_mod</a></td>
                  <td><a href='../sourcefile/histograms.f90.html'>histograms.f90</a></td>
-                 <td></td>
+                 <td><p>Module for weighted histograms with statistical operations.</p><a href="../module/datastructs_histograms_mod.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 <!---->			   <tr class="active">
                  <td><a href='../module/datastructs_kinds_mod.html'>datastructs_kinds_mod</a></td>
                  <td><a href='../sourcefile/kinds.f90.html'>kinds.f90</a></td>
-                 <td></td>
+                 <td><p>Module providing kind parameters and utility functions for numerical types.</p><a href="../module/datastructs_kinds_mod.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 <!--active-->			   <tr class="">
                  <td><a href='../module/datastructs_lists_dynamical_list_mod.html'>datastructs_lists_dynamical_list_mod</a></td>
@@ -116,36 +116,43 @@ Example:</p><a href="../module/datastructs_lists_fixed_list_mod.html" class="pul
                  <td><a href='../module/datastructs_lists_mod.html'>datastructs_lists_mod</a></td>
                  <td><a href='../sourcefile/lists.f90.html'>lists.f90</a></td>
                  <td><p>General module for lists and related operations
-Constructors</p><a href="../module/datastructs_lists_mod.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+It imports the necessary modules for list and heap implementations</p></td>
                </tr>
 <!---->			   <tr class="active">
+                 <td><a href='../module/datastructs_logger_mod.html'>datastructs_logger_mod</a></td>
+                 <td><a href='../sourcefile/logger.f90.html'>logger.f90</a></td>
+                 <td><p>Logging module for managing verbosity levels and output destinations.
+This module provides a simple logging system with support for different log
+levels (ERROR, WARNING, INFO, DEBUG), configurable verbosity, and output units.</p><a href="../module/datastructs_logger_mod.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+<!--active-->			   <tr class="">
                  <td><a href='../module/datastructs_maxheap_mod.html'>datastructs_maxheap_mod</a></td>
                  <td><a href='../sourcefile/maxheap.f90.html'>maxheap.f90</a></td>
                  <td><p>This module implements a maxheap structure, keeping track of the maximum value and its index.
 Example:</p><a href="../module/datastructs_maxheap_mod.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
-<!--active-->			   <tr class="">
+<!---->			   <tr class="active">
                  <td><a href='../module/datastructs_measures_mod.html'>datastructs_measures_mod</a></td>
                  <td><a href='../sourcefile/measures.f90.html'>measures.f90</a></td>
-                 <td><p>This module implements a time step controller and an object to manage statistical measures</p></td>
+                 <td><p>This module implements a time step controller and an object to manage statistical measures</p><a href="../module/datastructs_measures_mod.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
-<!---->			   <tr class="active">
+<!--active-->			   <tr class="">
                  <td><a href='../module/datastructs_mod.html'>datastructs_mod</a></td>
                  <td><a href='../sourcefile/datastructs_mod.f90.html'>datastructs_mod.f90</a></td>
                  <td><p>Hash functions</p><a href="../module/datastructs_mod.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
-<!--active-->			   <tr class="">
+<!---->			   <tr class="active">
                  <td><a href='../module/datastructs_samplers_base_mod.html'>datastructs_samplers_base_mod</a></td>
                  <td><a href='../sourcefile/base.f90.html'>base.f90</a></td>
                  <td><p>This module implements the basic structure for weighted samplers</p></td>
                </tr>
-<!---->			   <tr class="active">
+<!--active-->			   <tr class="">
                  <td><a href='../module/datastructs_samplers_btree_mod.html'>datastructs_samplers_btree_mod</a></td>
                  <td><a href='../sourcefile/btree.f90.html'>btree.f90</a></td>
                  <td><p>This modules implements a binary tree sampler
 It provides a way to sample elements based on their weights using a binary tree structure.</p></td>
                </tr>
-<!--active-->			   <tr class="">
+<!---->			   <tr class="active">
                  <td><a href='../module/datastructs_samplers_mod.html'>datastructs_samplers_mod</a></td>
                  <td><a href='../sourcefile/samplers.f90.html'>samplers.f90</a></td>
                  <td><p>Module to select an weighted sampler
@@ -154,9 +161,15 @@ and each index has an weight
 The sampling is done proportionally to the weights.
 It depends on the <code>rndgen-fortran</code> module, found at <a href="https://github.com/wcota/rndgen-fortran">https://github.com/wcota/rndgen-fortran</a>
 Each sampler algorithm is implemented separately.
-!&gt; Example:</p><a href="../module/datastructs_samplers_mod.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+!&gt; Example:
+```fortran
+program example_sampler
+    use datastructs_fortran
+    use kinds_mod
+    use rndgen_mod
+    implicit none</p><a href="../module/datastructs_samplers_mod.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
-<!---->			   <tr class="active">
+<!--active-->			   <tr class="">
                  <td><a href='../module/datastructs_samplers_rejection_maxheap_composition_mod.html'>datastructs_samplers_rejection_maxheap_composition_mod</a></td>
                  <td><a href='../sourcefile/rejection_maxheap_composition.f90.html'>rejection_maxheap_composition.f90</a></td>
                  <td><p>This module implements a rejection composition sampler
@@ -165,46 +178,46 @@ Efficient sampling of spreading processes on complex networks using a compositio
 Computer physics communications, 240, 30-37"
 <a href="https://doi.org/10.1016/j.cpc.2019.02.008">https://doi.org/10.1016/j.cpc.2019.02.008</a></p></td>
                </tr>
-<!--active-->			   <tr class="">
+<!---->			   <tr class="active">
                  <td><a href='../module/datastructs_samplers_rejection_maxheap_mod.html'>datastructs_samplers_rejection_maxheap_mod</a></td>
                  <td><a href='../sourcefile/rejection_maxheap.f90.html'>rejection_maxheap.f90</a></td>
                  <td></td>
                </tr>
-<!---->			   <tr class="active">
+<!--active-->			   <tr class="">
                  <td><a href='../module/datastructs_samplers_rejection_maxheap_two_classes_mod.html'>datastructs_samplers_rejection_maxheap_two_classes_mod</a></td>
                  <td><a href='../sourcefile/rejection_maxheap_two_classes.f90.html'>rejection_maxheap_two_classes.f90</a></td>
                  <td><p>This module implements rejection sampling with two classes
 We split the weights into two classes based on a threshold</p></td>
                </tr>
-<!--active-->			   <tr class="">
+<!---->			   <tr class="active">
                  <td><a href='../module/datastructs_samplers_rejection_mod.html'>datastructs_samplers_rejection_mod</a></td>
                  <td><a href='../sourcefile/rejection.f90.html'>rejection.f90</a></td>
                  <td><p>This module implements a rejection sampling</p></td>
                </tr>
-<!---->			   <tr class="active">
+<!--active-->			   <tr class="">
                  <td><a href='../module/datastructs_samplers_rejection_two_classes_mod.html'>datastructs_samplers_rejection_two_classes_mod</a></td>
                  <td><a href='../sourcefile/rejection_two_classes.f90.html'>rejection_two_classes.f90</a></td>
                  <td><p>This module implements rejection sampling with two classes
 We split the weights into two classes based on a threshold</p></td>
                </tr>
-<!--active-->			 </tbody></table>
+<!---->			 </tbody></table>
              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 13.1.1 (0)
  -->
 <!-- Title: module~~graph~~ModuleGraph Pages: 1 -->
-<svg id="modulegraphModuleGraph" width="855pt" height="344pt"
- viewBox="0.00 0.00 855.00 344.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="module~~graph~~ModuleGraph" class="graph" transform="scale(0.603115 0.603115) rotate(0) translate(4 567.11)">
+<svg id="modulegraphModuleGraph" width="855pt" height="367pt"
+ viewBox="0.00 0.00 855.00 367.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~graph~~ModuleGraph" class="graph" transform="scale(0.611855 0.611855) rotate(0) translate(4 596.56)">
 <title>module~~graph~~ModuleGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-567.11 1413.64,-567.11 1413.64,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-596.56 1393.39,-596.56 1393.39,4 -4,4"/>
 <!-- module~datastructs_hash_mod -->
 <g id="module~~graph~~ModuleGraph_node1" class="node">
 <title>module~datastructs_hash_mod</title>
 <g id="a_module~~graph~~ModuleGraph_node1"><a xlink:href="../module/datastructs_hash_mod.html" xlink:title="datastructs_hash_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="648.33,-563.11 528.06,-563.11 528.06,-539.59 648.33,-539.59 648.33,-563.11"/>
-<text xml:space="preserve" text-anchor="middle" x="588.2" y="-547.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_hash_mod</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="433.56,-395.02 313.29,-395.02 313.29,-371.5 433.56,-371.5 433.56,-395.02"/>
+<text xml:space="preserve" text-anchor="middle" x="373.43" y="-379.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_hash_mod</text>
 </a>
 </g>
 </g>
@@ -212,465 +225,490 @@ We split the weights into two classes based on a threshold</p></td>
 <g id="module~~graph~~ModuleGraph_node3" class="node">
 <title>module~datastructs_kinds_mod</title>
 <g id="a_module~~graph~~ModuleGraph_node3"><a xlink:href="../module/datastructs_kinds_mod.html" xlink:title="datastructs_kinds_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="243.54,-251.11 121.77,-251.11 121.77,-227.59 243.54,-227.59 243.54,-251.11"/>
-<text xml:space="preserve" text-anchor="middle" x="182.66" y="-235.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_kinds_mod</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="243.54,-297.02 121.77,-297.02 121.77,-273.5 243.54,-273.5 243.54,-297.02"/>
+<text xml:space="preserve" text-anchor="middle" x="182.66" y="-281.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_kinds_mod</text>
 </a>
 </g>
 </g>
 <!-- module~datastructs_hash_mod&#45;&gt;module~datastructs_kinds_mod -->
 <g id="module~~graph~~ModuleGraph_edge1" class="edge">
 <title>module~datastructs_hash_mod&#45;&gt;module~datastructs_kinds_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M527.66,-557.39C482.9,-559.22 421.45,-555.75 374.43,-530.35"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M345.35,-371.05C326.69,-362.48 301.41,-350.58 279.54,-339.26 257.35,-327.77 232.81,-313.93 214.11,-303.13"/>
+<polygon fill="#000000" stroke="#000000" points="216.09,-300.24 205.68,-298.25 212.57,-306.29 216.09,-300.24"/>
 </g>
 <!-- module~datastructs_histograms_mod -->
 <g id="module~~graph~~ModuleGraph_node2" class="node">
 <title>module~datastructs_histograms_mod</title>
 <g id="a_module~~graph~~ModuleGraph_node2"><a xlink:href="../module/datastructs_histograms_mod.html" xlink:title="datastructs_histograms_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="662.96,-521.11 513.44,-521.11 513.44,-497.59 662.96,-497.59 662.96,-521.11"/>
-<text xml:space="preserve" text-anchor="middle" x="588.2" y="-505.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_histograms_mod</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="652.83,-533.02 503.31,-533.02 503.31,-509.5 652.83,-509.5 652.83,-533.02"/>
+<text xml:space="preserve" text-anchor="middle" x="578.07" y="-517.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_histograms_mod</text>
 </a>
 </g>
 </g>
 <!-- module~datastructs_histograms_mod&#45;&gt;module~datastructs_kinds_mod -->
 <g id="module~~graph~~ModuleGraph_edge2" class="edge">
 <title>module~datastructs_histograms_mod&#45;&gt;module~datastructs_kinds_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M532.65,-521.59C478.81,-532.47 400.84,-544.61 374.43,-530.35"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M372.43,-530.35C263.85,-471.7 208.14,-320.48 190.23,-262.47"/>
-<polygon fill="#000000" stroke="#000000" points="193.63,-261.61 187.41,-253.02 186.92,-263.61 193.63,-261.61"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M545.32,-533.51C504.07,-547.41 430.66,-565.12 374.43,-540.26"/>
 </g>
 <!-- iso_fortran_env -->
-<g id="module~~graph~~ModuleGraph_node20" class="node">
+<g id="module~~graph~~ModuleGraph_node21" class="node">
 <title>iso_fortran_env</title>
-<g id="a_module~~graph~~ModuleGraph_node20"><a xlink:href="http://fortranwiki.org/fortran/show/iso_fortran_env" xlink:title="iso_fortran_env">
-<polygon fill="#337ab7" stroke="#337ab7" points="85.77,-251.11 0,-251.11 0,-227.59 85.77,-227.59 85.77,-251.11"/>
-<text xml:space="preserve" text-anchor="middle" x="42.88" y="-235.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+<g id="a_module~~graph~~ModuleGraph_node21"><a xlink:href="http://fortranwiki.org/fortran/show/iso_fortran_env" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="85.77,-317.02 0,-317.02 0,-293.5 85.77,-293.5 85.77,-317.02"/>
+<text xml:space="preserve" text-anchor="middle" x="42.88" y="-301.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
 </a>
 </g>
 </g>
 <!-- module~datastructs_kinds_mod&#45;&gt;iso_fortran_env -->
 <g id="module~~graph~~ModuleGraph_edge3" class="edge">
 <title>module~datastructs_kinds_mod&#45;&gt;iso_fortran_env</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M121.63,-239.35C113.54,-239.35 105.29,-239.35 97.32,-239.35"/>
-<polygon fill="#000000" stroke="#000000" points="97.43,-235.85 87.43,-239.35 97.43,-242.85 97.43,-235.85"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M121.63,-293.97C113.45,-295.16 105.1,-296.37 97.05,-297.54"/>
+<polygon fill="#000000" stroke="#000000" points="96.81,-294.04 87.42,-298.94 97.82,-300.97 96.81,-294.04"/>
 </g>
 <!-- module~datastructs_lists_dynamical_list_mod -->
 <g id="module~~graph~~ModuleGraph_node4" class="node">
 <title>module~datastructs_lists_dynamical_list_mod</title>
 <g id="a_module~~graph~~ModuleGraph_node4"><a xlink:href="../module/datastructs_lists_dynamical_list_mod.html" xlink:title="datastructs_lists_dynamical_list_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="467.31,-209.11 279.54,-209.11 279.54,-185.59 467.31,-185.59 467.31,-209.11"/>
-<text xml:space="preserve" text-anchor="middle" x="373.43" y="-193.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_lists_dynamical_list_mod</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="467.31,-217.02 279.54,-217.02 279.54,-193.5 467.31,-193.5 467.31,-217.02"/>
+<text xml:space="preserve" text-anchor="middle" x="373.43" y="-201.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_lists_dynamical_list_mod</text>
 </a>
 </g>
 </g>
 <!-- module~datastructs_lists_dynamical_list_mod&#45;&gt;module~datastructs_kinds_mod -->
 <g id="module~~graph~~ModuleGraph_edge4" class="edge">
 <title>module~datastructs_lists_dynamical_list_mod&#45;&gt;module~datastructs_kinds_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M317.57,-209.55C296.34,-214.27 271.85,-219.72 249.67,-224.66"/>
-<polygon fill="#000000" stroke="#000000" points="249.12,-221.19 240.12,-226.78 250.64,-228.03 249.12,-221.19"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M320.58,-217.4C307,-221.22 292.53,-225.87 279.54,-231.26 255.71,-241.13 230.35,-255.61 211.7,-267.09"/>
+<polygon fill="#000000" stroke="#000000" points="209.98,-264.03 203.36,-272.31 213.7,-269.97 209.98,-264.03"/>
 </g>
 <!-- module~datastructs_lists_fixed_list_mod -->
 <g id="module~~graph~~ModuleGraph_node5" class="node">
 <title>module~datastructs_lists_fixed_list_mod</title>
 <g id="a_module~~graph~~ModuleGraph_node5"><a xlink:href="../module/datastructs_lists_fixed_list_mod.html" xlink:title="datastructs_lists_fixed_list_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="454.56,-167.11 292.29,-167.11 292.29,-143.59 454.56,-143.59 454.56,-167.11"/>
-<text xml:space="preserve" text-anchor="middle" x="373.43" y="-151.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_lists_fixed_list_mod</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="454.56,-175.02 292.29,-175.02 292.29,-151.5 454.56,-151.5 454.56,-175.02"/>
+<text xml:space="preserve" text-anchor="middle" x="373.43" y="-159.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_lists_fixed_list_mod</text>
 </a>
 </g>
 </g>
 <!-- module~datastructs_lists_fixed_list_mod&#45;&gt;module~datastructs_kinds_mod -->
 <g id="module~~graph~~ModuleGraph_edge5" class="edge">
 <title>module~datastructs_lists_fixed_list_mod&#45;&gt;module~datastructs_kinds_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M305.05,-167.55C296.31,-170.01 287.6,-172.92 279.54,-176.35 253,-187.62 225.82,-206.29 207.2,-220.39"/>
-<polygon fill="#000000" stroke="#000000" points="205.26,-217.46 199.49,-226.35 209.54,-223 205.26,-217.46"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M299.36,-175.38C292.45,-177.82 285.72,-180.75 279.54,-184.26 244.75,-204.03 214.87,-240.45 198.09,-263.73"/>
+<polygon fill="#000000" stroke="#000000" points="195.26,-261.67 192.39,-271.87 200.99,-265.68 195.26,-261.67"/>
 </g>
 <!-- module~datastructs_lists_mod -->
 <g id="module~~graph~~ModuleGraph_node6" class="node">
 <title>module~datastructs_lists_mod</title>
 <g id="a_module~~graph~~ModuleGraph_node6"><a xlink:href="../module/datastructs_lists_mod.html" xlink:title="datastructs_lists_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="645.71,-167.11 530.69,-167.11 530.69,-143.59 645.71,-143.59 645.71,-167.11"/>
-<text xml:space="preserve" text-anchor="middle" x="588.2" y="-151.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_lists_mod</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="635.58,-215.02 520.56,-215.02 520.56,-191.5 635.58,-191.5 635.58,-215.02"/>
+<text xml:space="preserve" text-anchor="middle" x="578.07" y="-199.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_lists_mod</text>
 </a>
 </g>
 </g>
 <!-- module~datastructs_lists_mod&#45;&gt;module~datastructs_kinds_mod -->
 <g id="module~~graph~~ModuleGraph_edge6" class="edge">
 <title>module~datastructs_lists_mod&#45;&gt;module~datastructs_kinds_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M571.98,-143.12C537.45,-116.86 450.21,-59.07 374.43,-79.35"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M525.27,-215.48C484.48,-224.75 426.08,-237.22 374.43,-245.26"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M372.43,-245.26C329.53,-251.94 281.69,-262.11 244.9,-270.52"/>
+<polygon fill="#000000" stroke="#000000" points="244.29,-267.07 235.33,-272.73 245.86,-273.89 244.29,-267.07"/>
 </g>
 <!-- module~datastructs_lists_mod&#45;&gt;module~datastructs_lists_dynamical_list_mod -->
 <g id="module~~graph~~ModuleGraph_edge7" class="edge">
 <title>module~datastructs_lists_mod&#45;&gt;module~datastructs_lists_dynamical_list_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M530.46,-166.55C504.92,-171.59 474.47,-177.6 447.27,-182.97"/>
-<polygon fill="#000000" stroke="#000000" points="446.85,-179.48 437.72,-184.85 448.21,-186.35 446.85,-179.48"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M520.08,-203.82C507.24,-203.95 493.22,-204.09 479.11,-204.23"/>
+<polygon fill="#000000" stroke="#000000" points="479.28,-200.72 469.31,-204.32 479.34,-207.72 479.28,-200.72"/>
 </g>
 <!-- module~datastructs_lists_mod&#45;&gt;module~datastructs_lists_fixed_list_mod -->
 <g id="module~~graph~~ModuleGraph_edge8" class="edge">
 <title>module~datastructs_lists_mod&#45;&gt;module~datastructs_lists_fixed_list_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M530.46,-155.35C510.75,-155.35 488.11,-155.35 466.3,-155.35"/>
-<polygon fill="#000000" stroke="#000000" points="466.5,-151.85 456.5,-155.35 466.5,-158.85 466.5,-151.85"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M520.08,-192.01C497.55,-187.56 471.36,-182.39 447.47,-177.68"/>
+<polygon fill="#000000" stroke="#000000" points="448.28,-174.27 437.79,-175.77 446.92,-181.14 448.28,-174.27"/>
 </g>
 <!-- module~datastructs_maxheap_mod -->
-<g id="module~~graph~~ModuleGraph_node7" class="node">
+<g id="module~~graph~~ModuleGraph_node8" class="node">
 <title>module~datastructs_maxheap_mod</title>
-<g id="a_module~~graph~~ModuleGraph_node7"><a xlink:href="../module/datastructs_maxheap_mod.html" xlink:title="datastructs_maxheap_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="444.06,-251.11 302.79,-251.11 302.79,-227.59 444.06,-227.59 444.06,-251.11"/>
-<text xml:space="preserve" text-anchor="middle" x="373.43" y="-235.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_maxheap_mod</text>
+<g id="a_module~~graph~~ModuleGraph_node8"><a xlink:href="../module/datastructs_maxheap_mod.html" xlink:title="datastructs_maxheap_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="444.06,-133.02 302.79,-133.02 302.79,-109.5 444.06,-109.5 444.06,-133.02"/>
+<text xml:space="preserve" text-anchor="middle" x="373.43" y="-117.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_maxheap_mod</text>
 </a>
 </g>
 </g>
 <!-- module~datastructs_lists_mod&#45;&gt;module~datastructs_maxheap_mod -->
 <g id="module~~graph~~ModuleGraph_edge9" class="edge">
 <title>module~datastructs_lists_mod&#45;&gt;module~datastructs_maxheap_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M567.99,-167.47C544.9,-181.55 504.59,-204.61 467.31,-218.35 461.59,-220.45 455.59,-222.39 449.51,-224.16"/>
-<polygon fill="#000000" stroke="#000000" points="448.7,-220.75 439.98,-226.77 450.55,-227.5 448.7,-220.75"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M559.21,-191.22C538.1,-177.51 501.52,-155.32 467.31,-142.26 461.95,-140.21 456.33,-138.33 450.62,-136.61"/>
+<polygon fill="#000000" stroke="#000000" points="451.62,-133.26 441.04,-133.91 449.72,-139.99 451.62,-133.26"/>
+</g>
+<!-- module~datastructs_logger_mod -->
+<g id="module~~graph~~ModuleGraph_node7" class="node">
+<title>module~datastructs_logger_mod</title>
+<g id="a_module~~graph~~ModuleGraph_node7"><a xlink:href="../module/datastructs_logger_mod.html" xlink:title="datastructs_logger_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="436.94,-592.02 309.92,-592.02 309.92,-568.5 436.94,-568.5 436.94,-592.02"/>
+<text xml:space="preserve" text-anchor="middle" x="373.43" y="-576.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_logger_mod</text>
+</a>
+</g>
+</g>
+<!-- module~datastructs_logger_mod&#45;&gt;module~datastructs_kinds_mod -->
+<g id="module~~graph~~ModuleGraph_edge11" class="edge">
+<title>module~datastructs_logger_mod&#45;&gt;module~datastructs_kinds_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M309.75,-572.1C298.57,-568.2 287.86,-562.52 279.54,-554.26 238.51,-513.53 262.67,-483.82 243.54,-429.26 228.18,-385.47 206.55,-335.77 193.92,-307.7"/>
+<polygon fill="#000000" stroke="#000000" points="197.2,-306.45 189.88,-298.78 190.82,-309.34 197.2,-306.45"/>
+</g>
+<!-- module~datastructs_logger_mod&#45;&gt;iso_fortran_env -->
+<g id="module~~graph~~ModuleGraph_edge10" class="edge">
+<title>module~datastructs_logger_mod&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M311,-568.15C300.09,-564.6 289.15,-560.05 279.54,-554.26 177.46,-492.66 90.86,-375.02 58,-326.74"/>
+<polygon fill="#000000" stroke="#000000" points="60.97,-324.89 52.5,-318.54 55.16,-328.8 60.97,-324.89"/>
 </g>
 <!-- module~datastructs_maxheap_mod&#45;&gt;module~datastructs_kinds_mod -->
-<g id="module~~graph~~ModuleGraph_edge10" class="edge">
+<g id="module~~graph~~ModuleGraph_edge12" class="edge">
 <title>module~datastructs_maxheap_mod&#45;&gt;module~datastructs_kinds_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M302.4,-239.35C286.95,-239.35 270.56,-239.35 255.06,-239.35"/>
-<polygon fill="#000000" stroke="#000000" points="255.46,-235.85 245.46,-239.35 255.46,-242.85 255.46,-235.85"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M302.51,-130.91C294.36,-133.79 286.49,-137.49 279.54,-142.26 235.41,-172.53 206.11,-230.39 192.48,-262.45"/>
+<polygon fill="#000000" stroke="#000000" points="189.29,-261.02 188.74,-271.6 195.77,-263.67 189.29,-261.02"/>
 </g>
 <!-- module~datastructs_measures_mod -->
-<g id="module~~graph~~ModuleGraph_node8" class="node">
+<g id="module~~graph~~ModuleGraph_node9" class="node">
 <title>module~datastructs_measures_mod</title>
-<g id="a_module~~graph~~ModuleGraph_node8"><a xlink:href="../module/datastructs_measures_mod.html" xlink:title="datastructs_measures_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="445.56,-424.11 301.29,-424.11 301.29,-400.59 445.56,-400.59 445.56,-424.11"/>
-<text xml:space="preserve" text-anchor="middle" x="373.43" y="-408.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_measures_mod</text>
+<g id="a_module~~graph~~ModuleGraph_node9"><a xlink:href="../module/datastructs_measures_mod.html" xlink:title="datastructs_measures_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="650.21,-491.02 505.94,-491.02 505.94,-467.5 650.21,-467.5 650.21,-491.02"/>
+<text xml:space="preserve" text-anchor="middle" x="578.07" y="-475.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_measures_mod</text>
 </a>
 </g>
 </g>
 <!-- module~datastructs_measures_mod&#45;&gt;module~datastructs_kinds_mod -->
-<g id="module~~graph~~ModuleGraph_edge11" class="edge">
+<g id="module~~graph~~ModuleGraph_edge13" class="edge">
 <title>module~datastructs_measures_mod&#45;&gt;module~datastructs_kinds_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M358.84,-400.16C340.7,-383.86 307.59,-354.05 279.54,-328.35 253.81,-304.77 224.42,-277.43 205.04,-259.34"/>
-<polygon fill="#000000" stroke="#000000" points="207.44,-256.79 197.74,-252.52 202.66,-261.91 207.44,-256.79"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M533.73,-491.41C523.72,-494.27 513.14,-497.34 503.31,-500.26 445.82,-517.36 429.28,-564.51 374.43,-540.26"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M372.43,-540.26C270.33,-495.11 211.57,-361.62 191.53,-307.97"/>
+<polygon fill="#000000" stroke="#000000" points="194.85,-306.87 188.15,-298.66 188.27,-309.25 194.85,-306.87"/>
 </g>
 <!-- module~datastructs_mod -->
-<g id="module~~graph~~ModuleGraph_node9" class="node">
+<g id="module~~graph~~ModuleGraph_node10" class="node">
 <title>module~datastructs_mod</title>
-<g id="a_module~~graph~~ModuleGraph_node9"><a xlink:href="../module/datastructs_mod.html" xlink:title="datastructs_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="1178.37,-461.11 1087.35,-461.11 1087.35,-437.59 1178.37,-437.59 1178.37,-461.11"/>
-<text xml:space="preserve" text-anchor="middle" x="1132.86" y="-445.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_mod</text>
+<g id="a_module~~graph~~ModuleGraph_node10"><a xlink:href="../module/datastructs_mod.html" xlink:title="datastructs_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="852.98,-382.02 761.96,-382.02 761.96,-358.5 852.98,-358.5 852.98,-382.02"/>
+<text xml:space="preserve" text-anchor="middle" x="807.47" y="-366.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_mod</text>
 </a>
 </g>
 </g>
 <!-- module~datastructs_mod&#45;&gt;module~datastructs_hash_mod -->
-<g id="module~~graph~~ModuleGraph_edge12" class="edge">
+<g id="module~~graph~~ModuleGraph_edge14" class="edge">
 <title>module~datastructs_mod&#45;&gt;module~datastructs_hash_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M826.72,-509.35C768.27,-515.12 702.57,-527.17 655.11,-536.89"/>
-<polygon fill="#000000" stroke="#000000" points="654.62,-533.42 645.54,-538.87 656.04,-540.27 654.62,-533.42"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M761.48,-374.66C730.88,-377.43 689.45,-380.76 652.83,-382.26 582.23,-385.14 501.48,-385.06 445.2,-384.45"/>
+<polygon fill="#000000" stroke="#000000" points="445.48,-380.96 435.44,-384.34 445.39,-387.96 445.48,-380.96"/>
 </g>
 <!-- module~datastructs_mod&#45;&gt;module~datastructs_histograms_mod -->
-<g id="module~~graph~~ModuleGraph_edge13" class="edge">
+<g id="module~~graph~~ModuleGraph_edge15" class="edge">
 <title>module~datastructs_mod&#45;&gt;module~datastructs_histograms_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M826.72,-509.35C776.4,-514.32 719.8,-514.53 674.47,-513.39"/>
-<polygon fill="#000000" stroke="#000000" points="674.81,-509.9 664.71,-513.12 674.61,-516.9 674.81,-509.9"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M761.51,-375.81C737.34,-380.9 708.53,-390.64 688.83,-409.26 657.22,-439.13 685.07,-471.07 652.83,-500.26 651.75,-501.24 650.62,-502.17 649.46,-503.06"/>
+<polygon fill="#000000" stroke="#000000" points="647.79,-499.98 641.2,-508.28 651.52,-505.9 647.79,-499.98"/>
 </g>
 <!-- module~datastructs_mod&#45;&gt;module~datastructs_lists_mod -->
-<g id="module~~graph~~ModuleGraph_edge14" class="edge">
+<g id="module~~graph~~ModuleGraph_edge16" class="edge">
 <title>module~datastructs_mod&#45;&gt;module~datastructs_lists_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1104.41,-437.18C1016.53,-398.16 745.69,-277.36 709.08,-254.35 671.56,-230.76 632.85,-196.7 609.91,-175.31"/>
-<polygon fill="#000000" stroke="#000000" points="612.43,-172.87 602.75,-168.55 607.62,-177.96 612.43,-172.87"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M761.56,-365.25C737.84,-360.68 709.45,-351.95 688.83,-335.26 662.86,-314.24 673.58,-295.45 652.83,-269.26 638.87,-251.64 619.91,-234.79 604.71,-222.52"/>
+<polygon fill="#000000" stroke="#000000" points="607.02,-219.89 597,-216.45 602.69,-225.39 607.02,-219.89"/>
+</g>
+<!-- module~datastructs_mod&#45;&gt;module~datastructs_logger_mod -->
+<g id="module~~graph~~ModuleGraph_edge17" class="edge">
+<title>module~datastructs_mod&#45;&gt;module~datastructs_logger_mod</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M761.55,-374.81C736.93,-379.58 707.68,-389.33 688.83,-409.26 646.75,-453.75 698.83,-501.83 652.83,-542.26 597.47,-590.92 510.47,-595.38 448.47,-590.86"/>
+<polygon fill="#000000" stroke="#000000" points="448.96,-587.39 438.71,-590.04 448.38,-594.36 448.96,-587.39"/>
 </g>
 <!-- module~datastructs_mod&#45;&gt;module~datastructs_measures_mod -->
-<g id="module~~graph~~ModuleGraph_edge15" class="edge">
+<g id="module~~graph~~ModuleGraph_edge18" class="edge">
 <title>module~datastructs_mod&#45;&gt;module~datastructs_measures_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1087.05,-451.34C1056.82,-453.72 1016.4,-458.94 982.35,-470.35 965,-476.16 963.64,-484.35 946.35,-490.35 896.31,-507.69 881.42,-504.14 828.72,-509.35"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M826.72,-509.35C787.95,-513.18 548.1,-455.47 434.27,-427.32"/>
-<polygon fill="#000000" stroke="#000000" points="435.35,-423.98 424.8,-424.97 433.67,-430.77 435.35,-423.98"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M761.6,-382.28C739.22,-388.98 712.05,-398.22 688.83,-409.26 658.21,-423.82 625.78,-445.36 604.18,-460.69"/>
+<polygon fill="#000000" stroke="#000000" points="602.37,-457.68 596.3,-466.37 606.46,-463.37 602.37,-457.68"/>
 </g>
 <!-- module~datastructs_samplers_base_mod -->
-<g id="module~~graph~~ModuleGraph_node10" class="node">
+<g id="module~~graph~~ModuleGraph_node11" class="node">
 <title>module~datastructs_samplers_base_mod</title>
-<g id="a_module~~graph~~ModuleGraph_node10"><a xlink:href="../module/datastructs_samplers_base_mod.html" xlink:title="datastructs_samplers_base_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="673.08,-326.11 503.31,-326.11 503.31,-302.59 673.08,-302.59 673.08,-326.11"/>
-<text xml:space="preserve" text-anchor="middle" x="588.2" y="-310.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_samplers_base_mod</text>
+<g id="a_module~~graph~~ModuleGraph_node11"><a xlink:href="../module/datastructs_samplers_base_mod.html" xlink:title="datastructs_samplers_base_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="458.31,-297.02 288.54,-297.02 288.54,-273.5 458.31,-273.5 458.31,-297.02"/>
+<text xml:space="preserve" text-anchor="middle" x="373.43" y="-281.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_samplers_base_mod</text>
 </a>
 </g>
 </g>
 <!-- module~datastructs_mod&#45;&gt;module~datastructs_samplers_base_mod -->
-<g id="module~~graph~~ModuleGraph_edge16" class="edge">
+<g id="module~~graph~~ModuleGraph_edge19" class="edge">
 <title>module~datastructs_mod&#45;&gt;module~datastructs_samplers_base_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1087.15,-448.95C992.57,-447.53 775.44,-440.91 709.08,-410.35 688.81,-401.01 690.15,-389.72 673.08,-375.35 655.01,-360.12 633.42,-344.47 616.67,-332.84"/>
-<polygon fill="#000000" stroke="#000000" points="618.9,-330.13 608.67,-327.34 614.93,-335.89 618.9,-330.13"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M761.52,-358.63C739.36,-352.46 712.41,-344.29 688.83,-335.26 638.42,-315.95 633.04,-282.22 579.07,-283.26"/>
 </g>
 <!-- module~datastructs_samplers_mod -->
-<g id="module~~graph~~ModuleGraph_node12" class="node">
+<g id="module~~graph~~ModuleGraph_node13" class="node">
 <title>module~datastructs_samplers_mod</title>
-<g id="a_module~~graph~~ModuleGraph_node12"><a xlink:href="../module/datastructs_samplers_mod.html" xlink:title="datastructs_samplers_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="897.98,-481.11 757.46,-481.11 757.46,-457.59 897.98,-457.59 897.98,-481.11"/>
-<text xml:space="preserve" text-anchor="middle" x="827.72" y="-465.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_samplers_mod</text>
+<g id="a_module~~graph~~ModuleGraph_node13"><a xlink:href="../module/datastructs_samplers_mod.html" xlink:title="datastructs_samplers_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="648.33,-373.02 507.81,-373.02 507.81,-349.5 648.33,-349.5 648.33,-373.02"/>
+<text xml:space="preserve" text-anchor="middle" x="578.07" y="-357.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_samplers_mod</text>
 </a>
 </g>
 </g>
 <!-- module~datastructs_mod&#45;&gt;module~datastructs_samplers_mod -->
-<g id="module~~graph~~ModuleGraph_edge17" class="edge">
+<g id="module~~graph~~ModuleGraph_edge20" class="edge">
 <title>module~datastructs_mod&#45;&gt;module~datastructs_samplers_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1087.13,-452.3C1040.5,-455.37 966.42,-460.26 909.51,-464.02"/>
-<polygon fill="#000000" stroke="#000000" points="909.63,-460.5 899.88,-464.65 910.09,-467.48 909.63,-460.5"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M761.54,-368.48C732.58,-367.33 694.1,-365.81 659.93,-364.46"/>
+<polygon fill="#000000" stroke="#000000" points="660.18,-360.97 650.05,-364.07 659.9,-367.96 660.18,-360.97"/>
 </g>
 <!-- module~datastructs_samplers_base_mod&#45;&gt;module~datastructs_kinds_mod -->
-<g id="module~~graph~~ModuleGraph_edge18" class="edge">
+<g id="module~~graph~~ModuleGraph_edge21" class="edge">
 <title>module~datastructs_samplers_base_mod&#45;&gt;module~datastructs_kinds_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M502.95,-322.55C463.49,-324.31 416.11,-323.42 374.43,-314.35"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.25,-285.26C277.28,-285.26 266.12,-285.26 255.37,-285.26"/>
+<polygon fill="#000000" stroke="#000000" points="255.42,-281.76 245.42,-285.26 255.42,-288.76 255.42,-281.76"/>
 </g>
 <!-- module~datastructs_samplers_btree_mod -->
-<g id="module~~graph~~ModuleGraph_node11" class="node">
+<g id="module~~graph~~ModuleGraph_node12" class="node">
 <title>module~datastructs_samplers_btree_mod</title>
-<g id="a_module~~graph~~ModuleGraph_node11"><a xlink:href="../module/datastructs_samplers_btree_mod.html" xlink:title="datastructs_samplers_btree_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="913.35,-401.11 742.08,-401.11 742.08,-377.59 913.35,-377.59 913.35,-401.11"/>
-<text xml:space="preserve" text-anchor="middle" x="827.72" y="-385.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_samplers_btree_mod</text>
+<g id="a_module~~graph~~ModuleGraph_node12"><a xlink:href="../module/datastructs_samplers_btree_mod.html" xlink:title="datastructs_samplers_btree_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="893.1,-442.02 721.83,-442.02 721.83,-418.5 893.1,-418.5 893.1,-442.02"/>
+<text xml:space="preserve" text-anchor="middle" x="807.47" y="-426.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_samplers_btree_mod</text>
 </a>
 </g>
 </g>
 <!-- module~datastructs_samplers_btree_mod&#45;&gt;module~datastructs_kinds_mod -->
-<g id="module~~graph~~ModuleGraph_edge19" class="edge">
+<g id="module~~graph~~ModuleGraph_edge22" class="edge">
 <title>module~datastructs_samplers_btree_mod&#45;&gt;module~datastructs_kinds_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M741.84,-397.31C696.18,-399.6 639.15,-399.25 589.2,-389.35"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M795.6,-442.15C772.31,-466.65 714.66,-522.11 652.83,-542.26 594,-561.42 431.01,-565.28 374.43,-540.26"/>
 </g>
 <!-- module~datastructs_samplers_btree_mod&#45;&gt;module~datastructs_samplers_base_mod -->
-<g id="module~~graph~~ModuleGraph_edge20" class="edge">
+<g id="module~~graph~~ModuleGraph_edge23" class="edge">
 <title>module~datastructs_samplers_btree_mod&#45;&gt;module~datastructs_samplers_base_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M788.02,-377.13C747.31,-364.27 683.08,-343.99 638.7,-329.98"/>
-<polygon fill="#000000" stroke="#000000" points="639.9,-326.69 629.31,-327.01 637.79,-333.36 639.9,-326.69"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M721.49,-436.65C655.96,-437.22 566.21,-428.05 503.31,-382.26 474.71,-361.43 494.66,-333.7 467.31,-311.26 463.08,-307.79 458.42,-304.78 453.51,-302.18"/>
+<polygon fill="#000000" stroke="#000000" points="455.04,-299.03 444.5,-298 452.1,-305.38 455.04,-299.03"/>
 </g>
 <!-- module~datastructs_samplers_mod&#45;&gt;module~datastructs_kinds_mod -->
-<g id="module~~graph~~ModuleGraph_edge21" class="edge">
+<g id="module~~graph~~ModuleGraph_edge24" class="edge">
 <title>module~datastructs_samplers_mod&#45;&gt;module~datastructs_kinds_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M766.3,-457.11C747.75,-452.78 727.4,-447.45 709.08,-441.35 653.98,-423 646.16,-400.64 589.2,-389.35"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M514.71,-349.07C474.72,-341.53 421.65,-332.03 374.43,-325.26"/>
 </g>
 <!-- module~datastructs_samplers_mod&#45;&gt;module~datastructs_samplers_base_mod -->
-<g id="module~~graph~~ModuleGraph_edge22" class="edge">
+<g id="module~~graph~~ModuleGraph_edge25" class="edge">
 <title>module~datastructs_samplers_mod&#45;&gt;module~datastructs_samplers_base_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M757.08,-464.18C740.11,-460.29 722.89,-453.86 709.08,-443.35 681.87,-422.63 695.49,-401.18 673.08,-375.35 658.29,-358.29 637.86,-343.31 620.87,-332.46"/>
-<polygon fill="#000000" stroke="#000000" points="622.96,-329.64 612.62,-327.36 619.28,-335.59 622.96,-329.64"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M553.11,-349.04C531.17,-338.17 497.6,-322.32 467.31,-311.26 456.81,-307.42 445.47,-303.82 434.44,-300.59"/>
+<polygon fill="#000000" stroke="#000000" points="435.6,-297.28 425.02,-297.9 433.68,-304.01 435.6,-297.28"/>
 </g>
 <!-- module~datastructs_samplers_rejection_maxheap_composition_mod -->
-<g id="module~~graph~~ModuleGraph_node13" class="node">
+<g id="module~~graph~~ModuleGraph_node14" class="node">
 <title>module~datastructs_samplers_rejection_maxheap_composition_mod</title>
-<g id="a_module~~graph~~ModuleGraph_node13"><a xlink:href="../module/datastructs_samplers_rejection_maxheap_composition_mod.html" xlink:title="datastructs_samplers_rejection_maxheap_composition_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="1283,-253.11 982.73,-253.11 982.73,-229.59 1283,-229.59 1283,-253.11"/>
-<text xml:space="preserve" text-anchor="middle" x="1132.86" y="-237.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_samplers_rejection_maxheap_composition_mod</text>
+<g id="a_module~~graph~~ModuleGraph_node14"><a xlink:href="../module/datastructs_samplers_rejection_maxheap_composition_mod.html" xlink:title="datastructs_samplers_rejection_maxheap_composition_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="1262.75,-295.02 962.48,-295.02 962.48,-271.5 1262.75,-271.5 1262.75,-295.02"/>
+<text xml:space="preserve" text-anchor="middle" x="1112.61" y="-279.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_samplers_rejection_maxheap_composition_mod</text>
 </a>
 </g>
 </g>
 <!-- module~datastructs_samplers_rejection_maxheap_composition_mod&#45;&gt;module~datastructs_kinds_mod -->
-<g id="module~~graph~~ModuleGraph_edge23" class="edge">
+<g id="module~~graph~~ModuleGraph_edge26" class="edge">
 <title>module~datastructs_samplers_rejection_maxheap_composition_mod&#45;&gt;module~datastructs_kinds_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M993.15,-253.53C989.47,-254.99 985.86,-256.6 982.35,-258.35 961.53,-268.73 966.38,-284.51 946.35,-296.35 928.7,-306.77 609.31,-393.33 589.2,-389.35"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M587.2,-389.35C488.58,-371.24 472.36,-335.85 374.43,-314.35"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M806.47,-321.26C614.48,-325.22 564.51,-352.5 374.43,-325.26"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M372.43,-325.26C329.7,-318.47 282.04,-308.35 245.3,-299.99"/>
+<polygon fill="#000000" stroke="#000000" points="246.27,-296.62 235.74,-297.8 244.71,-303.45 246.27,-296.62"/>
 </g>
 <!-- module~datastructs_samplers_rejection_maxheap_composition_mod&#45;&gt;module~datastructs_lists_mod -->
-<g id="module~~graph~~ModuleGraph_edge24" class="edge">
+<g id="module~~graph~~ModuleGraph_edge27" class="edge">
 <title>module~datastructs_samplers_rejection_maxheap_composition_mod&#45;&gt;module~datastructs_lists_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1103.72,-229.21C1050.99,-207.41 933.18,-163.18 828.72,-155.35"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1079.55,-271C1042.92,-257.4 980.95,-235.62 926.1,-222.26 874.64,-209.73 861.31,-206.71 808.47,-203.26"/>
 </g>
 <!-- module~datastructs_samplers_rejection_maxheap_composition_mod&#45;&gt;module~datastructs_samplers_base_mod -->
-<g id="module~~graph~~ModuleGraph_edge25" class="edge">
+<g id="module~~graph~~ModuleGraph_edge28" class="edge">
 <title>module~datastructs_samplers_rejection_maxheap_composition_mod&#45;&gt;module~datastructs_samplers_base_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1040.72,-253.61C942.03,-266.88 785.3,-287.97 684.87,-301.48"/>
-<polygon fill="#000000" stroke="#000000" points="684.46,-298 675.02,-302.8 685.39,-304.94 684.46,-298"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1001.35,-295.51C988.12,-297.06 974.8,-298.67 962.1,-300.26 893.72,-308.82 877.37,-319.84 808.47,-321.26"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M806.47,-321.26C704.02,-323.37 681.52,-281.28 579.07,-283.26"/>
 </g>
 <!-- module~datastructs_samplers_rejection_maxheap_composition_mod&#45;&gt;module~datastructs_samplers_btree_mod -->
-<g id="module~~graph~~ModuleGraph_edge26" class="edge">
+<g id="module~~graph~~ModuleGraph_edge29" class="edge">
 <title>module~datastructs_samplers_rejection_maxheap_composition_mod&#45;&gt;module~datastructs_samplers_btree_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1098.9,-253.59C1066.94,-266.5 1018.16,-289.04 982.35,-318.35 962.53,-334.57 968.09,-349.81 946.35,-363.35 939.51,-367.6 932.07,-371.16 924.36,-374.15"/>
-<polygon fill="#000000" stroke="#000000" points="923.43,-370.77 915.15,-377.37 925.74,-377.37 923.43,-370.77"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1088.76,-295.4C1059.16,-311.27 1006.14,-340.26 962.1,-367.26 945.71,-377.31 943.38,-382.82 926.1,-391.26 907.1,-400.53 885.36,-408.43 865.77,-414.65"/>
+<polygon fill="#000000" stroke="#000000" points="864.81,-411.28 856.28,-417.57 866.87,-417.97 864.81,-411.28"/>
 </g>
 <!-- module~datastructs_samplers_rejection_maxheap_mod -->
-<g id="module~~graph~~ModuleGraph_node14" class="node">
+<g id="module~~graph~~ModuleGraph_node15" class="node">
 <title>module~datastructs_samplers_rejection_maxheap_mod</title>
-<g id="a_module~~graph~~ModuleGraph_node14"><a xlink:href="../module/datastructs_samplers_rejection_maxheap_mod.html" xlink:title="datastructs_samplers_rejection_maxheap_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="946.35,-245.11 709.08,-245.11 709.08,-221.59 946.35,-221.59 946.35,-245.11"/>
-<text xml:space="preserve" text-anchor="middle" x="827.72" y="-229.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_samplers_rejection_maxheap_mod</text>
+<g id="a_module~~graph~~ModuleGraph_node15"><a xlink:href="../module/datastructs_samplers_rejection_maxheap_mod.html" xlink:title="datastructs_samplers_rejection_maxheap_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="926.1,-255.02 688.83,-255.02 688.83,-231.5 926.1,-231.5 926.1,-255.02"/>
+<text xml:space="preserve" text-anchor="middle" x="807.47" y="-239.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_samplers_rejection_maxheap_mod</text>
 </a>
 </g>
 </g>
 <!-- module~datastructs_samplers_rejection_maxheap_composition_mod&#45;&gt;module~datastructs_samplers_rejection_maxheap_mod -->
-<g id="module~~graph~~ModuleGraph_edge27" class="edge">
+<g id="module~~graph~~ModuleGraph_edge30" class="edge">
 <title>module~datastructs_samplers_rejection_maxheap_composition_mod&#45;&gt;module~datastructs_samplers_rejection_maxheap_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M982.51,-237.4C974.28,-237.19 966.04,-236.97 957.89,-236.75"/>
-<polygon fill="#000000" stroke="#000000" points="958.05,-233.26 947.96,-236.49 957.86,-240.26 958.05,-233.26"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1019.01,-271.04C985.31,-266.59 947,-261.54 912.38,-256.97"/>
+<polygon fill="#000000" stroke="#000000" points="913.15,-253.54 902.78,-255.7 912.24,-260.48 913.15,-253.54"/>
 </g>
 <!-- module~datastructs_samplers_rejection_maxheap_mod&#45;&gt;module~datastructs_kinds_mod -->
-<g id="module~~graph~~ModuleGraph_edge28" class="edge">
+<g id="module~~graph~~ModuleGraph_edge31" class="edge">
 <title>module~datastructs_samplers_rejection_maxheap_mod&#45;&gt;module~datastructs_kinds_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M760.33,-245.57C635.79,-268.45 379.14,-315.37 374.43,-314.35"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M372.43,-314.35C315.84,-301.92 254.14,-274.55 217.19,-256.54"/>
-<polygon fill="#000000" stroke="#000000" points="218.88,-253.47 208.36,-252.18 215.77,-259.75 218.88,-253.47"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M688.35,-234.35C601.09,-230.05 479.67,-228.87 374.43,-245.26"/>
 </g>
 <!-- module~datastructs_samplers_rejection_maxheap_mod&#45;&gt;module~datastructs_lists_mod -->
-<g id="module~~graph~~ModuleGraph_edge29" class="edge">
+<g id="module~~graph~~ModuleGraph_edge32" class="edge">
 <title>module~datastructs_samplers_rejection_maxheap_mod&#45;&gt;module~datastructs_lists_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M789.6,-221.16C748.5,-207.66 682.11,-185.86 637.11,-171.08"/>
-<polygon fill="#000000" stroke="#000000" points="638.47,-167.84 627.88,-168.05 636.28,-174.49 638.47,-167.84"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M737,-231.04C708.41,-226.01 675.39,-220.2 646.96,-215.2"/>
+<polygon fill="#000000" stroke="#000000" points="647.85,-211.8 637.39,-213.52 646.63,-218.7 647.85,-211.8"/>
 </g>
 <!-- module~datastructs_samplers_rejection_maxheap_mod&#45;&gt;module~datastructs_samplers_base_mod -->
-<g id="module~~graph~~ModuleGraph_edge30" class="edge">
+<g id="module~~graph~~ModuleGraph_edge33" class="edge">
 <title>module~datastructs_samplers_rejection_maxheap_mod&#45;&gt;module~datastructs_samplers_base_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M747.51,-245.59C734.32,-249.1 721.05,-253.59 709.08,-259.35 690.56,-268.24 691.21,-278.69 673.08,-288.35 665.86,-292.19 657.99,-295.56 650.05,-298.5"/>
-<polygon fill="#000000" stroke="#000000" points="648.98,-295.16 640.67,-301.73 651.26,-301.78 648.98,-295.16"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M748.83,-255.49C692.7,-267.02 611.28,-282.64 579.07,-283.26"/>
 </g>
 <!-- module~datastructs_samplers_rejection_maxheap_two_classes_mod -->
-<g id="module~~graph~~ModuleGraph_node15" class="node">
+<g id="module~~graph~~ModuleGraph_node16" class="node">
 <title>module~datastructs_samplers_rejection_maxheap_two_classes_mod</title>
-<g id="a_module~~graph~~ModuleGraph_node15"><a xlink:href="../module/datastructs_samplers_rejection_maxheap_two_classes_mod.html" xlink:title="datastructs_samplers_rejection_maxheap_two_classes_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="1283.37,-173.11 982.35,-173.11 982.35,-149.59 1283.37,-149.59 1283.37,-173.11"/>
-<text xml:space="preserve" text-anchor="middle" x="1132.86" y="-157.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_samplers_rejection_maxheap_two_classes_mod</text>
+<g id="a_module~~graph~~ModuleGraph_node16"><a xlink:href="../module/datastructs_samplers_rejection_maxheap_two_classes_mod.html" xlink:title="datastructs_samplers_rejection_maxheap_two_classes_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="1263.12,-215.02 962.1,-215.02 962.1,-191.5 1263.12,-191.5 1263.12,-215.02"/>
+<text xml:space="preserve" text-anchor="middle" x="1112.61" y="-199.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_samplers_rejection_maxheap_two_classes_mod</text>
 </a>
 </g>
 </g>
 <!-- module~datastructs_samplers_rejection_maxheap_two_classes_mod&#45;&gt;module~datastructs_kinds_mod -->
-<g id="module~~graph~~ModuleGraph_edge31" class="edge">
+<g id="module~~graph~~ModuleGraph_edge34" class="edge">
 <title>module~datastructs_samplers_rejection_maxheap_two_classes_mod&#45;&gt;module~datastructs_kinds_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1063.04,-149.13C927.61,-125.35 635.6,-75.5 589.2,-79.35"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1043.91,-191.04C864.56,-158.79 389.76,-74.35 374.42,-81.26"/>
 </g>
 <!-- module~datastructs_samplers_rejection_maxheap_two_classes_mod&#45;&gt;module~datastructs_lists_mod -->
-<g id="module~~graph~~ModuleGraph_edge32" class="edge">
+<g id="module~~graph~~ModuleGraph_edge35" class="edge">
 <title>module~datastructs_samplers_rejection_maxheap_two_classes_mod&#45;&gt;module~datastructs_lists_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M982.14,-161.65C933.19,-160.87 878.58,-159.08 828.72,-155.35"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M826.72,-155.35C769.73,-151.08 704.84,-151.43 657.3,-152.65"/>
-<polygon fill="#000000" stroke="#000000" points="657.32,-149.15 647.43,-152.93 657.52,-156.15 657.32,-149.15"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M961.92,-207.12C912.97,-207.35 858.36,-206.51 808.47,-203.26"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M806.47,-203.26C753.01,-199.77 692.34,-199.98 647.12,-200.95"/>
+<polygon fill="#000000" stroke="#000000" points="647.1,-197.45 637.19,-201.18 647.27,-204.44 647.1,-197.45"/>
 </g>
 <!-- module~datastructs_samplers_rejection_maxheap_two_classes_mod&#45;&gt;module~datastructs_samplers_base_mod -->
-<g id="module~~graph~~ModuleGraph_edge33" class="edge">
+<g id="module~~graph~~ModuleGraph_edge36" class="edge">
 <title>module~datastructs_samplers_rejection_maxheap_two_classes_mod&#45;&gt;module~datastructs_samplers_base_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M982.01,-170.28C880.67,-178.05 756.91,-191.41 709.08,-212.35 666.46,-231 627.5,-269.95 606.19,-293.96"/>
-<polygon fill="#000000" stroke="#000000" points="603.81,-291.36 599.91,-301.21 609.1,-295.94 603.81,-291.36"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1082.68,-215.42C1046.7,-229.91 983.07,-253.53 926.1,-264.26 774.3,-292.85 733.51,-280.28 579.07,-283.26"/>
 </g>
 <!-- module~datastructs_samplers_rejection_maxheap_two_classes_mod&#45;&gt;module~datastructs_samplers_rejection_maxheap_mod -->
-<g id="module~~graph~~ModuleGraph_edge34" class="edge">
+<g id="module~~graph~~ModuleGraph_edge37" class="edge">
 <title>module~datastructs_samplers_rejection_maxheap_two_classes_mod&#45;&gt;module~datastructs_samplers_rejection_maxheap_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1033.73,-173.56C1016.35,-177.09 998.62,-181.6 982.35,-187.35 965.09,-193.44 963.47,-200.86 946.35,-207.35 935.04,-211.63 922.85,-215.31 910.74,-218.43"/>
-<polygon fill="#000000" stroke="#000000" points="910.02,-215 901.14,-220.78 911.68,-221.8 910.02,-215"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1019.01,-215.48C985.31,-219.92 947,-224.98 912.38,-229.55"/>
+<polygon fill="#000000" stroke="#000000" points="912.24,-226.03 902.78,-230.81 913.15,-232.97 912.24,-226.03"/>
 </g>
 <!-- module~datastructs_samplers_rejection_mod -->
-<g id="module~~graph~~ModuleGraph_node16" class="node">
+<g id="module~~graph~~ModuleGraph_node17" class="node">
 <title>module~datastructs_samplers_rejection_mod</title>
-<g id="a_module~~graph~~ModuleGraph_node16"><a xlink:href="../module/datastructs_samplers_rejection_mod.html" xlink:title="datastructs_samplers_rejection_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="921.23,-51.11 734.21,-51.11 734.21,-27.59 921.23,-27.59 921.23,-51.11"/>
-<text xml:space="preserve" text-anchor="middle" x="827.72" y="-35.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_samplers_rejection_mod</text>
+<g id="a_module~~graph~~ModuleGraph_node17"><a xlink:href="../module/datastructs_samplers_rejection_mod.html" xlink:title="datastructs_samplers_rejection_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="900.98,-61.02 713.96,-61.02 713.96,-37.5 900.98,-37.5 900.98,-61.02"/>
+<text xml:space="preserve" text-anchor="middle" x="807.47" y="-45.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_samplers_rejection_mod</text>
 </a>
 </g>
 </g>
 <!-- module~datastructs_samplers_rejection_mod&#45;&gt;module~datastructs_kinds_mod -->
-<g id="module~~graph~~ModuleGraph_edge35" class="edge">
+<g id="module~~graph~~ModuleGraph_edge38" class="edge">
 <title>module~datastructs_samplers_rejection_mod&#45;&gt;module~datastructs_kinds_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M770.42,-51.57C722.51,-61.32 651.71,-74.16 589.2,-79.35"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M713.71,-55.52C671.89,-60.06 622.29,-67.86 579.07,-81.26"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M577.07,-81.26C491.04,-107.92 456.54,-44.26 374.43,-81.26"/>
 </g>
 <!-- module~datastructs_samplers_rejection_mod&#45;&gt;module~datastructs_lists_mod -->
-<g id="module~~graph~~ModuleGraph_edge36" class="edge">
+<g id="module~~graph~~ModuleGraph_edge39" class="edge">
 <title>module~datastructs_samplers_rejection_mod&#45;&gt;module~datastructs_lists_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M801.75,-51.54C759.33,-72.25 673.11,-114.36 624.53,-138.09"/>
-<polygon fill="#000000" stroke="#000000" points="623,-134.94 615.55,-142.48 626.07,-141.23 623,-134.94"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M720.42,-61.43C709.35,-64.94 698.52,-69.45 688.83,-75.26 644.55,-101.79 609.19,-152.5 591.47,-181.5"/>
+<polygon fill="#000000" stroke="#000000" points="588.63,-179.43 586.54,-189.81 594.65,-183 588.63,-179.43"/>
 </g>
 <!-- module~datastructs_samplers_rejection_mod&#45;&gt;module~datastructs_samplers_base_mod -->
-<g id="module~~graph~~ModuleGraph_edge37" class="edge">
+<g id="module~~graph~~ModuleGraph_edge40" class="edge">
 <title>module~datastructs_samplers_rejection_mod&#45;&gt;module~datastructs_samplers_base_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M792.19,-51.51C766.6,-61.97 732.27,-79.2 709.08,-103.35 684.02,-129.43 690.49,-144.64 673.08,-176.35 649.97,-218.44 620.24,-265.97 603.09,-292.83"/>
-<polygon fill="#000000" stroke="#000000" points="600.24,-290.79 597.78,-301.1 606.13,-294.57 600.24,-290.79"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M577.07,-81.26C523.98,-97.71 531.6,-134.41 503.31,-182.26 484.08,-214.78 496.13,-234.83 467.31,-259.26 463.21,-262.73 458.69,-265.74 453.9,-268.35"/>
+<polygon fill="#000000" stroke="#000000" points="452.67,-265.06 445.14,-272.51 455.67,-271.38 452.67,-265.06"/>
 </g>
 <!-- module~datastructs_samplers_rejection_two_classes_mod -->
-<g id="module~~graph~~ModuleGraph_node17" class="node">
+<g id="module~~graph~~ModuleGraph_node18" class="node">
 <title>module~datastructs_samplers_rejection_two_classes_mod</title>
-<g id="a_module~~graph~~ModuleGraph_node17"><a xlink:href="../module/datastructs_samplers_rejection_two_classes_mod.html" xlink:title="datastructs_samplers_rejection_two_classes_mod">
-<polygon fill="#337ab7" stroke="#337ab7" points="1258.25,-123.11 1007.48,-123.11 1007.48,-99.59 1258.25,-99.59 1258.25,-123.11"/>
-<text xml:space="preserve" text-anchor="middle" x="1132.86" y="-107.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_samplers_rejection_two_classes_mod</text>
+<g id="a_module~~graph~~ModuleGraph_node18"><a xlink:href="../module/datastructs_samplers_rejection_two_classes_mod.html" xlink:title="datastructs_samplers_rejection_two_classes_mod">
+<polygon fill="#337ab7" stroke="#337ab7" points="1238,-101.02 987.23,-101.02 987.23,-77.5 1238,-77.5 1238,-101.02"/>
+<text xml:space="preserve" text-anchor="middle" x="1112.61" y="-85.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">datastructs_samplers_rejection_two_classes_mod</text>
 </a>
 </g>
 </g>
 <!-- module~datastructs_samplers_rejection_two_classes_mod&#45;&gt;module~datastructs_kinds_mod -->
-<g id="module~~graph~~ModuleGraph_edge38" class="edge">
+<g id="module~~graph~~ModuleGraph_edge41" class="edge">
 <title>module~datastructs_samplers_rejection_two_classes_mod&#45;&gt;module~datastructs_kinds_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1114.51,-99.13C1082.88,-77.7 1012.96,-34.11 946.35,-18.35 843.73,5.94 811.63,6.24 709.08,-18.35 650.94,-32.29 648.87,-75.68 589.2,-79.35"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M587.2,-79.35C492.77,-84.51 465.78,-54.91 374.43,-79.35"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M372.43,-79.35C292.8,-100.65 226.5,-179.88 198.27,-218.26"/>
-<polygon fill="#000000" stroke="#000000" points="195.51,-216.1 192.52,-226.26 201.2,-220.19 195.51,-216.1"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1084.02,-77.11C1048.37,-62.13 984.01,-37.54 926.1,-28.26 682.88,10.7 598.16,21.77 374.43,-81.26"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M372.43,-81.26C334.32,-99.25 313.16,-74.85 279.54,-100.26 224.99,-141.48 198.73,-222.67 188.71,-262.35"/>
+<polygon fill="#000000" stroke="#000000" points="185.33,-261.44 186.42,-271.98 192.14,-263.06 185.33,-261.44"/>
 </g>
 <!-- module~datastructs_samplers_rejection_two_classes_mod&#45;&gt;module~datastructs_lists_mod -->
-<g id="module~~graph~~ModuleGraph_edge39" class="edge">
+<g id="module~~graph~~ModuleGraph_edge42" class="edge">
 <title>module~datastructs_samplers_rejection_two_classes_mod&#45;&gt;module~datastructs_lists_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1007.14,-101.73C951.78,-100.54 886.27,-103.39 828.72,-117.35"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M826.72,-117.35C770.17,-131.06 704.82,-141.1 656.99,-147.4"/>
-<polygon fill="#000000" stroke="#000000" points="656.81,-143.9 647.34,-148.65 657.71,-150.84 656.81,-143.9"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M986.93,-97.77C901.59,-105.95 786.63,-121.64 688.83,-151.26 660.91,-159.71 631.11,-174.22 609.61,-185.76"/>
+<polygon fill="#000000" stroke="#000000" points="608.19,-182.55 601.1,-190.43 611.55,-188.69 608.19,-182.55"/>
 </g>
 <!-- module~datastructs_samplers_rejection_two_classes_mod&#45;&gt;module~datastructs_samplers_base_mod -->
-<g id="module~~graph~~ModuleGraph_edge40" class="edge">
+<g id="module~~graph~~ModuleGraph_edge43" class="edge">
 <title>module~datastructs_samplers_rejection_two_classes_mod&#45;&gt;module~datastructs_samplers_base_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M826.72,-117.35C771.16,-130.82 754.65,-134.84 709.08,-169.35 662.29,-204.78 622.12,-261.91 602.33,-292.82"/>
-<polygon fill="#000000" stroke="#000000" points="599.58,-290.62 597.22,-300.95 605.51,-294.34 599.58,-290.62"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1068.88,-101.5C976.17,-128.27 759.25,-191.98 688.83,-222.26 637.56,-244.3 634.86,-281.96 579.07,-283.26"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M577.07,-283.26C542.15,-283.8 503.83,-284.22 470.01,-284.53"/>
+<polygon fill="#000000" stroke="#000000" points="470.21,-281.03 460.24,-284.62 470.27,-288.03 470.21,-281.03"/>
 </g>
 <!-- module~datastructs_samplers_rejection_two_classes_mod&#45;&gt;module~datastructs_samplers_rejection_mod -->
-<g id="module~~graph~~ModuleGraph_edge41" class="edge">
+<g id="module~~graph~~ModuleGraph_edge44" class="edge">
 <title>module~datastructs_samplers_rejection_two_classes_mod&#45;&gt;module~datastructs_samplers_rejection_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1083.9,-99.1C1046.49,-89.63 993.19,-76.33 946.35,-65.35 930.22,-61.56 912.81,-57.63 896.45,-54.01"/>
-<polygon fill="#000000" stroke="#000000" points="897.32,-50.62 886.8,-51.88 895.81,-57.45 897.32,-50.62"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1019.01,-77.04C985.31,-72.59 947,-67.54 912.38,-62.97"/>
+<polygon fill="#000000" stroke="#000000" points="913.15,-59.54 902.78,-61.7 912.24,-66.48 913.15,-59.54"/>
 </g>
 <!-- proc~choose_sampler -->
-<g id="module~~graph~~ModuleGraph_node18" class="node">
+<g id="module~~graph~~ModuleGraph_node19" class="node">
 <title>proc~choose_sampler</title>
-<g id="a_module~~graph~~ModuleGraph_node18"><a xlink:href="../proc/choose_sampler.html" xlink:title="choose_sampler">
-<polygon fill="#d9534f" stroke="#d9534f" points="1409.64,-193.11 1319.37,-193.11 1319.37,-169.59 1409.64,-169.59 1409.64,-193.11"/>
-<text xml:space="preserve" text-anchor="middle" x="1364.51" y="-177.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">choose_sampler</text>
+<g id="a_module~~graph~~ModuleGraph_node19"><a xlink:href="../proc/choose_sampler.html" xlink:title="choose_sampler">
+<polygon fill="#d9534f" stroke="#d9534f" points="1389.39,-235.02 1299.12,-235.02 1299.12,-211.5 1389.39,-211.5 1389.39,-235.02"/>
+<text xml:space="preserve" text-anchor="middle" x="1344.26" y="-219.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">choose_sampler</text>
 </a>
 </g>
 </g>
 <!-- proc~choose_sampler&#45;&gt;module~datastructs_samplers_btree_mod -->
-<g id="module~~graph~~ModuleGraph_edge42" class="edge">
+<g id="module~~graph~~ModuleGraph_edge45" class="edge">
 <title>proc~choose_sampler&#45;&gt;module~datastructs_samplers_btree_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1354.8,-193.38C1341.41,-211.05 1314.06,-243.91 1283.37,-262.35 1170.85,-329.94 1021.17,-362.66 924.86,-377.69"/>
-<polygon fill="#000000" stroke="#000000" points="924.54,-374.2 915.18,-379.17 925.59,-381.12 924.54,-374.2"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1334.6,-235.38C1321.27,-253.15 1294,-286.14 1263.12,-304.26 1197.55,-342.73 988.03,-391.65 877.79,-415.65"/>
+<polygon fill="#000000" stroke="#000000" points="877.3,-412.17 868.27,-417.71 878.78,-419.01 877.3,-412.17"/>
 </g>
 <!-- proc~choose_sampler&#45;&gt;module~datastructs_samplers_rejection_maxheap_composition_mod -->
-<g id="module~~graph~~ModuleGraph_edge43" class="edge">
+<g id="module~~graph~~ModuleGraph_edge46" class="edge">
 <title>proc~choose_sampler&#45;&gt;module~datastructs_samplers_rejection_maxheap_composition_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1338.78,-193.58C1323.21,-200.84 1302.5,-209.7 1283.37,-215.35 1267.97,-219.89 1251.43,-223.74 1235.17,-226.97"/>
-<polygon fill="#000000" stroke="#000000" points="1234.62,-223.51 1225.45,-228.83 1235.93,-230.39 1234.62,-223.51"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1318.53,-235.49C1302.96,-242.75 1282.25,-251.62 1263.12,-257.26 1247.72,-261.8 1231.18,-265.65 1214.92,-268.88"/>
+<polygon fill="#000000" stroke="#000000" points="1214.37,-265.43 1205.2,-270.74 1215.68,-272.3 1214.37,-265.43"/>
 </g>
 <!-- proc~choose_sampler&#45;&gt;module~datastructs_samplers_rejection_maxheap_mod -->
-<g id="module~~graph~~ModuleGraph_edge44" class="edge">
+<g id="module~~graph~~ModuleGraph_edge47" class="edge">
 <title>proc~choose_sampler&#45;&gt;module~datastructs_samplers_rejection_maxheap_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1319.29,-185.65C1240.92,-193.27 1074.9,-209.41 957.77,-220.8"/>
-<polygon fill="#000000" stroke="#000000" points="957.71,-217.29 948.1,-221.74 958.39,-224.25 957.71,-217.29"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1299.04,-224.91C1220.67,-227.84 1054.65,-234.05 937.52,-238.43"/>
+<polygon fill="#000000" stroke="#000000" points="937.71,-234.92 927.85,-238.79 937.98,-241.92 937.71,-234.92"/>
 </g>
 <!-- proc~choose_sampler&#45;&gt;module~datastructs_samplers_rejection_maxheap_two_classes_mod -->
-<g id="module~~graph~~ModuleGraph_edge45" class="edge">
+<g id="module~~graph~~ModuleGraph_edge48" class="edge">
 <title>proc~choose_sampler&#45;&gt;module~datastructs_samplers_rejection_maxheap_two_classes_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1318.95,-177.47C1308.77,-176.58 1297.38,-175.59 1285.4,-174.54"/>
-<polygon fill="#000000" stroke="#000000" points="1286.02,-171.08 1275.76,-173.7 1285.42,-178.06 1286.02,-171.08"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1298.7,-219.38C1288.52,-218.49 1277.13,-217.5 1265.15,-216.46"/>
+<polygon fill="#000000" stroke="#000000" points="1265.77,-213 1255.51,-215.62 1265.17,-219.97 1265.77,-213"/>
 </g>
 <!-- proc~choose_sampler&#45;&gt;module~datastructs_samplers_rejection_mod -->
-<g id="module~~graph~~ModuleGraph_edge46" class="edge">
+<g id="module~~graph~~ModuleGraph_edge49" class="edge">
 <title>proc~choose_sampler&#45;&gt;module~datastructs_samplers_rejection_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1356.98,-169.37C1345.23,-149.14 1318.47,-108.63 1283.37,-90.35 1173.6,-33.16 1029,-26.7 932.65,-30.39"/>
-<polygon fill="#000000" stroke="#000000" points="932.79,-26.89 922.95,-30.81 933.09,-33.88 932.79,-26.89"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1341.22,-211.23C1335.37,-180.96 1315.48,-101.65 1263.12,-68.26 1140.19,10.14 958.21,-14.62 866.21,-34.55"/>
+<polygon fill="#000000" stroke="#000000" points="865.66,-31.09 856.66,-36.68 867.18,-37.92 865.66,-31.09"/>
 </g>
 <!-- proc~choose_sampler&#45;&gt;module~datastructs_samplers_rejection_two_classes_mod -->
-<g id="module~~graph~~ModuleGraph_edge47" class="edge">
+<g id="module~~graph~~ModuleGraph_edge50" class="edge">
 <title>proc~choose_sampler&#45;&gt;module~datastructs_samplers_rejection_two_classes_mod</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1343.78,-169.26C1327.97,-160.08 1304.94,-147.79 1283.37,-140.35 1266.5,-134.53 1248.13,-129.76 1230.23,-125.89"/>
-<polygon fill="#000000" stroke="#000000" points="1231.15,-122.51 1220.65,-123.91 1229.73,-129.36 1231.15,-122.51"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1322.47,-211.13C1281.84,-187.42 1191.72,-134.84 1144.24,-107.13"/>
+<polygon fill="#000000" stroke="#000000" points="1146.22,-104.24 1135.82,-102.22 1142.69,-110.28 1146.22,-104.24"/>
 </g>
 <!-- proc~unique_values -->
-<g id="module~~graph~~ModuleGraph_node19" class="node">
+<g id="module~~graph~~ModuleGraph_node20" class="node">
 <title>proc~unique_values</title>
-<g id="a_module~~graph~~ModuleGraph_node19"><a xlink:href="../proc/unique_values.html" xlink:title="unique_values">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="1404.77,-503.11 1324.25,-503.11 1324.25,-479.59 1404.77,-479.59 1404.77,-503.11"/>
-<text xml:space="preserve" text-anchor="middle" x="1364.51" y="-487.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">unique_values</text>
+<g id="a_module~~graph~~ModuleGraph_node20"><a xlink:href="../proc/unique_values.html" xlink:title="unique_values">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="1384.52,-433.02 1304,-433.02 1304,-409.5 1384.52,-409.5 1384.52,-433.02"/>
+<text xml:space="preserve" text-anchor="middle" x="1344.26" y="-417.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">unique_values</text>
 </a>
 </g>
 </g>
 <!-- stdlib_sorting -->
-<g id="module~~graph~~ModuleGraph_node21" class="node">
+<g id="module~~graph~~ModuleGraph_node22" class="node">
 <title>stdlib_sorting</title>
-<polygon fill="#337ab7" stroke="#337ab7" points="1170.12,-503.11 1095.6,-503.11 1095.6,-479.59 1170.12,-479.59 1170.12,-503.11"/>
-<text xml:space="preserve" text-anchor="middle" x="1132.86" y="-487.37" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">stdlib_sorting</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="1149.87,-433.02 1075.35,-433.02 1075.35,-409.5 1149.87,-409.5 1149.87,-433.02"/>
+<text xml:space="preserve" text-anchor="middle" x="1112.61" y="-417.28" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">stdlib_sorting</text>
 </g>
 <!-- proc~unique_values&#45;&gt;stdlib_sorting -->
-<g id="module~~graph~~ModuleGraph_edge48" class="edge">
+<g id="module~~graph~~ModuleGraph_edge51" class="edge">
 <title>proc~unique_values&#45;&gt;stdlib_sorting</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1323.77,-491.35C1284.34,-491.35 1223.88,-491.35 1181.81,-491.35"/>
-<polygon fill="#000000" stroke="#000000" points="1181.98,-487.85 1171.98,-491.35 1181.98,-494.85 1181.98,-487.85"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1303.52,-421.26C1264.09,-421.26 1203.63,-421.26 1161.56,-421.26"/>
+<polygon fill="#000000" stroke="#000000" points="1161.73,-417.76 1151.73,-421.26 1161.73,-424.76 1161.73,-417.76"/>
 </g>
 </g>
 </svg>

@@ -87,7 +87,7 @@
                  <td><a href='../proc/choose_fmt_based_on.html'>choose_fmt_based_on</a></td>
                  <td><a href='../module/datastructs_kinds_mod.html'>datastructs_kinds_mod</a></td>
                  <td>Function</td>
-                 <td></td>
+                 <td><p>Select a format string based on the file extension.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/choose_sampler.html'>choose_sampler</a></td>
@@ -99,15 +99,16 @@
                  <td><a href='../proc/count_integers_from_string.html'>count_integers_from_string</a></td>
                  <td><a href='../module/datastructs_kinds_mod.html'>datastructs_kinds_mod</a></td>
                  <td>Function</td>
-                 <td></td>
+                 <td><p>Count the number of integers in a string separated by spaces or commas.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/djb2.html'>djb2</a></td>
                  <td><a href='../module/datastructs_hash_mod.html'>datastructs_hash_mod</a></td>
                  <td>Function</td>
                  <td><p>DJB2 hash function
-Inspired by http://www.cse.yorku.ca/~oz/hash.html
-and https://github.com/pdebuyl/fortran_hash_table/blob/master/src/dictionary_m.f90</p></td>
+Inspired by:
+- http://www.cse.yorku.ca/~oz/hash.html
+- https://github.com/pdebuyl/fortran_hash_table/blob/master/src/dictionary_m.f90</p></td>
                </tr>
 			   <tr>
                  <td><a href='../interface/dynamical_list.html'>dynamical_list</a></td>
@@ -125,7 +126,19 @@ and https://github.com/pdebuyl/fortran_hash_table/blob/master/src/dictionary_m.f
                  <td><a href='../proc/list_ranges.html'>list_ranges</a></td>
                  <td><a href='../module/datastructs_kinds_mod.html'>datastructs_kinds_mod</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Print ranges for supported numeric types.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/log_unit.html'>log_unit</a></td>
+                 <td><a href='../module/datastructs_logger_mod.html'>datastructs_logger_mod</a></td>
+                 <td>Function</td>
+                 <td><p>Determine the output unit for a given log level and update LOGGER_OK.</p><a href="../proc/log_unit.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/log_write.html'>log_write</a></td>
+                 <td><a href='../module/datastructs_logger_mod.html'>datastructs_logger_mod</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Write a log message for the given level using the current logger settings.</p><a href="../proc/log_write.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
                  <td><a href='../interface/maxheap.html'>maxheap</a></td>
@@ -141,10 +154,41 @@ and https://github.com/pdebuyl/fortran_hash_table/blob/master/src/dictionary_m.f
 Input: list - an array of integers</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/set_error_unit.html'>set_error_unit</a></td>
+                 <td><a href='../module/datastructs_logger_mod.html'>datastructs_logger_mod</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Set the output unit for error log messages.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/set_level.html'>set_level</a></td>
+                 <td><a href='../module/datastructs_logger_mod.html'>datastructs_logger_mod</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/set_output_unit.html'>set_output_unit</a></td>
+                 <td><a href='../module/datastructs_logger_mod.html'>datastructs_logger_mod</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Set the output unit for normal log messages.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/set_unit_defaults.html'>set_unit_defaults</a></td>
+                 <td><a href='../module/datastructs_logger_mod.html'>datastructs_logger_mod</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Reset output units to default (stdout for normal logs, stderr for errors).</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/set_verbose.html'>set_verbose</a></td>
+                 <td><a href='../module/datastructs_logger_mod.html'>datastructs_logger_mod</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Enable or disable global verbosity.
+If set to <code>.false.</code>, no log messages will be printed regardless of level.</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../interface/swap.html'>swap</a></td>
                  <td><a href='../module/datastructs_kinds_mod.html'>datastructs_kinds_mod</a></td>
                  <td>Interface</td>
-                 <td><p>Interface for the swap subroutine.</p></td>
+                 <td><p>Generic interface for swapping values of different types.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/unique_values.html'>unique_values</a></td>
@@ -162,13 +206,13 @@ The result is a list of unique integers</p></td>
                </tr>
 			   <tr>
                  <td><a href='../interface/weighted_sampler~2.html'>weighted_sampler</a></td>
-                 <td><a href='../module/datastructs_samplers_btree_mod.html'>datastructs_samplers_btree_mod</a></td>
+                 <td><a href='../module/datastructs_samplers_rejection_mod.html'>datastructs_samplers_rejection_mod</a></td>
                  <td>Interface</td>
                  <td><p>Constructor</p></td>
                </tr>
 			   <tr>
                  <td><a href='../interface/weighted_sampler~3.html'>weighted_sampler</a></td>
-                 <td><a href='../module/datastructs_samplers_rejection_mod.html'>datastructs_samplers_rejection_mod</a></td>
+                 <td><a href='../module/datastructs_samplers_rejection_two_classes_mod.html'>datastructs_samplers_rejection_two_classes_mod</a></td>
                  <td>Interface</td>
                  <td><p>Constructor</p></td>
                </tr>
@@ -186,7 +230,7 @@ The result is a list of unique integers</p></td>
                </tr>
 			   <tr>
                  <td><a href='../interface/weighted_sampler~6.html'>weighted_sampler</a></td>
-                 <td><a href='../module/datastructs_samplers_rejection_two_classes_mod.html'>datastructs_samplers_rejection_two_classes_mod</a></td>
+                 <td><a href='../module/datastructs_samplers_btree_mod.html'>datastructs_samplers_btree_mod</a></td>
                  <td>Interface</td>
                  <td><p>Constructor</p></td>
                </tr>
@@ -197,11 +241,11 @@ The result is a list of unique integers</p></td>
 <!-- Generated by graphviz version 13.1.1 (0)
  -->
 <!-- Title: call~~graph~~CallGraph Pages: 1 -->
-<svg id="callgraphCallGraph" width="382pt" height="1292pt"
- viewBox="0.00 0.00 382.00 1292.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="call~~graph~~CallGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 1287.52)">
+<svg id="callgraphCallGraph" width="382pt" height="1544pt"
+ viewBox="0.00 0.00 382.00 1544.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="call~~graph~~CallGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 1539.52)">
 <title>call~~graph~~CallGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-1287.52 378.04,-1287.52 378.04,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-1539.52 378.04,-1539.52 378.04,4 -4,4"/>
 <!-- interface~dynamical_list -->
 <g id="call~~graph~~CallGraph_node1" class="node">
 <title>interface~dynamical_list</title>
@@ -292,10 +336,10 @@ The result is a list of unique integers</p></td>
 </a>
 </g>
 </g>
-<!-- none~add~2 -->
+<!-- none~add -->
 <g id="call~~graph~~CallGraph_node11" class="node">
-<title>none~add~2</title>
-<g id="a_call~~graph~~CallGraph_node11"><a xlink:href="../type/dynamical_list_t.html#boundprocedure-add~2" xlink:title="dynamical_list_t%add">
+<title>none~add</title>
+<g id="a_call~~graph~~CallGraph_node11"><a xlink:href="../type/dynamical_list_t.html#boundprocedure-add" xlink:title="dynamical_list_t%add">
 <polygon fill="#a7506f" stroke="#a7506f" points="151.39,-443.52 37.12,-443.52 37.12,-420 151.39,-420 151.39,-443.52"/>
 <text xml:space="preserve" text-anchor="middle" x="94.26" y="-427.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dynamical_list_t%add</text>
 </a>
@@ -310,25 +354,25 @@ The result is a list of unique integers</p></td>
 </a>
 </g>
 </g>
-<!-- none~init~7 -->
-<g id="call~~graph~~CallGraph_node35" class="node">
-<title>none~init~7</title>
-<g id="a_call~~graph~~CallGraph_node35"><a xlink:href="../type/dynamical_list_t.html#boundprocedure-init~7" xlink:title="dynamical_list_t%init">
+<!-- none~init~5 -->
+<g id="call~~graph~~CallGraph_node42" class="node">
+<title>none~init~5</title>
+<g id="a_call~~graph~~CallGraph_node42"><a xlink:href="../type/dynamical_list_t.html#boundprocedure-init~5" xlink:title="dynamical_list_t%init">
 <polygon fill="#a7506f" stroke="#a7506f" points="354.17,-485.52 244.4,-485.52 244.4,-462 354.17,-462 354.17,-485.52"/>
 <text xml:space="preserve" text-anchor="middle" x="299.28" y="-469.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dynamical_list_t%init</text>
 </a>
 </g>
 </g>
-<!-- none~assignment(=)&#45;&gt;none~init~7 -->
+<!-- none~assignment(=)&#45;&gt;none~init~5 -->
 <g id="call~~graph~~CallGraph_edge1" class="edge">
-<title>none~assignment(=)&#45;&gt;none~init~7</title>
+<title>none~assignment(=)&#45;&gt;none~init~5</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M176.96,-473.76C195.49,-473.76 214.93,-473.76 232.69,-473.76"/>
 <polygon fill="#000000" stroke="#000000" points="232.58,-477.26 242.58,-473.76 232.58,-470.26 232.58,-477.26"/>
 </g>
-<!-- none~get_mean~2 -->
+<!-- none~get_mean -->
 <g id="call~~graph~~CallGraph_node13" class="node">
-<title>none~get_mean~2</title>
-<g id="a_call~~graph~~CallGraph_node13"><a xlink:href="../type/statistical_measure_t.html#boundprocedure-get_mean~2" xlink:title="statistical_measure_t%get_mean">
+<title>none~get_mean</title>
+<g id="a_call~~graph~~CallGraph_node13"><a xlink:href="../type/statistical_measure_t.html#boundprocedure-get_mean" xlink:title="statistical_measure_t%get_mean">
 <polygon fill="#a7506f" stroke="#a7506f" points="178.77,-527.52 9.75,-527.52 9.75,-504 178.77,-504 178.77,-527.52"/>
 <text xml:space="preserve" text-anchor="middle" x="94.26" y="-511.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">statistical_measure_t%get_mean</text>
 </a>
@@ -352,10 +396,10 @@ The result is a list of unique integers</p></td>
 </a>
 </g>
 </g>
-<!-- none~get_variance~2 -->
+<!-- none~get_variance -->
 <g id="call~~graph~~CallGraph_node16" class="node">
-<title>none~get_variance~2</title>
-<g id="a_call~~graph~~CallGraph_node16"><a xlink:href="../type/statistical_measure_t.html#boundprocedure-get_variance~2" xlink:title="statistical_measure_t%get_variance">
+<title>none~get_variance</title>
+<g id="a_call~~graph~~CallGraph_node16"><a xlink:href="../type/statistical_measure_t.html#boundprocedure-get_variance" xlink:title="statistical_measure_t%get_variance">
 <polygon fill="#a7506f" stroke="#a7506f" points="185.52,-653.52 3,-653.52 3,-630 185.52,-630 185.52,-653.52"/>
 <text xml:space="preserve" text-anchor="middle" x="94.26" y="-637.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">statistical_measure_t%get_variance</text>
 </a>
@@ -364,216 +408,216 @@ The result is a list of unique integers</p></td>
 <!-- none~init~10 -->
 <g id="call~~graph~~CallGraph_node17" class="node">
 <title>none~init~10</title>
-<g id="a_call~~graph~~CallGraph_node17"><a xlink:href="../type/weighted_sampler_t~3.html#boundprocedure-init~10" xlink:title="weighted_sampler_t%init">
+<g id="a_call~~graph~~CallGraph_node17"><a xlink:href="../type/weighted_sampler_t.html#boundprocedure-init~10" xlink:title="weighted_sampler_t%init">
 <polygon fill="#a7506f" stroke="#a7506f" points="159.27,-695.52 29.25,-695.52 29.25,-672 159.27,-672 159.27,-695.52"/>
 <text xml:space="preserve" text-anchor="middle" x="94.26" y="-679.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler_t%init</text>
 </a>
 </g>
 </g>
-<!-- none~init_n~7 -->
-<g id="call~~graph~~CallGraph_node32" class="node">
-<title>none~init_n~7</title>
-<g id="a_call~~graph~~CallGraph_node32"><a xlink:href="../type/weighted_sampler_t~6.html#boundprocedure-init_n~7" xlink:title="weighted_sampler_t%init_n">
+<!-- none~init_n~3 -->
+<g id="call~~graph~~CallGraph_node39" class="node">
+<title>none~init_n~3</title>
+<g id="a_call~~graph~~CallGraph_node39"><a xlink:href="../type/weighted_sampler_t~5.html#boundprocedure-init_n~3" xlink:title="weighted_sampler_t%init_n">
 <polygon fill="#a7506f" stroke="#a7506f" points="370.29,-863.52 228.27,-863.52 228.27,-840 370.29,-840 370.29,-863.52"/>
 <text xml:space="preserve" text-anchor="middle" x="299.28" y="-847.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler_t%init_n</text>
 </a>
 </g>
 </g>
-<!-- none~init~10&#45;&gt;none~init_n~7 -->
+<!-- none~init~10&#45;&gt;none~init_n~3 -->
 <g id="call~~graph~~CallGraph_edge2" class="edge">
-<title>none~init~10&#45;&gt;none~init_n~7</title>
+<title>none~init~10&#45;&gt;none~init_n~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M159.48,-688.71C170.2,-692.05 180.44,-697.12 188.52,-704.76 230.86,-744.76 183.32,-789.6 224.52,-830.76 225.39,-831.63 226.3,-832.47 227.23,-833.27"/>
 <polygon fill="#000000" stroke="#000000" points="224.89,-835.91 235.1,-838.73 228.88,-830.15 224.89,-835.91"/>
 </g>
-<!-- none~init_w2~7 -->
-<g id="call~~graph~~CallGraph_node33" class="node">
-<title>none~init_w2~7</title>
-<g id="a_call~~graph~~CallGraph_node33"><a xlink:href="../type/weighted_sampler_t~6.html#boundprocedure-init_w2~7" xlink:title="weighted_sampler_t%init_w2">
+<!-- none~init_w2~3 -->
+<g id="call~~graph~~CallGraph_node40" class="node">
+<title>none~init_w2~3</title>
+<g id="a_call~~graph~~CallGraph_node40"><a xlink:href="../type/weighted_sampler_t~5.html#boundprocedure-init_w2~3" xlink:title="weighted_sampler_t%init_w2">
 <polygon fill="#a7506f" stroke="#a7506f" points="374.04,-821.52 224.52,-821.52 224.52,-798 374.04,-798 374.04,-821.52"/>
 <text xml:space="preserve" text-anchor="middle" x="299.28" y="-805.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler_t%init_w2</text>
 </a>
 </g>
 </g>
-<!-- none~init~10&#45;&gt;none~init_w2~7 -->
+<!-- none~init~10&#45;&gt;none~init_w2~3 -->
 <g id="call~~graph~~CallGraph_edge3" class="edge">
-<title>none~init~10&#45;&gt;none~init_w2~7</title>
+<title>none~init~10&#45;&gt;none~init_w2~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M159.68,-689.87C170.13,-693.11 180.23,-697.86 188.52,-704.76 219.75,-730.73 194.03,-761.93 224.52,-788.76 225.77,-789.86 227.07,-790.9 228.42,-791.89"/>
 <polygon fill="#000000" stroke="#000000" points="226.24,-794.66 236.61,-796.87 229.88,-788.68 226.24,-794.66"/>
 </g>
-<!-- none~init_w~7 -->
-<g id="call~~graph~~CallGraph_node34" class="node">
-<title>none~init_w~7</title>
-<g id="a_call~~graph~~CallGraph_node34"><a xlink:href="../type/weighted_sampler_t~6.html#boundprocedure-init_w~7" xlink:title="weighted_sampler_t%init_w">
+<!-- none~init_w~3 -->
+<g id="call~~graph~~CallGraph_node41" class="node">
+<title>none~init_w~3</title>
+<g id="a_call~~graph~~CallGraph_node41"><a xlink:href="../type/weighted_sampler_t~5.html#boundprocedure-init_w~3" xlink:title="weighted_sampler_t%init_w">
 <polygon fill="#a7506f" stroke="#a7506f" points="371.04,-779.52 227.52,-779.52 227.52,-756 371.04,-756 371.04,-779.52"/>
 <text xml:space="preserve" text-anchor="middle" x="299.28" y="-763.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler_t%init_w</text>
 </a>
 </g>
 </g>
-<!-- none~init~10&#45;&gt;none~init_w~7 -->
+<!-- none~init~10&#45;&gt;none~init_w~3 -->
 <g id="call~~graph~~CallGraph_edge4" class="edge">
-<title>none~init~10&#45;&gt;none~init_w~7</title>
+<title>none~init~10&#45;&gt;none~init_w~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M159.73,-695.62C169.52,-698.18 179.4,-701.21 188.52,-704.76 218.39,-716.39 249.86,-735.23 271.41,-749.28"/>
 <polygon fill="#000000" stroke="#000000" points="269.33,-752.09 279.59,-754.71 273.2,-746.26 269.33,-752.09"/>
 </g>
 <!-- none~init~11 -->
 <g id="call~~graph~~CallGraph_node18" class="node">
 <title>none~init~11</title>
-<g id="a_call~~graph~~CallGraph_node18"><a xlink:href="../type/weighted_sampler_t~5.html#boundprocedure-init~11" xlink:title="weighted_sampler_t%init">
+<g id="a_call~~graph~~CallGraph_node18"><a xlink:href="../type/weighted_sampler_t~2.html#boundprocedure-init~11" xlink:title="weighted_sampler_t%init">
 <polygon fill="#a7506f" stroke="#a7506f" points="159.27,-947.52 29.25,-947.52 29.25,-924 159.27,-924 159.27,-947.52"/>
 <text xml:space="preserve" text-anchor="middle" x="94.26" y="-931.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler_t%init</text>
 </a>
 </g>
 </g>
-<!-- none~init~11&#45;&gt;none~init_n~7 -->
+<!-- none~init~11&#45;&gt;none~init_n~3 -->
 <g id="call~~graph~~CallGraph_edge5" class="edge">
-<title>none~init~11&#45;&gt;none~init_n~7</title>
+<title>none~init~11&#45;&gt;none~init_n~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M159.73,-923.9C169.52,-921.34 179.4,-918.31 188.52,-914.76 218.39,-903.13 249.86,-884.29 271.41,-870.24"/>
 <polygon fill="#000000" stroke="#000000" points="273.2,-873.26 279.59,-864.81 269.33,-867.43 273.2,-873.26"/>
 </g>
-<!-- none~init~11&#45;&gt;none~init_w2~7 -->
+<!-- none~init~11&#45;&gt;none~init_w2~3 -->
 <g id="call~~graph~~CallGraph_edge6" class="edge">
-<title>none~init~11&#45;&gt;none~init_w2~7</title>
+<title>none~init~11&#45;&gt;none~init_w2~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M159.68,-929.65C170.13,-926.41 180.23,-921.66 188.52,-914.76 219.75,-888.79 194.03,-857.59 224.52,-830.76 225.77,-829.66 227.07,-828.62 228.42,-827.63"/>
 <polygon fill="#000000" stroke="#000000" points="229.88,-830.84 236.61,-822.65 226.24,-824.86 229.88,-830.84"/>
 </g>
-<!-- none~init~11&#45;&gt;none~init_w~7 -->
+<!-- none~init~11&#45;&gt;none~init_w~3 -->
 <g id="call~~graph~~CallGraph_edge7" class="edge">
-<title>none~init~11&#45;&gt;none~init_w~7</title>
+<title>none~init~11&#45;&gt;none~init_w~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M159.48,-930.81C170.2,-927.47 180.44,-922.4 188.52,-914.76 230.86,-874.76 183.32,-829.92 224.52,-788.76 225.39,-787.89 226.3,-787.05 227.23,-786.25"/>
 <polygon fill="#000000" stroke="#000000" points="228.88,-789.37 235.1,-780.79 224.89,-783.61 228.88,-789.37"/>
 </g>
 <!-- none~init~12 -->
 <g id="call~~graph~~CallGraph_node19" class="node">
 <title>none~init~12</title>
-<g id="a_call~~graph~~CallGraph_node19"><a xlink:href="../type/weighted_sampler_t~6.html#boundprocedure-init~12" xlink:title="weighted_sampler_t%init">
+<g id="a_call~~graph~~CallGraph_node19"><a xlink:href="../type/weighted_sampler_t~4.html#boundprocedure-init~12" xlink:title="weighted_sampler_t%init">
 <polygon fill="#a7506f" stroke="#a7506f" points="159.27,-905.52 29.25,-905.52 29.25,-882 159.27,-882 159.27,-905.52"/>
 <text xml:space="preserve" text-anchor="middle" x="94.26" y="-889.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler_t%init</text>
 </a>
 </g>
 </g>
-<!-- none~init~12&#45;&gt;none~init_n~7 -->
+<!-- none~init~12&#45;&gt;none~init_n~3 -->
 <g id="call~~graph~~CallGraph_edge8" class="edge">
-<title>none~init~12&#45;&gt;none~init_n~7</title>
+<title>none~init~12&#45;&gt;none~init_n~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M154.25,-881.56C177.3,-876.79 203.91,-871.28 227.94,-866.31"/>
 <polygon fill="#000000" stroke="#000000" points="228.57,-869.75 237.66,-864.3 227.15,-862.9 228.57,-869.75"/>
 </g>
-<!-- none~init~12&#45;&gt;none~init_w2~7 -->
+<!-- none~init~12&#45;&gt;none~init_w2~3 -->
 <g id="call~~graph~~CallGraph_edge9" class="edge">
-<title>none~init~12&#45;&gt;none~init_w2~7</title>
+<title>none~init~12&#45;&gt;none~init_w2~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M159.57,-885C169.69,-882.03 179.7,-878.07 188.52,-872.76 209.58,-860.08 203.82,-844.02 224.52,-830.76 226.79,-829.31 229.16,-827.95 231.61,-826.69"/>
 <polygon fill="#000000" stroke="#000000" points="232.94,-829.93 240.61,-822.62 230.05,-823.55 232.94,-829.93"/>
 </g>
-<!-- none~init~12&#45;&gt;none~init_w~7 -->
+<!-- none~init~12&#45;&gt;none~init_w~3 -->
 <g id="call~~graph~~CallGraph_edge10" class="edge">
-<title>none~init~12&#45;&gt;none~init_w~7</title>
+<title>none~init~12&#45;&gt;none~init_w~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M159.68,-887.65C170.13,-884.41 180.23,-879.66 188.52,-872.76 219.75,-846.79 194.03,-815.59 224.52,-788.76 225.77,-787.66 227.07,-786.62 228.42,-785.63"/>
 <polygon fill="#000000" stroke="#000000" points="229.88,-788.84 236.61,-780.65 226.24,-782.86 229.88,-788.84"/>
 </g>
 <!-- none~init~13 -->
 <g id="call~~graph~~CallGraph_node20" class="node">
 <title>none~init~13</title>
-<g id="a_call~~graph~~CallGraph_node20"><a xlink:href="../type/weighted_sampler_t.html#boundprocedure-init~13" xlink:title="weighted_sampler_t%init">
+<g id="a_call~~graph~~CallGraph_node20"><a xlink:href="../type/weighted_sampler_t~6.html#boundprocedure-init~13" xlink:title="weighted_sampler_t%init">
 <polygon fill="#a7506f" stroke="#a7506f" points="159.27,-863.52 29.25,-863.52 29.25,-840 159.27,-840 159.27,-863.52"/>
 <text xml:space="preserve" text-anchor="middle" x="94.26" y="-847.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler_t%init</text>
 </a>
 </g>
 </g>
-<!-- none~init~13&#45;&gt;none~init_n~7 -->
+<!-- none~init~13&#45;&gt;none~init_n~3 -->
 <g id="call~~graph~~CallGraph_edge11" class="edge">
-<title>none~init~13&#45;&gt;none~init_n~7</title>
+<title>none~init~13&#45;&gt;none~init_n~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M159.5,-851.76C177.57,-851.76 197.48,-851.76 216.43,-851.76"/>
 <polygon fill="#000000" stroke="#000000" points="216.26,-855.26 226.26,-851.76 216.26,-848.26 216.26,-855.26"/>
 </g>
-<!-- none~init~13&#45;&gt;none~init_w2~7 -->
+<!-- none~init~13&#45;&gt;none~init_w2~3 -->
 <g id="call~~graph~~CallGraph_edge12" class="edge">
-<title>none~init~13&#45;&gt;none~init_w2~7</title>
+<title>none~init~13&#45;&gt;none~init_w2~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M154.25,-839.56C177.3,-834.79 203.91,-829.28 227.94,-824.31"/>
 <polygon fill="#000000" stroke="#000000" points="228.57,-827.75 237.66,-822.3 227.15,-820.9 228.57,-827.75"/>
 </g>
-<!-- none~init~13&#45;&gt;none~init_w~7 -->
+<!-- none~init~13&#45;&gt;none~init_w~3 -->
 <g id="call~~graph~~CallGraph_edge13" class="edge">
-<title>none~init~13&#45;&gt;none~init_w~7</title>
+<title>none~init~13&#45;&gt;none~init_w~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M159.57,-843C169.69,-840.03 179.7,-836.07 188.52,-830.76 209.58,-818.08 203.82,-802.02 224.52,-788.76 226.79,-787.31 229.16,-785.95 231.61,-784.69"/>
 <polygon fill="#000000" stroke="#000000" points="232.94,-787.93 240.61,-780.62 230.05,-781.55 232.94,-787.93"/>
 </g>
-<!-- none~init~6 -->
+<!-- none~init~2 -->
 <g id="call~~graph~~CallGraph_node21" class="node">
-<title>none~init~6</title>
-<g id="a_call~~graph~~CallGraph_node21"><a xlink:href="../type/sampler_base_t.html#boundprocedure-init~6" xlink:title="sampler_base_t%init">
+<title>none~init~2</title>
+<g id="a_call~~graph~~CallGraph_node21"><a xlink:href="../type/sampler_base_t.html#boundprocedure-init~2" xlink:title="sampler_base_t%init">
 <polygon fill="#a7506f" stroke="#a7506f" points="149.52,-821.52 39,-821.52 39,-798 149.52,-798 149.52,-821.52"/>
 <text xml:space="preserve" text-anchor="middle" x="94.26" y="-805.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">sampler_base_t%init</text>
 </a>
 </g>
 </g>
-<!-- none~init~6&#45;&gt;none~init_n~7 -->
+<!-- none~init~2&#45;&gt;none~init_n~3 -->
 <g id="call~~graph~~CallGraph_edge14" class="edge">
-<title>none~init~6&#45;&gt;none~init_n~7</title>
+<title>none~init~2&#45;&gt;none~init_n~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M149.93,-821.07C173.97,-826.04 202.51,-831.95 228.09,-837.24"/>
 <polygon fill="#000000" stroke="#000000" points="227.25,-840.64 237.75,-839.24 228.67,-833.78 227.25,-840.64"/>
 </g>
-<!-- none~init~6&#45;&gt;none~init_w2~7 -->
+<!-- none~init~2&#45;&gt;none~init_w2~3 -->
 <g id="call~~graph~~CallGraph_edge15" class="edge">
-<title>none~init~6&#45;&gt;none~init_w2~7</title>
+<title>none~init~2&#45;&gt;none~init_w2~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M149.93,-809.76C169.25,-809.76 191.46,-809.76 212.71,-809.76"/>
 <polygon fill="#000000" stroke="#000000" points="212.54,-813.26 222.54,-809.76 212.54,-806.26 212.54,-813.26"/>
 </g>
-<!-- none~init~6&#45;&gt;none~init_w~7 -->
+<!-- none~init~2&#45;&gt;none~init_w~3 -->
 <g id="call~~graph~~CallGraph_edge16" class="edge">
-<title>none~init~6&#45;&gt;none~init_w~7</title>
+<title>none~init~2&#45;&gt;none~init_w~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M149.93,-798.45C173.97,-793.48 202.51,-787.57 228.09,-782.28"/>
 <polygon fill="#000000" stroke="#000000" points="228.67,-785.74 237.75,-780.28 227.25,-778.88 228.67,-785.74"/>
 </g>
 <!-- none~init~8 -->
 <g id="call~~graph~~CallGraph_node22" class="node">
 <title>none~init~8</title>
-<g id="a_call~~graph~~CallGraph_node22"><a xlink:href="../type/weighted_sampler_t~4.html#boundprocedure-init~8" xlink:title="weighted_sampler_t%init">
+<g id="a_call~~graph~~CallGraph_node22"><a xlink:href="../type/weighted_sampler_t~5.html#boundprocedure-init~8" xlink:title="weighted_sampler_t%init">
 <polygon fill="#a7506f" stroke="#a7506f" points="159.27,-779.52 29.25,-779.52 29.25,-756 159.27,-756 159.27,-779.52"/>
 <text xml:space="preserve" text-anchor="middle" x="94.26" y="-763.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler_t%init</text>
 </a>
 </g>
 </g>
-<!-- none~init~8&#45;&gt;none~init_n~7 -->
+<!-- none~init~8&#45;&gt;none~init_n~3 -->
 <g id="call~~graph~~CallGraph_edge17" class="edge">
-<title>none~init~8&#45;&gt;none~init_n~7</title>
+<title>none~init~8&#45;&gt;none~init_n~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M159.57,-776.52C169.69,-779.49 179.7,-783.45 188.52,-788.76 209.58,-801.44 203.82,-817.5 224.52,-830.76 226.79,-832.21 229.16,-833.57 231.61,-834.83"/>
 <polygon fill="#000000" stroke="#000000" points="230.05,-837.97 240.61,-838.9 232.94,-831.59 230.05,-837.97"/>
 </g>
-<!-- none~init~8&#45;&gt;none~init_w2~7 -->
+<!-- none~init~8&#45;&gt;none~init_w2~3 -->
 <g id="call~~graph~~CallGraph_edge18" class="edge">
-<title>none~init~8&#45;&gt;none~init_w2~7</title>
+<title>none~init~8&#45;&gt;none~init_w2~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M154.25,-779.96C177.3,-784.73 203.91,-790.24 227.94,-795.21"/>
 <polygon fill="#000000" stroke="#000000" points="227.15,-798.62 237.66,-797.22 228.57,-791.77 227.15,-798.62"/>
 </g>
-<!-- none~init~8&#45;&gt;none~init_w~7 -->
+<!-- none~init~8&#45;&gt;none~init_w~3 -->
 <g id="call~~graph~~CallGraph_edge19" class="edge">
-<title>none~init~8&#45;&gt;none~init_w~7</title>
+<title>none~init~8&#45;&gt;none~init_w~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M159.5,-767.76C177.29,-767.76 196.87,-767.76 215.56,-767.76"/>
 <polygon fill="#000000" stroke="#000000" points="215.55,-771.26 225.55,-767.76 215.55,-764.26 215.55,-771.26"/>
 </g>
 <!-- none~init~9 -->
 <g id="call~~graph~~CallGraph_node23" class="node">
 <title>none~init~9</title>
-<g id="a_call~~graph~~CallGraph_node23"><a xlink:href="../type/weighted_sampler_t~2.html#boundprocedure-init~9" xlink:title="weighted_sampler_t%init">
+<g id="a_call~~graph~~CallGraph_node23"><a xlink:href="../type/weighted_sampler_t~3.html#boundprocedure-init~9" xlink:title="weighted_sampler_t%init">
 <polygon fill="#a7506f" stroke="#a7506f" points="159.27,-737.52 29.25,-737.52 29.25,-714 159.27,-714 159.27,-737.52"/>
 <text xml:space="preserve" text-anchor="middle" x="94.26" y="-721.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">weighted_sampler_t%init</text>
 </a>
 </g>
 </g>
-<!-- none~init~9&#45;&gt;none~init_n~7 -->
+<!-- none~init~9&#45;&gt;none~init_n~3 -->
 <g id="call~~graph~~CallGraph_edge20" class="edge">
-<title>none~init~9&#45;&gt;none~init_n~7</title>
+<title>none~init~9&#45;&gt;none~init_n~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M159.68,-731.87C170.13,-735.11 180.23,-739.86 188.52,-746.76 219.75,-772.73 194.03,-803.93 224.52,-830.76 225.77,-831.86 227.07,-832.9 228.42,-833.89"/>
 <polygon fill="#000000" stroke="#000000" points="226.24,-836.66 236.61,-838.87 229.88,-830.68 226.24,-836.66"/>
 </g>
-<!-- none~init~9&#45;&gt;none~init_w2~7 -->
+<!-- none~init~9&#45;&gt;none~init_w2~3 -->
 <g id="call~~graph~~CallGraph_edge21" class="edge">
-<title>none~init~9&#45;&gt;none~init_w2~7</title>
+<title>none~init~9&#45;&gt;none~init_w2~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M159.57,-734.52C169.69,-737.49 179.7,-741.45 188.52,-746.76 209.58,-759.44 203.82,-775.5 224.52,-788.76 226.79,-790.21 229.16,-791.57 231.61,-792.83"/>
 <polygon fill="#000000" stroke="#000000" points="230.05,-795.97 240.61,-796.9 232.94,-789.59 230.05,-795.97"/>
 </g>
-<!-- none~init~9&#45;&gt;none~init_w~7 -->
+<!-- none~init~9&#45;&gt;none~init_w~3 -->
 <g id="call~~graph~~CallGraph_edge22" class="edge">
-<title>none~init~9&#45;&gt;none~init_w~7</title>
+<title>none~init~9&#45;&gt;none~init_w~3</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M154.25,-737.96C177.3,-742.73 203.91,-748.24 227.94,-753.21"/>
 <polygon fill="#000000" stroke="#000000" points="227.15,-756.62 237.66,-755.22 228.57,-749.77 227.15,-756.62"/>
 </g>
@@ -587,7 +631,7 @@ The result is a list of unique integers</p></td>
 </g>
 </g>
 <!-- sort -->
-<g id="call~~graph~~CallGraph_node36" class="node">
+<g id="call~~graph~~CallGraph_node43" class="node">
 <title>sort</title>
 <polygon fill="#777777" stroke="#777777" points="326.28,-1010.52 272.28,-1010.52 272.28,-987 326.28,-987 326.28,-1010.52"/>
 <text xml:space="preserve" text-anchor="middle" x="299.28" y="-994.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">sort</text>
@@ -643,26 +687,95 @@ The result is a list of unique integers</p></td>
 </a>
 </g>
 </g>
-<!-- proc~new_fixed_list_pointer -->
+<!-- proc~log_unit -->
 <g id="call~~graph~~CallGraph_node30" class="node">
+<title>proc~log_unit</title>
+<g id="a_call~~graph~~CallGraph_node30"><a xlink:href="../proc/log_unit.html" xlink:title="log_unit">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="326.28,-1283.52 272.28,-1283.52 272.28,-1260 326.28,-1260 326.28,-1283.52"/>
+<text xml:space="preserve" text-anchor="middle" x="299.28" y="-1267.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">log_unit</text>
+</a>
+</g>
+</g>
+<!-- proc~log_write -->
+<g id="call~~graph~~CallGraph_node31" class="node">
+<title>proc~log_write</title>
+<g id="a_call~~graph~~CallGraph_node31"><a xlink:href="../proc/log_write.html" xlink:title="log_write">
+<polygon fill="#d9534f" stroke="#d9534f" points="121.39,-1283.52 67.12,-1283.52 67.12,-1260 121.39,-1260 121.39,-1283.52"/>
+<text xml:space="preserve" text-anchor="middle" x="94.26" y="-1267.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">log_write</text>
+</a>
+</g>
+</g>
+<!-- proc~log_write&#45;&gt;proc~log_unit -->
+<g id="call~~graph~~CallGraph_edge24" class="edge">
+<title>proc~log_write&#45;&gt;proc~log_unit</title>
+<path fill="none" stroke="#000000" d="M121.8,-1271.76C157.24,-1271.76 220.21,-1271.76 260.56,-1271.76"/>
+<polygon fill="#000000" stroke="#000000" points="260.54,-1275.26 270.54,-1271.76 260.54,-1268.26 260.54,-1275.26"/>
+</g>
+<!-- proc~new_fixed_list_pointer -->
+<g id="call~~graph~~CallGraph_node32" class="node">
 <title>proc~new_fixed_list_pointer</title>
-<g id="a_call~~graph~~CallGraph_node30"><a xlink:href="../proc/new_fixed_list_pointer.html" xlink:title="new_fixed_list_pointer">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="152.89,-1283.52 35.62,-1283.52 35.62,-1260 152.89,-1260 152.89,-1283.52"/>
-<text xml:space="preserve" text-anchor="middle" x="94.26" y="-1267.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">new_fixed_list_pointer</text>
+<g id="a_call~~graph~~CallGraph_node32"><a xlink:href="../proc/new_fixed_list_pointer.html" xlink:title="new_fixed_list_pointer">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="152.89,-1325.52 35.62,-1325.52 35.62,-1302 152.89,-1302 152.89,-1325.52"/>
+<text xml:space="preserve" text-anchor="middle" x="94.26" y="-1309.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">new_fixed_list_pointer</text>
+</a>
+</g>
+</g>
+<!-- proc~set_error_unit -->
+<g id="call~~graph~~CallGraph_node33" class="node">
+<title>proc~set_error_unit</title>
+<g id="a_call~~graph~~CallGraph_node33"><a xlink:href="../proc/set_error_unit.html" xlink:title="set_error_unit">
+<polygon fill="#d9534f" stroke="#d9534f" points="133.39,-1367.52 55.12,-1367.52 55.12,-1344 133.39,-1344 133.39,-1367.52"/>
+<text xml:space="preserve" text-anchor="middle" x="94.26" y="-1351.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">set_error_unit</text>
+</a>
+</g>
+</g>
+<!-- proc~set_level -->
+<g id="call~~graph~~CallGraph_node34" class="node">
+<title>proc~set_level</title>
+<g id="a_call~~graph~~CallGraph_node34"><a xlink:href="../proc/set_level.html" xlink:title="set_level">
+<polygon fill="#d9534f" stroke="#d9534f" points="121.26,-1409.52 67.26,-1409.52 67.26,-1386 121.26,-1386 121.26,-1409.52"/>
+<text xml:space="preserve" text-anchor="middle" x="94.26" y="-1393.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">set_level</text>
+</a>
+</g>
+</g>
+<!-- proc~set_output_unit -->
+<g id="call~~graph~~CallGraph_node35" class="node">
+<title>proc~set_output_unit</title>
+<g id="a_call~~graph~~CallGraph_node35"><a xlink:href="../proc/set_output_unit.html" xlink:title="set_output_unit">
+<polygon fill="#d9534f" stroke="#d9534f" points="136.77,-1451.52 51.75,-1451.52 51.75,-1428 136.77,-1428 136.77,-1451.52"/>
+<text xml:space="preserve" text-anchor="middle" x="94.26" y="-1435.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">set_output_unit</text>
+</a>
+</g>
+</g>
+<!-- proc~set_unit_defaults -->
+<g id="call~~graph~~CallGraph_node36" class="node">
+<title>proc~set_unit_defaults</title>
+<g id="a_call~~graph~~CallGraph_node36"><a xlink:href="../proc/set_unit_defaults.html" xlink:title="set_unit_defaults">
+<polygon fill="#d9534f" stroke="#d9534f" points="140.52,-1493.52 48,-1493.52 48,-1470 140.52,-1470 140.52,-1493.52"/>
+<text xml:space="preserve" text-anchor="middle" x="94.26" y="-1477.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">set_unit_defaults</text>
+</a>
+</g>
+</g>
+<!-- proc~set_verbose -->
+<g id="call~~graph~~CallGraph_node37" class="node">
+<title>proc~set_verbose</title>
+<g id="a_call~~graph~~CallGraph_node37"><a xlink:href="../proc/set_verbose.html" xlink:title="set_verbose">
+<polygon fill="#d9534f" stroke="#d9534f" points="129.27,-1535.52 59.25,-1535.52 59.25,-1512 129.27,-1512 129.27,-1535.52"/>
+<text xml:space="preserve" text-anchor="middle" x="94.26" y="-1519.79" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">set_verbose</text>
 </a>
 </g>
 </g>
 <!-- proc~unique_values -->
-<g id="call~~graph~~CallGraph_node31" class="node">
+<g id="call~~graph~~CallGraph_node38" class="node">
 <title>proc~unique_values</title>
-<g id="a_call~~graph~~CallGraph_node31"><a xlink:href="../proc/unique_values.html" xlink:title="unique_values">
+<g id="a_call~~graph~~CallGraph_node38"><a xlink:href="../proc/unique_values.html" xlink:title="unique_values">
 <polygon fill="#d94e8f" stroke="#d94e8f" points="134.52,-989.52 54,-989.52 54,-966 134.52,-966 134.52,-989.52"/>
 <text xml:space="preserve" text-anchor="middle" x="94.26" y="-973.78" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">unique_values</text>
 </a>
 </g>
 </g>
 <!-- proc~unique_values&#45;&gt;sort -->
-<g id="call~~graph~~CallGraph_edge24" class="edge">
+<g id="call~~graph~~CallGraph_edge25" class="edge">
 <title>proc~unique_values&#45;&gt;sort</title>
 <path fill="none" stroke="#000000" d="M134.89,-981.86C171.28,-985.62 224.82,-991.16 260.59,-994.86"/>
 <polygon fill="#000000" stroke="#000000" points="260.17,-998.34 270.48,-995.88 260.89,-991.37 260.17,-998.34"/>

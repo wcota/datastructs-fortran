@@ -88,7 +88,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="<p> 5.5% of total for derived types.</p>Including implementation: 69 statements,  5.1% of total for derived types.">12 statements</a>
+                 title="<p> 6.0% of total for derived types.</p>Including implementation: 69 statements,  5.1% of total for derived types.">13 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -132,8 +132,8 @@
         <div class="list-group list-group-flush">
             <a class="list-group-item" href="../type/weighted_histogram_t.html#variable-bins">bins</a>
             <a class="list-group-item" href="../type/weighted_histogram_t.html#variable-min_index">min_index</a>
-            <a class="list-group-item" href="../type/weighted_histogram_t.html#variable-max_index~2">max_index</a>
-            <a class="list-group-item" href="../type/weighted_histogram_t.html#variable-total_weight~3">total_weight</a>
+            <a class="list-group-item" href="../type/weighted_histogram_t.html#variable-max_index">max_index</a>
+            <a class="list-group-item" href="../type/weighted_histogram_t.html#variable-total_weight~9">total_weight</a>
         </div>
       </div>
     </div>
@@ -160,11 +160,11 @@
       </a>
       <div id="boundprocs-0" class="collapse">
         <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../type/weighted_histogram_t.html#boundprocedure-init~2">init</a>
-            <a class="list-group-item" href="../type/weighted_histogram_t.html#boundprocedure-reset~4">reset</a>
+            <a class="list-group-item" href="../type/weighted_histogram_t.html#boundprocedure-init~6">init</a>
+            <a class="list-group-item" href="../type/weighted_histogram_t.html#boundprocedure-reset~10">reset</a>
             <a class="list-group-item" href="../type/weighted_histogram_t.html#boundprocedure-add_value">add_value</a>
-            <a class="list-group-item" href="../type/weighted_histogram_t.html#boundprocedure-get_mean">get_mean</a>
-            <a class="list-group-item" href="../type/weighted_histogram_t.html#boundprocedure-get_variance">get_variance</a>
+            <a class="list-group-item" href="../type/weighted_histogram_t.html#boundprocedure-get_mean~2">get_mean</a>
+            <a class="list-group-item" href="../type/weighted_histogram_t.html#boundprocedure-get_variance~2">get_variance</a>
             <a class="list-group-item" href="../type/weighted_histogram_t.html#boundprocedure-get_moment">get_moment</a>
         </div>
       </div>
@@ -181,7 +181,7 @@
     <div class="col-md-9" id='text'>
       <h2 id="type-def-statement">
         type, public :: weighted_histogram_t</h2>
-    
+    <p>Weighted histogram type</p>
     <br>
 
     <section>
@@ -210,7 +210,7 @@
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>Bin weights</p>
             </td>
         </tr>
         <tr>
@@ -227,12 +227,12 @@
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>Lower bound of bins</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-max_index~2"></span>
+              <span class="anchor" id="variable-max_index"></span>
               integer(kind=i4),
             </td>
               <td>public</td>
@@ -244,12 +244,12 @@
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>Upper bound of bins</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-total_weight~3"></span>
+              <span class="anchor" id="variable-total_weight~9"></span>
               real(kind=dp),
             </td>
               <td>public</td>
@@ -261,7 +261,7 @@
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>Sum of all weights</p>
             </td>
         </tr>
     </tbody>
@@ -277,7 +277,7 @@
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-init~2"></span>
+      <span class="anchor" id="boundprocedure-init~6"></span>
       <h3>
           procedure, public ::
   <strong>init</strong> => weighted_histogram_init
@@ -290,7 +290,7 @@
     private  subroutine weighted_histogram_init(this, min_index, max_index)  
 </h3>
 
-  
+  <p>Initialize the histogram with a given range of bins.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -315,7 +315,7 @@
             <td>::</td>
             <td><strong>this</strong></td>
             <td>
-                
+                <p>Histogram object</p>
             </td>
         </tr>
         <tr>
@@ -330,7 +330,7 @@
             <td>::</td>
             <td><strong>min_index</strong></td>
             <td>
-                
+                <p>Lower bound index</p>
             </td>
         </tr>
         <tr>
@@ -345,7 +345,7 @@
             <td>::</td>
             <td><strong>max_index</strong></td>
             <td>
-                
+                <p>Upper bound index</p>
             </td>
         </tr>
     </tbody>
@@ -360,7 +360,7 @@
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-reset~4"></span>
+      <span class="anchor" id="boundprocedure-reset~10"></span>
       <h3>
           procedure, public ::
   <strong>reset</strong> => weighted_histogram_reset
@@ -373,7 +373,7 @@
     private  subroutine weighted_histogram_reset(this)  
 </h3>
 
-  
+  <p>Reset all bin weights and total weight to zero.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -398,7 +398,7 @@
             <td>::</td>
             <td><strong>this</strong></td>
             <td>
-                
+                <p>Histogram object</p>
             </td>
         </tr>
     </tbody>
@@ -426,7 +426,7 @@
     private  subroutine weighted_histogram_add_value(this, index, weight)  
 </h3>
 
-  
+  <p>Add a weighted value to a given bin index.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -451,7 +451,7 @@
             <td>::</td>
             <td><strong>this</strong></td>
             <td>
-                
+                <p>Histogram object</p>
             </td>
         </tr>
         <tr>
@@ -466,7 +466,7 @@
             <td>::</td>
             <td><strong>index</strong></td>
             <td>
-                
+                <p>Bin index</p>
             </td>
         </tr>
         <tr>
@@ -481,7 +481,7 @@
             <td>::</td>
             <td><strong>weight</strong></td>
             <td>
-                
+                <p>Weight to add</p>
             </td>
         </tr>
     </tbody>
@@ -496,7 +496,7 @@
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-get_mean"></span>
+      <span class="anchor" id="boundprocedure-get_mean~2"></span>
       <h3>
           procedure, public ::
   <strong>get_mean</strong> => weighted_histogram_get_mean
@@ -509,7 +509,7 @@
     private  function weighted_histogram_get_mean(this, normalization_factor) result(res)  
 </h3>
 
-  
+  <p>Compute the mean value of the histogram.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -534,7 +534,7 @@
             <td>::</td>
             <td><strong>this</strong></td>
             <td>
-                
+                <p>Histogram object</p>
             </td>
         </tr>
         <tr>
@@ -549,7 +549,7 @@
             <td>::</td>
             <td><strong>normalization_factor</strong></td>
             <td>
-                
+                <p>Normalization factor for index scaling</p>
             </td>
         </tr>
     </tbody>
@@ -569,7 +569,7 @@
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-get_variance"></span>
+      <span class="anchor" id="boundprocedure-get_variance~2"></span>
       <h3>
           procedure, public ::
   <strong>get_variance</strong> => weighted_histogram_get_variance
@@ -582,7 +582,7 @@
     private  function weighted_histogram_get_variance(this, normalization_factor) result(res)  
 </h3>
 
-  
+  <p>Compute the variance of the histogram.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -607,7 +607,7 @@
             <td>::</td>
             <td><strong>this</strong></td>
             <td>
-                
+                <p>Histogram object</p>
             </td>
         </tr>
         <tr>
@@ -622,7 +622,7 @@
             <td>::</td>
             <td><strong>normalization_factor</strong></td>
             <td>
-                
+                <p>Normalization factor for index scaling</p>
             </td>
         </tr>
     </tbody>
@@ -655,7 +655,8 @@
     private  function weighted_histogram_get_moment(this, k, normalization_factor) result(res)  
 </h3>
 
-  
+  <p>Compute the k-th statistical moment of the histogram.
+The moment is normalized by the total weight.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -680,7 +681,7 @@
             <td>::</td>
             <td><strong>this</strong></td>
             <td>
-                
+                <p>Histogram object</p>
             </td>
         </tr>
         <tr>
@@ -695,7 +696,7 @@
             <td>::</td>
             <td><strong>k</strong></td>
             <td>
-                
+                <p>Moment order (k ≥ 0)</p>
             </td>
         </tr>
         <tr>
@@ -710,7 +711,7 @@
             <td>::</td>
             <td><strong>normalization_factor</strong></td>
             <td>
-                
+                <p>Normalization factor for index scaling</p>
             </td>
         </tr>
     </tbody>

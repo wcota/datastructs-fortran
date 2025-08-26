@@ -10,7 +10,7 @@
     <meta name="author" content="Wesley Cota <https://wcota.me/>" >
     <link rel="icon" href="../favicon.png">
 
-    <title>new_fixed_list_pointer &ndash; Data structures for Fortran</title>
+    <title>set_verbose &ndash; Data structures for Fortran</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -77,8 +77,8 @@
 
     <div class="container">
   <div class="row">
-    <h1>new_fixed_list_pointer
-      <small>Function</small>
+    <h1>set_verbose
+      <small>Subroutine</small>
       
     </h1>
       <div class="container p-2 mb-4 bg-light border rounded-3">
@@ -88,21 +88,21 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 3.9% of total for procedures.">8 statements</a>
+                 title=" 1.9% of total for procedures.">4 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/fixed_list.f90"> Source File</a>
+              <a href="../src/logger.f90"> Source File</a>
             </li>
         </ul>
       </div>
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='../sourcefile/fixed_list.f90.html'>fixed_list.f90</a></li>
-                <li class="breadcrumb-item"><a href='../module/datastructs_lists_fixed_list_mod.html'>datastructs_lists_fixed_list_mod</a></li>
-            <li class="breadcrumb-item active" aria-current="page">new_fixed_list_pointer</li>
+                <li class="breadcrumb-item"><a href='../sourcefile/logger.f90.html'>logger.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/datastructs_logger_mod.html'>datastructs_logger_mod</a></li>
+            <li class="breadcrumb-item active" aria-current="page">set_verbose</li>
           </ol>
         </nav>
       </div>
@@ -149,12 +149,12 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  function new_fixed_list_pointer(list) result(this)  
+    <h2>public  subroutine set_verbose(flag)  
 </h2>
     
 
-    <p>Create a new fixed list pointer
-Input: list - an array of integers</p>
+    <p>Enable or disable global verbosity.
+If set to <code>.false.</code>, no log messages will be printed regardless of level.</p>
 
 
     <h3>Arguments</h3>
@@ -170,29 +170,22 @@ Input: list - an array of integers</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-list~3"></span>
-              integer(kind=i4),
+              <span class="anchor" id="variable-flag"></span>
+              logical,
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>list</strong>(:)</td>
+            <td><strong>flag</strong></td>
             <td>
-                
+                <p>Logical flag to enable (<code>.true.</code>) or disable (<code>.false.</code>) verbosity.</p>
             </td>
         </tr>
     </tbody>
   </table>
 
-      <h3>Return Value
-        <small>
-          <span class="anchor" id="variable-this~27"></span>
-          type(<a href='../type/fixed_list_t.html'>fixed_list_t</a>), pointer
-        </small>
-      </h3>
-      
     <br>
 
 

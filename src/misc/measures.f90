@@ -22,12 +22,12 @@ module datastructs_measures_mod
         real(kind=dp) :: position_step = 1.0_dp !! Position step size
         real(kind=dp) :: min_value = 0.0_dp !! Minimum value for the measure
 
-        procedure(measure_controller_get_pos_array_i), pointer :: get_pos_array => null()
-        procedure(measure_controller_get_max_array_size_i), pointer :: get_max_array_size => null()
-        procedure(measure_controller_update), pointer :: update => null()
+        procedure(measure_controller_get_pos_array_i), pointer :: get_pos_array => null() !! Get position array
+        procedure(measure_controller_get_max_array_size_i), pointer :: get_max_array_size => null() !! Get maximum array size
+        procedure(measure_controller_update), pointer :: update => null() !! Update measure
     contains
-        procedure :: init => measure_controller_init
-        procedure :: reset => measure_controller_reset
+        procedure :: init => measure_controller_init !! Initialize measure controller
+        procedure :: reset => measure_controller_reset !! Reset measure controller
     end type measure_controller_t
 
     !> Object to handle statistical measures
