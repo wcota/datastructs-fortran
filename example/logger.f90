@@ -52,6 +52,9 @@ contains
         u = log_unit(LOG_DEBUG)
         if (LOGGER_OK) write(u, fmt_general) "Initial value of N =", 42
 
+        ! Another way
+        call log_write(LOG_DEBUG, "Initial value of pi =", 3.14_dp)
+
         call log_write(LOG_WARNING, "Warning: parameter near the limit!")
 
         call log_write(LOG_ERROR, "Error: failed to allocate resource.")

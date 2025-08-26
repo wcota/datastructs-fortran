@@ -35,6 +35,12 @@ module datastructs_logger_mod
     !> Indicates if the last call to log_unit allowed logging
     logical :: LOGGER_OK = .true.
 
+    interface log_write
+        module procedure log_write_message
+        module procedure log_write_message_i4
+        module procedure log_write_message_dp
+    end interface log_write
+
     public :: log_unit, set_verbose, set_level, set_output_unit, set_error_unit, set_unit_defaults, log_write
     public :: LOG_ERROR, LOG_WARNING, LOG_INFO, LOG_DEBUG, LOGGER_OK
 
@@ -110,13 +116,35 @@ contains
     !>
     !> This is a convenience routine that calls log_unit() internally and writes
     !> the message if LOGGER_OK is `.true.`.
-    subroutine log_write(level, message)
+    subroutine log_write_message(level, message)
         integer(kind=i4), intent(in) :: level !! Log level of the message
         character(len=*), intent(in) :: message !! The text message to log
         integer(kind=i4) :: unit
 
         unit = log_unit(level)
         if (LOGGER_OK) write(unit, fmt_general) message
-    end subroutine log_write
+    end subroutine log_write_message
+
+    !> Write a log message for a given level, appending an integer at the end
+    subroutine log_write_message_i4(level, message, value)
+        integer(kind=i4), intent(in) :: level !! Log level of the message
+        character(len=*), intent(in) :: message !! The text message to log
+        integer(kind=i4), intent(in) :: value !! Integer value to append
+        integer(kind=i4) :: unit
+
+        unit = log_unit(level)
+        if (LOGGER_OK) write(unit, fmt_general) trim(message), value
+    end subroutine log_write_message_i4
+
+    !> Write a log message for a given level, appending a double at the end
+    subroutine log_write_message_dp(level, message, value)
+        integer(kind=i4), intent(in) :: level !! Log level of the message
+        character(len=*), intent(in) :: message !! The text message to log
+        real(kind=dp), intent(in) :: value !! Double precision value to append
+        integer(kind=i4) :: unit
+
+        unit = log_unit(level)
+        if (LOGGER_OK) write(unit, fmt_general) trim(message), value
+    end subroutine log_write_message_dp
 
 end module datastructs_logger_mod
