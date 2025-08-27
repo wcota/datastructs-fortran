@@ -27,7 +27,7 @@ module datastructs_logger_mod
     character(len=*), parameter :: names(0:3) = ['[error]  ', '[warning]', '[info]   ', '[debug]  ']
 
     !> Global verbosity flag (if .false., no log messages are printed)
-    logical :: LOGGER_VERBOSE = .false.
+    logical :: LOGGER_VERBOSE = .true.
     !> Current log level threshold (default: LOG_INFO)
     integer(kind=i4) :: LOGGER_LEVEL = LOG_INFO
     !> Output unit for normal logs (default: standard output)
