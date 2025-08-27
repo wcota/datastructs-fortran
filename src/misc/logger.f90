@@ -24,6 +24,8 @@ module datastructs_logger_mod
     integer, parameter :: LOG_INFO    = 2   !! Informational messages
     integer, parameter :: LOG_DEBUG   = 3   !! Debug messages
 
+    character(len=*), parameter :: names(0:3) = ['[error]  ', '[warning]', '[info]   ', '[debug]  ']
+
     !> Global verbosity flag (if .false., no log messages are printed)
     logical :: LOGGER_VERBOSE = .false.
     !> Current log level threshold (default: LOG_INFO)
@@ -125,7 +127,7 @@ contains
         integer(kind=i4) :: unit
 
         unit = log_unit(level)
-        if (LOGGER_OK) write(unit, fmt_general) message
+        if (LOGGER_OK) write(unit, fmt_general) names(level), message
     end subroutine log_write_message
 
     !> Write a log message for a given level without advancing the line
@@ -140,7 +142,7 @@ contains
         if (newline) advance = "yes"
 
         unit = log_unit(level)
-        if (LOGGER_OK) write(unit, fmt_general, advance=advance) message
+        if (LOGGER_OK) write(unit, fmt_general, advance=advance) names(level), message
     end subroutine log_write_message_no_advance
 
     !> Write a log message for a given level, appending an integer at the end
@@ -151,7 +153,7 @@ contains
         integer(kind=i4) :: unit
 
         unit = log_unit(level)
-        if (LOGGER_OK) write(unit, fmt_general) trim(message), value
+        if (LOGGER_OK) write(unit, fmt_general) names(level), message, value
     end subroutine log_write_message_i4
 
     !> Write a log message for a given level without advancing the line, appending an integer at the end
@@ -167,7 +169,7 @@ contains
         if (newline) advance = "yes"
 
         unit = log_unit(level)
-        if (LOGGER_OK) write(unit, fmt_general, advance=advance) trim(message), value
+        if (LOGGER_OK) write(unit, fmt_general, advance=advance) names(level), message, value
     end subroutine log_write_message_i4_no_advance
 
     !> Write a log message for a given level, appending a double at the end
@@ -178,7 +180,7 @@ contains
         integer(kind=i4) :: unit
 
         unit = log_unit(level)
-        if (LOGGER_OK) write(unit, fmt_general) trim(message), value
+        if (LOGGER_OK) write(unit, fmt_general) names(level), message, value
     end subroutine log_write_message_dp
 
     !> Write a log message for a given level without advancing the line, appending a double at the end
@@ -194,7 +196,7 @@ contains
         if (newline) advance = "yes"
 
         unit = log_unit(level)
-        if (LOGGER_OK) write(unit, fmt_general, advance=advance) trim(message), value
+        if (LOGGER_OK) write(unit, fmt_general, advance=advance) names(level), message, value
     end subroutine log_write_message_dp_no_advance
 
 end module datastructs_logger_mod
