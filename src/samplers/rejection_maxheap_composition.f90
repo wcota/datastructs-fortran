@@ -155,7 +155,7 @@ contains
         end if
 
         ! get the sampler pos
-         old_sampler_pos = this%sampler_of_index(index)
+        old_sampler_pos = this%sampler_of_index(index)
 
         ! if the weight is the same and is already in the list, just return
         if ((old_sampler_pos /= 0) .and. (weight == this%weights(index))) return
@@ -164,6 +164,11 @@ contains
 
         call this%samplers(sampler_pos)%set_weight(index, weight) ! Set the weight in the first sampler
         this%sampler_of_index(index) = sampler_pos ! Map index to the corresponding sampler
+
+        ! remove from the old sampler if it was assigned
+        if ((old_sampler_pos /= 0) .and. (old_sampler_pos /= sampler_pos)) then
+            call this%samplers(old_sampler_pos)%remove(index)
+        end if
 
         ! set weight of the btree
         call this%btree%set_weight(sampler_pos, this%samplers(sampler_pos)%sum())
