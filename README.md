@@ -29,7 +29,7 @@ Main derived types and routines:
 
 - Sampler Algorithms (`sampler_base_t`, `choose_sampler`): Randomly get indexes proportionally to their weights. Examples at [example/sampler.f90](./example/sampler.f90)
 
-- Logger: Provides logging with configurable verbosity and levels (`LOG_ERROR`, `LOG_WARNING`, `LOG_INFO`, `LOG_DEBUG`); global controls (`LOGGER_VERBOSE`, `LOGGER_LEVEL`, `LOGGER_OUTPUT_UNIT`, `LOGGER_ERROR_UNIT`); main routines for configuring and writing logs: `set_verbose`, `set_level`, `set_output_unit`, `set_error_unit`, `set_unit_defaults`, `log_unit`, `log_write`.
+- Logger: Provides logging with configurable verbosity and levels (`LOG_ERROR`, `LOG_WARNING`, `LOG_INFO`, `LOG_DEBUG`); global controls (`LOGGER_VERBOSE`, `LOGGER_LEVEL`, `LOGGER_OUTPUT_UNIT`, `LOGGER_ERROR_UNIT`); main routines for configuring and writing logs: `set_verbose`, `set_level`, `set_output_unit`, `set_error_unit`, `set_unit_defaults`, `log_unit`, `log_write`. Examples at [example/logger.f90](./example/logger.f90)
 
 ## Running examples
 
