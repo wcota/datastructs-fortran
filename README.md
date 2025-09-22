@@ -19,17 +19,17 @@ After adding the dependency, you can import the module or specific components in
 
 Main derived types and routines:
 
-- Dynamical List (`dynamical_list_t`): Create and manipulate a list that can grow or shrink dynamically. Examples at [example/dynamical_list.f90](./example/dynamical_list.f90) and [example/dynamical_list2.f90](./example/dynamical_list2.f90)
+- Dynamical List (`dynamical_list_t`): Create and manipulate a list that can grow or shrink dynamically. Examples at [example/dynamical_list.f90](https://github.com/wcota/datastructs-fortran/blob/main/example/dynamical_list.f90) and [example/dynamical_list2.f90](https://github.com/wcota/datastructs-fortran/blob/main/example/dynamical_list2.f90)
 
-- Fixed List (`fixed_list_t`): Define a fixed-size list, which can be linked to others. Examples at [example/fixed_list.f90](./example/fixed_list.f90)
+- Fixed List (`fixed_list_t`): Define a fixed-size list, which can be linked to others. Examples at [example/fixed_list.f90](https://github.com/wcota/datastructs-fortran/blob/main/example/fixed_list.f90)
 
-- Max Heap (`maxheap_t`): Implement a max heap structure, where the parent node is always greater than or equal to its children. Examples at [example/maxheap.f90](./example/maxheap.f90)
+- Max Heap (`maxheap_t`): Implement a max heap structure, where the parent node is always greater than or equal to its children. Examples at [example/maxheap.f90](https://github.com/wcota/datastructs-fortran/blob/main/example/maxheap.f90)
 
-- Hash Function (`djb2`): Calculate a hash value for an array of integers using the djb2 algorithm. Examples at [example/hash.f90](./example/hash.f90)
+- Hash Function (`djb2`): Calculate a hash value for an array of integers using the djb2 algorithm. Examples at [example/hash.f90](https://github.com/wcota/datastructs-fortran/blob/main/example/hash.f90)
 
-- Sampler Algorithms (`sampler_base_t`, `choose_sampler`): Randomly get indexes proportionally to their weights. Examples at [example/sampler.f90](./example/sampler.f90)
+- Sampler Algorithms (`sampler_base_t`, `choose_sampler`): Randomly get indexes proportionally to their weights. Examples at [example/sampler.f90](https://github.com/wcota/datastructs-fortran/blob/main/example/sampler.f90)
 
-- Logger: Provides logging with configurable verbosity and levels (`LOG_ERROR`, `LOG_WARNING`, `LOG_INFO`, `LOG_DEBUG`); global controls (`LOGGER_VERBOSE`, `LOGGER_LEVEL`, `LOGGER_OUTPUT_UNIT`, `LOGGER_ERROR_UNIT`); main routines for configuring and writing logs: `set_verbose`, `set_level`, `set_output_unit`, `set_error_unit`, `set_unit_defaults`, `log_unit`, `log_write`. Examples at [example/logger.f90](./example/logger.f90)
+- Logger: Provides logging with configurable verbosity and levels (`LOG_ERROR`, `LOG_WARNING`, `LOG_INFO`, `LOG_DEBUG`); global controls (`LOGGER_VERBOSE`, `LOGGER_LEVEL`, `LOGGER_OUTPUT_UNIT`, `LOGGER_ERROR_UNIT`); main routines for configuring and writing logs: `set_verbose`, `set_level`, `set_output_unit`, `set_error_unit`, `set_unit_defaults`, `log_unit`, `log_write`. Examples at [example/logger.f90](https://github.com/wcota/datastructs-fortran/blob/main/example/logger.f90)
 
 ## Running examples
 
