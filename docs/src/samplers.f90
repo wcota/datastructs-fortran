@@ -85,11 +85,14 @@ contains
             case ('rejection_maxheap')
                 allocate(weighted_sampler_rejection_maxheap_t :: weighted_sampler)
             case ('rejection_two_classes')
-                allocate(weighted_sampler_rejection_two_classes_t :: weighted_sampler)
+                error stop 'There are some issues with this algorithm, please use another one.'
+                !allocate(weighted_sampler_rejection_two_classes_t :: weighted_sampler)
             case ('rejection_maxheap_two_classes')
-                allocate(weighted_sampler_rejection_maxheap_two_classes_t :: weighted_sampler)
+                error stop 'There are some issues with this algorithm, please use another one.'
+                !allocate(weighted_sampler_rejection_maxheap_two_classes_t :: weighted_sampler)
             case ('rejection_maxheap_composition')
-                allocate(weighted_sampler_rejection_maxheap_composition_t :: weighted_sampler)
+                error stop 'There are some issues with this algorithm, please use another one.'
+                !allocate(weighted_sampler_rejection_maxheap_composition_t :: weighted_sampler)
             case default
                 error stop 'Unknown algorithm selected: '//trim(adjustl(selected_algorithm))
         end select

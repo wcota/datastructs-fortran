@@ -12,6 +12,8 @@ module datastructs_samplers_rejection_maxheap_composition_mod
     implicit none
     private
 
+    real(kind=dp), parameter :: EPSILON = 0.0_dp
+
     !> Constructor
     interface weighted_sampler
         module procedure weighted_sampler_new
@@ -144,21 +146,32 @@ contains
         integer(i4), intent(in) :: index
         real(dp), intent(in) :: weight
         integer(i4) :: sampler_pos
+        integer(i4) :: old_sampler_pos
 
-        ! first we remove the weight, just to be sure
-        call this%remove(index) ! Remove the index from the sampler if it exists
-
-        if (weight <= 0.0_dp) then
+        ! if the weight is zero, remove the index from the list
+        if (weight <= EPSILON) then
+            call this%remove(index)
             return
         end if
+
+        ! get the sampler pos
+        old_sampler_pos = this%sampler_of_index(index)
+
+        ! if the weight is the same and is already in the list, just return
+        if ((old_sampler_pos /= 0) .and. (weight == this%weights(index))) return
 
         sampler_pos = this%sampler_pos(weight) ! Get the sampler position based on the weight
 
         call this%samplers(sampler_pos)%set_weight(index, weight) ! Set the weight in the first sampler
         this%sampler_of_index(index) = sampler_pos ! Map index to the corresponding sampler
 
-        ! add weight to the btree
-        call this%btree%add_weight(sampler_pos, weight)
+        ! remove from the old sampler if it was assigned
+        if ((old_sampler_pos /= 0) .and. (old_sampler_pos /= sampler_pos)) then
+            call this%samplers(old_sampler_pos)%remove(index)
+        end if
+
+        ! set weight of the btree
+        call this%btree%set_weight(sampler_pos, this%samplers(sampler_pos)%sum())
 
         ! update the weights array
         this%weights(index) = weight
@@ -193,9 +206,6 @@ contains
 
         weight = this%weights(index) + delta_weight ! Calculate the new weight
 
-        ! we first remove the element
-        call this%remove(index) ! Remove the index from the sampler
-
         ! Now we can add the weight again
         call this%set_weight(index, weight) ! Set the new weight
 
@@ -222,8 +232,8 @@ contains
         ! update the weights array
         this%weights(index) = 0.0_dp ! Set the weight to zero
 
-        ! remove weight from the btree
-        call this%btree%add_weight(sampler_pos, -weight)
+        ! update the btree
+        call this%btree%set_weight(sampler_pos, this%samplers(sampler_pos)%sum())
 
     end subroutine sampler_remove
 

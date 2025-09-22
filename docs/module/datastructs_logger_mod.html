@@ -88,7 +88,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 3.7% of total for modules and submodules.">72 statements</a>
+                 title=" 6.4% of total for modules and submodules.">132 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -144,7 +144,18 @@
   
   
   
-  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#inters-0"
+         aria-expanded="false" aria-controls="inters-0">
+         <h4 class="card-header bg-primary text-white">Interfaces</h4>
+      </a>
+      <div id="inters-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/datastructs_logger_mod.html#interface-log_write">log_write</a>
+        </div>
+      </div>
+    </div>
+
   
   
       <div class="card mb-4">
@@ -171,7 +182,6 @@
             <a class="list-group-item" href="../module/datastructs_logger_mod.html#proc-set_output_unit">set_output_unit</a>
             <a class="list-group-item" href="../module/datastructs_logger_mod.html#proc-set_error_unit">set_error_unit</a>
             <a class="list-group-item" href="../module/datastructs_logger_mod.html#proc-set_unit_defaults">set_unit_defaults</a>
-            <a class="list-group-item" href="../module/datastructs_logger_mod.html#proc-log_write">log_write</a>
         </div>
       </div>
     </div>
@@ -567,6 +577,445 @@ parameter
         <br>
 
 
+        <section>
+          <h2>Interfaces</h2>
+              <div class="card">
+    <div class="card-header bg-light codesum">
+      <span class="anchor" id="interface-log_write"></span>
+      <h3>public        interface <a href='../interface/log_write.html'>log_write</a> 
+      </h3>
+    </div>
+    <ul class="list-group">
+          <li class="list-group-item">
+                <h3>
+    private  subroutine log_write_message(level, message)  
+
+    </h3>
+  <p>Write a log message for the given level using the current logger settings.</p>
+<p>This is a convenience routine that calls log_unit() internally and writes
+the message if LOGGER_OK is <code>.true.</code>.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-level~3"></span>
+              integer(kind=i4),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>level</strong></td>
+            <td>
+                <p>Log level of the message</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message"></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message</strong></td>
+            <td>
+                <p>The text message to log</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+          <li class="list-group-item">
+                <h3>
+    private  subroutine log_write_message_no_advance(level, message, newline)  
+
+    </h3>
+  <p>Write a log message for a given level without advancing the line</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-level~4"></span>
+              integer(kind=i4),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>level</strong></td>
+            <td>
+                <p>Log level of the message</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message~2"></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message</strong></td>
+            <td>
+                <p>The text message to log</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-newline"></span>
+              logical,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>newline</strong></td>
+            <td>
+                <p>If <code>.false.</code>, do not append a newline</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+          <li class="list-group-item">
+                <h3>
+    private  subroutine log_write_message_i4(level, message, value)  
+
+    </h3>
+  <p>Write a log message for a given level, appending an integer at the end</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-level~5"></span>
+              integer(kind=i4),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>level</strong></td>
+            <td>
+                <p>Log level of the message</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message~3"></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message</strong></td>
+            <td>
+                <p>The text message to log</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-value"></span>
+              integer(kind=i4),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>value</strong></td>
+            <td>
+                <p>Integer value to append</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+          <li class="list-group-item">
+                <h3>
+    private  subroutine log_write_message_i4_no_advance(level, message, value, newline)  
+
+    </h3>
+  <p>Write a log message for a given level without advancing the line, appending an integer at the end</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-level~6"></span>
+              integer(kind=i4),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>level</strong></td>
+            <td>
+                <p>Log level of the message</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message~4"></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message</strong></td>
+            <td>
+                <p>The text message to log</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-value~2"></span>
+              integer(kind=i4),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>value</strong></td>
+            <td>
+                <p>Integer value to append</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-newline~2"></span>
+              logical,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>newline</strong></td>
+            <td>
+                <p>If <code>.false.</code>, do not append a newline</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+          <li class="list-group-item">
+                <h3>
+    private  subroutine log_write_message_dp(level, message, value)  
+
+    </h3>
+  <p>Write a log message for a given level, appending a double at the end</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-level~7"></span>
+              integer(kind=i4),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>level</strong></td>
+            <td>
+                <p>Log level of the message</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message~5"></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message</strong></td>
+            <td>
+                <p>The text message to log</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-value~3"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>value</strong></td>
+            <td>
+                <p>Double precision value to append</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+          <li class="list-group-item">
+                <h3>
+    private  subroutine log_write_message_dp_no_advance(level, message, value, newline)  
+
+    </h3>
+  <p>Write a log message for a given level without advancing the line, appending a double at the end</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-level~8"></span>
+              integer(kind=i4),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>level</strong></td>
+            <td>
+                <p>Log level of the message</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message~6"></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message</strong></td>
+            <td>
+                <p>The text message to log</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-value~4"></span>
+              real(kind=dp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>value</strong></td>
+            <td>
+                <p>Double precision value to append</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-newline~3"></span>
+              logical,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>newline</strong></td>
+            <td>
+                <p>If <code>.false.</code>, do not append a newline</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+    </ul>
+  </div>
+
+        </section>
+        <br>
 
 
 
@@ -792,61 +1241,6 @@ If set to <code>.false.</code>, no log messages will be printed regardless of le
 
   <h4>Arguments</h4>
     <em>None</em>
-
-    </div>
-  </div>
-
-              <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-log_write"></span> <h3>public  subroutine <a href='../proc/log_write.html'>log_write</a>(level, message)  
-</h3></div>
-    <div class="card-body">
-          
-  <p>Write a log message for the given level using the current logger settings.</p><a href="../proc/log_write.html" class="pull-right"><emph>Read more&hellip;</emph></a>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-level~3"></span>
-              integer(kind=i4),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>level</strong></td>
-            <td>
-<p>Log level of the message</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-message"></span>
-              character(len=*),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>message</strong></td>
-            <td>
-<p>The text message to log</p>
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
 
     </div>
   </div>

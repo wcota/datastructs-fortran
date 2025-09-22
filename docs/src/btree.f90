@@ -104,7 +104,7 @@ contains
         !if (index < 1 .or. index > this%n) error stop 'Index out of bounds in sampler_set_weight'
 
         delta = weight - this%weights(index)
-        !if (delta == 0.0_dp) return
+        if (delta == 0.0_dp) return
         this%weights(index) = weight
 
         ! we perform a bottom-up update of the tree

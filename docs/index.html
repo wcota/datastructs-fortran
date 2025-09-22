@@ -103,7 +103,7 @@
 </code></pre></div>
 
 <p>After adding the dependency, you can import the module or specific components into your Fortran source files. For example, use <code>use datastructs_fortran</code> to import the entire module, or <code>use datastructs_fortran, only: [component_name]</code> to import specific types or functions.</p>
-<p>Main modules:</p>
+<p>Main derived types and routines:</p>
 <ul>
 <li>
 <p>Dynamical List (<code>dynamical_list_t</code>): Create and manipulate a list that can grow or shrink dynamically. Examples at <a href="./example/dynamical_list.f90">example/dynamical_list.f90</a> and <a href="./example/dynamical_list2.f90">example/dynamical_list2.f90</a></p>
@@ -119,6 +119,9 @@
 </li>
 <li>
 <p>Sampler Algorithms (<code>sampler_base_t</code>, <code>choose_sampler</code>): Randomly get indexes proportionally to their weights. Examples at <a href="./example/sampler.f90">example/sampler.f90</a></p>
+</li>
+<li>
+<p>Logger: Provides logging with configurable verbosity and levels (<code>LOG_ERROR</code>, <code>LOG_WARNING</code>, <code>LOG_INFO</code>, <code>LOG_DEBUG</code>); global controls (<code>LOGGER_VERBOSE</code>, <code>LOGGER_LEVEL</code>, <code>LOGGER_OUTPUT_UNIT</code>, <code>LOGGER_ERROR_UNIT</code>); main routines for configuring and writing logs: <code>set_verbose</code>, <code>set_level</code>, <code>set_output_unit</code>, <code>set_error_unit</code>, <code>set_unit_defaults</code>, <code>log_unit</code>, <code>log_write</code>.</p>
 </li>
 </ul>
 <h2>Running examples</h2>
@@ -169,7 +172,7 @@
           <div class="col-xs-6 col-sm-3">
             <div>
               <h3>Procedures</h3>
-              <ul><li><a href='proc/choose_fmt_based_on.html'>choose_fmt_based_on</a></li><li><a href='proc/choose_sampler.html'>choose_sampler</a></li><li><a href='proc/count_integers_from_string.html'>count_integers_from_string</a></li><li><a href='proc/djb2.html'>djb2</a></li><li><a href='interface/dynamical_list.html'>dynamical_list</a></li><li><a href='interface/fixed_list.html'>fixed_list</a></li><li><a href='proc/list_ranges.html'>list_ranges</a></li><li><a href='proc/log_unit.html'>log_unit</a></li><li><a href='proc/log_write.html'>log_write</a></li><li><a href='interface/maxheap.html'>maxheap</a></li></ul>
+              <ul><li><a href='proc/choose_fmt_based_on.html'>choose_fmt_based_on</a></li><li><a href='proc/choose_sampler.html'>choose_sampler</a></li><li><a href='proc/count_integers_from_string.html'>count_integers_from_string</a></li><li><a href='proc/djb2.html'>djb2</a></li><li><a href='interface/dynamical_list.html'>dynamical_list</a></li><li><a href='interface/fixed_list.html'>fixed_list</a></li><li><a href='proc/list_ranges.html'>list_ranges</a></li><li><a href='proc/log_unit.html'>log_unit</a></li><li><a href='interface/log_write.html'>log_write</a></li><li><a href='interface/maxheap.html'>maxheap</a></li></ul>
             </div>
             <div>
               <ul>
@@ -180,7 +183,7 @@
           <div class="col-xs-6 col-sm-3">
             <div>
               <h3>Derived Types</h3>
-              <ul><li><a href='type/dynamical_list_t.html'>dynamical_list_t</a></li><li><a href='type/fixed_list_t.html'>fixed_list_t</a></li><li><a href='type/maxheap_t.html'>maxheap_t</a></li><li><a href='type/measure_controller_t.html'>measure_controller_t</a></li><li><a href='type/sampler_base_t.html'>sampler_base_t</a></li><li><a href='type/statistical_measure_t.html'>statistical_measure_t</a></li><li><a href='type/weighted_histogram_t.html'>weighted_histogram_t</a></li><li><a href='type/weighted_sampler_t~4.html'>weighted_sampler_t</a></li><li><a href='type/weighted_sampler_t~3.html'>weighted_sampler_t</a></li><li><a href='type/weighted_sampler_t~5.html'>weighted_sampler_t</a></li></ul>
+              <ul><li><a href='type/dynamical_list_t.html'>dynamical_list_t</a></li><li><a href='type/fixed_list_t.html'>fixed_list_t</a></li><li><a href='type/maxheap_t.html'>maxheap_t</a></li><li><a href='type/measure_controller_t.html'>measure_controller_t</a></li><li><a href='type/sampler_base_t.html'>sampler_base_t</a></li><li><a href='type/statistical_measure_t.html'>statistical_measure_t</a></li><li><a href='type/weighted_histogram_t.html'>weighted_histogram_t</a></li><li><a href='type/weighted_sampler_t~4.html'>weighted_sampler_t</a></li><li><a href='type/weighted_sampler_t~3.html'>weighted_sampler_t</a></li><li><a href='type/weighted_sampler_t.html'>weighted_sampler_t</a></li></ul>
             </div>
             <div>
               <ul>

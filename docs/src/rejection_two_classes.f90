@@ -8,6 +8,8 @@ module datastructs_samplers_rejection_two_classes_mod
     implicit none
     private
 
+    real(kind=dp), parameter :: EPSILON = 0.0_dp
+
     !> Constructor
     interface weighted_sampler
         module procedure weighted_sampler_new
@@ -109,8 +111,17 @@ contains
         real(dp), intent(in) :: weight
         integer(i4) :: old_sampler_pos
 
+        ! if the weight is zero, remove the index from the list
+        if (weight <= EPSILON) then
+            call this%remove(index)
+            return
+        end if
+
         ! get the sampler pos
         old_sampler_pos = this%sampler_of_index(index)
+
+        ! if the weight is the same and is already in the list, just return
+        if ((old_sampler_pos /= 0) .and. (weight == this%weights(index))) return
 
         ! We select which sampler will receive the weight based on the threshold
         ! The first sampler will receive weights below the threshold
@@ -161,9 +172,6 @@ contains
         real(dp) :: weight
 
         weight = this%weights(index) + delta_weight ! Calculate the new weight
-
-        ! we first remove the element
-        call this%remove(index) ! Remove the index from the sampler
 
         ! Now we can add the weight again
         call this%set_weight(index, weight) ! Set the new weight

@@ -88,7 +88,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 6.3% of total for source files.">124 statements</a>
+                 title=" 6.1% of total for source files.">125 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -504,8 +504,8 @@ can be.
 <a id="ln-104" name="ln-104" href="#ln-104"></a><span class="w">        </span><span class="c">!if (index &lt; 1 .or. index &gt; this%n) error stop &#39;Index out of bounds in sampler_set_weight&#39;</span>
 <a id="ln-105" name="ln-105" href="#ln-105"></a>
 <a id="ln-106" name="ln-106" href="#ln-106"></a><span class="w">        </span><span class="n">delta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">this</span><span class="p">%</span><span class="n">weights</span><span class="p">(</span><span class="nb">index</span><span class="p">)</span>
-<a id="ln-107" name="ln-107" href="#ln-107"></a><span class="w">        </span><span class="c">!if (delta == 0.0_dp) return</span>
-<a id="ln-108" name="ln-108" href="#ln-108"></a><span class="w">        </span><span class="n">this</span><span class="p">%</span><span class="n">weights</span><span class="p">(</span><span class="nb">index</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span>
+<a id="ln-107" name="ln-107" href="#ln-107"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">delta</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">0.0_dp</span><span class="p">)</span><span class="w"> </span><span class="k">return</span>
+<a id="ln-108" name="ln-108" href="#ln-108"></a><span class="k">        </span><span class="n">this</span><span class="p">%</span><span class="n">weights</span><span class="p">(</span><span class="nb">index</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span>
 <a id="ln-109" name="ln-109" href="#ln-109"></a>
 <a id="ln-110" name="ln-110" href="#ln-110"></a><span class="w">        </span><span class="c">! we perform a bottom-up update of the tree</span>
 <a id="ln-111" name="ln-111" href="#ln-111"></a><span class="w">        </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">this</span><span class="p">%</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>

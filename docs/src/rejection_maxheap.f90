@@ -120,6 +120,8 @@ contains
 
         ! check if the index is already added to the list
         if (this%position_of(index) /= 0) then
+            ! if the weight is the same and is already in the list, just return
+            if (weight == this%weights(index)) return
             ! remove the current sum
             this%current_sum = this%current_sum - this%weights(index)
             call this%heap%remove(index)
