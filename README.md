@@ -17,7 +17,7 @@ datastructs-fortran.git = "https://github.com/wcota/datastructs-fortran"
 
 After adding the dependency, you can import the module or specific components into your Fortran source files. For example, use `use datastructs_fortran` to import the entire module, or `use datastructs_fortran, only: [component_name]` to import specific types or functions.
 
-Main modules:
+Main derived types and routines:
 
 - Dynamical List (`dynamical_list_t`): Create and manipulate a list that can grow or shrink dynamically. Examples at [example/dynamical_list.f90](./example/dynamical_list.f90) and [example/dynamical_list2.f90](./example/dynamical_list2.f90)
 
@@ -28,6 +28,8 @@ Main modules:
 - Hash Function (`djb2`): Calculate a hash value for an array of integers using the djb2 algorithm. Examples at [example/hash.f90](./example/hash.f90)
 
 - Sampler Algorithms (`sampler_base_t`, `choose_sampler`): Randomly get indexes proportionally to their weights. Examples at [example/sampler.f90](./example/sampler.f90)
+
+- Logger: Provides logging with configurable verbosity and levels (`LOG_ERROR`, `LOG_WARNING`, `LOG_INFO`, `LOG_DEBUG`); global controls (`LOGGER_VERBOSE`, `LOGGER_LEVEL`, `LOGGER_OUTPUT_UNIT`, `LOGGER_ERROR_UNIT`); main routines for configuring and writing logs: `set_verbose`, `set_level`, `set_output_unit`, `set_error_unit`, `set_unit_defaults`, `log_unit`, `log_write`.
 
 ## Running examples
 
