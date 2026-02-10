@@ -10,7 +10,7 @@
     <meta name="author" content="Wesley Cota <https://wcota.me/>" >
     <link rel="icon" href="../favicon.png">
 
-    <title>fixed_list &ndash; Data structures for Fortran</title>
+    <title>pack_pair &ndash; Data structures for Fortran</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -77,8 +77,8 @@
 
     <div class="container">
   <div class="row">
-    <h1>fixed_list
-      <small>Interface</small>
+    <h1>pack_pair
+      <small>Function</small>
       
     </h1>
       <div class="container p-2 mb-4 bg-light border rounded-3">
@@ -88,21 +88,21 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="<p> 1.4% of total for procedures.</p>Including implementation: 11 statements,  5.2% of total for procedures.">3 statements</a>
+                 title=" 2.3% of total for procedures.">5 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/fixed_list.f90"> Source File</a>
+              <a href="../src/hash.f90"> Source File</a>
             </li>
         </ul>
       </div>
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='../sourcefile/fixed_list.f90.html'>fixed_list.f90</a></li>
-                <li class="breadcrumb-item"><a href='../module/datastructs_lists_fixed_list_mod.html'>datastructs_lists_fixed_list_mod</a></li>
-            <li class="breadcrumb-item active" aria-current="page">fixed_list</li>
+                <li class="breadcrumb-item"><a href='../sourcefile/hash.f90.html'>hash.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/datastructs_hash_mod.html'>datastructs_hash_mod</a></li>
+            <li class="breadcrumb-item active" aria-current="page">pack_pair</li>
           </ol>
         </nav>
       </div>
@@ -117,10 +117,10 @@
   </script>
 
   </div>
-
+  
   <div class="row">
     <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
-        <div id="sidebar">
+      <div id="sidebar">
       <h3>Contents</h3>
   
   
@@ -140,41 +140,25 @@
   
   
   
-      <div class="card mb-4">
-      <a data-bs-toggle="collapse" href="#modprocs-0"
-         aria-expanded="false" aria-controls="modprocs-0">
-         <h4 class="card-header bg-primary text-white">Module Procedures</h4>
-      </a>
-      <div id="modprocs-0" class="collapse">
-        <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../interface/fixed_list.html#moduleprocedure-fixed_list_new">fixed_list_new</a>
-        </div>
-      </div>
-    </div>
-
+  
   
 
 
   </div>
 
     </div>
-
+    
     <div class="col-md-9" id='text'>
-      <h2>public interface fixed_list</h2>
-      <p>Constructor for a fixed list</p>
-<br>
+    <h2>public  function pack_pair(a, b) result(r)  
+</h2>
+    
+
+    <p>Pack a pair of 32 bit integers into a single integer of 64 bits
+Only works for positive integers!</p>
 
 
-        <h2>Module Procedures</h2>
-            <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-fixed_list_new"></span> <h3>private  function fixed_list_new(list) result(this)  
-</h3></div>
-    <div class="card-body">
-        <p>Create a new fixed list
-Input: list - an array of integers</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
     <thead>
       <tr>
         <th scope="col">Type</th>
@@ -186,7 +170,7 @@ Input: list - an array of integers</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-list~3"></span>
+              <span class="anchor" id="variable-a"></span>
               integer(kind=i4),
             </td>
 <td>intent(in)</td>
@@ -194,7 +178,22 @@ Input: list - an array of integers</p>
               
             </td>
             <td>::</td>
-            <td><strong>list</strong>(:)</td>
+            <td><strong>a</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-b"></span>
+              integer(kind=i4),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>b</strong></td>
             <td>
                 
             </td>
@@ -202,17 +201,29 @@ Input: list - an array of integers</p>
     </tbody>
   </table>
 
-    <h4>
-    Return Value
-    <small>type(<a href='../type/fixed_list_t.html'>fixed_list_t</a>)</small>
-    </h4>
+      <h3>Return Value
+        <small>
+          <span class="anchor" id="variable-r~3"></span>
+          integer(kind=i8)
+        </small>
+      </h3>
+      
+    <br>
+
+
+    
     
 
+    
+    
+
+
+
+    
+    
     </div>
   </div>
 
-</div>
-  </div>
       <hr>
     </div> <!-- /container -->
     <footer>
