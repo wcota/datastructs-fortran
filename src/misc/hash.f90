@@ -33,7 +33,7 @@ contains
         integer(kind=i4), intent(in) :: a, b
         integer(kind=i8) :: r
 
-        r = int(a, i8) * 4294967296_i8 + int(b, i8)
+        r = ishft(int(a, i8), 32) + int(b, i8)
 
     end function pack_pair
 
