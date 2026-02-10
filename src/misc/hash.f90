@@ -29,6 +29,7 @@ contains
     end function djb2
 
     !> Pack a pair of 32 bit integers into a single integer of 64 bits
+    !> Only works for positive integers!
     function pack_pair(a, b) result(r)
         integer(kind=i4), intent(in) :: a, b
         integer(kind=i8) :: r
