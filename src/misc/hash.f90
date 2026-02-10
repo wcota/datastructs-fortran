@@ -3,7 +3,7 @@ module datastructs_hash_mod
     implicit none
     private
 
-    public :: djb2
+    public :: djb2, pack_pair
 
 contains
 
@@ -27,5 +27,14 @@ contains
         end do
 
     end function djb2
+
+    !> Pack a pair of 32 bit integers into a single integer of 64 bits
+    function pack_pair(a, b) result(r)
+        integer(kind=i4), intent(in) :: a, b
+        integer(kind=i8) :: r
+
+        r = int(a, i8) * 4294967296_i8 + int(b, i8)
+
+    end function pack_pair
 
 end module datastructs_hash_mod
