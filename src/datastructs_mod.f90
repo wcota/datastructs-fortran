@@ -1,5 +1,5 @@
 module datastructs_mod
-    use datastructs_hash_mod, only: djb2, pack_pair
+    use datastructs_hash_mod, only: djb2, pack_pair, fnv1a
     use datastructs_lists_mod, only: dynamical_list, fixed_list, maxheap, &
                          dynamical_list_t, fixed_list_t, maxheap_t, &
                          unique_values, new_fixed_list_pointer
@@ -12,7 +12,7 @@ module datastructs_mod
     private
 
     !> Hash functions
-    public :: djb2, pack_pair
+    public :: djb2, pack_pair, fnv1a
 
     !> Lists and maxheap constructors
     public :: dynamical_list, fixed_list, maxheap

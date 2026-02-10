@@ -3,7 +3,7 @@ module datastructs_hash_mod
     implicit none
     private
 
-    public :: djb2, pack_pair
+    public :: djb2, pack_pair, fnv1a
 
 contains
 
@@ -37,5 +37,25 @@ contains
         r = ishft(int(a, i8), 32) + int(b, i8)
 
     end function pack_pair
+
+    !> FNV-1a hash function (64-bit)
+    !> Better dispersion for longer lists/hyperedges
+    !> Check https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function
+    function fnv1a(list) result(r)
+        integer(kind=i4), intent(in) :: list(:)
+        integer(kind=i8) :: r
+
+        integer(kind=i4) :: i, l
+        integer(kind=i8), parameter :: FNV_OFFSET_BASIS = int(z'CBF29CE484222325', i8)
+        integer(kind=i8), parameter :: FNV_PRIME = int(z'00000100000001B3', i8)
+
+        l = size(list)
+        r = FNV_OFFSET_BASIS
+
+        do i = 1, l
+            r = ieor(r, int(list(i), i8))
+            r = r * FNV_PRIME
+        end do
+    end function fnv1a
 
 end module datastructs_hash_mod
