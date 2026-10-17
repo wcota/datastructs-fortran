@@ -93,6 +93,7 @@ contains
     subroutine dynamical_list_init(this, n)
         class(dynamical_list_t), intent(inout) :: this
         integer(kind=i4), intent(in) :: n
+        if (allocated(this%list)) call finalize_dynamical_list(this)
         this%n = n
         this%n_used = 0
         allocate(this%list(n))

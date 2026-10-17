@@ -71,6 +71,8 @@ contains
         class(maxheap_t), intent(inout) :: this
         integer(i4), intent(in) :: max_size
 
+        if (allocated(this%values)) call maxheap_finalize(this)
+
         this%max_n = max_size
         this%n = 0
         allocate(this%values(max_size))
@@ -135,7 +137,8 @@ contains
     subroutine maxheap_remove(this, index)
         class(maxheap_t), intent(inout) :: this
         integer(i4), intent(in) :: index
-        integer(i4) :: pos, last_index, left, right, largest
+        integer(i4) :: pos, last_index, left, right, largest, parent
+        logical :: needs_bubble_up
 
         if (index < 1 .or. index > this%max_n) return
         pos = this%pos_of(index)
@@ -149,29 +152,51 @@ contains
         this%pos_of(index) = 0
         this%n = this%n - 1
 
-        ! heapify down
-        do
-            left = 2 * pos
-            right = 2 * pos + 1
-            largest = pos
+        if (pos > this%n) return ! removed element was the last one
 
-            if (left <= this%n) then
-                if (this%values(left) > this%values(largest)) largest = left
-            end if
+        needs_bubble_up = .false.
+        if (pos > 1) then
+            if (this%values(pos) > this%values(pos / 2)) needs_bubble_up = .true.
+        end if
 
-            if (right <= this%n) then
-                if (this%values(right) > this%values(largest)) largest = right
-            end if
+        ! Check if the moved element needs to bubble up (if greater than its parent)
+        if (needs_bubble_up) then
+            do while (pos > 1)
+                parent = pos / 2
+                if (this%values(parent) >= this%values(pos)) exit
 
-            if (largest == pos) exit
+                call swap(this%values(parent), this%values(pos))
+                call swap(this%indices(parent), this%indices(pos))
+                this%pos_of(this%indices(parent)) = parent
+                this%pos_of(this%indices(pos)) = pos
 
-            call swap(this%values(pos), this%values(largest))
-            call swap(this%indices(pos), this%indices(largest))
-            this%pos_of(this%indices(pos)) = pos
-            this%pos_of(this%indices(largest)) = largest
+                pos = parent
+            end do
+        else
+            ! Otherwise heapify down
+            do
+                left = 2 * pos
+                right = 2 * pos + 1
+                largest = pos
 
-            pos = largest
-        end do
+                if (left <= this%n) then
+                    if (this%values(left) > this%values(largest)) largest = left
+                end if
+
+                if (right <= this%n) then
+                    if (this%values(right) > this%values(largest)) largest = right
+                end if
+
+                if (largest == pos) exit
+
+                call swap(this%values(pos), this%values(largest))
+                call swap(this%indices(pos), this%indices(largest))
+                this%pos_of(this%indices(pos)) = pos
+                this%pos_of(this%indices(largest)) = largest
+
+                pos = largest
+            end do
+        end if
     end subroutine maxheap_remove
 
     !> Gets the maximum value from the maxheap

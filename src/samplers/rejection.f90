@@ -54,6 +54,9 @@ contains
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: n
 
+        if (n <= 0) error stop "sampler_init: n must be positive"
+        if (allocated(this%weights)) call sampler_cleanup(this)
+
         this%n = n
         allocate(this%weights(n))
         allocate(this%indices)
@@ -187,8 +190,7 @@ contains
         integer(i4), intent(in) :: index
         integer(i4) :: pos
 
-        ! DEBUG
-        !if (index < 1 .or. index > this%n) error stop 'Index out of bounds in sampler_remove'
+        if (index < 1 .or. index > this%n) return
 
         pos = this%position_of(index)
         if (pos /= 0) then
@@ -203,6 +205,11 @@ contains
             this%position_of(index) = 0 ! Mark as removed
 
             this%weights(index) = 0.0_dp ! Set the weight to zero
+
+            if (this%indices%n_used == 0) then
+                this%max_weight = 0.0_dp
+                this%current_sum = 0.0_dp
+            end if
         end if
 
     end subroutine sampler_remove
@@ -216,6 +223,10 @@ contains
         class(rndgen), intent(inout) :: gen
         integer(i4) :: index, index_pos
         real(dp) :: weight
+
+        if (this%n <= 0) error stop "sampler_sample: rejection sampler not initialized"
+        if (this%indices%n_used <= 0) error stop "sampler_sample: no active elements in rejection sampler"
+        if (this%max_weight <= 0.0_dp) error stop "sampler_sample: max_weight is zero or negative"
 
         ! We will use rejection sampling to select an index
         do
@@ -242,22 +253,21 @@ contains
 
     end function sampler_sum
 
+    subroutine sampler_cleanup(this)
+        class(weighted_sampler_t), intent(inout) :: this
+
+        if (allocated(this%indices)) deallocate(this%indices)
+        if (allocated(this%weights)) deallocate(this%weights)
+        if (allocated(this%position_of)) deallocate(this%position_of)
+        this%n = 0
+        this%current_sum = 0.0_dp
+        this%max_weight = 0.0_dp
+    end subroutine sampler_cleanup
+
     !> Finalize the sampler, deallocate resources
     subroutine sampler_finalize(this)
         type(weighted_sampler_t), intent(inout) :: this
-
-        if (allocated(this%indices)) then
-            deallocate(this%indices)
-        end if
-
-        if (allocated(this%weights)) then
-            deallocate(this%weights)
-        end if
-
-        if (allocated(this%position_of)) then
-            deallocate(this%position_of)
-        end if
-
+        call sampler_cleanup(this)
     end subroutine sampler_finalize
 
 end module datastructs_samplers_rejection_mod

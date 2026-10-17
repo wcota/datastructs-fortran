@@ -6,6 +6,7 @@ module datastructs_mod
     use datastructs_samplers_base_mod, only : sampler_base_t
     use datastructs_samplers_mod, only: choose_sampler, sampler_choices
     use datastructs_measures_mod, only : statistical_measure_t, measure_controller_t
+    use datastructs_time_grid_mod, only : time_grid_t
     use datastructs_histograms_mod, only : weighted_histogram_t
     use datastructs_logger_mod, only : log_unit, set_verbose, set_level, set_output_unit, set_error_unit, set_unit_defaults, log_write, LOG_ERROR, LOG_WARNING, LOG_INFO, LOG_DEBUG, LOGGER_OK
     implicit none
@@ -29,8 +30,8 @@ module datastructs_mod
     !> Choose a sampler based on the selected algorithm
     public :: choose_sampler, sampler_choices
 
-    !> Statistical measures
-    public :: statistical_measure_t, measure_controller_t, weighted_histogram_t
+    !> Statistical measures and observation time grid
+    public :: statistical_measure_t, measure_controller_t, weighted_histogram_t, time_grid_t
 
     !> Logger
     public :: log_unit, set_verbose, set_level, set_output_unit, set_error_unit, set_unit_defaults, log_write, LOG_ERROR, LOG_WARNING, LOG_INFO, LOG_DEBUG, LOGGER_OK

@@ -49,6 +49,10 @@ contains
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: n
 
+        if (n <= 0) error stop "sampler_init: n must be positive"
+        if (allocated(this%weights)) deallocate(this%weights)
+        if (allocated(this%tree)) deallocate(this%tree)
+
         this%n = n
         allocate(this%weights(n))
         allocate(this%tree(2*n - 1))  ! complete binary tree with n leaves
@@ -83,11 +87,8 @@ contains
     subroutine sampler_reset(this)
         class(weighted_sampler_t), intent(inout) :: this
 
-        ! DEBUG
-        !if (this%n <= 0) error stop "reset: sampler not initialized"
-
-        this%weights = 0.0_dp
-        this%tree = 0.0_dp
+        if (allocated(this%weights)) this%weights = 0.0_dp
+        if (allocated(this%tree)) this%tree = 0.0_dp
     end subroutine sampler_reset
 
     !> Sets the weight for a given index
@@ -100,8 +101,8 @@ contains
         integer(i4) :: i
         real(dp) :: delta
 
-        ! DEBUG
-        !if (index < 1 .or. index > this%n) error stop 'Index out of bounds in sampler_set_weight'
+        if (index < 1 .or. index > this%n) error stop 'Index out of bounds in sampler_set_weight'
+        if (weight < 0.0_dp) error stop 'sampler_set_weight: weight cannot be negative'
 
         delta = weight - this%weights(index)
         if (delta == 0.0_dp) return
@@ -178,8 +179,8 @@ contains
         real(dp) :: r
         integer(i4) :: i
 
-        ! DEBUG
-        ! if (this%tree(1) <= 0.0_dp) error stop "sample: total weight is zero"
+        if (this%n <= 0) error stop "sampler_sample: sampler not initialized"
+        if (this%tree(1) <= 0.0_dp) error stop "sampler_sample: total weight is zero or negative"
 
         ! for that, we calculate a random value from the top (sum of weights)
         r = gen%rnd() * this%tree(1)

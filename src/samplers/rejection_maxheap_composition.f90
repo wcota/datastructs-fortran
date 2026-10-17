@@ -63,11 +63,16 @@ contains
         integer(i4), intent(in) :: n
         integer(i4) :: i
 
+        if (n <= 0) error stop "sampler_init: n must be positive"
+        if (allocated(this%sampler_of_index)) call sampler_cleanup(this)
+
         this%n = n ! Set the number of weights
 
-        ! DEBUG
+        ! If q was not set via init_w2, provide a robust default range (e.g. 1e-6 to 1e+6)
         if (this%q == 0) then
-            error stop 'Error: q must be set before initializing the sampler.'
+            this%wmin = 1.0e-6_dp
+            this%wmax = 1.0e+6_dp
+            this%q = max(1, int(ceiling(log(this%wmax / this%wmin) / log(2.0_dp))))
         end if
 
         allocate(this%samplers(this%q))
@@ -264,17 +269,20 @@ contains
 
     end function sampler_sum
 
+    subroutine sampler_cleanup(this)
+        class(weighted_sampler_t), intent(inout) :: this
+
+        if (allocated(this%sampler_of_index)) deallocate(this%sampler_of_index)
+        if (allocated(this%weights)) deallocate(this%weights)
+        if (allocated(this%samplers)) deallocate(this%samplers)
+        this%n = 0
+        this%q = 0
+    end subroutine sampler_cleanup
+
     !> Finalize the sampler, deallocate resources
     subroutine sampler_finalize(this)
         type(weighted_sampler_t), intent(inout) :: this
-
-        if (allocated(this%sampler_of_index)) then
-            deallocate(this%sampler_of_index)
-        end if
-        if (allocated(this%weights)) then
-            deallocate(this%weights)
-        end if
-
+        call sampler_cleanup(this)
     end subroutine sampler_finalize
 
     !> Auxiliary function (private) to get the sampler position for a given weight
@@ -284,11 +292,11 @@ contains
         real(dp), intent(in) :: weight
         integer(i4) :: pos
 
-        if (weight < this%wmin) then
+        if (weight <= this%wmin) then
             pos = 1
         else
-            ! Calculate the sampler position based on the weight
-            pos = min(this%q, ceiling(log(weight / this%wmin) / log(2.0_dp)) + 1)
+            ! Partition into power-of-2 bins: [2^(k-1)*wmin, 2^k*wmin)
+            pos = max(1, min(this%q, int(floor(log(weight / this%wmin) / log(2.0_dp))) + 1))
         end if
 
     end function sampler_sampler_pos

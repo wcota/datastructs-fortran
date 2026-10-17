@@ -2,35 +2,125 @@
 
 ## Description
 
-The Fortran module `datastructs-fortran` provides a comprehensive collection of common data structures and utility functions. It includes implementations for **dynamic lists** (`dynamical_list_t`), **fixed-size lists** (`fixed_list_t`), and **max heaps** (`maxheap_t`). Additionally, it offers various **random sampler algorithms** (through `sampler_base_t` and `choose_sampler`) for weighted selection, and a **hashing function** (`djb2`).
+The Fortran library `datastructs-fortran` provides a comprehensive collection of common data structures, weighted random samplers, and statistical observation tools optimized for high-performance stochastic dynamics (e.g. Gillespie algorithm / Continuous-Time Markov Chains):
+
+- **Data Structures**:
+  - **Dynamic Lists** (`dynamical_list_t`): Integer lists with $O(1)$ fast swap-with-last removal, trimming, and dynamic expansion.
+  - **Fixed Lists** (`fixed_list_t`): Linked fixed-size blocks.
+  - **Max Heaps** (`maxheap_t`): Priority queue maintaining maximum value and its associated index with $O(\log N)$ updates and removals.
+- **Observation & Statistical Measures**:
+  - **Observation Time Grid** (`time_grid_t`): Precalculated uniform, geometric, or logarithmic observation time ticks for continuous-time processes. Records piecewise-constant trajectory states in amortized $O(1)$ time with **zero memory allocations** in the event loop.
+  - **Statistical Measures** (`statistical_measure_t`): Online accumulator for 1st, 2nd, and 3rd statistical moments (mean, variance, standard deviation, skewness).
+  - **Weighted Histograms** (`weighted_histogram_t`): Frequency bins with arbitrary weights.
+- **Weighted Samplers** (`sampler_base_t`, `choose_sampler`):
+  - Fast selection of indices proportional to dynamic rates/weights.
+  - Available algorithms: `btree` (binary sum tree, $O(\log N)$), `rejection`, `rejection_maxheap`, `rejection_two_classes`, `rejection_maxheap_two_classes`, and `rejection_maxheap_composition` (St-Onge et al. 2019 power-of-2 geometric partition).
+- **Hash Functions**:
+  - `djb2`, `fnv1a`, and bijective integer pair packing (`pack_pair`).
+- **Logger**:
+  - Configurable log levels (`LOG_ERROR`, `LOG_WARNING`, `LOG_INFO`, `LOG_DEBUG`).
 
 The samplers depend on the [`rndgen-fortran`](https://github.com/wcota/rndgen-fortran/) random number generator.
 
 ## Usage
 
-To integrate `datastructs-fortran` into your project, add it as a dependency using the Fortran Package Manager (Fpm). Include the following lines in your `fpm.toml` file:
+Add `datastructs-fortran` as a dependency in your `fpm.toml`:
 
 ```toml
 [dependencies]
 datastructs-fortran.git = "https://github.com/wcota/datastructs-fortran"
 ```
 
-After adding the dependency, you can import the module or specific components into your Fortran source files. For example, use `use datastructs_fortran` to import the entire module, or `use datastructs_fortran, only: [component_name]` to import specific types or functions.
+Import the main module in your Fortran source:
 
-Main derived types and routines:
+```fortran
+use datastructs_mod
+```
 
-- Dynamical List (`dynamical_list_t`): Create and manipulate a list that can grow or shrink dynamically. Examples at [example/dynamical_list.f90](https://github.com/wcota/datastructs-fortran/blob/main/example/dynamical_list.f90) and [example/dynamical_list2.f90](https://github.com/wcota/datastructs-fortran/blob/main/example/dynamical_list2.f90)
+### High-Performance Stochastic Gillespie Example
 
-- Fixed List (`fixed_list_t`): Define a fixed-size list, which can be linked to others. Examples at [example/fixed_list.f90](https://github.com/wcota/datastructs-fortran/blob/main/example/fixed_list.f90)
+Using `time_grid_t` with `statistical_measure_t` and `sampler_base_t`:
 
-- Max Heap (`maxheap_t`): Implement a max heap structure, where the parent node is always greater than or equal to its children. Examples at [example/maxheap.f90](https://github.com/wcota/datastructs-fortran/blob/main/example/maxheap.f90)
+```fortran
+program gillespie_example
+    use datastructs_mod
+    use datastructs_kinds_mod
+    use rndgen_mod
+    implicit none
 
-- Hash Function (`djb2`): Calculate a hash value for an array of integers using the djb2 algorithm. Examples at [example/hash.f90](https://github.com/wcota/datastructs-fortran/blob/main/example/hash.f90)
+    type(time_grid_t) :: grid
+    type(statistical_measure_t) :: state_measure
+    class(sampler_base_t), allocatable :: sampler
+    type(rndgen) :: gen
 
-- Sampler Algorithms (`sampler_base_t`, `choose_sampler`): Randomly get indexes proportionally to their weights. Examples at [example/sampler.f90](https://github.com/wcota/datastructs-fortran/blob/main/example/sampler.f90)
+    real(kind=dp) :: t, state, total_rate
+    integer(kind=i4) :: traj
 
-- Logger: Provides logging with configurable verbosity and levels (`LOG_ERROR`, `LOG_WARNING`, `LOG_INFO`, `LOG_DEBUG`); global controls (`LOGGER_VERBOSE`, `LOGGER_LEVEL`, `LOGGER_OUTPUT_UNIT`, `LOGGER_ERROR_UNIT`); main routines for configuring and writing logs: `set_verbose`, `set_level`, `set_output_unit`, `set_error_unit`, `set_unit_defaults`, `log_unit`, `log_write`. Examples at [example/logger.f90](https://github.com/wcota/datastructs-fortran/blob/main/example/logger.f90)
+    ! 1. Precalculate observation grid: e.g. power-law/geometric spacing
+    call grid%init_geometric(tmin=1.0_dp, tmax=100.0_dp, ratio=1.05_dp)
+    call state_measure%init(grid%size())
 
-## Running examples
+    ! 2. Configure weighted sampler
+    call choose_sampler(sampler, 'btree')
+    call sampler%init(2)
+    call sampler%set_weight(1, 10.0_dp)
+    call sampler%set_weight(2, 5.0_dp)
+    total_rate = sampler%sum()
 
-Use `fpm run --example name`, in which `name` is the name of the example.
+    call gen%init(12345)
+
+    ! 3. Simulation trajectories
+    do traj = 1, 1000
+        t = 0.0_dp
+        state = 0.0_dp
+        call grid%reset()
+
+        do while (t < 100.0_dp .and. grid%has_next())
+            ! Advance Gillespie jump time
+            t = t + (-log(1.0_dp - gen%rnd()) / total_rate)
+
+            ! Zero-allocation O(1) observation record
+            call grid%record(state_measure, t, state)
+
+            ! Update physical state
+            if (sampler%sample(gen) == 1) then
+                state = state + 1.0_dp
+            else
+                state = max(0.0_dp, state - 1.0_dp)
+            end if
+        end do
+        call grid%record(state_measure, 100.0_dp, state)
+    end do
+end program gillespie_example
+```
+
+## Running Examples and Tests
+
+Run all tests:
+```bash
+fpm test
+```
+
+Run specific examples:
+```bash
+fpm run --example time_grid
+fpm run --example sampler
+fpm run --example maxheap
+fpm run --example dynamical_list
+```
+
+## Versioning and Release Automation
+
+A release helper script is available in `scripts/release.py`:
+
+```bash
+# Preview upcoming release without making changes
+python3 scripts/release.py patch --dry-run
+python3 scripts/release.py minor --dry-run
+
+# Perform version bump (updates fpm.toml, creates git commit and annotated tag)
+python3 scripts/release.py minor
+
+# Or specify a target version directly
+python3 scripts/release.py 0.5.0
+```

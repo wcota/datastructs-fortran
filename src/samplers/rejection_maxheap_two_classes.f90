@@ -55,6 +55,9 @@ contains
         class(weighted_sampler_t), intent(inout) :: this
         integer(i4), intent(in) :: n
 
+        if (n <= 0) error stop "sampler_init: n must be positive"
+        if (allocated(this%sampler_of_index)) call sampler_cleanup(this)
+
         this%n = n ! Set the number of weights
 
         ! init each sampler with size n
@@ -206,17 +209,22 @@ contains
         class(weighted_sampler_t), intent(in) :: this
         class(rndgen), intent(inout) :: gen
         integer(i4) :: index
-        real(dp) :: total_weight
+        real(dp) :: total_weight, w1, w2
 
-        total_weight = this%sum()
+        w1 = this%samplers(1)%sum()
+        w2 = this%samplers(2)%sum()
+        total_weight = w1 + w2
 
-        ! We will use rejection sampling to select an index
-        ! First, we see which sampler to use based on the total weight
-        if (gen%rnd() < this%samplers(1)%sum() / total_weight) then
-            ! Use the first sampler
+        if (total_weight <= 0.0_dp) error stop "sampler_sample: total weight is zero or negative"
+
+        ! Check if one of the samplers is empty
+        if (w1 <= 0.0_dp) then
+            index = this%samplers(2)%sample(gen)
+        else if (w2 <= 0.0_dp) then
+            index = this%samplers(1)%sample(gen)
+        else if (gen%rnd() < w1 / total_weight) then
             index = this%samplers(1)%sample(gen)
         else
-            ! Use the second sampler
             index = this%samplers(2)%sample(gen)
         end if
 
@@ -232,17 +240,18 @@ contains
 
     end function sampler_sum
 
+    subroutine sampler_cleanup(this)
+        class(weighted_sampler_t), intent(inout) :: this
+
+        if (allocated(this%sampler_of_index)) deallocate(this%sampler_of_index)
+        if (allocated(this%weights)) deallocate(this%weights)
+        this%n = 0
+    end subroutine sampler_cleanup
+
     !> Finalize the sampler, deallocate resources
     subroutine sampler_finalize(this)
         type(weighted_sampler_t), intent(inout) :: this
-
-        if (allocated(this%sampler_of_index)) then
-            deallocate(this%sampler_of_index)
-        end if
-        if (allocated(this%weights)) then
-            deallocate(this%weights)
-        end if
-
+        call sampler_cleanup(this)
     end subroutine sampler_finalize
 
 end module datastructs_samplers_rejection_maxheap_two_classes_mod

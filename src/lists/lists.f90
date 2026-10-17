@@ -31,6 +31,11 @@ contains
         integer(kind=i4) :: i !! Loop variable
         integer(kind=i4) :: count_unique !! Count of unique integers
 
+        if (size(list) == 0) then
+            allocate(unique(0))
+            return
+        end if
+
         sorted_list = list
 
         call sort(sorted_list)
