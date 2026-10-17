@@ -64,7 +64,7 @@ program example_measures
 
     do i = 1, temporal_measure%n_size
         if (temporal_measure%n_samples(i) > 0) write(file_unit, fmt_general) temporal_measure%get_mean(i), spatial_measure%get_mean(i, .true.), &
-            spatial_measure%get_variance(i, .true.), spatial_measure%get_stddev(i, .true.), &
+            spatial_measure%get_variance(i, .true.), spatial_measure%get_stddev(i, .true.) / sqrt(real(temporal_measure%n_samples(i))), &
             spatial_measure%get_skewness(i, .true.), spatial_measure%n_samples(i)
     end do
 
