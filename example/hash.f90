@@ -1,8 +1,7 @@
 program test_hash
     use datastructs_kinds_mod
-    use datastructs_mod, only : djb2, pack_pair
+    use datastructs_mod, only : djb2, pack_pair, sort, sort_index
     use rndgen_mod
-    use stdlib_sorting, only : sort, sort_index
     implicit none
 
     type(rndgen) :: gen

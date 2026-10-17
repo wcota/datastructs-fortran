@@ -8,12 +8,16 @@ module datastructs_mod
     use datastructs_measures_mod, only : statistical_measure_t, measure_controller_t
     use datastructs_time_grid_mod, only : time_grid_t
     use datastructs_histograms_mod, only : weighted_histogram_t
+    use datastructs_sorting_mod, only : sort, sort_index
     use datastructs_logger_mod, only : log_unit, set_verbose, set_level, set_output_unit, set_error_unit, set_unit_defaults, log_write, LOG_ERROR, LOG_WARNING, LOG_INFO, LOG_DEBUG, LOGGER_OK
     implicit none
     private
 
     !> Hash functions
     public :: djb2, pack_pair, fnv1a
+
+    !> Sorting procedures
+    public :: sort, sort_index
 
     !> Lists and maxheap constructors
     public :: dynamical_list, fixed_list, maxheap

@@ -1,8 +1,7 @@
 program test_hash_collisions
     use datastructs_kinds_mod
-    use datastructs_mod, only : djb2, fnv1a
+    use datastructs_mod, only : djb2, fnv1a, sort, sort_index
     use rndgen_mod
-    use stdlib_sorting, only : sort, sort_index
     implicit none
 
     integer(kind=i4), parameter :: N_SAMPLES = 1000

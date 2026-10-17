@@ -20,4 +20,6 @@ implicit-external = false
 source-form = "free"
 [dependencies]
 rndgen-fortran.git = "https://github.com/wcota/rndgen-fortran"
+
+[dev-dependencies]
 stdlib = "*"

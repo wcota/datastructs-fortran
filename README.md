@@ -15,12 +15,14 @@ The Fortran library `datastructs-fortran` provides a comprehensive collection of
 - **Weighted Samplers** (`sampler_base_t`, `choose_sampler`):
   - Fast selection of indices proportional to dynamic rates/weights.
   - Available algorithms: `btree` (binary sum tree, $O(\log N)$), `rejection`, `rejection_maxheap`, `rejection_two_classes`, `rejection_maxheap_two_classes`, and `rejection_maxheap_composition` (St-Onge et al. 2019 power-of-2 geometric partition).
+- **Sorting**:
+  - Native in-place and indexed sorting (`sort`, `sort_index`) for `i4`, `i8`, and `dp` types without external dependencies.
 - **Hash Functions**:
   - `djb2`, `fnv1a`, and bijective integer pair packing (`pack_pair`).
 - **Logger**:
   - Configurable log levels (`LOG_ERROR`, `LOG_WARNING`, `LOG_INFO`, `LOG_DEBUG`).
 
-The samplers depend on the [`rndgen-fortran`](https://github.com/wcota/rndgen-fortran/) random number generator.
+The package is lightweight and completely standalone, with only [`rndgen-fortran`](https://github.com/wcota/rndgen-fortran/) as an external dependency (no heavy `stdlib` required).
 
 ## Usage
 

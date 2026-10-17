@@ -1,8 +1,7 @@
 program test_pack_perfection
     use datastructs_kinds_mod
-    use datastructs_mod, only : pack_pair
+    use datastructs_mod, only : pack_pair, sort_index
     use rndgen_mod
-    use stdlib_sorting, only : sort_index
     implicit none
 
     integer(kind=i4), parameter :: N_SAMPLES = int(1e6_dp, i4) ! tested with 1e8_dp (passed)

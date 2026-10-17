@@ -252,9 +252,8 @@ contains
     !> For that, we need to sort the positions
     !> It is safe because the elements are removed in reverse order
     !> Input: position_arr - the array of positions to remove
-    !> Dependency: stdlib_sorting
     subroutine dynamical_list_remove_position_array(this, position_arr)
-        use stdlib_sorting, only: sort
+        use datastructs_sorting_mod, only: sort
         class(dynamical_list_t), intent(inout) :: this
         integer(kind=i4), intent(in) :: position_arr(:)
         integer(kind=i4), allocatable :: sorted_position_arr(:)

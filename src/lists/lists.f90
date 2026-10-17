@@ -24,7 +24,7 @@ contains
     !> It uses the standard library sorting module
     !> The result is a list of unique integers
     function unique_values(list) result(unique)
-        use stdlib_sorting, only: sort
+        use datastructs_sorting_mod, only: sort
         integer(kind=i4), intent(in) :: list(:) !! Input list of integers
         integer(kind=i4), allocatable :: unique(:) !! Output list of unique integers
         integer(kind=i4), allocatable :: sorted_list(:) !! Sorted copy of the input list
