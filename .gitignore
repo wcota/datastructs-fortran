@@ -50,6 +50,4 @@ node_modules/
 docs/.vitepress/cache/
 docs/.vitepress/dist/
 doc/
-
-
-
+docs/package-lock.json
