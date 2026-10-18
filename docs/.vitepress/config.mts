@@ -29,7 +29,10 @@ const guideSidebar = [
       { text: 'Weighted Samplers', link: '/guide/samplers' },
       { text: 'Temporal Time Grid', link: '/guide/time-grid' },
       { text: 'High-Performance Sorting', link: '/guide/sorting' },
-      { text: 'Containers & Heaps', link: '/guide/containers' },
+      { text: 'Containers & Queues', link: '/guide/containers' },
+      { text: 'Hashing & Bit Packing', link: '/guide/hashing' },
+      { text: 'Measures & Histograms', link: '/guide/measures' },
+      { text: 'Logging & Diagnostics', link: '/guide/logger' },
     ],
   },
   {

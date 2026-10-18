@@ -58,4 +58,7 @@ Explore the detailed guides for each subsystem:
 1. [**Weighted Samplers**](./samplers.md): Theoretical foundations and decision guide for continuous-time event sampling.
 2. [**Temporal Time Grid**](./time-grid.md): Event recording for jump processes and CTMC models with zero overhead.
 3. [**High-Performance Sorting**](./sorting.md): Guaranteed $O(N \log N)$ Introsort benchmarks and sorting with indices.
-4. [**Containers & Priority Queues**](./containers.md): Dynamic lists, Max-Heaps, and linked structures.
+4. [**Containers & Priority Queues**](./containers.md): Dynamic lists ($O(1)$ swap-with-last), indexed Max-Heaps, and linked lists (`fixed_list_t`) for streaming I/O.
+5. [**Hashing & Bit Packing**](./hashing.md): Zero-collision `pack_pair` for edges $(u, v)$ and 64-bit array hashes (`djb2`, `fnv1a`).
+6. [**Statistical Measures & Histograms**](./measures.md): Online moment accumulators ($O(1)$ mean/var/skew) and weighted histograms.
+7. [**Logging & Diagnostics**](./logger.md): Log levels (`LOG_INFO`, `LOG_DEBUG`), idiomatic `log_unit`, direct `log_write`, and output redirection.
