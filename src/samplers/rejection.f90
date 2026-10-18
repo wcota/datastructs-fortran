@@ -1,4 +1,13 @@
-!> This module implements a rejection sampling
+!> Rejection weighted sampler.
+!>
+!> Selects an active element uniformly at random and accepts it with probability
+!> \( P(\text{accept}) = w_i / w_{\text{max}} \).
+!>
+!> Complexity:
+!> - **Sampling**: \( O(1) \) expected trials when weights are relatively homogeneous
+!>   (average trials \( \approx w_{\text{max}} / \bar{w} \)).
+!> - **Weight update**: \( O(1) \) (updates weight and adjusts `max_weight`).
+!> - **Memory**: \( O(N) \) (stores active indices and position index map).
 module datastructs_samplers_rejection_mod
     use datastructs_kinds_mod
     use datastructs_lists_mod
@@ -13,25 +22,25 @@ module datastructs_samplers_rejection_mod
         module procedure weighted_sampler_new
     end interface weighted_sampler
 
-    !> Derived type, extending from the base
+    !> Derived type implementing the rejection sampler
     type, extends(sampler_base_t) :: weighted_sampler_t
-        type(dynamical_list_t), allocatable :: indices
-        integer(i4), allocatable :: position_of(:) ! index positions
-        real(kind=dp) :: current_sum = 0.0_dp ! current sum of the weights
-        real(kind=dp) :: max_weight = 0.0_dp
+        type(dynamical_list_t), allocatable :: indices !! Dynamic list of active (non-zero weight) indices
+        integer(i4), allocatable :: position_of(:) !! Map from element index to its position in `indices`
+        real(kind=dp) :: current_sum = 0.0_dp !! Current sum of all active weights
+        real(kind=dp) :: max_weight = 0.0_dp !! Maximum weight threshold for rejection
     contains
-        procedure :: init_n => sampler_init
-        procedure :: init_w => sampler_init_w
-        procedure :: init_w2 => sampler_init_w2
-        procedure :: reset        => sampler_reset
-        procedure :: set_weight   => sampler_set_weight
-        procedure :: set_weight_array => sampler_set_weight_array
-        procedure :: add_weight => sampler_add_weight
-        procedure :: sample       => sampler_sample
-        procedure :: remove => sampler_remove
-        procedure :: sum => sampler_sum
+        procedure :: init_n => sampler_init !! Initializes sampler with capacity N
+        procedure :: init_w => sampler_init_w !! Initializes with capacity N and known max_weight
+        procedure :: init_w2 => sampler_init_w2 !! Initializes with capacity N and extra bounds
+        procedure :: reset        => sampler_reset !! Clears active elements and resets sum and max_weight
+        procedure :: set_weight   => sampler_set_weight !! Sets weight for an index in O(1)
+        procedure :: set_weight_array => sampler_set_weight_array !! Sets all weights in O(N)
+        procedure :: add_weight => sampler_add_weight !! Adds delta weight to an index in O(1)
+        procedure :: sample       => sampler_sample !! Samples an index via rejection sampling
+        procedure :: remove => sampler_remove !! Removes index by setting weight to 0 in O(1)
+        procedure :: sum => sampler_sum !! Returns total sum of weights in O(1)
 
-        final :: sampler_finalize
+        final :: sampler_finalize !! Finalizer releasing dynamic lists and arrays
     end type weighted_sampler_t
 
     public :: weighted_sampler, weighted_sampler_t

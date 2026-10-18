@@ -1,3 +1,13 @@
+!> Rejection weighted sampler with dynamic Max-Heap tracking.
+!>
+!> Maintains the exact maximum active weight \( w_{\text{max}} \) dynamically using
+!> an internal `maxheap_t`. Avoids acceptance rate degradation when large weights
+!> are removed or decreased.
+!>
+!> Complexity:
+!> - **Sampling**: \( O(1) \) expected trials (\(\approx w_{\text{max}} / \bar{w}\)).
+!> - **Weight update**: \( O(\log N) \) (heapsort sift-up / sift-down).
+!> - **Memory**: \( O(N) \) (stores dynamic list + binary heap).
 module datastructs_samplers_rejection_maxheap_mod
     use datastructs_kinds_mod
     use datastructs_lists_mod
@@ -12,25 +22,25 @@ module datastructs_samplers_rejection_maxheap_mod
         module procedure weighted_sampler_new
     end interface weighted_sampler
 
-    !> Derived type, extending from the base
+    !> Derived type implementing the maxheap-tracked rejection sampler
     type, extends(sampler_base_t) :: weighted_sampler_t
-        type(dynamical_list_t), allocatable :: indices
-        type(maxheap_t), allocatable :: heap ! max-heap for efficient sampling
-        integer(i4), allocatable :: position_of(:) ! index positions
-        real(kind=dp) :: current_sum = 0.0_dp ! current sum of the weights
+        type(dynamical_list_t), allocatable :: indices !! Dynamic list of active element indices
+        type(maxheap_t), allocatable :: heap !! Max-Heap tracking exact maximum active weight
+        integer(i4), allocatable :: position_of(:) !! Map from element index to position in `indices`
+        real(kind=dp) :: current_sum = 0.0_dp !! Current sum of all active weights
     contains
-        procedure :: init_n => sampler_init
-        procedure :: init_w => sampler_init_w
-        procedure :: init_w2 => sampler_init_w2
-        procedure :: reset        => sampler_reset
-        procedure :: set_weight   => sampler_set_weight
-        procedure :: set_weight_array => sampler_set_weight_array
-        procedure :: add_weight => sampler_add_weight
-        procedure :: sample       => sampler_sample
-        procedure :: remove => sampler_remove
-        procedure :: sum => sampler_sum
+        procedure :: init_n => sampler_init !! Initializes sampler with capacity N
+        procedure :: init_w => sampler_init_w !! Initializes with capacity N
+        procedure :: init_w2 => sampler_init_w2 !! Initializes with capacity N
+        procedure :: reset        => sampler_reset !! Clears active elements and resets heap
+        procedure :: set_weight   => sampler_set_weight !! Sets weight for an index in O(log N)
+        procedure :: set_weight_array => sampler_set_weight_array !! Sets all weights in O(N log N)
+        procedure :: add_weight => sampler_add_weight !! Adds delta weight in O(log N)
+        procedure :: sample       => sampler_sample !! Samples an index via rejection with exact max-weight
+        procedure :: remove => sampler_remove !! Removes index from active list and heap in O(log N)
+        procedure :: sum => sampler_sum !! Returns total sum of weights in O(1)
 
-        final :: sampler_finalize
+        final :: sampler_finalize !! Finalizer releasing heap and dynamic list
     end type weighted_sampler_t
 
     public :: weighted_sampler, weighted_sampler_t

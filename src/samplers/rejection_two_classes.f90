@@ -1,5 +1,14 @@
-!> This module implements rejection sampling with two classes
-!> We split the weights into two classes based on a threshold
+!> Two-class rejection weighted sampler.
+!>
+!> Partitions elements into two classes (e.g. slow and fast reactions) according to
+!> a weight threshold. First selects an active class proportionally to its total weight,
+!> then samples within that class using rejection sampling.
+!>
+!> Complexity:
+!> - **Sampling**: \( O(1) \) expected trials, significantly higher acceptance efficiency
+!>   than single-class rejection when rates have bimodal or disparate magnitudes.
+!> - **Weight update**: \( O(1) \) (may move element between the two classes).
+!> - **Memory**: \( O(N) \).
 module datastructs_samplers_rejection_two_classes_mod
     use datastructs_kinds_mod
     use datastructs_lists_mod
@@ -15,25 +24,25 @@ module datastructs_samplers_rejection_two_classes_mod
         module procedure weighted_sampler_new
     end interface weighted_sampler
 
-    !> Derived type, extending from the base
+    !> Derived type implementing the two-class rejection sampler
     type, extends(sampler_base_t) :: weighted_sampler_t
-        type(rejection_t) :: samplers(2)
-        real(dp) :: threshold = huge(dp) ! threshold for the weights
-        integer(i4), allocatable :: sampler_of_index(:) ! maps index to sampler (1 or 2)
+        type(rejection_t) :: samplers(2) !! Sub-samplers for class 1 (slow) and class 2 (fast)
+        real(dp) :: threshold = huge(dp) !! Weight threshold separating the two classes
+        integer(i4), allocatable :: sampler_of_index(:) !! Map from element index to class index (1 or 2)
     contains
-        procedure :: init_n => sampler_init
-        procedure :: init_w => sampler_init_w
-        procedure :: init_w2 => sampler_init_w2
-        procedure :: reset        => sampler_reset
-        procedure :: set_weight   => sampler_set_weight
-        procedure :: set_weight_array => sampler_set_weight_array
-        procedure :: add_weight => sampler_add_weight
-        procedure :: sample       => sampler_sample
-        procedure :: remove => sampler_remove
-        procedure :: sum => sampler_sum
+        procedure :: init_n => sampler_init !! Initializes sampler with capacity N
+        procedure :: init_w => sampler_init_w !! Initializes with capacity N and custom threshold
+        procedure :: init_w2 => sampler_init_w2 !! Initializes with capacity N, threshold, and max_weight
+        procedure :: reset        => sampler_reset !! Clears both sub-samplers and index maps
+        procedure :: set_weight   => sampler_set_weight !! Sets weight for an index, placing it into class 1 or 2 in O(1)
+        procedure :: set_weight_array => sampler_set_weight_array !! Sets all weights in O(N)
+        procedure :: add_weight => sampler_add_weight !! Adds delta weight in O(1)
+        procedure :: sample       => sampler_sample !! Selects class proportionally then samples via rejection
+        procedure :: remove => sampler_remove !! Removes element in O(1)
+        procedure :: sum => sampler_sum !! Returns sum of weights across both classes in O(1)
 
-        final :: sampler_finalize
-    end type
+        final :: sampler_finalize !! Finalizer releasing sub-sampler allocations
+    end type weighted_sampler_t
 
     public :: weighted_sampler, weighted_sampler_t
 

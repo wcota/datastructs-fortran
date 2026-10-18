@@ -38,13 +38,14 @@ module datastructs_lists_fixed_list_mod
 
         ! Pointers for the linked list
         ! It can be used to create a list of lists with different sizes
-        type(fixed_list_t), pointer :: next, prev
+        type(fixed_list_t), pointer :: next => null() !! Pointer to next list in chain
+        type(fixed_list_t), pointer :: prev => null() !! Pointer to previous list in chain
     contains
-        procedure :: init => fixed_list_init ! initialize the list
-        procedure :: sum => fixed_list_sum ! sum the elements
-        procedure :: print => fixed_list_print ! print the list
+        procedure :: init => fixed_list_init !! Initialize the list
+        procedure :: sum => fixed_list_sum !! Sum the elements
+        procedure :: print => fixed_list_print !! Print the list elements
 
-        final :: finalize_fixed_list ! finalize the list
+        final :: finalize_fixed_list !! Finalizer cleaning up allocations
     end type
 
     public :: fixed_list, new_fixed_list_pointer, fixed_list_t

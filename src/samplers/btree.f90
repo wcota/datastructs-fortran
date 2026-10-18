@@ -1,5 +1,15 @@
-!> This modules implements a binary tree sampler
-!> It provides a way to sample elements based on their weights using a binary tree structure.
+!> Binary tree weighted sampler.
+!>
+!> Maintains a complete binary tree where each node stores the sum of weights
+!> in its subtree.
+!>
+!> Complexity:
+!> - **Sampling**: \(O(\log N)\) (top-down binary search)
+!> - **Weight update**: \(O(\log N)\) (bottom-up propagation)
+!> - **Memory**: \(O(N)\) (\(2^{\lceil \log_2 N \rceil + 1}\) nodes)
+!>
+!> This sampler is exact, deterministic, and optimal when event rates change
+!> frequently and unpredictable weight dynamics occur.
 module datastructs_samplers_btree_mod
     use datastructs_kinds_mod
     use datastructs_samplers_base_mod
@@ -11,22 +21,22 @@ module datastructs_samplers_btree_mod
         module procedure weighted_sampler_new
     end interface
 
-    !> Derived type, extending from the base
+    !> Derived type implementing the binary tree sampler
     type, extends(sampler_base_t) :: weighted_sampler_t
-        real(dp), allocatable :: tree(:)         ! soma das subárvores
+        real(dp), allocatable :: tree(:) !! Internal binary tree storing partial subtree sums
     contains
-        procedure :: init_n => sampler_init
-        procedure :: init_w => sampler_init_w
-        procedure :: init_w2 => sampler_init_w2
-        procedure :: reset        => sampler_reset
-        procedure :: set_weight   => sampler_set_weight
-        procedure :: set_weight_array => sampler_set_weight_array
-        procedure :: add_weight => sampler_add_weight
-        procedure :: sample       => sampler_sample
-        procedure :: remove => sampler_remove
-        procedure :: sum => sampler_sum
+        procedure :: init_n => sampler_init !! Initializes tree capacity for N elements
+        procedure :: init_w => sampler_init_w !! Initializes capacity (second argument ignored for btree)
+        procedure :: init_w2 => sampler_init_w2 !! Initializes capacity (extra arguments ignored for btree)
+        procedure :: reset        => sampler_reset !! Clears all weights in the tree to 0
+        procedure :: set_weight   => sampler_set_weight !! Sets weight of index in O(log N)
+        procedure :: set_weight_array => sampler_set_weight_array !! Sets all weights in O(N)
+        procedure :: add_weight => sampler_add_weight !! Adds delta weight in O(log N)
+        procedure :: sample       => sampler_sample !! Samples an index proportionally to weights in O(log N)
+        procedure :: remove => sampler_remove !! Removes index by setting its weight to 0 in O(log N)
+        procedure :: sum => sampler_sum !! Returns total sum of weights in O(1) (root value)
 
-        final :: sampler_finalize
+        final :: sampler_finalize !! Finalizer deallocating tree memory
     end type weighted_sampler_t
 
     public :: weighted_sampler, weighted_sampler_t

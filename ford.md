@@ -1,17 +1,19 @@
 ---
-project: Data structures for Fortran
-author: Wesley Cota <https://wcota.me/>
+project: datastructs-fortran
+summary: Common data structures, high-performance sorting, and random samplers for Fortran
+version: 0.5.0
+author: Wesley Cota
 author_description: Assistant Professor of Physics at Federal University of Viçosa (UFV), Brazil
 project_github: https://github.com/wcota/datastructs-fortran
 github: https://github.com/wcota
 website: https://wcota.me
-predocmark_alt: >
-predocmark: <
-docmark_alt:
+src_dir: src
+output_dir: doc
+predocmark: >
 docmark: !
 display: public
-        protected
-source: false
+         protected
+source: true
 graph: true
 preprocessor: gfortran -E
 ---

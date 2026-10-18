@@ -1,0 +1,202 @@
+[
+  {
+    "text": "datastructs_mod.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_mod",
+        "link": "/api/datastructs_mod"
+      }
+    ]
+  },
+  {
+    "text": "lists / dynamical_list.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_lists_dynamical_list_mod",
+        "link": "/api/datastructs_lists_dynamical_list_mod"
+      }
+    ]
+  },
+  {
+    "text": "lists / fixed_list.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_lists_fixed_list_mod",
+        "link": "/api/datastructs_lists_fixed_list_mod"
+      }
+    ]
+  },
+  {
+    "text": "lists / lists.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_lists_mod",
+        "link": "/api/datastructs_lists_mod"
+      }
+    ]
+  },
+  {
+    "text": "lists / maxheap.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_maxheap_mod",
+        "link": "/api/datastructs_maxheap_mod"
+      }
+    ]
+  },
+  {
+    "text": "misc / hash.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_hash_mod",
+        "link": "/api/datastructs_hash_mod"
+      }
+    ]
+  },
+  {
+    "text": "misc / histograms.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_histograms_mod",
+        "link": "/api/datastructs_histograms_mod"
+      }
+    ]
+  },
+  {
+    "text": "misc / kinds.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_kinds_mod",
+        "link": "/api/datastructs_kinds_mod"
+      }
+    ]
+  },
+  {
+    "text": "misc / logger.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_logger_mod",
+        "link": "/api/datastructs_logger_mod"
+      }
+    ]
+  },
+  {
+    "text": "misc / measures.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_measures_mod",
+        "link": "/api/datastructs_measures_mod"
+      }
+    ]
+  },
+  {
+    "text": "misc / sorting.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_sorting_mod",
+        "link": "/api/datastructs_sorting_mod"
+      }
+    ]
+  },
+  {
+    "text": "misc / time_grid.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_time_grid_mod",
+        "link": "/api/datastructs_time_grid_mod"
+      }
+    ]
+  },
+  {
+    "text": "samplers / base.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_samplers_base_mod",
+        "link": "/api/datastructs_samplers_base_mod"
+      }
+    ]
+  },
+  {
+    "text": "samplers / btree.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_samplers_btree_mod",
+        "link": "/api/datastructs_samplers_btree_mod"
+      }
+    ]
+  },
+  {
+    "text": "samplers / rejection.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_samplers_rejection_mod",
+        "link": "/api/datastructs_samplers_rejection_mod"
+      }
+    ]
+  },
+  {
+    "text": "samplers / rejection_maxheap.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_samplers_rejection_maxheap_mod",
+        "link": "/api/datastructs_samplers_rejection_maxheap_mod"
+      }
+    ]
+  },
+  {
+    "text": "samplers / rejection_maxheap_composition.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_samplers_rejection_maxheap_composition_mod",
+        "link": "/api/datastructs_samplers_rejection_maxheap_composition_mod"
+      }
+    ]
+  },
+  {
+    "text": "samplers / rejection_maxheap_two_classes.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_samplers_rejection_maxheap_two_classes_mod",
+        "link": "/api/datastructs_samplers_rejection_maxheap_two_classes_mod"
+      }
+    ]
+  },
+  {
+    "text": "samplers / rejection_two_classes.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_samplers_rejection_two_classes_mod",
+        "link": "/api/datastructs_samplers_rejection_two_classes_mod"
+      }
+    ]
+  },
+  {
+    "text": "samplers / samplers.f90",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "datastructs_samplers_mod",
+        "link": "/api/datastructs_samplers_mod"
+      }
+    ]
+  }
+]

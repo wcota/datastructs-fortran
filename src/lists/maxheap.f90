@@ -2,8 +2,8 @@
 !> Example:
 !> ```fortran
 !> program example_maxheap
-!>     use datastructs_fortran
-!>     use kinds_mod
+!>     use datastructs_mod
+!>     use datastructs_kinds_mod
 !>     implicit none
 !>     type(maxheap_t) :: my_heap
 !>     real(kind=dp), parameter :: list(*) = [40.0_dp,25.5_dp,30.1_dp,100.4_dp,2.0_dp]
@@ -40,15 +40,15 @@ module datastructs_maxheap_mod
         integer(i4) :: n = 0                   ! current heap size
         integer(i4) :: max_n                   ! max capacity
     contains
-        procedure :: init => maxheap_init ! initialize the maxheap
-        procedure :: add => maxheap_add ! adds a new value to the heap
-        procedure :: remove => maxheap_remove ! removes a value from the heap
-        procedure :: add_weight => maxheap_add_weight ! adds a delta weight to an existing index
-        procedure :: print => maxheap_print ! print the maxheap
-        procedure :: max_value => maxheap_max_value ! returns the max value
-        procedure :: max_index => maxheap_max_index ! returns the index of the max value
+        procedure :: init => maxheap_init !! Initialize maxheap with maximum capacity
+        procedure :: add => maxheap_add !! Insert value with external index in O(log N)
+        procedure :: remove => maxheap_remove !! Remove element by external index in O(log N)
+        procedure :: add_weight => maxheap_add_weight !! Update weight of existing index in O(log N)
+        procedure :: print => maxheap_print !! Print heap arrays to stdout
+        procedure :: max_value => maxheap_max_value !! Return maximum weight value in O(1)
+        procedure :: max_index => maxheap_max_index !! Return external index with maximum weight in O(1)
 
-        final :: maxheap_finalize ! finalize the maxheap
+        final :: maxheap_finalize !! Finalizer cleaning up allocations
     end type
 
     public :: maxheap, maxheap_t

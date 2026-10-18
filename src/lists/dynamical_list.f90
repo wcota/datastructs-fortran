@@ -3,8 +3,8 @@
 !> Example:
 !> ```fortran
 !> program test_dynamical_list
-!>     use datastructs_fortran
-!>     use kinds_mod
+!>     use datastructs_mod
+!>     use datastructs_kinds_mod
 !>     implicit none
 !>     type(dynamical_list_t) :: my_list
 !>     integer(kind=i4) :: i
@@ -35,29 +35,29 @@ module datastructs_lists_dynamical_list_mod
         integer(kind=i4) :: n_used = 0
         integer(kind=i4), allocatable :: list(:)
     contains
-        procedure :: init => dynamical_list_init ! initialize the list
-        procedure :: reset => dynamical_list_reset ! reset the list
-        procedure :: print => dynamical_list_print ! print the list
-        procedure :: expand => dynamical_list_expand ! expand the list to a new size
-        procedure :: trim => dynamical_list_trim ! trim the list to n_used
-        procedure :: last => dynamical_list_last ! get the last element
-        procedure :: count => dynamical_list_count ! count the number of times an element appears in the list
+        procedure :: init => dynamical_list_init !! Initialize list with maximum capacity
+        procedure :: reset => dynamical_list_reset !! Reset used elements count to 0
+        procedure :: print => dynamical_list_print !! Print list contents to stdout
+        procedure :: expand => dynamical_list_expand !! Expand capacity to a larger size
+        procedure :: trim => dynamical_list_trim !! Trim allocated memory to match n_used
+        procedure :: last => dynamical_list_last !! Return the last added element
+        procedure :: count => dynamical_list_count !! Count occurrences of a value
 
         procedure, private :: dynamical_list_create_from_array
         procedure, private :: dynamical_list_add_element, dynamical_list_add_array
         procedure, private :: dynamical_list_remove_position, dynamical_list_remove_position_array, &
             dynamical_list_remove_position_range
 
-        generic :: add => dynamical_list_add_element, dynamical_list_add_array ! add elements
+        generic :: add => dynamical_list_add_element, dynamical_list_add_array !! Add single element or array
         generic :: remove => dynamical_list_remove_position, dynamical_list_remove_position_array, &
-            dynamical_list_remove_position_range ! remove indexes
-        generic :: assignment(=) => dynamical_list_create_from_array ! create from array
+            dynamical_list_remove_position_range !! Remove element(s) by position, array of positions, or range
+        generic :: assignment(=) => dynamical_list_create_from_array !! Assign from integer array
 
-        procedure :: get => dynamical_list_get ! get element at position
+        procedure :: get => dynamical_list_get !! Retrieve element value at 1-based position
 
-        procedure :: sum => dynamical_list_sum ! sum the elements
+        procedure :: sum => dynamical_list_sum !! Sum of all active elements in list
 
-        final :: finalize_dynamical_list ! finalize the list
+        final :: finalize_dynamical_list !! Finalizer releasing allocated memory
     end type dynamical_list_t
 
     public :: dynamical_list, dynamical_list_t

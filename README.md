@@ -126,3 +126,17 @@ python3 scripts/release.py minor
 # Or specify a target version directly
 python3 scripts/release.py 0.5.0
 ```
+
+## Documentation
+
+API documentation is generated using [FORMAL](https://github.com/szaghi/formal) (which bridges [FORD](https://github.com/Fortran-FOSS-Programmers/ford) doc comments and [VitePress](https://vitepress.dev)).
+
+To generate and build the documentation website:
+
+```bash
+# Generate Markdown API pages and build static HTML
+./scripts/build_docs.sh
+
+# Or start the local VitePress development server with live reload:
+cd docs && npm run docs:dev
+```

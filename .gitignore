@@ -39,3 +39,14 @@
 
 # debug information files
 *.dwo
+
+# Node / Docs / Env
+node_modules/
+*.edgeslist
+.venv/
+.vitepress/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+doc/
+
+

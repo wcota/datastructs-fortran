@@ -1,8 +1,19 @@
-!> This module implements a rejection composition sampler
-!> It is based on "St-Onge, G., Young, J. G., Hébert-Dufresne, L., & Dubé, L. J. (2019).
-!> Efficient sampling of spreading processes on complex networks using a composition and rejection algorithm.
-!> Computer physics communications, 240, 30-37"
-!> <https://doi.org/10.1016/j.cpc.2019.02.008>
+!> Composition and rejection weighted sampler with geometric binning.
+!>
+!> Implements the composition-rejection algorithm of St-Onge et al. (2019):
+!> > St-Onge, G., Young, J. G., Hébert-Dufresne, L., & Dubé, L. J. (2019).
+!> > *Efficient sampling of spreading processes on complex networks using a composition and rejection algorithm.*
+!> > Comput. Phys. Commun., 240, 30–37. <https://doi.org/10.1016/j.cpc.2019.02.008>
+!>
+!> Partitions weights geometrically into \( q = \lceil \log_2(w_{\text{max}} / w_{\text{min}}) \rceil + 1 \)
+!> bins such that in each bin \( B_k \), all weights satisfy \( w_i \in [w_{\text{min}} 2^{k-1}, w_{\text{min}} 2^k) \).
+!> A small binary tree (`btree_t`) of size \( q \) selects the active bin in \( O(\log q) \),
+!> and rejection sampling inside the bin accepts with efficiency \( \ge 50\% \).
+!>
+!> Complexity:
+!> - **Sampling**: \( O(\log q) \) expected time (effectively \( O(1) \) for typical physical rate ranges).
+!> - **Weight update**: \( O(\log q + \log N_k) \).
+!> - **Memory**: \( O(N) \).
 module datastructs_samplers_rejection_maxheap_composition_mod
     use datastructs_kinds_mod
     use datastructs_lists_mod
@@ -19,28 +30,29 @@ module datastructs_samplers_rejection_maxheap_composition_mod
         module procedure weighted_sampler_new
     end interface weighted_sampler
 
-    !> Derived type, extending from the base
+    !> Derived type implementing the composition-rejection sampler
     type, extends(sampler_base_t) :: weighted_sampler_t
-        type(rejection_maxheap_t), allocatable :: samplers(:)
-        integer(i4) :: q = 0 ! number of groups
-        type(btree_t) :: btree ! btree for the samplers selection (size q)
-        integer(i4), allocatable :: sampler_of_index(:) ! maps index to sampler
-        real(dp) :: wmin, wmax
+        type(rejection_maxheap_t), allocatable :: samplers(:) !! Array of sub-samplers for each geometric bin (size q)
+        integer(i4) :: q = 0 !! Total number of geometric weight bins
+        type(btree_t) :: btree !! Binary tree of size q selecting active bins proportionally to bin totals
+        integer(i4), allocatable :: sampler_of_index(:) !! Map from element index to its current bin (1..q)
+        real(dp) :: wmin = 0.0_dp !! Minimum anticipated weight bound
+        real(dp) :: wmax = 0.0_dp !! Maximum anticipated weight bound
     contains
-        procedure :: init_n => sampler_init
-        procedure :: init_w => sampler_init_w
-        procedure :: init_w2 => sampler_init_w2
-        procedure :: reset        => sampler_reset
-        procedure :: set_weight   => sampler_set_weight
-        procedure :: set_weight_array => sampler_set_weight_array
-        procedure :: add_weight => sampler_add_weight
-        procedure :: sample       => sampler_sample
-        procedure :: remove => sampler_remove
-        procedure :: sum => sampler_sum
-        procedure :: sampler_pos => sampler_sampler_pos
+        procedure :: init_n => sampler_init !! Initializes with capacity N (default wmin=1, wmax=N)
+        procedure :: init_w => sampler_init_w !! Initializes with capacity N and known wmax
+        procedure :: init_w2 => sampler_init_w2 !! Initializes with capacity N, wmin, and wmax
+        procedure :: reset        => sampler_reset !! Clears all bins and the selection tree
+        procedure :: set_weight   => sampler_set_weight !! Assigns weight to an index and places it in the proper bin
+        procedure :: set_weight_array => sampler_set_weight_array !! Sets all weights
+        procedure :: add_weight => sampler_add_weight !! Adds delta weight and re-bins if necessary
+        procedure :: sample       => sampler_sample !! Samples an index via composition then rejection
+        procedure :: remove => sampler_remove !! Removes element from its bin in O(log q + log N_k)
+        procedure :: sum => sampler_sum !! Returns total sum of weights across all bins in O(1)
+        procedure :: sampler_pos => sampler_sampler_pos !! Helper calculating target bin index for a given weight
 
-        final :: sampler_finalize
-    end type
+        final :: sampler_finalize !! Finalizer releasing sub-samplers and trees
+    end type weighted_sampler_t
 
     public :: weighted_sampler, weighted_sampler_t
 

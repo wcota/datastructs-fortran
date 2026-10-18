@@ -7,12 +7,18 @@ module datastructs_sorting_mod
     implicit none
     private
 
+    !> Sorts an array in-place in ascending (default) or descending order (`reverse=.true.`).
+    !> Uses Introsort (median-of-three Quicksort with cutoff to Insertion sort and Heapsort fallback).
+    !> Guaranteed worst-case \(O(N \log N)\) complexity and \(O(1)\) auxiliary memory.
     interface sort
         module procedure sort_i4
         module procedure sort_i8
         module procedure sort_dp
     end interface sort
 
+    !> Computes the permutation indices that sort `arr` without modifying `arr`.
+    !> If `idx` is not allocated or has the wrong size, it is automatically allocated.
+    !> Guaranteed worst-case \(O(N \log N)\) complexity.
     interface sort_index
         module procedure sort_index_i4
         module procedure sort_index_i8

@@ -20,9 +20,10 @@ module datastructs_lists_mod
 
 contains
 
-    !> Find unique values in a list of integers
-    !> It uses the standard library sorting module
-    !> The result is a list of unique integers
+    !> Find unique values in a list of integers.
+    !> Uses internal high-performance Introsort to sort values in \(O(N \log N)\)
+    !> before sequential deduplication.
+    !> Returns a newly allocated array of unique integers in ascending order.
     function unique_values(list) result(unique)
         use datastructs_sorting_mod, only: sort
         integer(kind=i4), intent(in) :: list(:) !! Input list of integers

@@ -4,11 +4,11 @@
 !> The sampling is done proportionally to the weights.
 !> It depends on the `rndgen-fortran` module, found at <https://github.com/wcota/rndgen-fortran>
 !> Each sampler algorithm is implemented separately.
-!> !> Example:
+!> Example:
 !> ```fortran
 !> program example_sampler
-!>     use datastructs_fortran
-!>     use kinds_mod
+!>     use datastructs_mod
+!>     use datastructs_kinds_mod
 !>     use rndgen_mod
 !>     implicit none
 !>
@@ -45,10 +45,6 @@
 !>         write(*, fmt_general) "@ Index:", i, " Weight:", weights(i), "Count:", count_times(i), "Prob:", 1.0_dp * count_times(i) / sum(count_times), "Expected prob:", weights(i) / sum(weights)
 !>     end do
 !> end program example_sampler
-!>
-!> @todo
-!> Document the rest of the internal modules
-!> @endtodo
 !> ```
 module datastructs_samplers_mod
     use datastructs_kinds_mod

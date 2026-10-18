@@ -1,8 +1,10 @@
-!> This module implements a time step controller and an object to manage statistical measures
+!> Statistical accumulator and measurement controller module.
 !>
-!> @todo
-!> Document the rest of the module
-!> @endtodo
+!> Provides:
+!> - `statistical_measure_t`: Online accumulator for statistical moments (mean, variance,
+!>   standard deviation, skewness) across observation points with \(O(1)\) incremental updates.
+!> - `measure_controller_t`: Controller tracking temporal sampling intervals for uniform,
+!>   logarithmic, or custom grids. (For CTMC/Gillespie dynamics, see also `time_grid_t`).
 module datastructs_measures_mod
     use datastructs_kinds_mod
     implicit none
