@@ -73,10 +73,14 @@ program test_ctmc
         dt = 0.03_dp  ! drawn from exponential distribution
         t = t + dt
 
-        ! Record state if elapsed time crossed one or more grid ticks
-        if (grid%needs_update(t)) then
-            call grid%record(infected_measure, t, state)
-        end if
+        ! Simply call record directly (no if needed; it exits immediately if no tick is due):
+        call grid%record(infected_measure, t, state)
+
+        ! Or, if computing the state is computationally expensive, use needs_update as a guard:
+        ! if (grid%needs_update(t)) then
+        !     state = compute_expensive_summary_metric(...)
+        !     call grid%record(infected_measure, t, state)
+        ! end if
 
         ! Update physical state
         state = state + 1.0_dp
