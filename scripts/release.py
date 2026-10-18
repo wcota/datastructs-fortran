@@ -148,6 +148,8 @@ def main():
     bump_arg = sys.argv[1].lower()
     dry_run = "--dry-run" in sys.argv
     no_commit = "--no-commit" in sys.argv
+    no_tag = "--no-tag" in sys.argv
+    auto_yes = "-y" in sys.argv or "--yes" in sys.argv
 
     curr_version = get_current_version()
     next_version = compute_next_version(curr_version, bump_arg)
@@ -165,6 +167,12 @@ def main():
     print(f" Base tag:         {latest_tag or '(initial)'}")
     print(f" Commits found:    {len(commits)}")
     print("----------------------------------------")
+    print("Files that will be updated:")
+    print(f" - {FPM_TOML.relative_to(ROOT_DIR)}")
+    print(f" - {FORD_MD.relative_to(ROOT_DIR)}")
+    print(f" - {FORMAL_MD.relative_to(ROOT_DIR)}")
+    print(f" - {INDEX_MD.relative_to(ROOT_DIR)}")
+    print("----------------------------------------")
     print("Release Notes:")
     print(release_notes)
     print("----------------------------------------")
@@ -173,12 +181,37 @@ def main():
         print("[DRY-RUN] No changes were written.")
         sys.exit(0)
 
+    # Always ask for confirmation unless -y/--yes is explicitly passed
+    if not auto_yes:
+        try:
+            confirm = input(f"\n[?] Update files to v{next_version}? [y/N]: ").strip().lower()
+        except (KeyboardInterrupt, EOFError):
+            print("\n[Aborted] Operation cancelled.")
+            sys.exit(1)
+
+        if confirm not in ("y", "yes"):
+            print("[Aborted] No changes were written.")
+            sys.exit(0)
+
     # 1. Update version across fpm.toml, ford.md, formal.md, docs/index.md
     files_to_commit = update_version_in_files(next_version)
 
     if no_commit:
         print("[!] --no-commit specified. Skipping git commit and tag.")
         sys.exit(0)
+
+    # Ask before creating commit and tag if interactive
+    do_tag = not no_tag
+    if not auto_yes and not no_tag:
+        try:
+            confirm_tag = input(f"[?] Create git commit and tag '{new_tag}'? [y/N]: ").strip().lower()
+        except (KeyboardInterrupt, EOFError):
+            print("\n[Aborted] Files updated, but git commit/tag skipped.")
+            sys.exit(0)
+
+        if confirm_tag not in ("y", "yes"):
+            print("[!] Git commit and tag skipped. Changes remain unstaged/modified in working directory.")
+            sys.exit(0)
 
     # 2. Git commit
     run_cmd(["git", "add"] + files_to_commit)
@@ -187,12 +220,16 @@ def main():
     print(f"[✓] Created git commit: '{commit_msg}'")
 
     # 3. Git annotated tag
-    run_cmd(["git", "tag", "-a", new_tag, "-m", release_notes])
-    print(f"[✓] Created annotated git tag: {new_tag}")
-
-    print("\n[SUCCESS] Release complete!")
-    print("To push changes and tags to remote, run:")
-    print(f"    git push origin main && git push origin {new_tag}")
+    if do_tag:
+        run_cmd(["git", "tag", "-a", new_tag, "-m", release_notes])
+        print(f"[✓] Created annotated git tag: {new_tag}")
+        print("\n[SUCCESS] Release complete!")
+        print("To push changes and tags to remote, run:")
+        print(f"    git push origin main && git push origin {new_tag}")
+    else:
+        print("\n[SUCCESS] Release commit created without tag.")
+        print("To push changes to remote, run:")
+        print(f"    git push origin main")
 
 if __name__ == "__main__":
     main()
