@@ -17,6 +17,9 @@ from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 FPM_TOML = ROOT_DIR / "fpm.toml"
+FORD_MD = ROOT_DIR / "ford.md"
+FORMAL_MD = ROOT_DIR / "docs" / "formal.md"
+INDEX_MD = ROOT_DIR / "docs" / "index.md"
 
 def run_cmd(cmd, check=True):
     result = subprocess.run(cmd, cwd=ROOT_DIR, capture_output=True, text=True)
@@ -81,15 +84,61 @@ def format_release_notes(version, commits):
         notes.append("Maintenance and performance improvements.")
     return "\n".join(notes)
 
-def update_fpm_toml(new_version):
-    content = FPM_TOML.read_text(encoding="utf-8")
-    new_content = re.sub(
-        r'^version\s*=\s*"[^"]+"',
-        f'version = "{new_version}"',
-        content,
-        flags=re.MULTILINE
-    )
-    FPM_TOML.write_text(new_content, encoding="utf-8")
+def update_version_in_files(new_version):
+    files_to_commit = []
+
+    # 1. fpm.toml
+    if FPM_TOML.exists():
+        content = FPM_TOML.read_text(encoding="utf-8")
+        new_content = re.sub(
+            r'^version\s*=\s*"[^"]+"',
+            f'version = "{new_version}"',
+            content,
+            flags=re.MULTILINE
+        )
+        FPM_TOML.write_text(new_content, encoding="utf-8")
+        files_to_commit.append(str(FPM_TOML.relative_to(ROOT_DIR)))
+        print(f"[✓] Updated {FPM_TOML.relative_to(ROOT_DIR)} to {new_version}")
+
+    # 2. ford.md
+    if FORD_MD.exists():
+        content = FORD_MD.read_text(encoding="utf-8")
+        new_content = re.sub(
+            r'^version:\s*[\d\.]+',
+            f'version: {new_version}',
+            content,
+            flags=re.MULTILINE
+        )
+        FORD_MD.write_text(new_content, encoding="utf-8")
+        files_to_commit.append(str(FORD_MD.relative_to(ROOT_DIR)))
+        print(f"[✓] Updated {FORD_MD.relative_to(ROOT_DIR)} to {new_version}")
+
+    # 3. docs/formal.md
+    if FORMAL_MD.exists():
+        content = FORMAL_MD.read_text(encoding="utf-8")
+        new_content = re.sub(
+            r'^version:\s*[\d\.]+',
+            f'version: {new_version}',
+            content,
+            flags=re.MULTILINE
+        )
+        FORMAL_MD.write_text(new_content, encoding="utf-8")
+        files_to_commit.append(str(FORMAL_MD.relative_to(ROOT_DIR)))
+        print(f"[✓] Updated {FORMAL_MD.relative_to(ROOT_DIR)} to {new_version}")
+
+    # 4. docs/index.md (fpm example tag = "vX.Y.Z")
+    if INDEX_MD.exists():
+        content = INDEX_MD.read_text(encoding="utf-8")
+        new_content = re.sub(
+            r'tag\s*=\s*"v[\d\.]+"',
+            f'tag = "v{new_version}"',
+            content
+        )
+        INDEX_MD.write_text(new_content, encoding="utf-8")
+        files_to_commit.append(str(INDEX_MD.relative_to(ROOT_DIR)))
+        print(f"[✓] Updated {INDEX_MD.relative_to(ROOT_DIR)} to v{new_version}")
+
+    return files_to_commit
 
 def main():
     if len(sys.argv) < 2 or sys.argv[1] in ("-h", "--help"):
@@ -124,16 +173,15 @@ def main():
         print("[DRY-RUN] No changes were written.")
         sys.exit(0)
 
-    # 1. Update fpm.toml
-    update_fpm_toml(next_version)
-    print(f"[✓] Updated {FPM_TOML.name} to version {next_version}")
+    # 1. Update version across fpm.toml, ford.md, formal.md, docs/index.md
+    files_to_commit = update_version_in_files(next_version)
 
     if no_commit:
         print("[!] --no-commit specified. Skipping git commit and tag.")
         sys.exit(0)
 
     # 2. Git commit
-    run_cmd(["git", "add", "fpm.toml"])
+    run_cmd(["git", "add"] + files_to_commit)
     commit_msg = f"chore(release): bump version to v{next_version}"
     run_cmd(["git", "commit", "-m", commit_msg])
     print(f"[✓] Created git commit: '{commit_msg}'")

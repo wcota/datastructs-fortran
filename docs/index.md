@@ -36,7 +36,7 @@ Add `datastructs-fortran` to your `fpm.toml`:
 
 ```toml
 [dependencies]
-datastructs-fortran = { git = "https://github.com/wcota/datastructs-fortran", tag = "v0.5.0" }
+datastructs-fortran = { git = "https://github.com/wcota/datastructs-fortran", tag = "v0.6.1" }
 ```
 
 Then simply import the umbrella module or individual components:
