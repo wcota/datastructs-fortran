@@ -44,9 +44,12 @@
 node_modules/
 *.edgeslist
 .venv/
-.vitepress/
+/.vitepress/
+.vitepress/cache/
+.vitepress/dist/
 docs/.vitepress/cache/
 docs/.vitepress/dist/
 doc/
+
 
 
